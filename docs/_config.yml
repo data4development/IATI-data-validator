@@ -5,5 +5,9 @@ email: rolf@drostan.org
 description: >
   Publicly available IATI validator with data quality feedback and tests
   for the guidelines of the Dutch Ministry of Foreign Affairs
+brand: DataWorkbench
 
-theme: jekyll-theme-minimal
+defaults:
+  -
+    values:
+      layout: "default"
