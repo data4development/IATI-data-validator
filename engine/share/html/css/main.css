@@ -1,0 +1,68 @@
+body {
+  padding-top: 70px;
+}
+
+.activity:hover {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  border: 0;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.activity .header:hover {
+  cursor: pointer;
+}
+
+.badge-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+
+.badge-info {
+  color: #31708f;
+  background-color: #d9edf7;
+}
+
+.badge-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+}
+
+.badge-danger {
+  color: #a94442;
+  background-color: #f2dede;
+}
+
+.badge-primary {
+  background-color: #337ab7;
+}
+
+.icon {
+  margin: 0 0.2em;
+  height: 1.5em;
+  width: 1.5em;
+  vertical-align: middle;
+}
+
+a.icon:hover {
+  text-decoration: none;
+}
+
+.languageSet {
+}
+.languageDefault {
+  color: #333;
+}
+.languageNA {
+  color: #800;
+}
+
+.feedback-class {
+  font-weight: bold;
+}
+
+.feedback-list thead, .feedback-list tbody, .feedback-list tr, .feedback-list th, .feedback-list td {
+  border: 0 !important;
+}
