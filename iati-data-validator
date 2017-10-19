@@ -1,0 +1,89 @@
+#!/bin/bash
+iati_engine=$(basename ${BASH_SOURCE[0]})
+
+case "$1." in
+  "-?.")
+    cat <<EOT
+
+$iati_engine
+
+  -?                    Show this help text.
+
+  (without parameters)  Shows the available 'targets' the engine can create.
+  -p                    Idem.
+
+  autocompletion        To add command-line autocompletion to your current
+                        shell, run this command (including the dot):
+                        '. $iati_engine autocompletion'
+
+EOT
+    ;;
+  "autocompletion." )
+    # When running as a 'dot command' $0 points to the shell, not to our script
+    if [[ `basename $0` != 'bash' ]]
+    then
+      echo -e "\nMake sure to include the dot before the command to enable autocompletion:"
+      echo "Run '. $iati_engine autocompletion'"
+    else
+      # add command line autocompletion:
+      export _iati_data_validator_targets=`$iati_engine -p -q | grep ^\  | cut -f 2 -d \ `
+      _iati_data_validator()
+      {
+        local cur prev
+        COMPREPLY=()
+        cur="${COMP_WORDS[COMP_CWORD]}"
+        prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+        case "${prev}" in
+            show|val-act|val-org)
+              _filedir
+              return 0
+              ;;
+            *)
+            ;;
+        esac
+
+        COMPREPLY=( $(compgen -W "${_iati_data_validator_targets}" -- ${cur}) )
+      }
+      complete -F _iati_data_validator $iati_engine
+
+      echo -e "\nAutocompletion added for $iati_engine"
+    fi
+    ;;
+
+  *)
+    # Run a Docker container with the image
+
+    if [ "${_iati_data_validator_targets}." = "." ]; then
+      echo -e "\nTIP: Run '. $(basename $0) autocompletion' to add command-line autocompletion in your shell.\n"
+    fi
+
+    # Run the engine using our own user and group id's so we can manage the results
+    USER=`id -u`:`id -g`
+    PARAMETERS=$@
+
+    # Use the local code of the engine if available
+    ENGINE_PATH=$(dirname `readlink -f "$0"`)
+    if [[ -d $ENGINE_PATH/engine ]]; then
+      echo -e "\nRunning in developer mode: using the engine source code at $ENGINE_PATH\n"
+
+      SOURCE="-v ${ENGINE_PATH}/engine:/home"
+
+      if [ "$1." = "root." ]; then
+        USER="0:0"
+        PARAMETERS=${@:2}
+        ENTRY="--entrypoint=/bin/bash"
+      elif [ "$1." = "bash." ]; then
+        PARAMETERS=${@:2}
+        ENTRY="--entrypoint=/bin/bash"
+      fi
+    fi
+
+    # local version of the engine for now...
+    docker run -it --rm -u=${USER} \
+      -v `pwd`:/workspace \
+      $SOURCE \
+      $ENTRY \
+      iati-data-validator $PARAMETERS
+    ;;
+esac
