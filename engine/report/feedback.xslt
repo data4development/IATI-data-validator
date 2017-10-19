@@ -3,7 +3,7 @@
 <xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:iati-me="http://iati.me"
   xmlns:functx="http://www.functx.com"
-  exclude-result-prefixes="">
+  exclude-result-prefixes="iati-me functx">
 
   <xsl:import href="../lib/functx.xslt"/>
   <xsl:import href="../lib/html/bootstrap.xslt"/>

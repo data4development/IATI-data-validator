@@ -15,7 +15,7 @@
 
 <xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
 
-  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+  <xsl:output method="xhtml" encoding="UTF-8" indent="yes"/>
 
   <xsl:character-map name="latin1">
     <xsl:output-character character="&#128;" string="&amp;euro;" />
