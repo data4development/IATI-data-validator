@@ -4,6 +4,8 @@
     IATI Data Validator
   </description>
 
+  <!-- Use config/build.xml to add artifacts to extension points -->
+  <import file="/workspace/config/iati-data-validator.xml" optional="yes"/>
   <!-- Include additional development targets if available -->
   <import file="/develop/build.xml" optional="yes"/>
 
