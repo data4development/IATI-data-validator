@@ -8,6 +8,7 @@
   expand-text="yes">
 
   <xsl:include href="../../lib/functx.xslt"/>
+  <xsl:include href="iati/codelists.xslt"/>
   <xsl:include href="iati/identifiers.xslt"/>
   <xsl:include href="iati/sectors.xslt"/>
   <xsl:include href="iati/geo.xslt"/>

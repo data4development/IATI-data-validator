@@ -11,18 +11,18 @@
 
   <target name="org-id-prefixes">
     <get src="http://org-id.guide/download.xml" dest="tmp/org-id.xml"/>
-    <xslt in="tmp/org-id.xml" out="data/iati/org-id/prefixes.xml" style="lib/org-id-codes.xslt"/>
+    <xslt in="tmp/org-id.xml" out="data/iati/org-id/known-prefixes.xml" style="data-updater/org-id/known-prefixes.xslt"/>
   </target>
 
   <target name="mime-types">
     <get src="http://www.iana.org/assignments/media-types/media-types.xml" dest="tmp/mime-types.xml"/>
-    <xslt in="tmp/mime-types.xml" out="data-quality/lib/mime-types.xml" style="lib/mime-types.xslt"/>
+    <xslt in="tmp/mime-types.xml" out="data-quality/lib/mime-types.xml" style="data-updater/other/mime-types.xslt"/>
   </target>
 
   <target name="dstore-publishers">
     <get src="https://github.com/devinit/D-Portal/raw/master/dstore/json/iati_codes.json" dest="tmp/dstore_iati_codes.json"/>
     <touch file="lib/dummy.xml"/>
-    <xslt in="lib/dummy.xml" out="data-quality/lib/known-publishers.xml" style="lib/known-publishers.xslt"/>
+    <xslt in="lib/dummy.xml" out="data-quality/lib/known-publishers.xml" style="data-updater/iati/known-publishers.xslt"/>
   </target>
 
   <!-- Document all the Ant targets and their dependencies -->
