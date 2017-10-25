@@ -3,6 +3,5 @@ docs/\.sass-cache
 docs/Gemfile\.lock
 
 build\.svg
-engine/build\.dot
 engine/\.bash_history
 engine/tmp/

@@ -7,7 +7,7 @@
   <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
   <extension-point name="update-external-data"
   description="(Dev) Update the external data to use in the validator"
-  depends="org-id-prefixes, mime-types, dstore-publishers"/>
+  depends="org-id-prefixes, dstore-publishers, mime-types"/>
 
   <target name="org-id-prefixes">
     <get src="http://org-id.guide/download.xml" dest="tmp/org-id.xml"/>
@@ -29,17 +29,16 @@
   <typedef resource="net/ggtools/grand/antlib.xml" classpath="/develop/lib/grand-1.9.5.jar"/>
   <target name="ant-graph"
     description="(Dev) Create a graph of the targets and their dependencies.">
-    <property name="dot.node.attributes" value="shape='box',fontname='sans-serif',fontsize='10',fillcolor='lightyellow',style='filled'"/>
-    <property name="dot.link.attributes" value="fontname='sans-serif',fontsize='8',arrowsize='0.5',color='grey'"/>
-    <property name="dot.mainnode.attributes" value="fillcolor='lightgreen'"/>
-    <grand output="build.dot" outputconfigprefix="dot" showgraphname="true">
+
+    <grand output="tmp/ant-graph.dot" outputconfigfile="/develop/ant-graph.properties" showgraphname="true">
       <filter name="prefixed"/>
     </grand>
 
     <echo>
-      Ant target graph available as engine/build.dot
-      To create an SVG image fromt this, you need GraphViz and run
-      'dot -Tsvg -o build.svg engine/build.dot'
+      Ant target graph available as engine/tmp/ant-graph.dot
+      To create an SVG image fromt this, you need GraphViz and run:
+      
+        dot -Tsvg -o ant-graph.svg engine/tmp/ant-graph.dot
     </echo>
   </target>
 </project>
