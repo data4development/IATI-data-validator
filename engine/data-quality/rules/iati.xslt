@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet version='2.0'
+<xsl:stylesheet version='3.0'
   xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:iati-me="http://iati.me"
   xmlns:functx="http://www.functx.com"
-  exclude-result-prefixes="functx">
+  exclude-result-prefixes="functx"
+  expand-text="yes">
 
   <xsl:include href="../../lib/functx.xslt"/>
   <xsl:include href="iati/identifiers.xslt"/>
@@ -17,13 +18,23 @@
   <xsl:include href="iati/results.xslt"/>
   <xsl:include href="minbuza/traceability.xslt"/>
   <xsl:include href="minbuza/results.xslt"/>
+
   <xsl:output indent="yes"/>
+
+  <xsl:variable name="iati-version-valid"
+    select="/iati-activities/@version=('1.01','1.02','1.03','1.04','1.05','2.01','2.02')"/>
+  <xsl:variable name="iati-version">
+    <xsl:choose>
+      <xsl:when test="iati-version-valid">{/iati-activities/@version}</xsl:when>
+      <xsl:when test="starts-with(/iati-activities/@version, '1.')">1.05</xsl:when>
+      <xsl:otherwise>2.02</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
 
   <xsl:template match="iati-activity">
     <xsl:copy>
-      <xsl:attribute name="iati-me:id">
-        <xsl:value-of select="iati-identifier"/>
-      </xsl:attribute>
+      <xsl:attribute name="iati-me:id">{iati-identifier}</xsl:attribute>
       <xsl:apply-templates select="@*|node()"/>
       <xsl:apply-templates select="." mode="rules"/>
     </xsl:copy>

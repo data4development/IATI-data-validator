@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+<xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:iati-me="http://iati.me"
   xmlns:functx="http://www.functx.com"
-  exclude-result-prefixes="functx">
+  exclude-result-prefixes="functx"
+  expand-text="yes">
 
 <!-- Get all activity titles -->
 <xsl:variable name="activity-titles" select="//title/(narrative|text())"/>
@@ -25,6 +26,7 @@
 
   <xsl:if test="count((narrative|text()) = $activity-titles) > 1">
     <iati-me:feedback type="info" class="language" id="4.2.1">
+      <iati-me:src ref="practice" versions="any"/>
       <iati-me:message>The same activity title is occurring more than once in the data set.</iati-me:message>
     </iati-me:feedback>
   </xsl:if>

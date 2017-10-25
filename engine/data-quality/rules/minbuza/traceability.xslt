@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+<xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:iati-me="http://iati.me"
   xmlns:functx="http://www.functx.com"
-  exclude-result-prefixes="functx">
+  exclude-result-prefixes="functx"
+  expand-text="yes">
 
-<xsl:template match="iati-activities" mode="rules" priority="100.1">
+<xsl:template match="iati-activities" mode="rules" priority="105.1">
 
   <xsl:if test="not(//transaction[transaction-type/@code='11'
     and provider-org/@ref='XM-DAC-7'
