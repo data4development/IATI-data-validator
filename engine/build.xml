@@ -4,7 +4,10 @@
     IATI Data Validator
   </description>
 
-  <target name="init" description="Set up workspace directories.">
+  <!-- Include additional development targets if available -->
+  <import file="/develop/build.xml" optional="yes"/>
+
+  <target name="init" description="Set up workspace directories here.">
     <mkdir dir="/workspace/src"/>
     <mkdir dir="/workspace/dest"/>
     <mkdir dir="/workspace/tmp"/>

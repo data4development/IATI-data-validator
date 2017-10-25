@@ -12,9 +12,10 @@ $iati_engine
   (without parameters)  Shows the available 'targets' the engine can create.
   -p                    Idem.
 
-  autocompletion        To add command-line autocompletion to your current
-                        shell, run this command (including the dot):
-                        '. $iati_engine autocompletion'
+  autocompletion        Add command-line autocompletion to your current
+                        shell. Run this command, including the leading dot:
+
+                          . $iati_engine autocompletion
 
 EOT
     ;;
@@ -47,7 +48,7 @@ EOT
       }
       complete -F _iati_data_validator $iati_engine
 
-      echo -e "\nAutocompletion added for $iati_engine"
+      echo -e "\nCommand-line autocompletion added for $iati_engine"
     fi
     ;;
 
@@ -63,26 +64,14 @@ EOT
     PARAMETERS=$@
 
     # Use the local code of the engine if available
-    ENGINE_PATH=$(dirname `readlink -f "$0"`)
-    if [[ -d $ENGINE_PATH/engine ]]; then
-      echo -e "\nRunning in developer mode: using the engine source code at $ENGINE_PATH\n"
-
-      SOURCE="-v ${ENGINE_PATH}/engine:/home"
-
-      if [ "$1." = "root." ]; then
-        USER="0:0"
-        PARAMETERS=${@:2}
-        ENTRY="--entrypoint=/bin/bash"
-      elif [ "$1." = "bash." ]; then
-        PARAMETERS=${@:2}
-        ENTRY="--entrypoint=/bin/bash"
-      fi
+    MY_PATH=$(dirname `readlink -f "$0"`)
+    if [[ -f ${MY_PATH}/develop/engine-start ]]; then
+      . ${MY_PATH}/develop/engine-start
     fi
 
-    # local version of the engine for now...
-    docker run -it --rm -u=${USER} \
+    docker run --rm -u=${USER} \
       -v `pwd`:/workspace \
-      $SOURCE \
+      $OTHER_VOLUMES \
       $ENTRY \
       iati-data-validator $PARAMETERS
     ;;
