@@ -2,11 +2,14 @@
 
 <meta xmlns="http://iati.me">
   <categories>
+    <category class="codelists">
+      <title>Code lists</title>
+    </category>
     <category class="identifiers">
-      <title>Identifiers</title>
+      <title>Identifiers and traceability</title>
     </category>
     <category class="sectors">
-      <title>Sector classifications</title>
+      <title>Classifications</title>
     </category>
     <category class="geo">
       <title>Geographical information</title>
@@ -15,6 +18,7 @@
       <title>Language and text</title>
     </category>
     <category class="traceability">
+      <!-- to be merged into identifiers -->
       <title>Traceability</title>
     </category>
     <category class="information">
@@ -42,10 +46,13 @@
   </severities>
 
   <sources>
-    <source id="iati" logo="img/iati.png">IATI</source>
-    <source id="minbuza" logo="img/minbuza.svg" href="http://helpdesk-opendata-minbuza.nl">Ministry of Foreign Affairs, The Netherlands</source>
-    <source id="exclusions" logo="img/stop.svg">Your exclusion policy</source>
-    <source id="inclusions" logo="img/ok.svg">Your inclusion policy</source>
+    <source id="iati" logo="iati.png">IATI</source>
+    <source id="iati-xsd" logo="iati.png">IATI schema validation</source>
+    <source id="iati-doc" logo="iati.png">IATI documentation</source>
+    <source id="minbuza" logo="minbuza.svg" href="http://helpdesk-opendata-minbuza.nl">Ministry of Foreign Affairs, The Netherlands</source>
+    <source id="exclusions" logo="stop.svg">Your exclusion policy</source>
+    <source id="inclusions" logo="ok.svg">Your inclusion policy</source>
+    <source id="practice">Common practice</source>
     <source id="n/a">Not specified</source>
   </sources>
 </meta>

@@ -68,7 +68,7 @@
     <xsl:apply-templates select="(iati-me:message, $empty)[1]" mode="office-spreadsheet-cell"/>
     <xsl:apply-templates select="(iati-me:description, $empty)[1]" mode="office-spreadsheet-cell"/>
     <xsl:apply-templates select="ancestor::xsl:template[1]/@match" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="ancestor::xsl:if[1]/@test" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="ancestor::*[local-name(.)=('if','when')][1]/@test" mode="office-spreadsheet-cell"/>
   </xsl:template>
 
   <xsl:template match="/" mode="html-body">

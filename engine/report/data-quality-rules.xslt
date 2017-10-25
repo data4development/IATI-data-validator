@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+<xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:iati-me="http://iati.me"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  exclude-result-prefixes="iati-me xs">
+  exclude-result-prefixes="iati-me xs"
+  expand-text="yes">
 
   <xsl:import href="../lib/html/bootstrap.xslt"/>
   <xsl:variable name="meta" select="/iati-me:meta"/>
@@ -36,6 +37,7 @@
             <th>ID</th>
             <th>Severity</th>
             <th>Description</th>
+            <th>Source(s)</th>
             <th>Context (XPath match)</th>
             <th>Pattern (XPath test)</th>
           </tr>
@@ -52,13 +54,20 @@
       <xsl:variable name="type" select="@type"/>
       <td><a name="{@id}"></a><xsl:value-of select="@id"/></td>
       <td class="{@type}"><xsl:value-of select="$meta//iati-me:severity[@type=$type]"/></td>
-      <td><xsl:apply-templates/></td>
+      <td><xsl:apply-templates select="iati-me:message"/></td>
+      <td><ul><xsl:apply-templates select="iati-me:src"/></ul></td>
       <td><code><xsl:value-of select="ancestor::xsl:template[1]/@match"/></code></td>
-      <td><code><xsl:value-of select="ancestor::xsl:if[1]/@test"/></code></td>
+      <td><code><xsl:value-of select="ancestor::*[local-name(.)=('if','when')][1]/@test"/></code></td>
     </tr>
   </xsl:template>
 
   <xsl:template match="code">
     <xsl:copy copy-namespaces="no"><xsl:value-of select="(text(),'X')[1]"/></xsl:copy>
+  </xsl:template>
+  <xsl:template match="iati-me:src">
+    <li><span title="{$meta//iati-me:source[@id=current()/@ref]}">{@ref}
+    <xsl:if test="@versions">
+      ({@versions})
+    </xsl:if></span></li>
   </xsl:template>
 </xsl:stylesheet>

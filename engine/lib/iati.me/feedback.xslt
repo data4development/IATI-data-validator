@@ -9,7 +9,7 @@
   <xsl:variable name="feedback-meta" select="document('../../data-quality/meta.xml')/iati-me:meta"/>
 
   <xsl:template match="@logo">
-    <img class="icon" src="{.}"/>
+    <img class="icon" src="/img/{.}"/>
   </xsl:template>
 
   <xsl:template match="@href">

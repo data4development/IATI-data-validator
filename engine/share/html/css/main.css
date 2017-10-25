@@ -66,3 +66,7 @@ a.icon:hover {
 .feedback-list thead, .feedback-list tbody, .feedback-list tr, .feedback-list th, .feedback-list td {
   border: 0 !important;
 }
+
+td ul {
+  padding-left: 1em;
+}
