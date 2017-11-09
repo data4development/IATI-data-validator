@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="19.1">
+    <meta>
+        <filters directoryPatterns="" filePatterns="iati-data-validator.xpr" positiveFilePatterns="" showHiddenFiles="true"/>
+        <options/>
+    </meta>
+    <projectTree name="iati-data-validator.xpr">
+        <folder path="."/>
+    </projectTree>
+</project>
