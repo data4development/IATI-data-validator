@@ -2,6 +2,9 @@
 
 <meta xmlns="http://iati.me">
   <categories>
+    <category class="iati">
+      <title>IATI technical</title>
+    </category>
     <category class="codelists">
       <title>Code lists</title>
     </category>
@@ -42,7 +45,7 @@
     <severity type="danger">Error</severity>
     <severity type="warning">Warning</severity>
     <severity type="info">Improvement</severity>
-    <severity type="success">Approval</severity>
+    <severity type="success">Optimisation</severity>
   </severities>
 
   <sources>
