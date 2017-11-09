@@ -5,3 +5,7 @@ docs/Gemfile\.lock
 build\.svg
 engine/\.bash_history
 engine/tmp/
+
+develop/testspace/dest
+develop/testspace/reports
+develop/testspace/tmp

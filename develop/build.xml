@@ -25,6 +25,18 @@
     <xslt in="lib/dummy.xml" out="data-quality/lib/known-publishers.xml" style="data-updater/iati/known-publishers.xslt"/>
   </target>
 
+  <target name="test-rules">
+    <delete dir="/workspace/dest"/>
+    <mkdir dir="/workspace/dest"/>
+    <antcall target="rules"/>
+    <xslt basedir="/workspace/dest/" 
+      includes="**/*.feedback.xml" 
+      destdir="/workspace/reports" 
+      style="/develop/lib/test-results.xslt">
+      <globmapper from="*.feedback.xml" to="*.feedback.txt"/>
+    </xslt>
+  </target>
+
   <!-- Document all the Ant targets and their dependencies -->
   <typedef resource="net/ggtools/grand/antlib.xml" classpath="/develop/lib/grand-1.9.5.jar"/>
   <target name="ant-graph"

@@ -65,12 +65,13 @@ EOT
 
     # Use the local code of the engine if available
     MY_PATH=$(dirname `readlink -f "$0"`)
+    WORKSPACE=`pwd`
     if [[ -f ${MY_PATH}/develop/engine-start ]]; then
       . ${MY_PATH}/develop/engine-start
     fi
 
     docker run --rm -u=${USER} \
-      -v `pwd`:/workspace \
+      -v $WORKSPACE:/workspace \
       $OTHER_VOLUMES \
       $ENTRY \
       iati-data-validator $PARAMETERS
