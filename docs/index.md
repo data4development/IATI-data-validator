@@ -26,22 +26,11 @@ the IATI schema will be added still.
 Thanks
 ------
 
-<div class="row">
-  <div class="col-md-4">
-    <ul>
-      <li><a href="http://iatistandard.org">International Aid Transparency Initiative</a></li>
-      <li><a href="http://saxonica.com/">Saxonica's Saxon-HE XSLT processor</a></li>
-      <li><a href="https://ant.apache.org/">Apache Ant build tool</a></li>
-      <li><a href="https://www.docker.com">Docker containers</a></li>
-    </ul>
-  </div>
-  <div class="col-md-4">
-    <ul>
-      <li><a href="https://jekyllrb.com">Jekyll</a></li>
-      <li><a href="https://getbootstrap.com">Twitter Bootstrap</a></li>
-      <li><a href="http://getfuelux.com">Fuelux extension</a></li>
-      <li>Site theme: <a href="https://bootswatch.com/flatly/">Flatly from Bootswatch</a></li>
-      <li>Syntax highlighting: <a href="http://richleland.github.io/pygments-css/">Native theme</a></li>
-    </ul>
-  </div>
-</div>
+| Run                                      | Style                                    | Make                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| [International Aid Transparency Initiative](http://iatistandard.org) | [Twitter Bootstrap](https://getbootstrap.com) | [Github and Github Pages](https://github.com) |
+| [Saxonica's Saxon-HE XSLT processor](http://saxonica.com) | [Fuelux extension](http://getfuelux.com) | [Jekyll](https://jekyllrb.com)           |
+| [Apache Ant build tool](https://ant.apache.org) | [Flatly theme from Bootswatch](https://bootswatch.com/flatly) | [Typora markdown editor](https://typora.io/) |
+| [Docker containers](https://www.docker.com) | [Native theme syntax highlighting](http://richleland.github.io/pygments-css/) | [Oxygen XML Editor](https://oxygenxml.com) |
+
+
