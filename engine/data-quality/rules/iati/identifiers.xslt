@@ -76,14 +76,14 @@
           <me:src ref="practice" versions="any"/>
           <me:message><code>{$item}</code> should not be empty but omitted if you don't have a value for it.</me:message>
         </me:feedback>        
-    </xsl:when>
+      </xsl:when>
       
       <xsl:when test=". != functx:trim(.)">
         <me:feedback type="warning" class="identifiers" id="1.2.1">
           <me:src ref="practice" versions="any"/>
           <me:message><code>{$item}</code> should not start or end with spaces or newlines.</me:message>
         </me:feedback>
-    </xsl:when>
+      </xsl:when>
 
       <xsl:when test="some $prefix in $org-id-prefixes[@status='withdrawn'] satisfies starts-with(upper-case(.), $prefix)">
         <me:feedback type="info" class="identifiers" id="1.2.9">

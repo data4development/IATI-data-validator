@@ -9,7 +9,7 @@
 <xsl:template match="transaction[provider-org and receiver-org]" mode="rules" priority="7.1">
 
   <xsl:if test="provider-org/@provider-activity-id eq receiver-org/@receiver-activity-id">
-    <me:feedback type="warning" class="financial" id="7.1.1">
+    <me:feedback type="danger" class="financial" id="7.1.1">
       <me:src ref="practice" versions="any"/>
       <me:message>The <code>provider-activity-id</code> and <code>receiver-activity-id</code> are the same: financial flows should be between different activities.</me:message>
     </me:feedback>
@@ -21,10 +21,7 @@
     and not(receiver-org/@receiver-activity-id)">
     <me:feedback type="warning" class="financial" id="7.1.2">
       <me:src ref="practice" versions="any"/>
-      <me:message>The transaction is a commitment from the activity,
-      and has a <code>provider-activity-id</code>
-      that is different from the activity identifier
-      but no <code>receiver-activity-id</code>.</me:message>
+      <me:message>The transaction is a commitment from the activity, and has a <code>provider-activity-id</code> that is different from the activity identifier but no <code>receiver-activity-id</code>.</me:message>
     </me:feedback>
   </xsl:if>
 
@@ -34,10 +31,7 @@
     and not(receiver-org/@receiver-activity-id)">
     <me:feedback type="warning" class="financial" id="7.1.3">
       <me:src ref="practice" versions="any"/>
-      <me:message>The transaction is a disbursement from the activity,
-      and has a <code>provider-activity-id</code>
-      that is different from the activity identifier
-      but no <code>receiver-activity-id</code>.</me:message>
+      <me:message>The transaction is a disbursement from the activity, and has a <code>provider-activity-id</code> that is different from the activity identifier but no <code>receiver-activity-id</code>.</me:message>
     </me:feedback>
   </xsl:if>
 
@@ -45,9 +39,7 @@
     and receiver-org/@receiver-activity-id">
     <me:feedback type="warning" class="financial" id="7.1.4">
       <me:src ref="practice" versions="any"/>
-      <me:message>The transaction is an expenditure from the activity,
-      but has a <code>receiver-activity-id</code>
-      suggesting it may be a disbursement.</me:message>
+      <me:message>The transaction is an expenditure from the activity, but has a <code>receiver-activity-id</code> suggesting it may be a disbursement.</me:message>
     </me:feedback>
   </xsl:if>
 
@@ -81,7 +73,7 @@
   <xsl:next-match/>
 </xsl:template>
 
-<xsl:template match="transaction[transaction-type/@code=('2','3','D','C')]" mode="rules" priority="7.4">
+<xsl:template match="transaction[upper-case(transaction-type/@code)=('2','3','D','C')]" mode="rules" priority="7.4">
   <xsl:choose>
     <xsl:when test="provider-org[@ref=current()/../reporting-org/@ref 
       and @provider-activity-id=current()/../iati-identifier]">

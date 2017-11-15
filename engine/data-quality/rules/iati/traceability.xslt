@@ -13,10 +13,7 @@
     and not(//iati-activity/related-activity[@type='2' and @ref=$aid])">
     <me:feedback type="info" class="traceability" id="5.1.1">
       <me:src ref="iati-doc" versions="any"/>
-      <me:message>The activity is declared to be at hierarchical level
-      <code><xsl:value-of select="@hierarchy"/></code> but there is no reference to
-      a parent activity, and no other activity in the dataset refers to this
-      activity as a child activity.</me:message>
+      <me:message>The activity is declared to be at hierarchical level <code><xsl:value-of select="@hierarchy"/></code> but there is no reference to a parent activity, and no other activity in the dataset refers to this activity as a child activity.</me:message>
     </me:feedback>
   </xsl:if>
 

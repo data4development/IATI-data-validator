@@ -14,10 +14,7 @@
 
     <me:feedback type="warning" class="traceability" id="100.1.1">
       <me:src ref="minbuza"/>
-      <me:message>Include at least one activity with a transaction
-      of type <code>11</code> (incoming commitment) that refers to the
-      Ministry (<code>XM-DAC-7</code>) as the provider, and that refers to
-      a specific activity identifier of the Ministry.</me:message>
+      <me:message>Include at least one activity with a transaction of type <code>11</code> (incoming commitment) that refers to the Dutch Ministry of Foreign Affairs (<code>XM-DAC-7</code>) as the provider, and that refers to a specific activity identifier of the Ministry.</me:message>
     </me:feedback>
   </xsl:if>
 
@@ -32,11 +29,7 @@
     or related-activity/@ref)">
     <me:feedback type="info" class="traceability" id="100.2.1">
       <me:src ref="minbuza"/>
-      <me:message>An activity should contain links to other activities,
-      for instance to indicate where funding comes from or goes to, or how it
-      relates to overarching programmes or underlying projects.
-      This helps understand the complete flow, and prevent double
-      counting.</me:message>
+      <me:message>An activity should contain links to other activities, for instance to indicate where funding comes from or goes to, or how it relates to overarching programmes or underlying projects. This helps understand the complete flow, and prevent double counting.</me:message>
     </me:feedback>
   </xsl:if>
 
@@ -48,9 +41,7 @@
     )">
     <me:feedback type="warning" class="traceability" id="100.2.2">
       <me:src ref="minbuza"/>
-      <me:message>If the Ministry (<code>XM-DAC-7</code>) is a donor or provider of
-      incoming funds, the activity must have a transaction of type
-      <code>11</code> (incoming commitment)</me:message>
+      <me:message>If the Ministry (<code>XM-DAC-7</code>) is a donor or provider of incoming funds, the activity must have a transaction of type <code>11</code> (incoming commitment)</me:message>
     </me:feedback>
   </xsl:if>
 
