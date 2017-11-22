@@ -236,7 +236,7 @@
             <xsl:value-of select="$feedback-meta/me:categories/me:category[@class=$class]/me:title"/>:
           </span>
           <xsl:apply-templates select="." mode="context"/>
-          <xsl:copy-of select="*|text()"/>
+          <xsl:copy-of select="me:message/(*|text())"/>
         </div>
       </td>
     </tr>

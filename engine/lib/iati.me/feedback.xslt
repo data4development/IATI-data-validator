@@ -4,7 +4,7 @@
   xmlns:functx="http://www.functx.com"
   xmlns:me="http://iati.me"
   expand-text="yes"
-  exclude-result-prefixes="">
+  exclude-result-prefixes="functx me">
 
   <xsl:variable name="feedback-meta" select="document('../../data-quality/meta.xml')/me:meta"/>
   
@@ -17,9 +17,13 @@
   </xsl:template>
   
   <xsl:template match="*" mode="get-text">
-    {functx:trim(./(narrative, text())[1])}
+    <xsl:text>{functx:trim(./(narrative, text())[1])}</xsl:text>
   </xsl:template>
 
+  <xsl:template match="*">
+    <xsl:text>{functx:trim(./(narrative, text())[1])}</xsl:text>
+  </xsl:template>
+  
   <xsl:template name="show-organisation">
     <xsl:choose>
       <xsl:when test="../@ref"><code>{../@ref}</code></xsl:when>
@@ -29,28 +33,26 @@
 
   <!-- Context information for reporting-org -->
   <xsl:template match="reporting-org/me:feedback" mode="context">
-    <xsl:variable name="ref">
-    </xsl:variable>
-    In <xsl:value-of select="name(..)"/>&#160;<xsl:call-template name="show-organisation"/>:
+    <xsl:text>In {name(..)} </xsl:text><xsl:call-template name="show-organisation"/>:
   </xsl:template>
 
   <!-- Context information for participating-org -->
   <xsl:template match="participating-org/me:feedback" mode="context">
-    In {name(..)}&#160;<xsl:call-template name="show-organisation"/> (role <code>{../@role}</code>):
+    <xsl:text>In {name(..)} </xsl:text><xsl:call-template name="show-organisation"/> (role <code>{../@role}</code>):
   </xsl:template>
 
   <!-- Context information for transactions -->
   <xsl:template match="transaction/me:feedback" mode="context">
-    In
+    <xsl:text>In </xsl:text>
     <xsl:choose>
       <xsl:when test="../transaction-type/@code='1'">incoming funds</xsl:when>
       <xsl:when test="../transaction-type/@code='2'">(outgoing) commitment</xsl:when>
       <xsl:when test="../transaction-type/@code='3'">disbursement</xsl:when>
       <xsl:when test="../transaction-type/@code='4'">expenditure</xsl:when>
       <xsl:when test="../transaction-type/@code='11'">incoming commitment</xsl:when>
-      <xsl:otherwise></xsl:otherwise>
+      <xsl:otherwise>transaction</xsl:otherwise>
     </xsl:choose>
-    transaction of {../transaction-date/@iso-date}:
+    <xsl:text> of {../transaction-date/@iso-date}:</xsl:text>
   </xsl:template>
 
   <!-- Context information for budget -->
@@ -68,12 +70,16 @@
     For the document <a href="{../@url}"><xsl:apply-templates select="../title"/></a>:
   </xsl:template>
 
-  <xsl:template match="indicator/me:feedback|result/me:feedback" mode="context">
-    For the indicator "<em><xsl:apply-templates select="../title"/></em>":
+  <xsl:template match="result/me:feedback|indicator/me:feedback" mode="context">
+    For the {name(..)} "<em><xsl:apply-templates select="../title"/></em>":
   </xsl:template>
 
-  <xsl:template match="baseline/me:feedback|indicator/reference/me:feedback|indicator/description/me:feedback" mode="context">
-    For the indicator "<em><xsl:apply-templates select="../../title"/></em>":
+  <xsl:template match="baseline/me:feedback|indicator/reference/me:feedback|indicator/description/me:feedback|result/description/me:feedback" mode="context">
+    For the {name(../..)} "<em><xsl:apply-templates select="../../title"/></em>":
+  </xsl:template>
+  
+  <xsl:template match="location/description/me:feedback" mode="context">
+    For the {name(../..)} "<em><xsl:apply-templates select="../../name"/></em>":
   </xsl:template>
   
   <xsl:template match="target/me:feedback|actual/me:feedback" mode="context">
