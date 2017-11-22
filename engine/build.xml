@@ -36,6 +36,13 @@
     </xslt>
   </target>
 
+  <target name="svrl" description="Generate data quality SVRL reports." depends="rules"> 
+    <echo level="info">Generate data quality SVRL reports.</echo> 
+    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="report/feedback-svrl.xslt"> 
+      <globmapper from="*.feedback.xml" to="*.svrl"/> 
+    </xslt> 
+  </target> 
+  
   <target name="data-quality-rules" description="Generate overview of the data quality rules." depends="html-skeleton">
     <echo level="info">Generate overview of the data quality rules.</echo>
     <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.html" style="report/data-quality-rules.xslt"/>

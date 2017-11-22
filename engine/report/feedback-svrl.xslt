@@ -24,7 +24,7 @@
         </xsl:choose>
       </xsl:attribute>
       <svrl:property-reference property="class">{@class}</svrl:property-reference>
-      <text fpi="{@id}"><xsl:copy-of select="me:message/@*"/><xsl:copy-of select="me:message/(*|text())"/></text>
+      <svrl:text fpi="{@id}"><xsl:copy-of select="me:message/@*"/><xsl:copy-of select="me:message/(*|text())"/></svrl:text>
     </svrl:failed-assert>
   </xsl:template>
 </xsl:stylesheet>
