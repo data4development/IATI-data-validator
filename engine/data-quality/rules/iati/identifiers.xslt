@@ -6,8 +6,9 @@
   exclude-result-prefixes="functx"
   expand-text="yes">
 
-<xsl:variable name="org-id-prefixes" select="doc('../../lib/org-id.xml')//code"/>
-<xsl:variable name="known-publisher-ids" select="doc('/home/data-quality/lib/known-publishers.xml')//code"/>
+  <xsl:variable name="org-id-prefixes" select="doc('../../lib/org-id.xml')//code"/>
+  <xsl:variable name="known-publisher-ids" select="doc('/home/data-quality/lib/known-publishers.xml')//code"/>
+  <xsl:variable name="known-10x-ids" select="doc('/home/data-quality/lib/known-publishers-104.xml')//code"/>
 
 <xsl:template match="iati-identifier" mode="rules" priority="1.1">
 
@@ -101,6 +102,15 @@
         </me:feedback>
       </xsl:when>
 
+      <xsl:when test="(some $known-old-id in $known-10x-ids satisfies starts-with(., $known-old-id))">
+<!-- Switch off feedback on deprecated organisation identifiers (DFID case)
+	TODO: make this a ruleset specific severity once these are processed in the report
+        <me:feedback type="info" class="identifiers" id="1.2.12">
+          <me:src ref="iati-doc" versions="2.x"/>
+          <me:message><code>{$item}</code> uses a 1.04 identifier that has been replaced in 1.05.</me:message>
+        </me:feedback>-->
+      </xsl:when>
+      
       <xsl:when test="not(some $prefix in $org-id-prefixes satisfies starts-with(., $prefix))">
         <me:feedback type="warning" class="identifiers" id="1.2.8">
           <me:src ref="iati-doc" versions="2.x" href="http://org-id.guide"/>
