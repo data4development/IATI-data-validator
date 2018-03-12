@@ -23,7 +23,7 @@
       </me:feedback>
     </xsl:if>
 
-    <xsl:if test="@measure='2' and ancestor::result/@aggregation-status">
+    <xsl:if test="@measure='2' and (ancestor::result/@aggregation-status=true())">
       <me:feedback type="warning" class="results" id="8.1.3">
         <me:src ref="practice" versions="any"/>
         <me:message>The indicator is a percentage, but part of a result marked as aggregatable.</me:message>
