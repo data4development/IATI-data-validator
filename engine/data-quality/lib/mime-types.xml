@@ -6,6 +6,7 @@
    <code>application/A2L</code>
    <code>application/activemessage</code>
    <code>application/activemessage</code>
+   <code>application/activity+json</code>
    <code>application/alto-costmap+json</code>
    <code>application/alto-costmapfilter+json</code>
    <code>application/alto-directory+json</code>
@@ -105,6 +106,8 @@
    <code>application/fastinfoset</code>
    <code>application/fastsoap</code>
    <code>application/fdt+xml</code>
+   <code>application/fhir+json</code>
+   <code>application/fhir+xml</code>
    <code>application/fits</code>
    <code>application/font-sfnt</code>
    <code>application/font-tdpfr</code>
@@ -206,6 +209,7 @@
    <code>application/news-groupinfo</code>
    <code>application/news-transmission</code>
    <code>application/nlsml+xml</code>
+   <code>application/node</code>
    <code>application/nss</code>
    <code>application/ocsp-request</code>
    <code>application/ocsp-response</code>
@@ -228,6 +232,7 @@
    <code>application/pkcs7-mime</code>
    <code>application/pkcs7-signature</code>
    <code>application/pkcs8</code>
+   <code>application/pkcs8-encrypted</code>
    <code>application/pkcs12</code>
    <code>application/pkix-attr-cert</code>
    <code>application/pkix-cert</code>
@@ -326,6 +331,7 @@
    <code>application/timestamp-query</code>
    <code>application/timestamp-reply</code>
    <code>application/timestamped-data</code>
+   <code>application/tnauthlist</code>
    <code>application/trig</code>
    <code>application/ttml+xml</code>
    <code>application/tve-trigger</code>
@@ -380,6 +386,7 @@
    <code>application/vnd.ahead.space</code>
    <code>application/vnd.airzip.filesecure.azf</code>
    <code>application/vnd.airzip.filesecure.azs</code>
+   <code>application/vnd.amadeus+json</code>
    <code>application/vnd.amazon.mobi8-ebook</code>
    <code>application/vnd.americandynamics.acc</code>
    <code>application/vnd.amiga.ami</code>
@@ -404,6 +411,7 @@
    <code>application/vnd.avistar+xml</code>
    <code>application/vnd.balsamiq.bmml+xml</code>
    <code>application/vnd.bbf.usp.msg</code>
+   <code>application/vnd.bbf.usp.msg+json</code>
    <code>application/vnd.balsamiq.bmpr</code>
    <code>application/vnd.bekitzur-stech+json</code>
    <code>application/vnd.bint.med-content</code>
@@ -433,10 +441,15 @@
    <code>application/vnd.cluetrust.cartomobile-config-pkg</code>
    <code>application/vnd.coffeescript</code>
    <code>application/vnd.collabio.xodocuments.document</code>
+   <code>application/vnd.collabio.xodocuments.document-template</code>
    <code>application/vnd.collabio.xodocuments.presentation</code>
+   <code>application/vnd.collabio.xodocuments.presentation-template</code>
+   <code>application/vnd.collabio.xodocuments.spreadsheet</code>
+   <code>application/vnd.collabio.xodocuments.spreadsheet-template</code>
    <code>application/vnd.collection.doc+json</code>
    <code>application/vnd.collection+json</code>
    <code>application/vnd.collection.next+json</code>
+   <code>application/vnd.comicbook-rar</code>
    <code>application/vnd.comicbook+zip</code>
    <code>application/vnd.commerce-battelle</code>
    <code>application/vnd.commonspace</code>
@@ -632,6 +645,7 @@
    <code>application/vnd.httphone</code>
    <code>application/vnd.hydrostatix.sof-data</code>
    <code>application/vnd.hyper-item+json</code>
+   <code>application/vnd.hyper+json</code>
    <code>application/vnd.hyperdrive+json</code>
    <code>application/vnd.hzn-3d-crossword</code>
    <code>application/vnd.ibm.afplinedata</code>
@@ -1063,6 +1077,7 @@
    <code>application/vnd.recordare.musicxml</code>
    <code>application/vnd.recordare.musicxml+xml</code>
    <code>application/vnd.renlearn.rlprint</code>
+   <code>application/vnd.restful+json</code>
    <code>application/vnd.rig.cryptonote</code>
    <code>application/vnd.route66.link66+xml</code>
    <code>application/vnd.rs-274x</code>
@@ -1102,6 +1117,7 @@
    <code>application/vnd.solent.sdkm+xml</code>
    <code>application/vnd.spotfire.dxp</code>
    <code>application/vnd.spotfire.sfs</code>
+   <code>application/vnd.sqlite3</code>
    <code>application/vnd.sss-cod</code>
    <code>application/vnd.sss-dtf</code>
    <code>application/vnd.sss-ntf</code>
@@ -1206,9 +1222,11 @@
    <code>application/vnd.yamaha.tunnel-udpencap</code>
    <code>application/vnd.yaoweme</code>
    <code>application/vnd.yellowriver-custom-menu</code>
+   <code>application/vnd.youtube.yt</code>
    <code>application/vnd.zul</code>
    <code>application/vnd.zzazz.deck+xml</code>
    <code>application/voicexml+xml</code>
+   <code>application/voucher-cms+json</code>
    <code>application/vq-rtcpxr</code>
    <code>application/watcherinfo+xml</code>
    <code>application/webpush-options+json</code>
@@ -1398,6 +1416,7 @@
    <code>font/ttf</code>
    <code>font/woff</code>
    <code>font/woff2</code>
+   <code>image/aces</code>
    <code>image/bmp</code>
    <code>image/cgm</code>
    <code>image/dicom-rle</code>
@@ -1469,8 +1488,10 @@
    <code>message/vnd.wfa.wsc</code>
    <code>model/3mf</code>
    <code>model/example</code>
+   <code>model/gltf-binary</code>
    <code>model/gltf+json</code>
    <code>model/iges</code>
+   <code>model/stl</code>
    <code>model/vnd.collada+xml</code>
    <code>model/vnd-dwf</code>
    <code>model/vnd.flatland.3dml</code>

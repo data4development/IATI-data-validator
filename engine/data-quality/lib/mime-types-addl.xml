@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- additional mime types accepted not on the IANA list -->
+<codelist>
+  <code>image/gif</code>
+  <code>image/jpeg</code>
+  <code>image/svg+xml</code>
+  <code>text/plain</code>
+</codelist>

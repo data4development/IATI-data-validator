@@ -7,7 +7,7 @@
   exclude-result-prefixes="xs functx"
   expand-text="yes">
   
-  <xsl:variable name="mime-types" select="doc('../../lib/mime-types.xml')//code"/>
+  <xsl:variable name="mime-types" select="collection('../../lib/?select=mime-types*.xml')//code"/>
   
   <xsl:template match="document-link" mode="rules" priority="6.1">
     <xsl:if test="@format=('application/javascript')">
