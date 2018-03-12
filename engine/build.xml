@@ -12,6 +12,7 @@
   <target name="init" description="Set up workspace directories here.">
     <mkdir dir="/workspace/src"/>
     <mkdir dir="/workspace/dest"/>
+    <mkdir dir="/workspace/svrl"/>
     <mkdir dir="/workspace/tmp"/>
     <mkdir dir="/workspace/reports"/>
   </target>
@@ -26,12 +27,12 @@
 
   <target name="rules" description="Check the source data against IATI rules." depends="init">
     <echo level="info">Check the source data against a generic IATI ruleset.</echo>
-    <xslt basedir="/workspace/src/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt"/>
+    <xslt basedir="/workspace/src/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false"/>
   </target>
 
   <target name="report" description="Generate data quality feedback reports." depends="rules, html-skeleton">
     <echo level="info">Generate data quality feedback reports.</echo>
-    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="report/feedback.xslt">
+    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="report/feedback.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.feedback.html"/>
     </xslt>
   </target>
