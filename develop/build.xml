@@ -11,7 +11,7 @@
 
   <target name="org-id-prefixes">
     <get src="http://org-id.guide/download.xml" dest="tmp/org-id.xml"/>
-    <xslt in="tmp/org-id.xml" out="data/iati/org-id/known-prefixes.xml" style="data-updater/org-id/known-prefixes.xslt"/>
+    <xslt in="tmp/org-id.xml" out="data-quality/lib/known-prefixes.xml" style="data-updater/org-id/known-prefixes.xslt"/>
   </target>
 
   <target name="mime-types">

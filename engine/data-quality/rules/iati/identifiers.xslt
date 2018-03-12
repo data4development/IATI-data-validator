@@ -6,7 +6,7 @@
   exclude-result-prefixes="functx"
   expand-text="yes">
 
-  <xsl:variable name="org-id-prefixes" select="doc('../../lib/org-id.xml')//code"/>
+  <xsl:variable name="org-id-prefixes" select="doc('../../lib/known-prefixes.xml')//code"/>
   <xsl:variable name="known-publisher-ids" select="doc('/home/data-quality/lib/known-publishers.xml')//code"/>
   <xsl:variable name="known-10x-ids" select="doc('/home/data-quality/lib/known-publishers-104.xml')//code"/>
 
@@ -53,17 +53,12 @@
     </xsl:when>
   </xsl:choose>
 
-  <xsl:if test="matches(@ref, '^[0-9]{5}$')">
-    <me:feedback type="info" class="identifiers" id="1.2.10">
-      <me:src ref="iati-doc" versions="1.x" href="http://iatistandard.org/202/organisation-identifiers/"/>
-      <me:message>The identifier is a 5-digit code. If this represents a version 1.x identifier to an international organisation, replace it with the new identifier.</me:message>
-    </me:feedback>
-  </xsl:if>
-
   <xsl:next-match/>
 </xsl:template>
 
-  <xsl:template match="iati-identifier|@provider-activity-id|@receiver-activity-id|@ref[not(name(..)=('location', 'transaction'))]" mode="rules" priority="1.21">
+  <xsl:template match="iati-identifier|@provider-activity-id|@receiver-activity-id|
+    @ref[not(name(..)=('location', 'transaction', 'other-identifier'))]|
+    other-identifier[@type='A3']/@ref" mode="rules" priority="1.21">
     <xsl:variable name="item">
       <xsl:choose>
         <xsl:when test="name(.)=('ref')">{name(..)}/{name()}</xsl:when>
@@ -109,6 +104,13 @@
           <me:src ref="iati-doc" versions="2.x"/>
           <me:message><code>{$item}</code> uses a 1.04 identifier that has been replaced in 1.05.</me:message>
         </me:feedback>-->
+      </xsl:when>
+    
+      <xsl:when test="matches(., '^[0-9]{5}$')">
+        <me:feedback type="warning" class="identifiers" id="1.2.10">
+          <me:src ref="iati-doc" versions="1.x" href="http://iatistandard.org/202/organisation-identifiers/"/>
+          <me:message>The identifier is a 5-digit code, but not an identifier on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
+        </me:feedback>
       </xsl:when>
       
       <xsl:when test="not(some $prefix in $org-id-prefixes satisfies starts-with(., $prefix))">
