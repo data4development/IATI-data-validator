@@ -37,9 +37,14 @@
     </xslt>
   </target>
 
-  <target name="svrl" description="Generate data quality SVRL reports." depends="rules"> 
+  <target name="json" description="Generate JSON output." depends="init">
+    <echo level="info">Generate the JSON file for the feedback.</echo>
+    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/json" extension=".json" style="report/feedback-json.xslt" failOnError="false"/>
+  </target>
+  
+<target name="svrl" description="Generate data quality SVRL reports." depends="init"> 
     <echo level="info">Generate data quality SVRL reports.</echo> 
-    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="report/feedback-svrl.xslt"> 
+    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false"> 
       <globmapper from="*.feedback.xml" to="*.svrl"/> 
     </xslt> 
   </target> 
