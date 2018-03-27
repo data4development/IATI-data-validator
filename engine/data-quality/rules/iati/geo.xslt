@@ -13,8 +13,7 @@
     <xsl:if test="abs(sum((recipient-country|recipient-region)/@percentage)-100)>0.01">
       <me:feedback type="danger" class="geo" id="3.1.1">
         <me:src ref="iati-doc" versions="2.x"/>
-        <me:message>Percentages for recipient-country and recipient-region don't add up
-        to 100%.</me:message>
+        <me:message>Percentages for recipient-country and recipient-region don't add up to 100%.</me:message>
       </me:feedback>
     </xsl:if>
   </xsl:if>
