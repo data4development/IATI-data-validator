@@ -66,6 +66,7 @@
    <code>application/csta+xml</code>
    <code>application/CSTAdata+xml</code>
    <code>application/csvm+json</code>
+   <code>application/cwt</code>
    <code>application/cybercash</code>
    <code>application/dash+xml</code>
    <code>application/dashdelta</code>
@@ -1367,6 +1368,7 @@
    <code>audio/tone</code>
    <code>audio/UEMCLIP</code>
    <code>audio/ulpfec</code>
+   <code>audio/usac</code>
    <code>audio/VDVI</code>
    <code>audio/VMR-WB</code>
    <code>audio/vnd.3gpp.iufp</code>
