@@ -39,16 +39,18 @@
 
   <target name="json" description="Generate JSON output." depends="init">
     <echo level="info">Generate the JSON file for the feedback.</echo>
-    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/json" extension=".json" style="report/feedback-json.xslt" failOnError="false"/>
+    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/json" style="report/feedback-json.xslt" failOnError="false">
+      <globmapper from="*.feedback.xml" to="*.json"/>
+    </xslt>
   </target>
-  
-<target name="svrl" description="Generate data quality SVRL reports." depends="init"> 
-    <echo level="info">Generate data quality SVRL reports.</echo> 
-    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false"> 
-      <globmapper from="*.feedback.xml" to="*.svrl"/> 
-    </xslt> 
-  </target> 
-  
+
+<target name="svrl" description="Generate data quality SVRL reports." depends="init">
+    <echo level="info">Generate data quality SVRL reports.</echo>
+    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false">
+      <globmapper from="*.feedback.xml" to="*.svrl"/>
+    </xslt>
+  </target>
+
   <target name="data-quality-rules" description="Generate overview of the data quality rules." depends="html-skeleton">
     <echo level="info">Generate overview of the data quality rules.</echo>
     <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.html" style="report/data-quality-rules.xslt"/>
