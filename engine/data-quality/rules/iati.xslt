@@ -23,12 +23,12 @@
   <xsl:output indent="yes"/>
 
   <xsl:variable name="iati-version-valid"
-    select="/*/@version=('1.01','1.02','1.03','1.04','1.05','2.01','2.02')"/>
+    select="/*/@version=('1.01','1.02','1.03','1.04','1.05','2.01','2.02','2.03')"/>
   <xsl:variable name="iati-version">
     <xsl:choose>
       <xsl:when test="$iati-version-valid">{/*/@version}</xsl:when>
       <xsl:when test="starts-with(/*/@version, '1.')">1.05</xsl:when>
-      <xsl:otherwise>2.02</xsl:otherwise>
+      <xsl:otherwise>2.03</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
