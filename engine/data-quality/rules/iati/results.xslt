@@ -63,6 +63,13 @@
     <xsl:variable name="end-year" select="xs:integer(format-date(ancestor::iati-acitivity/activity-date[@type=('3','4')][1]/@iso-date,'[Y]'))"/>
     
     <xsl:choose>
+      <xsl:when test="not(@year castable as xs:integer)">
+        <me:feedback type="danger" class="results" id="8.4.4">
+          <me:src ref="practice" versions="any"/>
+          <me:message>The year for the baseline is not a number.</me:message>
+        </me:feedback>
+      </xsl:when>
+      
       <xsl:when test="(xs:integer(@year) lt 1950) or (xs:integer(@year) gt 2050)">
         <me:feedback type="danger" class="results" id="8.4.1">
           <me:src ref="practice" versions="any"/>
