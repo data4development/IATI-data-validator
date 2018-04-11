@@ -52,7 +52,8 @@
     <source id="iati" logo="iati.png">IATI</source>
     <source id="iati-xsd" logo="iati.png">IATI schema validation</source>
     <source id="iati-doc" logo="iati.png">IATI documentation</source>
-    <source id="minbuza" logo="minbuza.svg" href="http://helpdesk-opendata-minbuza.nl">Ministry of Foreign Affairs, The Netherlands</source>
+    <source id="minbuza" logo="minbuza.svg" href="http://helpdesk-opendata-minbuza.nl">Netherlands - Ministry of Foreign Affairs</source>
+    <source id="dfid" logo="dfid.png" href="https://devtracker.dfid.gov.uk/">UK - Department for International Development (DFID)</source>
     <source id="exclusions" logo="stop.svg">Your exclusion policy</source>
     <source id="inclusions" logo="ok.svg">Your inclusion policy</source>
     <source id="practice">Common practice</source>

@@ -10,7 +10,8 @@
   
     <xsl:if test="not(result)">
       <me:feedback type="info" class="results" id="108.1.1">
-        <me:src ref="minbuza"/>
+        <me:src ref="minbuza" type="warning" />
+        <me:src ref="dfid"/>
         <me:message>The activity should contain a results section.</me:message>
         <me:description></me:description>
       </me:feedback>
