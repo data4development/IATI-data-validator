@@ -42,10 +42,7 @@
                   <string key="id">{current-grouping-key()}</string>
                   <string key="text">{current-group()[1]/me:message}</string>
                   <array key="rulesets">
-                    <map>
-                      <string key="src">{current-group()[1]/me:src/@ref}</string>
-                      <string key="severity">{current-group()[1]/@type}</string>
-                    </map>
+                    <xsl:apply-templates select="current-group()[1]/me:src"/>
                   </array>
                   <array key="context">
                     <xsl:apply-templates select="current-group()"/>
@@ -59,6 +56,13 @@
     </map>
   </xsl:template>
 
+  <xsl:template match="me:src">
+    <map>
+      <string key="src">{@ref}</string>
+      <string key="severity">{(@type, ../@type)[1]}</string>
+    </map>    
+  </xsl:template>
+  
   <xsl:template match="me:feedback">
     <map>
       <string key="text"><xsl:apply-templates select="." mode="context"/></string>

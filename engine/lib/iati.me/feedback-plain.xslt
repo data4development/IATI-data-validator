@@ -33,12 +33,12 @@
 
   <!-- Context information for reporting-org -->
   <xsl:template match="reporting-org/me:feedback" mode="context">
-    <xsl:text>In {name(..)} </xsl:text><xsl:call-template name="show-organisation"/>:
+    <xsl:text>In {name(..)} </xsl:text><xsl:call-template name="show-organisation"/>
   </xsl:template>
 
   <!-- Context information for participating-org -->
   <xsl:template match="participating-org/me:feedback" mode="context">
-    <xsl:text>In {name(..)} </xsl:text><xsl:call-template name="show-organisation"/> (role {../@role}):
+    <xsl:text>In {name(..)} </xsl:text><xsl:call-template name="show-organisation"/> (role {../@role})
   </xsl:template>
 
   <!-- Context information for transactions -->
@@ -52,12 +52,12 @@
       <xsl:when test="../transaction-type/@code='11'">incoming commitment</xsl:when>
       <xsl:otherwise>transaction</xsl:otherwise>
     </xsl:choose>
-    <xsl:text> of {../transaction-date/@iso-date}:</xsl:text>
+    <xsl:text> of {../transaction-date/@iso-date}</xsl:text>
   </xsl:template>
 
   <!-- Context information for budget -->
   <xsl:template match="budget/me:feedback" mode="context">
-    In the budget of <xsl:value-of select="period-start/@iso-date"/> to <xsl:value-of select="period-end/@iso-date"/>:
+    In the budget of <xsl:value-of select="period-start/@iso-date"/> to <xsl:value-of select="period-end/@iso-date"/>
   </xsl:template>
 
   <!-- Context information for provider-org and receiver-org in transactions -->
@@ -67,31 +67,31 @@
 
   <!-- Context information for participating-org -->
   <xsl:template match="document-link/me:feedback" mode="context">
-    For the document <xsl:apply-templates select="../title"/>:
+    For the document <xsl:apply-templates select="../title"/>
   </xsl:template>
 
   <xsl:template match="result/me:feedback|indicator/me:feedback" mode="context">
-    For the {name(..)} "<xsl:apply-templates select="../title"/>":
+    For the {name(..)} "<xsl:apply-templates select="../title"/>"
   </xsl:template>
 
   <xsl:template match="baseline/me:feedback|indicator/reference/me:feedback|indicator/description/me:feedback|result/description/me:feedback" mode="context">
-    For the {name(../..)} "<xsl:apply-templates select="../../title"/>":
+    For the {name(../..)} "<xsl:apply-templates select="../../title"/>"
   </xsl:template>
   
   <xsl:template match="location/description/me:feedback" mode="context">
-    For the {name(../..)} "<xsl:apply-templates select="../../name"/>":
+    For the {name(../..)} "<xsl:apply-templates select="../../name"/>"
   </xsl:template>
   
   <xsl:template match="target/me:feedback|actual/me:feedback" mode="context">
-    For the indicator "<xsl:apply-templates select="../../../title"/>" in the period {../../period-start/@iso-date} to {../../period-end/@iso-date}:
+    For the indicator "<xsl:apply-templates select="../../../title"/>" in the period {../../period-start/@iso-date} to {../../period-end/@iso-date}
   </xsl:template>
   
   <xsl:template match="period/me:feedback" mode="context">
-    In the indicator "<xsl:apply-templates select="../../title"/>" in the period {../period-start/@iso-date} to {../period-end/@iso-date}:
+    In the indicator "<xsl:apply-templates select="../../title"/>" in the period {../period-start/@iso-date} to {../period-end/@iso-date}
   </xsl:template>
 
   <xsl:template match="target/location/me:feedback|actual/location/me:feedback" mode="context">
-    For the {name(../..)} location of the indicator "<xsl:apply-templates select="../../../../title"/>" in the period {../../../period-start/@iso-date} to {../../../period-end/@iso-date}:
+    For the {name(../..)} location of the indicator "<xsl:apply-templates select="../../../../title"/>" in the period {../../../period-start/@iso-date} to {../../../period-end/@iso-date}
   </xsl:template>
   
   <xsl:template match="@*|node()" mode="context">
