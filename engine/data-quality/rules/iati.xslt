@@ -17,8 +17,7 @@
   <xsl:include href="iati/information.xslt"/>
   <xsl:include href="iati/financial.xslt"/>
   <xsl:include href="iati/results.xslt"/>
-  <xsl:include href="minbuza/traceability.xslt"/>
-  <xsl:include href="minbuza/results.xslt"/>
+  <xsl:include href="donors.xslt"/>
 
   <xsl:output indent="yes"/>
 
