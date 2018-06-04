@@ -143,6 +143,28 @@
     <xsl:next-match/>
   </xsl:template>
  
+  <xsl:template match="provider-org/@type|receiver-org/@type" mode="rules" priority="9.12">
+    <xsl:if test="not(@type=me:codes('OrganisationType'))">
+      <me:feedback type="danger" class="financial" id="9.12.1">
+        <me:src ref="iati"/>
+        <me:message>The organisation type is invalid.</me:message>
+      </me:feedback>
+    </xsl:if>
+    
+    <xsl:next-match/>
+  </xsl:template>
+  
+  <xsl:template match="reporting-org/@type" mode="rules" priority="9.13">
+    <xsl:if test="not(@type=me:codes('OrganisationType'))">
+      <me:feedback type="danger" class="identifiers" id="9.13.1">
+        <me:src ref="iati"/>
+        <me:message>The organisation type is invalid.</me:message>
+      </me:feedback>
+    </xsl:if>
+    
+    <xsl:next-match/>
+  </xsl:template>
+  
   
   <xsl:function name="me:codes" as="xs:string*">
     <xsl:param name="codelist"/>

@@ -9,7 +9,7 @@
   <xsl:template match="iati-activity" mode="rules" priority="101.1">
   
     <xsl:if test="not(result)">
-      <me:feedback type="info" class="results" id="108.1.1">
+      <me:feedback type="info" class="performance" id="108.1.1">
         <me:src ref="minbuza" type="warning" />
         <me:src ref="dfid"/>
         <me:message>The activity should contain a results section.</me:message>
