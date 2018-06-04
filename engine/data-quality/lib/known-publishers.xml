@@ -2,12 +2,10 @@
 <codelist>
    <code>21-PK-WWF</code>
    <code>21032</code>
-   <code>21033</code>
    <code>30001</code>
    <code>41119</code>
    <code>41120</code>
    <code>41122</code>
-   <code>41304</code>
    <code>41AAA</code>
    <code>44000</code>
    <code>46002</code>
@@ -19,15 +17,96 @@
    <code>AF-MOE-1212</code>
    <code>AU-5</code>
    <code>AU-ACNC-19242959685</code>
+   <code>BD-NAB-0271</code>
+   <code>BD-NAB-0682</code>
    <code>BD-NAB-1102</code>
    <code>BD-NAB-1301</code>
-   <code>BE-BCE-0447404580</code>
-   <code>BE-BCE_KBO- 0550758080</code>
+   <code>BE-BCE_KBO- 0408643875</code>
    <code>BE-BCE_KBO-0264814354</code>
+   <code>BE-BCE_KBO-0406694670</code>
+   <code>BE-BCE_KBO-0407562029</code>
+   <code>BE-BCE_KBO-0408022778</code>
+   <code>BE-BCE_KBO-0408095925</code>
+   <code>BE-BCE_KBO-0408256667</code>
+   <code>BE-BCE_KBO-0408628435</code>
+   <code>BE-BCE_KBO-0408656248</code>
+   <code>BE-BCE_KBO-0408908151</code>
+   <code>BE-BCE_KBO-0409451054</code>
+   <code>BE-BCE_KBO-0409597544</code>
+   <code>BE-BCE_KBO-0410057701</code>
    <code>BE-BCE_KBO-0410644946</code>
+   <code>BE-BCE_KBO-0410661673</code>
+   <code>BE-BCE_KBO-0410757386</code>
+   <code>BE-BCE_KBO-0413119733</code>
+   <code>BE-BCE_KBO-0413986102</code>
+   <code>BE-BCE_KBO-0415365777</code>
+   <code>BE-BCE_KBO-0415426155</code>
+   <code>BE-BCE_KBO-0415499795</code>
+   <code>BE-BCE_KBO-0415627875</code>
+   <code>BE-BCE_KBO-0415880570</code>
+   <code>BE-BCE_KBO-0416486821</code>
+   <code>BE-BCE_KBO-0416867297</code>
+   <code>BE-BCE_KBO-0416934803</code>
+   <code>BE-BCE_KBO-0417299047</code>
+   <code>BE-BCE_KBO-0417549465</code>
+   <code>BE-BCE_KBO-0418015461</code>
+   <code>BE-BCE_KBO-0418088113</code>
+   <code>BE-BCE_KBO-0418282311</code>
+   <code>BE-BCE_KBO-0418399305</code>
+   <code>BE-BCE_KBO-0419189557</code>
+   <code>BE-BCE_KBO-0419872616</code>
+   <code>BE-BCE_KBO-0420656336</code>
+   <code>BE-BCE_KBO-0420790948</code>
    <code>BE-BCE_KBO-0421207751</code>
+   <code>BE-BCE_KBO-0421210424</code>
+   <code>BE-BCE_KBO-0423588904</code>
+   <code>BE-BCE_KBO-0423616717</code>
+   <code>BE-BCE_KBO-0424198222</code>
+   <code>BE-BCE_KBO-0425410524</code>
+   <code>BE-BCE_KBO-0425420917</code>
+   <code>BE-BCE_KBO-0427736148</code>
+   <code>BE-BCE_KBO-0430826290</code>
+   <code>BE-BCE_KBO-0431955945</code>
+   <code>BE-BCE_KBO-0432235661</code>
+   <code>BE-BCE_KBO-0432503697</code>
+   <code>BE-BCE_KBO-0432552989</code>
    <code>BE-BCE_KBO-0432622077</code>
+   <code>BE-BCE_KBO-0432624255</code>
+   <code>BE-BCE_KBO-0433439550</code>
+   <code>BE-BCE_KBO-0435563751</code>
+   <code>BE-BCE_KBO-0441988715</code>
+   <code>BE-BCE_KBO-0442168263</code>
+   <code>BE-BCE_KBO-0443262185</code>
+   <code>BE-BCE_KBO-0445412518</code>
+   <code>BE-BCE_KBO-0445741823</code>
+   <code>BE-BCE_KBO-0446340550</code>
+   <code>BE-BCE_KBO-0447404580</code>
+   <code>BE-BCE_KBO-0448723978</code>
+   <code>BE-BCE_KBO-0448755949</code>
+   <code>BE-BCE_KBO-0449400604</code>
+   <code>BE-BCE_KBO-0451461655</code>
+   <code>BE-BCE_KBO-0451516390</code>
+   <code>BE-BCE_KBO-0451857573</code>
+   <code>BE-BCE_KBO-0453072647</code>
    <code>BE-BCE_KBO-0453475391</code>
+   <code>BE-BCE_KBO-0454555163</code>
+   <code>BE-BCE_KBO-0460162753</code>
+   <code>BE-BCE_KBO-0460240749</code>
+   <code>BE-BCE_KBO-0461076236</code>
+   <code>BE-BCE_KBO-0461634084</code>
+   <code>BE-BCE_KBO-0462132150</code>
+   <code>BE-BCE_KBO-0462279234</code>
+   <code>BE-BCE_KBO-0463455904</code>
+   <code>BE-BCE_KBO-0463729878</code>
+   <code>BE-BCE_KBO-0474198059</code>
+   <code>BE-BCE_KBO-0474912493</code>
+   <code>BE-BCE_KBO-0478060441</code>
+   <code>BE-BCE_KBO-0479222461</code>
+   <code>BE-BCE_KBO-0479866027</code>
+   <code>BE-BCE_KBO-0550758080</code>
+   <code>BE-BCE_KBO-0662878501</code>
+   <code>BE-BCE_KBO-422717486</code>
+   <code>BE-BCE_KBO-472089102</code>
    <code>BE-GTCF-630789842</code>
    <code>BJ-IFU-3200700033415</code>
    <code>BJ-IFU-6201101048400</code>
@@ -57,8 +136,11 @@
    <code>DK-CVR-36980214</code>
    <code>DK-CVR-44623528</code>
    <code>DK-CVR-88136411</code>
+   <code>ES-CIF-G-8236803</code>
+   <code>ES-CIF-G81164105</code>
    <code>ES-DIR3-E04585801</code>
    <code>ET-CSA-0638</code>
+   <code>ET-CSA-1063</code>
    <code>ET-MFA-0001989741</code>
    <code>ET-MFA-1233</code>
    <code>ET-MOT-020/4/007</code>
@@ -77,6 +159,7 @@
    <code>GB-CHC-1000717</code>
    <code>GB-CHC-1001349</code>
    <code>GB-CHC-1001698</code>
+   <code>GB-CHC-1001813</code>
    <code>GB-CHC-1017255</code>
    <code>GB-CHC-1020488</code>
    <code>GB-CHC-1024903</code>
@@ -87,6 +170,7 @@
    <code>GB-CHC-1045348</code>
    <code>GB-CHC-1046001</code>
    <code>GB-CHC-1047501</code>
+   <code>GB-CHC-1047653</code>
    <code>GB-CHC-1048007</code>
    <code>GB-CHC-1049160</code>
    <code>GB-CHC-1050327</code>
@@ -180,6 +264,7 @@
    <code>GB-CHC-1138287</code>
    <code>GB-CHC-1139083</code>
    <code>GB-CHC-1140123</code>
+   <code>GB-CHC-1140276</code>
    <code>GB-CHC-1141028</code>
    <code>GB-CHC-1142476</code>
    <code>GB-CHC-1142516</code>
@@ -194,6 +279,7 @@
    <code>GB-CHC-1154085</code>
    <code>GB-CHC-1154230</code>
    <code>GB-CHC-1157009</code>
+   <code>GB-CHC-1157722</code>
    <code>GB-CHC-1158206</code>
    <code>GB-CHC-1171353</code>
    <code>GB-CHC-1837621</code>
@@ -206,6 +292,7 @@
    <code>GB-CHC-214779</code>
    <code>GB-CHC-218186</code>
    <code>GB-CHC-220949</code>
+   <code>GB-CHC-222655</code>
    <code>GB-CHC-228248</code>
    <code>GB-CHC-229476</code>
    <code>GB-CHC-250456</code>
@@ -278,6 +365,7 @@
    <code>GB-COH-08327972</code>
    <code>GB-COH-08333641</code>
    <code>GB-COH-08828458</code>
+   <code>GB-COH-09288843</code>
    <code>GB-COH-1081247</code>
    <code>GB-COH-1100897</code>
    <code>GB-COH-1102208</code>
@@ -321,6 +409,8 @@
    <code>GB-COH-NI630024</code>
    <code>GB-COH-OC301540</code>
    <code>GB-COH-RC000346</code>
+   <code>GB-COH-RC000658</code>
+   <code>GB-COH-RC000797</code>
    <code>GB-COH-SC301345</code>
    <code>GB-COH-SC349355</code>
    <code>GB-EDU-133784</code>
@@ -341,7 +431,10 @@
    <code>GB-SC-SC037959</code>
    <code>GB-SC-SCO45223</code>
    <code>GH-DSW-258</code>
+   <code>GH-DSW-4711</code>
+   <code>GH-DSW-5574</code>
    <code>GPAF-IMP-031</code>
+   <code>HK-CR-1494242</code>
    <code>IE-CHY-15037</code>
    <code>IE-CHY-6410</code>
    <code>IE-CHY-6663</code>
@@ -353,9 +446,13 @@
    <code>IN-MCA-U74140DL1998PLC097579</code>
    <code>IN-MCA-U74140WB1983PTC036093</code>
    <code>IN-MCA-U74999DL2004NPL131340</code>
+   <code>IN-MHA-231650063</code>
+   <code>IN-MHA-337680017</code>
    <code>JO-CCD-200138796</code>
+   <code>JO-CCD-2826</code>
    <code>KE-NCB-200201282375</code>
    <code>KE-NCB-218/051/93132/90</code>
+   <code>KE-NCB-218/051/96110/823</code>
    <code>KE-NCB-93175</code>
    <code>KE-NCB-OP/218/051/915/65</code>
    <code>KE-NGC-3372</code>
@@ -364,14 +461,17 @@
    <code>KE-NGCB-149</code>
    <code>KE-RCO-201036685</code>
    <code>KE-RCO-270901</code>
+   <code>KE-RCO-78260</code>
    <code>KE-RCO-C1-61</code>
    <code>KE-RCO-CPR/2009/5689</code>
    <code>KE-RSO-14210</code>
    <code>KR-GOV-021</code>
    <code>LB-MOI-18291</code>
+   <code>LB-MOI-497</code>
    <code>LR-MPEA-NGO-AC-0298</code>
    <code>ML-NIF-400100027H</code>
    <code>MW-CNM-BCM-CF</code>
+   <code>MW-CNM-C057/1998</code>
    <code>MW-CNM-C076-1999</code>
    <code>MW-MRA-20125995</code>
    <code>MW-NBM-00139</code>
@@ -387,9 +487,11 @@
    <code>NG-CAC-IT-23286</code>
    <code>NI-MIGOB-3602</code>
    <code>NL-CCI-20081098</code>
+   <code>NL-KVK-08134161</code>
    <code>NL-KVK-09098104</code>
    <code>NL-KVK-09119363</code>
    <code>NL-KVK-20093733</code>
+   <code>NL-KVK-24365461</code>
    <code>NL-KVK-27078545</code>
    <code>NL-KVK-27102631</code>
    <code>NL-KVK-27108436</code>
@@ -429,6 +531,7 @@
    <code>NL-KVK-34308169</code>
    <code>NL-KVK-34370207</code>
    <code>NL-KVK-40409352</code>
+   <code>NL-KVK-40478591</code>
    <code>NL-KVK-40530156</code>
    <code>NL-KVK-40530467</code>
    <code>NL-KVK-40530953</code>
@@ -437,6 +540,7 @@
    <code>NL-KVK-41009723</code>
    <code>NL-KVK-41022454</code>
    <code>NL-KVK-41048542</code>
+   <code>NL-KVK-41077447</code>
    <code>NL-KVK-41078390</code>
    <code>NL-KVK-41118168</code>
    <code>NL-KVK-41146484</code>
@@ -493,11 +597,13 @@
    <code>NL-KVK-53744993</code>
    <code>NL-KVK-54436222</code>
    <code>NL-KVK-56083459</code>
+   <code>NL-KVK-56185154</code>
    <code>NL-KVK-56484038</code>
    <code>NL-KVK-58183167</code>
    <code>NL-KVK-58279199</code>
    <code>NL-KVK-61172863</code>
    <code>NL-KVK-62066064</code>
+   <code>NL-KVK-65306198</code>
    <code>NL-KVK-66926262</code>
    <code>NL-KVK-67143555</code>
    <code>NL-KVK-855689493</code>
@@ -522,6 +628,7 @@
    <code>PK-VSWA-511-2007</code>
    <code>PS-MOI-RA-22220-A</code>
    <code>RS-APR-17062603</code>
+   <code>RW-RGB-101-RGB-NGO-2014</code>
    <code>SACU</code>
    <code>SE-0</code>
    <code>SE-ON-802017-3517</code>
@@ -532,11 +639,14 @@
    <code>TR-MOI-27-018-163</code>
    <code>TZ-BRE-63966</code>
    <code>TZ-BRLA-36057</code>
+   <code>TZ-TRA-101-091-759</code>
+   <code>TZ-TRA-101-304-795</code>
+   <code>UG-NGB-10890</code>
+   <code>UG-NGB-1826</code>
    <code>UG-NGB-5914-252</code>
    <code>UG-NGB-5914-9186</code>
    <code>UG-NGB-63360</code>
    <code>UG-RSB-73316</code>
-   <code>UNCDF</code>
    <code>US-18</code>
    <code>US-501c3-522318905</code>
    <code>US-DOS-64562614</code>
@@ -544,6 +654,7 @@
    <code>US-EIN-042347643</code>
    <code>US-EIN-06-1597-668</code>
    <code>US-EIN-06-1608361</code>
+   <code>US-EIN-11-3803281</code>
    <code>US-EIN-13-1624114</code>
    <code>US-EIN-13-2626135</code>
    <code>US-EIN-13-2702768</code>
@@ -557,9 +668,14 @@
    <code>US-EIN-20-1173866</code>
    <code>US-EIN-20-4451390</code>
    <code>US-EIN-203908371</code>
+   <code>US-EIN-22-3087809</code>
    <code>US-EIN-23-7069110</code>
+   <code>US-EIN-237297651</code>
    <code>US-EIN-26-1931968</code>
    <code>US-EIN-26-4129153</code>
+   <code>US-EIN-262681792</code>
+   <code>US-EIN-27-1414646</code>
+   <code>US-EIN-27-1661997</code>
    <code>US-EIN-27-3755556</code>
    <code>US-EIN-27-5026293</code>
    <code>US-EIN-27-5026463</code>
@@ -568,6 +684,7 @@
    <code>US-EIN-33-1112770</code>
    <code>US-EIN-463668128</code>
    <code>US-EIN-47-4128047</code>
+   <code>US-EIN-52-0595110</code>
    <code>US-EIN-52-1238773</code>
    <code>US-EIN-52-1764268</code>
    <code>US-EIN-521257057</code>
@@ -580,6 +697,7 @@
    <code>US-EIN-56-2460366</code>
    <code>US-EIN-58-2368165</code>
    <code>US-EIN-84-1166148</code>
+   <code>US-EIN-900634376</code>
    <code>US-EIN-941191246</code>
    <code>US-EIN-941655673</code>
    <code>US-EIN-943287156</code>
@@ -599,6 +717,7 @@
    <code>XI-IATI-EC_ECHO</code>
    <code>XI-IATI-EC_FPI</code>
    <code>XI-IATI-EC_NEAR</code>
+   <code>XI-IATI-FIABEL</code>
    <code>XI-IATI-IADB</code>
    <code>XI-IATI-IKI</code>
    <code>XI-IATI-OFID</code>
@@ -609,6 +728,7 @@
    <code>XM-DAC-1409</code>
    <code>XM-DAC-2-10</code>
    <code>XM-DAC-21-1</code>
+   <code>XM-DAC-21033</code>
    <code>XM-DAC-236</code>
    <code>XM-DAC-3-1</code>
    <code>XM-DAC-30010</code>
@@ -616,6 +736,7 @@
    <code>XM-DAC-301-2</code>
    <code>XM-DAC-41108</code>
    <code>XM-DAC-41110</code>
+   <code>XM-DAC-41111</code>
    <code>XM-DAC-411124</code>
    <code>XM-DAC-41114</code>
    <code>XM-DAC-41116</code>
@@ -623,6 +744,9 @@
    <code>XM-DAC-41140</code>
    <code>XM-DAC-41301</code>
    <code>XM-DAC-41302</code>
+   <code>XM-DAC-41304</code>
+   <code>XM-DAC-43000</code>
+   <code>XM-DAC-46009</code>
    <code>XM-DAC-47058</code>
    <code>XM-DAC-47059</code>
    <code>XM-DAC-47064</code>
@@ -637,7 +761,6 @@
    <code>XM-DAC-84</code>
    <code>XM-DAC-903</code>
    <code>XM-DAC-918-3</code>
-   <code>XM-DAC-928</code>
    <code>XM-OCHA-CBPF</code>
    <code>XM-OCHA-CERF</code>
    <code>XM-OCHA-FTS</code>
@@ -646,6 +769,7 @@
    <code>ZA-NPO-025-359</code>
    <code>ZA-NPO-061-870</code>
    <code>ZA-PBO-064-502</code>
+   <code>ZA-PBO-930040668</code>
    <code>ZA-ROC-1999/05072/08</code>
    <code>ZW-PVO-15/2003</code>
    <code>ZW-PVO-26/79</code>
@@ -653,7 +777,6 @@
    <code>ZW-ROD-MA988/87</code>
    <code>cbi-nigeria</code>
    <code>ciks</code>
-   <code>halo</code>
    <code>mz-moj-64vq1</code>
    <code>tbi</code>
    <code>BJ-IFU-6201408024805</code>

@@ -81,6 +81,7 @@
    <code>application/DII</code>
    <code>application/DIT</code>
    <code>application/dns</code>
+   <code>application/dns+json</code>
    <code>application/dskpp+xml</code>
    <code>application/dssc+der</code>
    <code>application/dssc+xml</code>
@@ -117,6 +118,7 @@
    <code>application/geo+json</code>
    <code>application/geo+json-seq</code>
    <code>application/geoxacml+xml</code>
+   <code>application/gltf-buffer</code>
    <code>application/gml+xml</code>
    <code>application/gzip</code>
    <code>application/H224</code>
@@ -290,6 +292,15 @@
    <code>application/scvp-vp-request</code>
    <code>application/scvp-vp-response</code>
    <code>application/sdp</code>
+   <code>application/secevent+jwt</code>
+   <code>application/senml-exi</code>
+   <code>application/senml+cbor</code>
+   <code>application/senml+json</code>
+   <code>application/senml+xml</code>
+   <code>application/sensml-exi</code>
+   <code>application/sensml+cbor</code>
+   <code>application/sensml+json</code>
+   <code>application/sensml+xml</code>
    <code>application/sep-exi</code>
    <code>application/sep+xml</code>
    <code>application/session-info</code>
@@ -383,6 +394,8 @@
    <code>application/vnd.adobe.xdp+xml</code>
    <code>application/vnd.adobe.xfdf</code>
    <code>application/vnd.aether.imp</code>
+   <code>application/vnd.afpc.afplinedata</code>
+   <code>application/vnd.afpc.modca</code>
    <code>application/vnd.ah-barcode</code>
    <code>application/vnd.ahead.space</code>
    <code>application/vnd.airzip.filesecure.azf</code>
@@ -404,6 +417,7 @@
    <code>application/vnd.apple.installer+xml</code>
    <code>application/vnd.arastra.swi</code>
    <code>application/vnd.aristanetworks.swi</code>
+   <code>application/vnd.artisan+json</code>
    <code>application/vnd.artsquare</code>
    <code>application/vnd.astraea-software.iota</code>
    <code>application/vnd.audiograph</code>
@@ -829,6 +843,7 @@
    <code>application/vnd.nervana</code>
    <code>application/vnd.netfpx</code>
    <code>application/vnd.neurolanguage.nlu</code>
+   <code>application/vnd.nimn</code>
    <code>application/vnd.nintendo.snes.rom</code>
    <code>application/vnd.nintendo.nitro.rom</code>
    <code>application/vnd.nitf</code>
@@ -1048,6 +1063,7 @@
    <code>application/vnd.preminet</code>
    <code>application/vnd.previewsystems.box</code>
    <code>application/vnd.proteus.magazine</code>
+   <code>application/vnd.psfs</code>
    <code>application/vnd.publishare-delta-tree</code>
    <code>application/vnd.pvi.ptid1</code>
    <code>application/vnd.pwg-multiplexed</code>
@@ -1107,6 +1123,7 @@
    <code>application/vnd.shana.informed.formtemplate</code>
    <code>application/vnd.shana.informed.interchange</code>
    <code>application/vnd.shana.informed.package</code>
+   <code>application/vnd.shootproof+json</code>
    <code>application/vnd.sigrok.session</code>
    <code>application/vnd.SimTech-MindMapper</code>
    <code>application/vnd.siren+json</code>
@@ -1141,6 +1158,7 @@
    <code>application/vnd.tableschema+json</code>
    <code>application/vnd.tao.intent-module-archive</code>
    <code>application/vnd.tcpdump.pcap</code>
+   <code>application/vnd.think-cell.ppttc+json</code>
    <code>application/vnd.tml</code>
    <code>application/vnd.tmd.mediaflex.api+xml</code>
    <code>application/vnd.tmobile-livetv</code>
@@ -1251,6 +1269,7 @@
    <code>application/xcon-conference-info+xml</code>
    <code>application/xenc+xml</code>
    <code>application/xhtml+xml</code>
+   <code>application/xliff+xml</code>
    <code>application/xml</code>
    <code>application/xml-dtd</code>
    <code>application/xml-external-parsed-entity</code>
@@ -1270,6 +1289,7 @@
    <code>audio/32kadpcm</code>
    <code>audio/3gpp</code>
    <code>audio/3gpp2</code>
+   <code>audio/aac</code>
    <code>audio/ac3</code>
    <code>audio/AMR</code>
    <code>audio/AMR-WB</code>
@@ -1506,6 +1526,7 @@
    <code>model/vnd.parasolid.transmit-binary</code>
    <code>model/vnd.parasolid.transmit-text</code>
    <code>model/vnd.rosette.annotated-data-model</code>
+   <code>model/vnd.usdz+zip</code>
    <code>model/vnd.valve.source.compiled-map</code>
    <code>model/vnd.vtu</code>
    <code>model/x3d-vrml</code>
