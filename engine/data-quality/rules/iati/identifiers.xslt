@@ -61,7 +61,6 @@
   <xsl:template match="iati-identifier" mode="rules" priority="1.3">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
-      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
       <xsl:with-param name="class">identifiers</xsl:with-param>
       <xsl:with-param name="idclass">1.3</xsl:with-param>
     </xsl:call-template>
@@ -70,7 +69,6 @@
   <xsl:template match="@provider-activity-id" mode="rules" priority="1.4">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
-      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
       <xsl:with-param name="class">financial</xsl:with-param>
       <xsl:with-param name="idclass">1.4</xsl:with-param>
     </xsl:call-template>
@@ -79,7 +77,6 @@
   <xsl:template match="@receiver-activity-id" mode="rules" priority="1.5">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
-      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
       <xsl:with-param name="class">financial</xsl:with-param>
       <xsl:with-param name="idclass">1.5</xsl:with-param>
     </xsl:call-template>
@@ -88,7 +85,6 @@
   <xsl:template match="other-identifier[@type='A3']/@ref" mode="rules" priority="1.6">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
-      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
       <xsl:with-param name="class">identifiers</xsl:with-param>
       <xsl:with-param name="idclass">1.6</xsl:with-param>
     </xsl:call-template>
@@ -97,7 +93,6 @@
   <xsl:template match="@ref[not(name(..)=('location', 'transaction', 'other-identifier'))]" mode="rules" priority="1.7">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
-      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
       <xsl:with-param name="class">identifiers</xsl:with-param>
       <xsl:with-param name="idclass">1.7</xsl:with-param>
     </xsl:call-template>
@@ -105,7 +100,6 @@
   
   <xsl:template name="identifier_check">
     <xsl:param name="item"/>
-    <xsl:param name="itemname"/>
     <xsl:param name="class"/>
     <xsl:param name="idclass"/>
     
@@ -113,21 +107,21 @@
       <xsl:when test="functx:trim($item)=''">
         <me:feedback type="warning" class="{$class}" id="{$idclass}.7">
           <me:src ref="iati" versions="any"/>
-          <me:message>The identifier <code>{$itemname}</code> has no value: it should be omitted if you don't have a value for it.</me:message>
+          <me:message>The identifier has no value: it should be omitted if you don't have a value for it.</me:message>
         </me:feedback>        
       </xsl:when>
       
       <xsl:when test="$item != functx:trim($item)">
         <me:feedback type="warning" class="{$class}" id="{$idclass}.1">
           <me:src ref="iati" versions="any"/>
-          <me:message>The identifier <code>{$itemname}</code> should not start or end with spaces or newlines.</me:message>
+          <me:message>The identifier should not start or end with spaces or newlines.</me:message>
         </me:feedback>
       </xsl:when>
 
       <xsl:when test="some $prefix in $org-id-prefixes[@status='withdrawn'] satisfies starts-with(upper-case($item), $prefix)">
         <me:feedback type="info" class="{$class}" id="{$idclass}.9">
           <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
-          <me:message>The identifier <code>{$itemname}</code> starts with a country-specific prefix that it is marked as 'withdrawn'.</me:message>
+          <me:message>The identifier starts with a country-specific prefix that it is marked as 'withdrawn'.</me:message>
         </me:feedback>
       </xsl:when>
 
@@ -136,7 +130,7 @@
         and (some $prefix in $org-id-prefixes satisfies starts-with(upper-case($item), $prefix)))">
         <me:feedback type="danger" class="{$class}" id="{$idclass}.5">
           <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
-          <me:message>The identifier <code>{$itemname}</code> is invalid: the country-specific prefix must be written in uppercase.</me:message>
+          <me:message>The identifier is invalid: the country-specific prefix must be written in uppercase.</me:message>
         </me:feedback>
       </xsl:when>
 
@@ -145,28 +139,28 @@
 	TODO: make this a ruleset specific severity once these are processed in the report
         <me:feedback type="info" class="{$class}" id="1.2.12">
           <me:src ref="iati" versions="2.x"/>
-          <me:message><code>{$itemname}</code> uses a 1.04 identifier that has been replaced in 1.05.</me:message>
+          <me:message>The identifier uses a 1.04 code that has been replaced in 1.05.</me:message>
         </me:feedback>-->
       </xsl:when>
     
       <xsl:when test="matches($item, '^[0-9]{5}$')">
         <me:feedback type="warning" class="{$class}" id="{$idclass}.10">
           <me:src ref="iati" versions="1.x" href="http://iatistandard.org/202/organisation-identifiers/"/>
-          <me:message>The identifier <code>{$itemname}</code> is a 5-digit code, but not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
+          <me:message>The identifier is a 5-digit code, but not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
         </me:feedback>
       </xsl:when>
       
       <xsl:when test="not(some $prefix in $org-id-prefixes satisfies starts-with($item, $prefix))">
         <me:feedback type="warning" class="{$class}" id="{$idclass}.8">
           <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
-          <me:message>The identifier <code>{$itemname}</code> does not start with a known country-specific prefix.</me:message>
+          <me:message>The identifier does not start with a known country-specific prefix.</me:message>
         </me:feedback>
       </xsl:when>
 
       <xsl:when test="not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id))">
         <me:feedback type="info" class="{$class}" id="{$idclass}.11">
           <me:src ref="iati" versions="2.x"/>
-          <me:message>The identifier <code>{$itemname}</code> is not on our current list of known publishers.</me:message>
+          <me:message>The identifier is not on our current list of known publishers.</me:message>
         </me:feedback>
       </xsl:when>
 

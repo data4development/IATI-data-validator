@@ -87,9 +87,9 @@
     <xsl:next-match/>
   </xsl:template>
 
-  <xsl:template match="reporting-org|participating-org|provider-org|receiver-org" mode="rules" priority="6.3">
+  <xsl:template match="reporting-org" mode="rules" priority="6.3">
     <xsl:if test="not(@type) or @type=''">
-      <me:feedback type="warning" class="information" id="6.3.1">
+      <me:feedback type="warning" class="identification" id="6.3.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The organisation type is missing.</me:message>
       </me:feedback>
@@ -97,5 +97,28 @@
     
     <xsl:next-match/>
   </xsl:template>
+
+  <xsl:template match="participating-org" mode="rules" priority="6.4">
+    <xsl:if test="not(@type) or @type=''">
+      <me:feedback type="warning" class="participating" id="6.4.1">
+        <me:src ref="iati" versions="any"/>
+        <me:message>The organisation type is missing.</me:message>
+      </me:feedback>
+    </xsl:if>
     
+    <xsl:next-match/>
+  </xsl:template>
+  
+  <xsl:template match="provider-org|receiver-org" mode="rules" priority="6.5">
+    <xsl:if test="not(@type) or @type=''">
+      <me:feedback type="warning" class="financial" id="6.5.1">
+        <me:src ref="iati" versions="any"/>
+        <me:message>The organisation type is missing.</me:message>
+      </me:feedback>
+    </xsl:if>
+    
+    <xsl:next-match/>
+  </xsl:template>
+  
+  
 </xsl:stylesheet>
