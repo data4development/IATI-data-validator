@@ -5,14 +5,17 @@
     <category class="identifiers">
       <title>Identification</title>
     </category>
+    <category class="information">
+      <title>Basic activity information</title>
+    </category>
+    <category class="documents">
+      <title>Related documents</title>
+    </category>
+    <category class="classifications">
+      <title>Classifications</title>
+    </category>
     <category class="iati">
       <title>IATI technical</title>
-    </category>
-    <category class="codelists">
-      <title>Code lists</title>
-    </category>
-    <category class="sectors">
-      <title>Classifications</title>
     </category>
     <category class="geo">
       <title>Geographical information</title>
@@ -23,9 +26,6 @@
     <category class="traceability">
       <!-- to be merged into identifiers -->
       <title>Traceability</title>
-    </category>
-    <category class="information">
-      <title>General information</title>
     </category>
     <category class="financial">
       <title>Financial information</title>
@@ -38,6 +38,14 @@
     </category>
     <category class="inclusions">
       <title>Inclusions</title>
+    </category>
+    
+    <!-- deprecated -->
+    <category class="codelists">
+      <title>Code lists</title>
+    </category>
+    <category class="sectors">
+      <title>Classifications</title>
     </category>
   </categories>
 
