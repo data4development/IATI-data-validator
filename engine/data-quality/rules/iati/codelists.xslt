@@ -7,9 +7,6 @@
   exclude-result-prefixes="functx"
   expand-text="yes">
   
-  <xsl:variable name="iati-version"/>
-  <xsl:variable name="iati-version-valid"/>
-
   <xsl:template match="iati-activities|iati-organisations" mode="rules" priority="9.1">
     <xsl:if test="not($iati-version-valid)">
       <me:feedback type="danger" class="iati" id="9.1.1">
