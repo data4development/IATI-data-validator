@@ -2,33 +2,42 @@
 
 <meta xmlns="http://iati.me">
   <categories>
+    <category class="iati">
+      <title>IATI technical</title>
+    </category>
+    
+    <!-- following AidStream main categories -->
     <category class="identifiers">
       <title>Identification</title>
     </category>
     <category class="information">
       <title>Basic activity information</title>
     </category>
-    <category class="documents">
-      <title>Related documents</title>
+    <category class="participating">
+      <title>Participatig organisations</title>
+    </category>
+    <category class="geo">
+      <title>Geopolitical information</title>
     </category>
     <category class="classifications">
       <title>Classifications</title>
     </category>
-    <category class="iati">
-      <title>IATI technical</title>
-    </category>
-    <category class="geo">
-      <title>Geographical information</title>
-    </category>
-    <category class="traceability">
-      <!-- to be merged into identifiers -->
-      <title>Traceability</title>
-    </category>
     <category class="financial">
-      <title>Financial information</title>
+      <title>Financial</title>
     </category>
-    <category class="results">
-      <title>Results</title>
+    <category class="documents">
+      <title>Related documents</title>
+    </category>
+    <category class="relations">
+      <title>Relations</title>
+    </category>    
+    <category class="performance">
+      <title>Performance</title>
+    </category>    
+    
+    <!-- Extensions -->
+    <category class="traceability">
+      <title>Traceability</title>
     </category>
     <category class="exclusions">
       <title>Exclusions</title>
@@ -47,6 +56,9 @@
     <category class="language">
       <title>Language and text</title>
     </category>
+    <category class="results">
+      <title>Results</title>
+    </category>    
   </categories>
 
   <severities>
