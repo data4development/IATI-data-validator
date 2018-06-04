@@ -12,9 +12,9 @@
   <xsl:template match="iati-activity" mode="rules" priority="4.1">
   
     <xsl:if test="not(./@xml:lang) and descendant::narrative[not(@xml:lang)]">
-      <me:feedback type="warning" class="language" id="4.1.1">
+      <me:feedback type="warning" class="information" id="4.1.1">
         <me:src ref="iati" href="http://iatistandard.org/202/activity-standard/iati-activities/iati-activity/#iati-activities-iati-activity-xml-lang"/>
-        <me:message>Specify a default language for the activity OR specify the language for each narrative element.</me:message>
+        <me:message>The activity should specify a default language, or the language should be specified for each narrative element.</me:message>
       </me:feedback>
     </xsl:if>
   
@@ -25,30 +25,49 @@
   
     <!--todo: check if this works...-->
     <xsl:if test="count((narrative|text()) = $activity-titles) > 1">
-      <me:feedback type="info" class="language" id="4.2.1">
+      <me:feedback type="info" class="information" id="4.2.1">
         <me:src ref="practice" versions="any"/>
-        <me:message>The same activity title is occurring more than once in the data set.</me:message>
+        <me:message>The activity title occurs more than once in the data.</me:message>
       </me:feedback>
     </xsl:if>
   
     <xsl:next-match/>
   </xsl:template>
 
-  <xsl:template match="title|description" mode="rules" priority="4.3">
+  <xsl:template match="title" mode="rules" priority="4.3">
+    <xsl:call-template name="narrative_content_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
+      <xsl:with-param name="idclass">4.3</xsl:with-param>
+    </xsl:call-template>    
+  </xsl:template>
+
+  <xsl:template match="description" mode="rules" priority="4.4">
+    <xsl:call-template name="narrative_content_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
+      <xsl:with-param name="idclass">4.4</xsl:with-param>
+    </xsl:call-template>    
+  </xsl:template>
+  
+  <xsl:template name="narrative_content_check">
+    <xsl:param name="item"/>
+    <xsl:param name="itemname"/>
+    <xsl:param name="idclass"/>
     
     <xsl:if test="starts-with($iati-version, '2.')
-      and (not(narrative) or not(narrative[functx:trim(.)!='']))">
-      <me:feedback type="danger" class="language" id="4.3.1">
+      and (not($item/narrative) or not($item/narrative[functx:trim(.)!='']))">
+      <me:feedback type="danger" class="information" id="{$idclass}.1">
         <me:src ref="iati" versions="2.x"/>
-        <me:message>The {name(.)} has no narrative content.</me:message>
+        <me:message>The {$itemname} has no narrative content.</me:message>
       </me:feedback>
     </xsl:if>
 
     <xsl:if test="starts-with($iati-version, '1.')
-      and (functx:trim(string(.))='')">
-      <me:feedback type="danger" class="language" id="4.3.2">
+      and (functx:trim(string($item))='')">
+      <me:feedback type="danger" class="information" id="{$idclass}.2">
         <me:src ref="iati" versions="1.x"/>
-        <me:message>The {name(.)} has no narrative content.</me:message>
+        <me:message>The {$itemname} has no narrative content.</me:message>
       </me:feedback>
     </xsl:if>
     

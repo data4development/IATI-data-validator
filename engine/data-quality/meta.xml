@@ -20,9 +20,6 @@
     <category class="geo">
       <title>Geographical information</title>
     </category>
-    <category class="language">
-      <title>Language and text</title>
-    </category>
     <category class="traceability">
       <!-- to be merged into identifiers -->
       <title>Traceability</title>
@@ -46,6 +43,9 @@
     </category>
     <category class="sectors">
       <title>Classifications</title>
+    </category>
+    <category class="language">
+      <title>Language and text</title>
     </category>
   </categories>
 
