@@ -120,7 +120,7 @@
       <xsl:when test="not(receiver-org/@receiver-activity-id!='')">
         <me:feedback type="warning" class="financial" id="7.4.4">
           <me:src ref="practice" versions="all"/>
-          <me:message>The outgoing transaction has no receiver actvity identifier.</me:message>
+          <me:message>The outgoing transaction has no receiver activity identifier.</me:message>
         </me:feedback>
       </xsl:when>
     </xsl:choose>

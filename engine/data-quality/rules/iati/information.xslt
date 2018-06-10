@@ -52,7 +52,7 @@
     <xsl:if test="not(policy-marker)">
       <me:feedback type="warning" class="classifications" id="6.2.3">
         <me:src ref="iati" versions="any"/>
-        <me:message>The policy marker(s) are missing.</me:message>
+        <me:message>The policy markers are missing.</me:message>
       </me:feedback>
     </xsl:if>
   

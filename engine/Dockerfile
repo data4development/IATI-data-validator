@@ -11,7 +11,7 @@ ENV SAXON_VERSION  9-8-0-4J
 ENV HOME /home
 ENV ANT_HOME /opt/ant
 
-WORKDIR /home
+WORKDIR $HOME
 
 RUN apt-get update && \
   apt-get -y install --no-install-recommends wget && \

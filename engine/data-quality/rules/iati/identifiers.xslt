@@ -11,12 +11,11 @@
   <xsl:variable name="known-10x-ids" select="doc('/home/data-quality/lib/known-publishers-104.xml')//code"/>
 
   <xsl:template match="iati-identifier" mode="rules" priority="1.1">
-  
-    <!-- TODO: deal with renamed organisations (NL-1 XM-DAC-7) -->
-    <xsl:if test="not(starts-with(., ../reporting-org/@ref))">
+
+    <xsl:if test="not(some $id in (../reporting-org/@ref, ../other-identifier[@type='B1']/@ref) satisfies starts-with(., $id))">
       <me:feedback type="warning" class="identifiers" id="1.1.1">
         <me:src ref="iati" versions="any"/>
-        <me:message>The activity identifier should begin with the organisation identifier of the reporting organisation</me:message>
+        <me:message>The activity identifier should begin with the organisation identifier of the reporting organisation (or a previous version of it).</me:message>
       </me:feedback>
     </xsl:if>
   

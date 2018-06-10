@@ -37,7 +37,7 @@
   <xsl:template match="title" mode="rules" priority="4.3">
     <xsl:call-template name="narrative_content_check">
       <xsl:with-param name="item" select="."/>
-      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
+      <xsl:with-param name="itemname" select="name(.)"/>
       <xsl:with-param name="idclass">4.3</xsl:with-param>
     </xsl:call-template>    
   </xsl:template>
@@ -45,7 +45,7 @@
   <xsl:template match="description" mode="rules" priority="4.4">
     <xsl:call-template name="narrative_content_check">
       <xsl:with-param name="item" select="."/>
-      <xsl:with-param name="itemname">{name(.)}</xsl:with-param>
+      <xsl:with-param name="itemname" select="name(.)"/>
       <xsl:with-param name="idclass">4.4</xsl:with-param>
     </xsl:call-template>    
   </xsl:template>

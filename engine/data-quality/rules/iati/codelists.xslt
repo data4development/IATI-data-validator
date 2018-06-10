@@ -75,7 +75,7 @@
   </xsl:template>
   
   <xsl:template match="default-finance-type" mode="rules" priority="9.7">
-    <xsl:if test="not(@code=me:codes('AidType'))">
+    <xsl:if test="not(@code=me:codes('FinanceType'))">
       <me:feedback type="danger" class="classifications" id="9.7.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The default finance type is invalid.</me:message>
