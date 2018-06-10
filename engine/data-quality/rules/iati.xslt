@@ -31,16 +31,11 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:template match="iati-activity">
-    <xsl:copy>
-      <xsl:attribute name="me:id">{iati-identifier}</xsl:attribute>
-      <xsl:apply-templates select="@*|node()"/>
-      <xsl:apply-templates select="." mode="rules"/>
-    </xsl:copy>
-  </xsl:template>
-
   <xsl:template match="@*|node()">
     <xsl:copy>
+      <xsl:if test="name(.)='iati-identifier'">
+        <xsl:attribute name="me:id">{iati-identifier}</xsl:attribute>  
+      </xsl:if>
       <xsl:apply-templates select="@*|node()"/>
       <xsl:apply-templates select="." mode="rules"/>
       <xsl:apply-templates select="@*" mode="rules"/>

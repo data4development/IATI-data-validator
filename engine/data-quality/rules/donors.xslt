@@ -54,8 +54,6 @@
       </me:feedback>
     </xsl:if>
     
-    <xsl:next-match/>
-    
     <xsl:if test="not(//@provider-activity-id
       or //@receiver-activity-id
       or participating-org/@activity-id
