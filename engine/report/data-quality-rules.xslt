@@ -2,7 +2,7 @@
 <xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:me="http://iati.me"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  exclude-result-prefixes="iati-me xs"
+  exclude-result-prefixes="me xs"
   expand-text="yes">
 
   <xsl:import href="../lib/html/bootstrap.xslt"/>
