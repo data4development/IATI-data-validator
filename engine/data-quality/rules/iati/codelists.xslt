@@ -115,15 +115,23 @@
       </me:feedback>
     </xsl:if>
 
+    <xsl:next-match/>
+  </xsl:template>
+  
+  <xsl:template match="policy-marker[@vocabulary]" mode="rules" priority="9.13">
     <xsl:if test="not(@vocabulary=me:codes('PolicyMarkerVocabulary'))">
-      <me:feedback type="danger" class="classifications" id="9.10.2">
+      <me:feedback type="danger" class="classifications" id="9.13.2">
         <me:src ref="iati" versions="any"/>
         <me:message>The policy marker vocabulary is invalid.</me:message>
       </me:feedback>
     </xsl:if>
     
+    <xsl:next-match/>
+  </xsl:template>
+  
+  <xsl:template match="policy-marker[@significance]" mode="rules" priority="9.14">
     <xsl:if test="not(@significance=me:codes('PolicySignificance'))">
-      <me:feedback type="danger" class="classifications" id="9.10.3">
+      <me:feedback type="danger" class="classifications" id="9.14.3">
         <me:src ref="iati" versions="any"/>
         <me:message>The policy marker significance is invalid.</me:message>
       </me:feedback>
@@ -132,7 +140,7 @@
     <xsl:next-match/>
   </xsl:template>
   
-  <xsl:template match="sector[@vocabulary=('1','')]" mode="rules" priority="9.11">
+  <xsl:template match="sector[@vocabulary=('1','') or not(@vocabulary)]" mode="rules" priority="9.11">
     <xsl:if test="not(@code=me:codes('Sector'))">
       <me:feedback type="danger" class="classifications" id="9.11.1">
         <me:src ref="iati"/>
@@ -143,6 +151,17 @@
     <xsl:next-match/>
   </xsl:template>
  
+  <xsl:template match="sector[@vocabulary='2']" mode="rules" priority="9.15">
+    <xsl:if test="not(@code=me:codes('SectorCategory'))">
+      <me:feedback type="danger" class="classifications" id="9.15.1">
+        <me:src ref="iati"/>
+        <me:message>The OECD DAC category is invalid.</me:message>
+      </me:feedback>
+    </xsl:if>
+    
+    <xsl:next-match/>
+  </xsl:template>
+  
   <xsl:template match="@type" mode="rules" priority="9.12">
     <xsl:if test="name(.)=('provider-org', 'receiver-org') and not(.=me:codes('OrganisationType'))">
       <me:feedback type="danger" class="financial" id="9.12.1">

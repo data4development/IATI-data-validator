@@ -34,6 +34,7 @@
     
     <xsl:if test="not(sector[@vocabulary=('1','')] or sector[not(@vocabulary)])">
       <me:feedback type="danger" class="information" id="102.1.1">
+        <me:src ref="dfid" versions="any"/>
         <me:src ref="minbuza" versions="any"/>
         <me:message>The activity must have a sector classification using the OECD DAC sector vocabulary.</me:message>
       </me:feedback>
@@ -42,6 +43,7 @@
     <xsl:if test="recipient-region and 
       not(recipient-region/@vocabulary=('1','') or recipient-region[not(@vocabulary)])">
       <me:feedback type="danger" class="information" id="103.1.1">
+        <me:src ref="dfid" versions="any"/>
         <me:src ref="minbuza" versions="any"/>
         <me:message>The region vocabulary code must be either omitted or at least one region vocabulary value must be 1 (OECD/DAC).</me:message>
       </me:feedback>

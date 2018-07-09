@@ -93,8 +93,12 @@
   <xsl:template match="target/location/me:feedback|actual/location/me:feedback" mode="context">
     For the {name(../..)} location of the indicator "<xsl:apply-templates select="../../../../title"/>" in the period {../../../period-start/@iso-date} to {../../../period-end/@iso-date}
   </xsl:template>
+
+  <xsl:template match="other-identifier/me:feedback" mode="context">
+    For the {name(..)} {../@ref} of type {../@type}
+  </xsl:template>
   
   <xsl:template match="@*|node()" mode="context">
   </xsl:template>
-
+    
 </xsl:stylesheet>

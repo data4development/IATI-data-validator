@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:me="http://iati.me"
   xmlns:functx="http://www.functx.com"
   exclude-result-prefixes="functx"
@@ -161,12 +162,19 @@
       </me:feedback>
     </xsl:if>
   
+    <xsl:if test="xs:date(period-start/@iso-date) + xs:yearMonthDuration('P1Y') lt xs:date(period-end/@iso-date)">
+      <me:feedback type="info" class="financial" id="7.5.3">
+        <me:src ref="iati" versions="any"/>
+        <me:message>The budget period should be one year or less.</me:message>
+      </me:feedback>
+    </xsl:if>
+    
     <xsl:next-match/>
   </xsl:template>
 
   <xsl:template match="iati-activity" mode="rules" priority="7.7">
     <xsl:if test="not(budget)">
-      <me:feedback type="warning" class="financial" id="7.5.2">
+      <me:feedback type="warning" class="financial" id="7.7.2">
         <me:src ref="iati" versions="any"/>
         <me:message>No budgets have been defined for this activity.</me:message>
       </me:feedback>
