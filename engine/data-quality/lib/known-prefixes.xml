@@ -48,6 +48,7 @@
    <code status="active">CA_SK-SKN</code>
    <code status="active">CA_YT-YKT</code>
    <code status="active">CH-FDJP</code>
+   <code status="active">CL-RUT</code>
    <code status="active">CN-SAIC</code>
    <code status="active">CO-CCB</code>
    <code status="active">CO-RUE</code>
@@ -56,6 +57,7 @@
    <code status="active">CZ-ICO</code>
    <code status="active">DE-CR</code>
    <code status="active">DK-CVR</code>
+   <code status="active">EC-RUC</code>
    <code status="active">EE-KMKR</code>
    <code status="active">EE-RIK</code>
    <code status="active">EG-MOSS</code>
@@ -110,6 +112,7 @@
    <code status="active">JO-CCD</code>
    <code status="active">JO-MSD</code>
    <code status="active">JP-JCN</code>
+   <code status="active">KE-KRA</code>
    <code status="active">KE-NCB</code>
    <code status="active">KE-RCO</code>
    <code status="withdrawn">KE-RSO</code>
@@ -148,6 +151,7 @@
    <code status="active">PE-SUNARP</code>
    <code status="active">PH-SEC</code>
    <code status="withdrawn">PK-PCP</code>
+   <code status="active">PK-SEC</code>
    <code status="active">PK-VSWA</code>
    <code status="active">PL-KRS</code>
    <code status="active">PL-NIP</code>
@@ -194,6 +198,7 @@
    <code status="active">XI-WIKIDATA</code>
    <code status="active">XM-DAC</code>
    <code status="active">XM-OCHA</code>
+   <code status="active">XR-EUCB</code>
    <code status="active">XR-NUTS</code>
    <code status="active">ZA-CIP</code>
    <code status="active">ZA-NPO</code>
