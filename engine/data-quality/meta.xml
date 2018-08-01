@@ -10,6 +10,9 @@
     <category class="identifiers">
       <title>Identification</title>
     </category>
+    <category class="organisation">
+      <title>Basic organisation information</title>
+    </category>
     <category class="information">
       <title>Basic activity information</title>
     </category>
