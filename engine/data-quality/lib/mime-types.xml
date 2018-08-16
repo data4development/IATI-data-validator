@@ -117,6 +117,7 @@
    <code>application/framework-attributes+xml</code>
    <code>application/geo+json</code>
    <code>application/geo+json-seq</code>
+   <code>application/geopackage+sqlite3</code>
    <code>application/geoxacml+xml</code>
    <code>application/gltf-buffer</code>
    <code>application/gml+xml</code>
@@ -132,14 +133,14 @@
    <code>application/im-iscomposing+xml</code>
    <code>application/index</code>
    <code>application/index.cmd</code>
-   <code>application/index-obj</code>
+   <code>application/index.obj</code>
    <code>application/index.response</code>
    <code>application/index.vnd</code>
    <code>application/inkml+xml</code>
-   <code>application/IOTP</code>
+   <code>application/iotp</code>
    <code>application/ipfix</code>
    <code>application/ipp</code>
-   <code>application/ISUP</code>
+   <code>application/isup</code>
    <code>application/its+xml</code>
    <code>application/javascript</code>
    <code>application/jf2feed+json</code>
@@ -217,7 +218,7 @@
    <code>application/ocsp-request</code>
    <code>application/ocsp-response</code>
    <code>application/octet-stream</code>
-   <code>application/ODA</code>
+   <code>application/oda</code>
    <code>application/ODX</code>
    <code>application/oebps-package+xml</code>
    <code>application/ogg</code>
@@ -261,7 +262,7 @@
    <code>application/route-apd+xml</code>
    <code>application/route-s-tsid+xml</code>
    <code>application/route-usd+xml</code>
-   <code>application/QSIG</code>
+   <code>application/qsig</code>
    <code>application/raptorfec</code>
    <code>application/rdap+json</code>
    <code>application/reginfo+xml</code>
@@ -308,7 +309,7 @@
    <code>application/set-payment-initiation</code>
    <code>application/set-registration</code>
    <code>application/set-registration-initiation</code>
-   <code>application/SGML</code>
+   <code>application/sgml</code>
    <code>application/sgml-open-catalog</code>
    <code>application/shf+xml</code>
    <code>application/sieve</code>
@@ -339,6 +340,7 @@
    <code>application/tamp-status-response</code>
    <code>application/tamp-update</code>
    <code>application/tamp-update-confirm</code>
+   <code>application/taxii+json</code>
    <code>application/tei+xml</code>
    <code>application/thraud+xml</code>
    <code>application/timestamp-query</code>
@@ -363,6 +365,7 @@
    <code>application/vnd.3gpp.access-transfer-events+xml</code>
    <code>application/vnd.3gpp.bsf+xml</code>
    <code>application/vnd.3gpp.GMOP+xml</code>
+   <code>application/vnd.3gpp.mc-signalling-ear</code>
    <code>application/vnd.3gpp.mcdata-payload</code>
    <code>application/vnd.3gpp.mcdata-signalling</code>
    <code>application/vnd.3gpp.mcptt-affiliation-command+xml</code>
@@ -391,9 +394,9 @@
    <code>application/vnd.3M.Post-it-Notes</code>
    <code>application/vnd.accpac.simply.aso</code>
    <code>application/vnd.accpac.simply.imp</code>
-   <code>application/vnd-acucobol</code>
+   <code>application/vnd.acucobol</code>
    <code>application/vnd.acucorp</code>
-   <code>application/vnd.adobe.flash-movie</code>
+   <code>application/vnd.adobe.flash.movie</code>
    <code>application/vnd.adobe.formscentral.fcdt</code>
    <code>application/vnd.adobe.fxp</code>
    <code>application/vnd.adobe.partial-upload</code>
@@ -419,8 +422,11 @@
    <code>application/vnd.apache.thrift.json</code>
    <code>application/vnd.api+json</code>
    <code>application/vnd.apothekende.reservation+json</code>
-   <code>application/vnd.apple.mpegurl</code>
    <code>application/vnd.apple.installer+xml</code>
+   <code>application/vnd.apple.keynote</code>
+   <code>application/vnd.apple.mpegurl</code>
+   <code>application/vnd.apple.numbers</code>
+   <code>application/vnd.apple.pages</code>
    <code>application/vnd.arastra.swi</code>
    <code>application/vnd.aristanetworks.swi</code>
    <code>application/vnd.artisan+json</code>
@@ -444,6 +450,7 @@
    <code>application/vnd.bluetooth.le.oob</code>
    <code>application/vnd.bmi</code>
    <code>application/vnd.businessobjects</code>
+   <code>application/vnd.byu.uapi+json</code>
    <code>application/vnd.cab-jscript</code>
    <code>application/vnd.canon-cpdl</code>
    <code>application/vnd.canon-lips</code>
@@ -491,11 +498,11 @@
    <code>application/vnd.cups-ppd</code>
    <code>application/vnd.cups-raster</code>
    <code>application/vnd.cups-raw</code>
-   <code>application/vnd-curl</code>
+   <code>application/vnd.curl</code>
    <code>application/vnd.cyan.dean.root+xml</code>
    <code>application/vnd.cybank</code>
    <code>application/vnd.d2l.coursepackage1p0+zip</code>
-   <code>application/vnd-dart</code>
+   <code>application/vnd.dart</code>
    <code>application/vnd.data-vision.rdz</code>
    <code>application/vnd.datapackage+json</code>
    <code>application/vnd.dataresource+json</code>
@@ -503,9 +510,9 @@
    <code>application/vnd.dece.data</code>
    <code>application/vnd.dece.ttml+xml</code>
    <code>application/vnd.dece.unspecified</code>
-   <code>application/vnd.dece-zip</code>
+   <code>application/vnd.dece.zip</code>
    <code>application/vnd.denovo.fcselayout-link</code>
-   <code>application/vnd.desmume-movie</code>
+   <code>application/vnd.desmume.movie</code>
    <code>application/vnd.dir-bi.plate-dl-nosuffix</code>
    <code>application/vnd.dm.delegation+xml</code>
    <code>application/vnd.dna</code>
@@ -518,7 +525,7 @@
    <code>application/vnd.drive+json</code>
    <code>application/vnd.dtg.local</code>
    <code>application/vnd.dtg.local.flash</code>
-   <code>application/vnd.dtg.local-html</code>
+   <code>application/vnd.dtg.local.html</code>
    <code>application/vnd.dvb.ait</code>
    <code>application/vnd.dvb.dvbj</code>
    <code>application/vnd.dvb.esgcontainer</code>
@@ -537,8 +544,8 @@
    <code>application/vnd.dvb.notif-ia-registration-response+xml</code>
    <code>application/vnd.dvb.notif-init+xml</code>
    <code>application/vnd.dvb.pfr</code>
-   <code>application/vnd.dvb_service</code>
-   <code>application/vnd-dxr</code>
+   <code>application/vnd.dvb.service</code>
+   <code>application/vnd.dxr</code>
    <code>application/vnd.dynageo</code>
    <code>application/vnd.dzr</code>
    <code>application/vnd.easykaraoke.cdgdownload</code>
@@ -550,8 +557,8 @@
    <code>application/vnd.ecowin.series</code>
    <code>application/vnd.ecowin.seriesrequest</code>
    <code>application/vnd.ecowin.seriesupdate</code>
-   <code>application/vnd.efi-img</code>
-   <code>application/vnd.efi-iso</code>
+   <code>application/vnd.efi.img</code>
+   <code>application/vnd.efi.iso</code>
    <code>application/vnd.emclient.accessrequest+xml</code>
    <code>application/vnd.enliven</code>
    <code>application/vnd.enphase.envoy</code>
@@ -594,7 +601,7 @@
    <code>application/vnd.ezpix-package</code>
    <code>application/vnd.f-secure.mobile</code>
    <code>application/vnd.fastcopy-disk-image</code>
-   <code>application/vnd-fdf</code>
+   <code>application/vnd.fdf</code>
    <code>application/vnd.fdsn.mseed</code>
    <code>application/vnd.fdsn.seed</code>
    <code>application/vnd.ffsns</code>
@@ -621,6 +628,7 @@
    <code>application/vnd.fujixerox.docuworks.container</code>
    <code>application/vnd.fujixerox.HBPL</code>
    <code>application/vnd.fut-misnet</code>
+   <code>application/vnd.futoin+json</code>
    <code>application/vnd.fuzzysheet</code>
    <code>application/vnd.genomatix.tuxedo</code>
    <code>application/vnd.geo+json</code>
@@ -772,11 +780,11 @@
    <code>application/vnd.mfmp</code>
    <code>application/vnd.micro+json</code>
    <code>application/vnd.micrografx.flo</code>
-   <code>application/vnd.micrografx-igx</code>
+   <code>application/vnd.micrografx.igx</code>
    <code>application/vnd.microsoft.portable-executable</code>
    <code>application/vnd.microsoft.windows.thumbnail-cache</code>
    <code>application/vnd.miele+json</code>
-   <code>application/vnd-mif</code>
+   <code>application/vnd.mif</code>
    <code>application/vnd.minisoft-hp3000-save</code>
    <code>application/vnd.mitsubishi.misty-guard.trustweb</code>
    <code>application/vnd.Mobius.DAF</code>
@@ -992,7 +1000,7 @@
    <code>application/vnd.openxmlformats-officedocument.presentationml.slideUpdateInfo+xml</code>
    <code>application/vnd.openxmlformats-officedocument.presentationml.tableStyles+xml</code>
    <code>application/vnd.openxmlformats-officedocument.presentationml.tags+xml</code>
-   <code>application/vnd.openxmlformats-officedocument.presentationml-template</code>
+   <code>application/vnd.openxmlformats-officedocument.presentationml.template</code>
    <code>application/vnd.openxmlformats-officedocument.presentationml.template.main+xml</code>
    <code>application/vnd.openxmlformats-officedocument.presentationml.viewProps+xml</code>
    <code>application/vnd.openxmlformats-officedocument.spreadsheetml.calcChain+xml</code>
@@ -1014,7 +1022,7 @@
    <code>application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml</code>
    <code>application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml</code>
    <code>application/vnd.openxmlformats-officedocument.spreadsheetml.tableSingleCells+xml</code>
-   <code>application/vnd.openxmlformats-officedocument.spreadsheetml-template</code>
+   <code>application/vnd.openxmlformats-officedocument.spreadsheetml.template</code>
    <code>application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml</code>
    <code>application/vnd.openxmlformats-officedocument.spreadsheetml.userNames+xml</code>
    <code>application/vnd.openxmlformats-officedocument.spreadsheetml.volatileDependencies+xml</code>
@@ -1033,7 +1041,7 @@
    <code>application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml</code>
    <code>application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml</code>
    <code>application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml</code>
-   <code>application/vnd.openxmlformats-officedocument.wordprocessingml-template</code>
+   <code>application/vnd.openxmlformats-officedocument.wordprocessingml.template</code>
    <code>application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml</code>
    <code>application/vnd.openxmlformats-officedocument.wordprocessingml.webSettings+xml</code>
    <code>application/vnd.openxmlformats-package.core-properties+xml</code>
@@ -1051,7 +1059,7 @@
    <code>application/vnd.pagerduty+json</code>
    <code>application/vnd.palm</code>
    <code>application/vnd.panoply</code>
-   <code>application/vnd.paos+xml</code>
+   <code>application/vnd.paos.xml</code>
    <code>application/vnd.patentdive</code>
    <code>application/vnd.pawaafile</code>
    <code>application/vnd.pcos</code>
@@ -1101,7 +1109,7 @@
    <code>application/vnd.realvnc.bed</code>
    <code>application/vnd.recordare.musicxml</code>
    <code>application/vnd.recordare.musicxml+xml</code>
-   <code>application/vnd.renlearn.rlprint</code>
+   <code>application/vnd.RenLearn.rlprint</code>
    <code>application/vnd.restful+json</code>
    <code>application/vnd.rig.cryptonote</code>
    <code>application/vnd.route66.link66+xml</code>
@@ -1114,17 +1122,17 @@
    <code>application/vnd.scribus</code>
    <code>application/vnd.sealed.3df</code>
    <code>application/vnd.sealed.csf</code>
-   <code>application/vnd.sealed-doc</code>
-   <code>application/vnd.sealed-eml</code>
-   <code>application/vnd.sealed-mht</code>
+   <code>application/vnd.sealed.doc</code>
+   <code>application/vnd.sealed.eml</code>
+   <code>application/vnd.sealed.mht</code>
    <code>application/vnd.sealed.net</code>
-   <code>application/vnd.sealed-ppt</code>
-   <code>application/vnd.sealed-tiff</code>
-   <code>application/vnd.sealed-xls</code>
-   <code>application/vnd.sealedmedia.softseal-html</code>
-   <code>application/vnd.sealedmedia.softseal-pdf</code>
+   <code>application/vnd.sealed.ppt</code>
+   <code>application/vnd.sealed.tiff</code>
+   <code>application/vnd.sealed.xls</code>
+   <code>application/vnd.sealedmedia.softseal.html</code>
+   <code>application/vnd.sealedmedia.softseal.pdf</code>
    <code>application/vnd.seemail</code>
-   <code>application/vnd-sema</code>
+   <code>application/vnd.sema</code>
    <code>application/vnd.semd</code>
    <code>application/vnd.semf</code>
    <code>application/vnd.shana.informed.formdata</code>
@@ -1207,9 +1215,9 @@
    <code>application/vnd.vividence.scriptfile</code>
    <code>application/vnd.vsf</code>
    <code>application/vnd.wap.sic</code>
-   <code>application/vnd.wap-slc</code>
-   <code>application/vnd.wap-wbxml</code>
-   <code>application/vnd-wap-wmlc</code>
+   <code>application/vnd.wap.slc</code>
+   <code>application/vnd.wap.wbxml</code>
+   <code>application/vnd.wap.wmlc</code>
    <code>application/vnd.wap.wmlscriptc</code>
    <code>application/vnd.webturbo</code>
    <code>application/vnd.wfa.p2p</code>
@@ -1293,6 +1301,7 @@
    <code>application/yin+xml</code>
    <code>application/zip</code>
    <code>application/zlib</code>
+   <code>application/zstd</code>
    <code>audio/1d-interleaved-parityfec</code>
    <code>audio/32kadpcm</code>
    <code>audio/3gpp</code>
@@ -1436,7 +1445,7 @@
    <code>audio/vnd.qcelp</code>
    <code>audio/vnd.rhetorex.32kadpcm</code>
    <code>audio/vnd.rip</code>
-   <code>audio/vnd.sealedmedia.softseal-mpeg</code>
+   <code>audio/vnd.sealedmedia.softseal.mpeg</code>
    <code>audio/vnd.vmx.cvsd</code>
    <code>audio/vorbis</code>
    <code>audio/vorbis-config</code>
@@ -1447,6 +1456,8 @@
    <code>font/woff</code>
    <code>font/woff2</code>
    <code>image/aces</code>
+   <code>image/avci</code>
+   <code>image/avcs</code>
    <code>image/bmp</code>
    <code>image/cgm</code>
    <code>image/dicom-rle</code>
@@ -1454,6 +1465,10 @@
    <code>image/example</code>
    <code>image/fits</code>
    <code>image/g3fax</code>
+   <code>image/heic</code>
+   <code>image/heic-sequence</code>
+   <code>image/heif</code>
+   <code>image/heif-sequence</code>
    <code>image/jls</code>
    <code>image/jp2</code>
    <code>image/jpm</code>
@@ -1470,7 +1485,7 @@
    <code>image/vnd.airzip.accelerator.azv</code>
    <code>image/vnd.cns.inf2</code>
    <code>image/vnd.dece.graphic</code>
-   <code>image/vnd-djvu</code>
+   <code>image/vnd.djvu</code>
    <code>image/vnd.dwg</code>
    <code>image/vnd.dxf</code>
    <code>image/vnd.dvb.subtitle</code>
@@ -1486,13 +1501,13 @@
    <code>image/vnd.mozilla.apng</code>
    <code>image/vnd.net-fpx</code>
    <code>image/vnd.radiance</code>
-   <code>image/vnd.sealed-png</code>
-   <code>image/vnd.sealedmedia.softseal-gif</code>
-   <code>image/vnd.sealedmedia.softseal-jpg</code>
-   <code>image/vnd-svf</code>
+   <code>image/vnd.sealed.png</code>
+   <code>image/vnd.sealedmedia.softseal.gif</code>
+   <code>image/vnd.sealedmedia.softseal.jpg</code>
+   <code>image/vnd.svf</code>
    <code>image/vnd.tencent.tap</code>
    <code>image/vnd.valve.source.texture</code>
-   <code>image/vnd-wap-wbmp</code>
+   <code>image/vnd.wap.wbmp</code>
    <code>image/vnd.xiff</code>
    <code>image/vnd.zbrush.pcx</code>
    <code>image/wmf</code>
@@ -1523,7 +1538,7 @@
    <code>model/iges</code>
    <code>model/stl</code>
    <code>model/vnd.collada+xml</code>
-   <code>model/vnd-dwf</code>
+   <code>model/vnd.dwf</code>
    <code>model/vnd.flatland.3dml</code>
    <code>model/vnd.gdl</code>
    <code>model/vnd.gs-gdl</code>
@@ -1531,8 +1546,8 @@
    <code>model/vnd.moml+xml</code>
    <code>model/vnd.mts</code>
    <code>model/vnd.opengex</code>
-   <code>model/vnd.parasolid.transmit-binary</code>
-   <code>model/vnd.parasolid.transmit-text</code>
+   <code>model/vnd.parasolid.transmit.binary</code>
+   <code>model/vnd.parasolid.transmit.text</code>
    <code>model/vnd.rosette.annotated-data-model</code>
    <code>model/vnd.usdz+zip</code>
    <code>model/vnd.valve.source.compiled-map</code>
@@ -1584,7 +1599,7 @@
    <code>text/rtp-enc-aescm128</code>
    <code>text/rtploopback</code>
    <code>text/rtx</code>
-   <code>text/SGML</code>
+   <code>text/sgml</code>
    <code>text/strings</code>
    <code>text/t140</code>
    <code>text/tab-separated-values</code>
@@ -1593,10 +1608,10 @@
    <code>text/ulpfec</code>
    <code>text/uri-list</code>
    <code>text/vcard</code>
-   <code>text/vnd-a</code>
+   <code>text/vnd.a</code>
    <code>text/vnd.abc</code>
    <code>text/vnd.ascii-art</code>
-   <code>text/vnd-curl</code>
+   <code>text/vnd.curl</code>
    <code>text/vnd.debian.copyright</code>
    <code>text/vnd.DMClientScript</code>
    <code>text/vnd.dvb.subtitle</code>
@@ -1620,7 +1635,7 @@
    <code>text/vnd.trolltech.linguist</code>
    <code>text/vnd.wap.si</code>
    <code>text/vnd.wap.sl</code>
-   <code>text/vnd.wap-wml</code>
+   <code>text/vnd.wap.wml</code>
    <code>text/vnd.wap.wmlscript</code>
    <code>text/xml</code>
    <code>text/xml-external-parsed-entity</code>
@@ -1668,11 +1683,11 @@
    <code>video/vnd.CCTV</code>
    <code>video/vnd.dece.hd</code>
    <code>video/vnd.dece.mobile</code>
-   <code>video/vnd.dece-mp4</code>
+   <code>video/vnd.dece.mp4</code>
    <code>video/vnd.dece.pd</code>
    <code>video/vnd.dece.sd</code>
    <code>video/vnd.dece.video</code>
-   <code>video/vnd.directv-mpeg</code>
+   <code>video/vnd.directv.mpeg</code>
    <code>video/vnd.directv.mpeg-tts</code>
    <code>video/vnd.dlna.mpeg-tts</code>
    <code>video/vnd.dvb.file</code>
@@ -1686,7 +1701,7 @@
    <code>video/vnd.iptvforum.ttsmpeg2</code>
    <code>video/vnd.motorola.video</code>
    <code>video/vnd.motorola.videop</code>
-   <code>video/vnd-mpegurl</code>
+   <code>video/vnd.mpegurl</code>
    <code>video/vnd.ms-playready.media.pyv</code>
    <code>video/vnd.nokia.interleaved-multimedia</code>
    <code>video/vnd.nokia.mp4vr</code>
@@ -1696,9 +1711,9 @@
    <code>video/vnd.radgamettools.smacker</code>
    <code>video/vnd.sealed.mpeg1</code>
    <code>video/vnd.sealed.mpeg4</code>
-   <code>video/vnd.sealed-swf</code>
-   <code>video/vnd.sealedmedia.softseal-mov</code>
-   <code>video/vnd.uvvu-mp4</code>
-   <code>video/vnd-vivo</code>
+   <code>video/vnd.sealed.swf</code>
+   <code>video/vnd.sealedmedia.softseal.mov</code>
+   <code>video/vnd.uvvu.mp4</code>
+   <code>video/vnd.vivo</code>
    <code>video/VP8</code>
 </codelist>
