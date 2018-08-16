@@ -7,10 +7,14 @@
   xmlns:saxon="http://saxon.sf.net/"
   exclude-result-prefixes="functx"
   expand-text="yes">
-
+  
+  <!-- support functions and templates -->
   <xsl:include href="../../lib/functx.xslt"/>
   <xsl:include href="lib/codelist-functions.xslt"/>
+  <xsl:include href="lib/identifiers.xslt"/>
   <xsl:include href="lib/percentages.xslt"/>
+  
+  <!-- IATI rules -->
   <xsl:include href="iati/codelists.xslt"/>
   <xsl:include href="iati/sectors.xslt"/>
   <xsl:include href="iati/identifiers.xslt"/>
@@ -20,6 +24,8 @@
   <xsl:include href="iati/information.xslt"/>
   <xsl:include href="iati/financial.xslt"/>
   <xsl:include href="iati/results.xslt"/>
+  
+  <!-- General practice and donor rules -->
   <xsl:include href="praxis.xslt"/>
   <xsl:include href="donors.xslt"/>
 

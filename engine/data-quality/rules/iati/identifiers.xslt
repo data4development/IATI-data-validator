@@ -6,10 +6,6 @@
   exclude-result-prefixes="functx"
   expand-text="yes">
 
-  <xsl:variable name="org-id-prefixes" select="doc('../../lib/known-prefixes.xml')//code"/>
-  <xsl:variable name="known-publisher-ids" select="doc('/home/data-quality/lib/known-publishers.xml')//code"/>
-  <xsl:variable name="known-10x-ids" select="doc('/home/data-quality/lib/known-publishers-104.xml')//code"/>
-
   <xsl:template match="iati-identifier" mode="rules" priority="1.1">
 
     <xsl:if test="not(some $id in (../reporting-org/@ref, ../other-identifier[@type='B1']/@ref) satisfies starts-with(., $id))">
@@ -70,11 +66,53 @@
   </xsl:template>
   
   <!-- Checks on the identifiers of organisations or activities -->
-  <xsl:template match="iati-identifier" mode="rules" priority="1.3">
+  <xsl:template match="iati-activity/iati-identifier" mode="rules" priority="1.3">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">identifiers</xsl:with-param>
       <xsl:with-param name="idclass">1.3</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>    
+
+  <xsl:template match="iati-organisation/iati-identifier" mode="rules" priority="1.13">
+    <xsl:call-template name="identifier_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="class">identifiers</xsl:with-param>
+      <xsl:with-param name="idclass">1.13</xsl:with-param>
+      <xsl:with-param name="versions">1.0x</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>    
+  
+  <xsl:template match="organisation-identifier" mode="rules" priority="1.12">
+    <xsl:call-template name="identifier_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="class">organisation</xsl:with-param>
+      <xsl:with-param name="idclass">1.12</xsl:with-param>
+      <xsl:with-param name="versions">2.0x</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>    
+    
+  <xsl:template match="@ref[name(..)=('reporting-org')]" mode="rules" priority="1.14">
+    <xsl:call-template name="identifier_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="class">identifiers</xsl:with-param>
+      <xsl:with-param name="idclass">1.14</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>    
+  
+  <xsl:template match="@ref[name(..)=('participating-org')]" mode="rules" priority="1.8">
+    <xsl:call-template name="identifier_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="class">participating</xsl:with-param>
+      <xsl:with-param name="idclass">1.8</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>    
+  
+  <xsl:template match="@activity-id" mode="rules" priority="1.9">
+    <xsl:call-template name="identifier_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="class">participating</xsl:with-param>
+      <xsl:with-param name="idclass">1.9</xsl:with-param>
     </xsl:call-template>
   </xsl:template>    
   
@@ -94,15 +132,39 @@
     </xsl:call-template>
   </xsl:template>    
   
-  <xsl:template match="other-identifier[@type='A3']/@ref" mode="rules" priority="1.6">
+  <xsl:template match="@ref[name(..)=('provider', 'receiver')]" mode="rules" priority="1.10">
+    <xsl:call-template name="identifier_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="class">financial</xsl:with-param>
+      <xsl:with-param name="idclass">1.10</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>    
+  
+  <xsl:template match="@ref[name(..)=('recipient-org')]" mode="rules" priority="1.15">
+    <xsl:call-template name="identifier_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="class">organisation</xsl:with-param>
+      <xsl:with-param name="idclass">1.15</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>    
+  
+  <xsl:template match="other-identifier[upper-case(@type)=('A3', 'B1')]/@ref" mode="rules" priority="1.6">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">identifiers</xsl:with-param>
       <xsl:with-param name="idclass">1.6</xsl:with-param>
     </xsl:call-template>
   </xsl:template>    
-  
-  <xsl:template match="@ref[not(name(..)=('location', 'transaction', 'other-identifier'))]" mode="rules" priority="1.7">
+
+  <xsl:template match="@ref[name(..)=('owner-org')]" mode="rules" priority="1.11">
+    <xsl:call-template name="identifier_check">
+      <xsl:with-param name="item" select="."/>
+      <xsl:with-param name="class">participating</xsl:with-param>
+      <xsl:with-param name="idclass">1.11</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>    
+    
+  <xsl:template match="@ref[name(..)=('related-activity')]" mode="rules" priority="1.7">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">identifiers</xsl:with-param>
@@ -110,75 +172,4 @@
     </xsl:call-template>
   </xsl:template>    
   
-  <xsl:template name="identifier_check">
-    <xsl:param name="item"/>
-    <xsl:param name="class"/>
-    <xsl:param name="idclass"/>
-    
-    <xsl:choose>
-      <xsl:when test="functx:trim($item)=''">
-        <me:feedback type="warning" class="{$class}" id="{$idclass}.7">
-          <me:src ref="iati" versions="any"/>
-          <me:message>The identifier has no value: it should be omitted if you don't have a value for it.</me:message>
-        </me:feedback>        
-      </xsl:when>
-      
-      <xsl:when test="$item != functx:trim($item)">
-        <me:feedback type="warning" class="{$class}" id="{$idclass}.1">
-          <me:src ref="iati" versions="any"/>
-          <me:message>The identifier should not start or end with spaces or newlines.</me:message>
-        </me:feedback>
-      </xsl:when>
-
-      <xsl:when test="some $prefix in $org-id-prefixes[@status='withdrawn'] satisfies starts-with(upper-case($item), $prefix)">
-        <me:feedback type="info" class="{$class}" id="{$idclass}.9">
-          <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
-          <me:message>The identifier starts with a country-specific prefix that it is marked as 'withdrawn'.</me:message>
-        </me:feedback>
-      </xsl:when>
-
-      <xsl:when test="(
-        not (some $prefix in $org-id-prefixes satisfies starts-with($item, $prefix)) 
-        and (some $prefix in $org-id-prefixes satisfies starts-with(upper-case($item), $prefix)))">
-        <me:feedback type="danger" class="{$class}" id="{$idclass}.5">
-          <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
-          <me:message>The identifier is invalid: the country-specific prefix must be written in uppercase.</me:message>
-        </me:feedback>
-      </xsl:when>
-
-      <xsl:when test="(some $known-old-id in $known-10x-ids satisfies starts-with($item, $known-old-id))">
-<!-- Switch off feedback on deprecated organisation identifiers (DFID case)
-	TODO: make this a ruleset specific severity once these are processed in the report
-        <me:feedback type="info" class="{$class}" id="1.2.12">
-          <me:src ref="iati" versions="2.x"/>
-          <me:message>The identifier uses a 1.04 code that has been replaced in 1.05.</me:message>
-        </me:feedback>-->
-      </xsl:when>
-    
-      <xsl:when test="matches($item, '^[0-9]{5}$')">
-        <me:feedback type="warning" class="{$class}" id="{$idclass}.10">
-          <me:src ref="iati" versions="1.x" href="http://iatistandard.org/202/organisation-identifiers/"/>
-          <me:message>The identifier is a 5-digit code, but not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
-        </me:feedback>
-      </xsl:when>
-      
-      <xsl:when test="not(some $prefix in $org-id-prefixes satisfies starts-with($item, $prefix))">
-        <me:feedback type="warning" class="{$class}" id="{$idclass}.8">
-          <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
-          <me:message>The identifier does not start with a known country-specific prefix.</me:message>
-        </me:feedback>
-      </xsl:when>
-
-      <xsl:when test="not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id))">
-        <me:feedback type="info" class="{$class}" id="{$idclass}.11">
-          <me:src ref="iati" versions="2.x"/>
-          <me:message>The identifier is not on our current list of known publishers.</me:message>
-        </me:feedback>
-      </xsl:when>
-
-    </xsl:choose>
-
-  <xsl:next-match/>
-</xsl:template>
-
 </xsl:stylesheet>
