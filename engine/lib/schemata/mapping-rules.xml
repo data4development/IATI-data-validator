@@ -573,7 +573,7 @@
         <message>The currency code is invalid.</message>
     </mapping>
     <mapping>
-        <path>//@xml:lang</path>
+        <path>//*/@xml:lang</path>
         <codelist ref="Language" />
         <class ref="iati"/>
         <message>The language code is invalid.</message>
