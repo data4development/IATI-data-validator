@@ -9,13 +9,6 @@
 
   <xsl:template match="indicator" mode="rules" priority="8.1">
   
-    <xsl:if test="period[not(target or actual)]">
-      <me:feedback type="warning" class="performance" id="8.1.1">
-        <me:src ref="practice" versions="any"/>
-        <me:message>The result indicator has a period without a target or actual value.</me:message>
-      </me:feedback>
-    </xsl:if>
-  
     <xsl:if test="not(period)">
       <me:feedback type="warning" class="performance" id="8.1.2">
         <me:src ref="practice" versions="any"/>
@@ -27,6 +20,13 @@
       <me:feedback type="warning" class="performance" id="8.1.3">
         <me:src ref="practice" versions="any"/>
         <me:message>The indicator is a percentage, but part of a result marked as aggregatable.</me:message>
+      </me:feedback>
+    </xsl:if>
+    
+    <xsl:if test="not(baseline)">
+      <me:feedback type="warning" class="performance" id="8.1.4">
+        <me:src ref="practice" versions="any"/>
+        <me:message>The result indicator has no baseline.</me:message>
       </me:feedback>
     </xsl:if>
     
@@ -115,6 +115,13 @@
       </me:feedback>
     </xsl:if>
     
+<!--    <xsl:if test="not(target or actual)">
+      <me:feedback type="warning" class="performance" id="8.1.1">
+        <me:src ref="practice" versions="any"/>
+        <me:message>The result indicator has a period without a target or actual value.</me:message>
+      </me:feedback>
+    </xsl:if>
+-->    
     <xsl:if test="not(target)">
       <me:feedback type="warning" class="performance" id="8.6.2">
         <me:src ref="iati" versions="any"/>
@@ -147,7 +154,7 @@
   <xsl:template match="dimension" mode="rules" priority="8.8">
     
     <xsl:if test="not(@name) or @name=''">
-      <me:feedback type="error" class="performance" id="8.8.1">
+      <me:feedback type="danger" class="performance" id="8.8.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The location reference is not specified in this activity.</me:message>
       </me:feedback>

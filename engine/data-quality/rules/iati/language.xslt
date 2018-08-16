@@ -57,7 +57,7 @@
     
     <xsl:if test="starts-with($iati-version, '2.')
       and (not($item/narrative) or not($item/narrative[functx:trim(.)!='']))">
-      <me:feedback type="danger" class="information" id="{$idclass}.1">
+      <me:feedback type="warning" class="information" id="{$idclass}.1">
         <me:src ref="iati" versions="2.x"/>
         <me:message>The {$itemname} has no narrative content.</me:message>
       </me:feedback>
@@ -65,7 +65,7 @@
 
     <xsl:if test="starts-with($iati-version, '1.')
       and (functx:trim(string($item))='')">
-      <me:feedback type="danger" class="information" id="{$idclass}.2">
+      <me:feedback type="warning" class="information" id="{$idclass}.2">
         <me:src ref="iati" versions="1.x"/>
         <me:message>The {$itemname} has no narrative content.</me:message>
       </me:feedback>

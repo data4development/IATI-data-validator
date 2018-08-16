@@ -52,19 +52,19 @@
       <xsl:when test="receiver-org[@ref=current()/../reporting-org/@ref 
         and @receiver-activity-id=current()/../iati-identifier]">
         <me:feedback type="success" class="financial" id="7.3.3">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The incoming transaction does not need receiver information (although the identifiers given match the activity).</me:message>
         </me:feedback>      
       </xsl:when>
       <xsl:when test="receiver-org[@ref=current()/../reporting-org/@ref]">
         <me:feedback type="success" class="financial" id="7.3.5">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The incoming transaction does not need receiver identifier (although the identifier given matches the reporting organisation).</me:message>
         </me:feedback>      
       </xsl:when>
       <xsl:when test="receiver-org">
         <me:feedback type="danger" class="financial" id="7.3.2">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The incoming transaction does not need receiver information, and the information given does not match the activity.</me:message>
         </me:feedback>
       </xsl:when>
@@ -73,13 +73,13 @@
     <xsl:choose>
       <xsl:when test="not(provider-org/@ref!='') and not(provider-org/narrative!='')">
         <me:feedback type="warning" class="financial" id="7.3.1">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The incoming transaction has no provider organisation identifier or name.</me:message>
         </me:feedback>
       </xsl:when>
       <xsl:when test="not(provider-org/@provider-activity-id!='')">
         <me:feedback type="warning" class="financial" id="7.3.4">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The incoming transaction has no provider actvity identifier.</me:message>
         </me:feedback>
       </xsl:when>
@@ -93,19 +93,19 @@
       <xsl:when test="provider-org[@ref=current()/../reporting-org/@ref 
         and @provider-activity-id=current()/../iati-identifier]">
         <me:feedback type="success" class="financial" id="7.4.3">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The outgoing transaction does not need provider information (although the identifiers given match the activity).</me:message>
         </me:feedback>      
       </xsl:when>
       <xsl:when test="provider-org[@ref=current()/../reporting-org/@ref]">
         <me:feedback type="success" class="financial" id="7.4.5">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The outgoing transaction does not need a provider identifier (although the identifier given matches the reporting organisation).</me:message>
         </me:feedback>
       </xsl:when>
       <xsl:when test="provider-org">
         <me:feedback type="danger" class="financial" id="7.4.2">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The outgoing transaction does not need provider information, and the information given does not match the activity.</me:message>
         </me:feedback>
       </xsl:when>
@@ -114,13 +114,13 @@
     <xsl:choose>
       <xsl:when test="not(receiver-org/@ref!='') and not(receiver-org/narrative!='')">
         <me:feedback type="warning" class="financial" id="7.4.1">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The outgoing transaction has no receiver organisation identifier or name.</me:message>
         </me:feedback>
       </xsl:when>
       <xsl:when test="not(receiver-org/@receiver-activity-id!='')">
         <me:feedback type="warning" class="financial" id="7.4.4">
-          <me:src ref="practice" versions="all"/>
+          <me:src ref="practice" versions="any"/>
           <me:message>The outgoing transaction has no receiver activity identifier.</me:message>
         </me:feedback>
       </xsl:when>
@@ -133,14 +133,14 @@
     <xsl:choose>
       <xsl:when test="@iso-date gt ancestor::iati-activity/@last-updated-datetime">
         <me:feedback type="warning" class="financial" id="7.6.1">
-          <me:src ref="iati" versions="all"/>
+          <me:src ref="iati" versions="any"/>
           <me:message>The transaction date is later than the date of the last update of the activity.</me:message>
         </me:feedback>
       </xsl:when>
 
       <xsl:when test="@iso-date gt ancestor::iati-activities/@generated-datetime">
         <me:feedback type="warning" class="financial" id="7.6.2">
-          <me:src ref="iati" versions="all"/>
+          <me:src ref="iati" versions="any"/>
           <me:message>The transaction date is later than the date of generation of the activities file.</me:message>
         </me:feedback>
       </xsl:when>
@@ -148,7 +148,7 @@
   </xsl:template>
   
   <xsl:template match="budget" mode="rules" priority="7.5">
-    <xsl:if test="value=(0, '0')">
+    <xsl:if test="value castable as xs:decimal and value=(0, '0')">
       <me:feedback type="warning" class="financial" id="7.5.1">
         <me:src ref="practice" versions="any"/>
         <me:message>The budget has a value of 0.</me:message>

@@ -12,7 +12,7 @@
             <me:message>The IATI version of the dataset is not a valid version number.</me:message>
          </me:feedback>
       </xsl:if>
-      <xsl:next-match/>
+       <xsl:next-match/>
    </xsl:template>
     <xsl:template match="//iati-activity" mode="rules" priority="9.2">
       <xsl:if test="me:codeListFail(@budget-not-provided, 'BudgetNotProvided')">
@@ -1001,7 +1001,7 @@
       </xsl:if>
       <xsl:next-match/>
    </xsl:template>
-    <xsl:template match="/" mode="rules" priority="9.95">
+    <xsl:template match="//*" mode="rules" priority="9.95">
       <xsl:if test="me:codeListFail(@xml:lang, 'Language')">
          <me:feedback type="danger" class="iati" id="9.95.1">
             <me:src ref="iati" versions="any"/>

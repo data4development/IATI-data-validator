@@ -36,7 +36,7 @@
     <xsl:next-match/>
   </xsl:template>
   
-  <xsl:template match="reporting-org|participating-org|provider-org|receiver-org" mode="rules" priority="1.2">
+  <xsl:template match="participating-org|provider-org|receiver-org" mode="rules" priority="1.2">
     <xsl:choose>
       <xsl:when test="not(@ref) and (@activity-id or @receiver-activity-id or @provider-activity-id)">
         <me:feedback type="info" class="identifiers" id="1.2.3">
@@ -56,6 +56,19 @@
     <xsl:next-match/>
   </xsl:template>
 
+  <xsl:template match="reporting-org" mode="rules" priority="1.7">
+    <xsl:choose>
+      <xsl:when test="not(@ref)">
+        <me:feedback type="danger" class="identifiers" id="1.7.2">
+          <me:src ref="iati" versions="any"/>
+          <me:message>The organisation identifier is missing.</me:message>
+        </me:feedback>      
+      </xsl:when>
+    </xsl:choose>
+    
+    <xsl:next-match/>
+  </xsl:template>
+  
   <!-- Checks on the identifiers of organisations or activities -->
   <xsl:template match="iati-identifier" mode="rules" priority="1.3">
     <xsl:call-template name="identifier_check">
@@ -168,8 +181,4 @@
   <xsl:next-match/>
 </xsl:template>
 
-<!--
-    Message ids no longer present: 1.2.4
-    Messages renumbered: identifier-specific tests 1.2.x now have their own numbers, 1.3.x, 1.4.x, etc.
-  -->
 </xsl:stylesheet>

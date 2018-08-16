@@ -9,7 +9,7 @@
   version="3.0">
 
   <xsl:variable name="codelists">
-    <xsl:apply-templates select="collection('/home/lib/schemata/' || $iati-version || '/codelist/?select=*.xml;recurse=yes')" mode="get-codelists"/>
+    <xsl:apply-templates select="collection('../../../lib/schemata/' || $iati-version || '/codelist/?select=*.xml;recurse=yes')" mode="get-codelists"/>
   </xsl:variable>
   
   <xsl:template match="codelist" mode="get-codelists">
@@ -26,7 +26,7 @@
   <xsl:function name="me:codeListFail" as="xs:boolean">
     <xsl:param name="code"/>
     <xsl:param name="codelist"/>
-    <xsl:sequence select="$codelists/codelist[@name=$codelist] and not($code=$codelists/codelist[@name=$codelist]/code)"/>
+    <xsl:sequence select="$code and $codelists/codelist[@name=$codelist] and not(($code, lower-case($code), upper-case($code))=$codelists/codelist[@name=$codelist]/code)"/>
   </xsl:function>
   
 </xsl:stylesheet>
