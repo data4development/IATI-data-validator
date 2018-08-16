@@ -18,5 +18,14 @@ processing.
   The result can be other XML files, or HTML or JSON outputs.
   We provide an HTML feedback report as one target.
 
+Tests
+-----
+
+Xspec provides the tests, and is included as git submodule.
+
+Run `./develop/xspec/bin/xspec.sh tests/iati-activities-1.0x.xspec` to do all tests on IATI 1.0x data.
+
+If you have a Saxon PE or EE license and use it as your Saxon processor, it is possible to include the `-c` parameter to get a code coverage report.
+
 For more information see
 the [online documentation](https://data4development.github.io/IATI-data-validator/)
