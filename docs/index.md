@@ -5,7 +5,7 @@ title: IATI data validator
 Get data quality feedback for activity files written in the
 [data standard of the International Aid Transparency Initiative](http://iatistandard.org).
 
-![](img/IATI.png)
+![](img/IATI.svg)
 
 This data validator is intended to provide user-friendly feedback on IATI files.
 
@@ -32,5 +32,3 @@ Thanks
 | [Saxonica's Saxon-HE XSLT processor](http://saxonica.com) | [Fuelux extension](http://getfuelux.com) | [Jekyll](https://jekyllrb.com)           |
 | [Apache Ant build tool](https://ant.apache.org) | [Flatly theme from Bootswatch](https://bootswatch.com/flatly) | [Typora markdown editor](https://typora.io/) |
 | [Docker containers](https://www.docker.com) | [Native theme syntax highlighting](http://richleland.github.io/pygments-css/) | [Oxygen XML Editor](https://oxygenxml.com) |
-
-
