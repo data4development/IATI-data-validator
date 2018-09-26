@@ -1,0 +1,74 @@
+@startuml
+actor User
+participant API
+participant webhook
+participant "validator via Ant/script" as validator
+participant storage
+participant "mongo dataset info" as mongo
+
+User -> API: POST file to validate
+activate API
+API -> storage: store file using md5 as name
+storage --> API
+
+API -> mongo: create file metadata record
+mongo --> API
+
+API -> webhook: GET validate?md5=...
+activate webhook
+webhook -> validator: md5 to ant job (how?)
+activate validator
+
+webhook --> API: validation initiated
+deactivate webhook
+API --> User
+deactivate API
+
+validator -> validator: create local workspace
+validator -> storage: GET md5 file
+storage --> validator
+
+validator -> validator: run rules
+validator -> storage: store feedback file
+storage --> validator
+validator -> mongo: update with "feedback generated" timestamp
+mongo --> validator
+
+User -> API: GET workspace results
+activate API
+API -> mongo: get md5 metadata
+mongo --> API
+API --> User: (no json available yet)
+deactivate API
+
+validator -> validator: run json output
+validator -> storage: store json file
+storage --> validator
+validator -> mongo: update with "json generated" timestamp
+mongo --> validator
+
+validator -> validator: run svrl output
+validator -> storage: store svrl file
+storage --> validator
+validator -> mongo: update with "svrl  generated" timestamp
+mongo --> validator
+
+validator -> validator: clean up local workspace
+
+destroy validator
+
+User -> API: GET workspace results
+activate API
+API -> mongo: get md5 metadata
+mongo --> API
+API --> User: (json available)
+deactivate API
+
+User -> API: GET json
+activate API
+API -> storage
+storage --> API
+API --> User
+deactivate API
+
+@enduml

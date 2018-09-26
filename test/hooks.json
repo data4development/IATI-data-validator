@@ -1,0 +1,7 @@
+[
+  {
+    "id": "test1",
+    "execute-command": "test.sh",
+    "response-headers": [{"name": "X-DataWorkbench", "value": "validation request received"}]
+  }
+]
