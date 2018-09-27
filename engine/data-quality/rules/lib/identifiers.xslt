@@ -109,7 +109,7 @@
       
       <xsl:when test="not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id))">
         <me:feedback class="{$class}" id="{$idclass}.11">
-          <xsl:attribute name="type" select="danger">
+          <xsl:attribute name="type">
             <xsl:choose>
               <xsl:when test="local-name($item)='iati-identifier'">danger</xsl:when>
               <xsl:otherwise>warning</xsl:otherwise>

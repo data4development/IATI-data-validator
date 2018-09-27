@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+<xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:me="http://iati.me"
   xmlns:office="http://iati.me/office"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -7,7 +7,8 @@
   xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0"
   xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
 
-  exclude-result-prefixes="iati-me office xs">
+  expand-text="yes"
+  exclude-result-prefixes="me office xs">
 
   <xsl:import href="../lib/office/spreadsheet.xslt"/>
   <xsl:variable name="meta" select="/me:meta"/>
