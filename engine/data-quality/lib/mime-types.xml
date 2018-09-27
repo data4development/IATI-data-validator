@@ -82,6 +82,7 @@
    <code>application/DIT</code>
    <code>application/dns</code>
    <code>application/dns+json</code>
+   <code>application/dns-message</code>
    <code>application/dskpp+xml</code>
    <code>application/dssc+der</code>
    <code>application/dssc+xml</code>
@@ -137,7 +138,7 @@
    <code>application/index.response</code>
    <code>application/index.vnd</code>
    <code>application/inkml+xml</code>
-   <code>application/iotp</code>
+   <code>application/IOTP</code>
    <code>application/ipfix</code>
    <code>application/ipp</code>
    <code>application/isup</code>
@@ -218,7 +219,7 @@
    <code>application/ocsp-request</code>
    <code>application/ocsp-response</code>
    <code>application/octet-stream</code>
-   <code>application/oda</code>
+   <code>application/ODA</code>
    <code>application/ODX</code>
    <code>application/oebps-package+xml</code>
    <code>application/ogg</code>
@@ -262,7 +263,7 @@
    <code>application/route-apd+xml</code>
    <code>application/route-s-tsid+xml</code>
    <code>application/route-usd+xml</code>
-   <code>application/qsig</code>
+   <code>application/QSIG</code>
    <code>application/raptorfec</code>
    <code>application/rdap+json</code>
    <code>application/reginfo+xml</code>
@@ -628,6 +629,7 @@
    <code>application/vnd.fujixerox.docuworks.container</code>
    <code>application/vnd.fujixerox.HBPL</code>
    <code>application/vnd.fut-misnet</code>
+   <code>application/vnd.futoin+cbor</code>
    <code>application/vnd.futoin+json</code>
    <code>application/vnd.fuzzysheet</code>
    <code>application/vnd.genomatix.tuxedo</code>
@@ -1680,6 +1682,7 @@
    <code>video/SMPTE292M</code>
    <code>video/ulpfec</code>
    <code>video/vc1</code>
+   <code>video/vc2</code>
    <code>video/vnd.CCTV</code>
    <code>video/vnd.dece.hd</code>
    <code>video/vnd.dece.mobile</code>

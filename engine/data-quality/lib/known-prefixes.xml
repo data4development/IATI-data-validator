@@ -89,8 +89,10 @@
    <code status="active">GB-REV</code>
    <code status="active">GB-SC</code>
    <code status="active">GB-SHPE</code>
+   <code status="active">GB-SRS</code>
    <code status="active">GB-UKPRN</code>
    <code status="active">GE-NAPR</code>
+   <code status="active">GE-RS</code>
    <code status="active">GG-RCE</code>
    <code status="active">GH-DSW</code>
    <code status="active">HK-CR</code>
@@ -110,6 +112,7 @@
    <code status="active">IM-GR</code>
    <code status="active">IN-MCA</code>
    <code status="active">IN-MHA</code>
+   <code status="active">IQ-NGO</code>
    <code status="active">IT-CF</code>
    <code status="withdrawn">IT-RI</code>
    <code status="active">JE-FSC</code>
