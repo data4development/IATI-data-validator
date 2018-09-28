@@ -20,12 +20,12 @@
       <xsl:when test="functx:trim($item)=''">
         <me:feedback class="{$class}" id="{$idclass}.7">
           <xsl:choose>
-            <xsl:when test="local-name($item)='iati-identifier'">
-              <xsl:attribute name="type" select="danger"/>
+            <xsl:when test="local-name($item)='iati-identifier' or local-name($item/..)='reporting-org'">
+              <xsl:attribute name="type" select="'danger'"/>
               <me:message>The identifier has no value.</me:message>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:attribute name="type" select="warning"/>
+              <xsl:attribute name="type" select="'warning'"/>
               <me:message>The identifier has no value: it should be omitted if you don't have a value for it.</me:message>
             </xsl:otherwise>
           </xsl:choose>            
@@ -41,7 +41,13 @@
       </xsl:when>
 
       <xsl:when test="some $prefix in $org-id-prefixes[@status='withdrawn'] satisfies starts-with(upper-case($item), $prefix)">
-        <me:feedback type="info" class="{$class}" id="{$idclass}.9">
+        <me:feedback class="{$class}" id="{$idclass}.9">
+          <xsl:attribute name="type">
+            <xsl:choose>
+              <xsl:when test="local-name($item)='iati-identifier' or local-name($item/..)='reporting-org'">warning</xsl:when>
+              <xsl:otherwise>info</xsl:otherwise>
+            </xsl:choose>                                  
+          </xsl:attribute>
           <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
           <me:message>The identifier starts with a prefix that it is marked as 'withdrawn'.</me:message>
         </me:feedback>
@@ -65,8 +71,14 @@
         </me:feedback>-->
       </xsl:when>
     
-      <xsl:when test="local-name($item)=('iati-identifier', 'participating-org/@ref', 'provider-org/@ref', 'receiver-org/@ref', 'owner-org/@ref') and matches($item, '^[0-9]{5}$')">
-        <me:feedback type="warning" class="{$class}" id="{$idclass}.10">
+      <xsl:when test="matches($item, '^[0-9]{5}$') and local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')">
+        <me:feedback class="{$class}" id="{$idclass}.10">
+          <xsl:attribute name="type">
+            <xsl:choose>
+              <xsl:when test="local-name($item/..)='reporting-org'">danger</xsl:when>
+              <xsl:otherwise>warning</xsl:otherwise>
+            </xsl:choose>                                  
+          </xsl:attribute>
           <me:src ref="iati" versions="1.x" href="me:iati-url('organisation-identifiers/')"/>
           <me:message>The identifier is a 5-digit code, but not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
         </me:feedback>
@@ -83,7 +95,7 @@
         <me:feedback class="{$class}" id="{$idclass}.8">
           <xsl:attribute name="type">
             <xsl:choose>
-              <xsl:when test="local-name($item)='iati-identifier'">danger</xsl:when>
+              <xsl:when test="local-name($item)='iati-identifier' or local-name($item/..)='reporting-org'">danger</xsl:when>
               <xsl:otherwise>warning</xsl:otherwise>
             </xsl:choose>            
           </xsl:attribute>
@@ -92,20 +104,21 @@
         </me:feedback>
       </xsl:when>
 
-      <xsl:when test="local-name($item)=('iati-identifier', 'participating-org/@ref', 'provider-org/@ref', 'receiver-org/@ref', 'owner-org/@ref') and not($item=$known-publisher-ids)">
+      <xsl:when test="not($item=$known-publisher-ids) and local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')">
         <me:feedback class="{$class}" id="{$idclass}.12">
-          <xsl:choose>
-            <xsl:when test="local-name($item)='iati-identifier'">
-              <xsl:attribute name="type" select="danger"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:attribute name="type" select="info"/>
-            </xsl:otherwise>
-          </xsl:choose>                      
+          <xsl:attribute name="type">
+            <xsl:choose>
+              <xsl:when test="local-name($item)='iati-identifier' or local-name($item/..)='reporting-org'">danger</xsl:when>
+              <xsl:otherwise>info</xsl:otherwise>
+            </xsl:choose>                      
+          </xsl:attribute>
           <me:src ref="iati" versions="2.x"/>
           <me:message>The identifier is not an organisation identifier approved by the IATI registry.</me:message>
         </me:feedback>
       </xsl:when>
+      
+      <!-- stop further processing of organisation identifiers -->
+      <xsl:when test="local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')"/>
       
       <xsl:when test="not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id))">
         <me:feedback class="{$class}" id="{$idclass}.11">

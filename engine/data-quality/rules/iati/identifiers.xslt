@@ -92,7 +92,7 @@
     </xsl:call-template>
   </xsl:template>    
     
-  <xsl:template match="@ref[name(..)=('reporting-org')]" mode="rules" priority="1.14">
+  <xsl:template match="reporting-org/@ref" mode="rules" priority="1.14">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">identifiers</xsl:with-param>
@@ -100,7 +100,7 @@
     </xsl:call-template>
   </xsl:template>    
   
-  <xsl:template match="@ref[name(..)=('participating-org')]" mode="rules" priority="1.8">
+  <xsl:template match="participating-org/@ref" mode="rules" priority="1.8">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">participating</xsl:with-param>
@@ -132,7 +132,7 @@
     </xsl:call-template>
   </xsl:template>    
   
-  <xsl:template match="@ref[name(..)=('provider', 'receiver')]" mode="rules" priority="1.10">
+  <xsl:template match="provider-org/@ref" mode="rules" priority="1.10">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">financial</xsl:with-param>
@@ -140,7 +140,7 @@
     </xsl:call-template>
   </xsl:template>    
   
-  <xsl:template match="@ref[name(..)=('recipient-org')]" mode="rules" priority="1.15">
+  <xsl:template match="receiver-org/@ref" mode="rules" priority="1.15">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">organisation</xsl:with-param>
@@ -156,7 +156,7 @@
     </xsl:call-template>
   </xsl:template>    
 
-  <xsl:template match="@ref[name(..)=('owner-org')]" mode="rules" priority="1.11">
+  <xsl:template match="owner-org/@ref" mode="rules" priority="1.11">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">participating</xsl:with-param>
@@ -164,7 +164,7 @@
     </xsl:call-template>
   </xsl:template>    
     
-  <xsl:template match="@ref[name(..)=('related-activity')]" mode="rules" priority="1.7">
+  <xsl:template match="related-activity/@ref" mode="rules" priority="1.7">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">identifiers</xsl:with-param>
