@@ -3,10 +3,11 @@
   xmlns:me="http://iati.me"
   stylesheet="../../engine/data-quality/rules/iati.xslt"
   xslt-version="3.0">
-  
+
   <x:param name="iati-version">2.03</x:param>
-  
+
   <x:import href="iati/organisation-identifiers.xspec"/>
+  <x:import href="iati/activity-identifiers.xspec"/>
   <x:import href="iati/sectors.xspec"/>
   <x:import href="iati/countries-regions-2.0x.xspec"/>
 </x:description>
