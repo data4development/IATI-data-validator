@@ -10,8 +10,10 @@
         <iati-activity>
           <reporting-org ref=" "/>
           <participating-org ref="  "/>
-          <provider-org ref="  "/>
-          <receiver-org ref=""/>
+          <transaction>
+            <provider-org ref="  "/>
+            <receiver-org ref=""/>
+          </transaction>
           <other-identifier>
             <owner-org ref="
               "/>
@@ -36,8 +38,10 @@
         <iati-activity>
           <reporting-org ref=" ABC"/>
           <participating-org ref="XYZ "/>
-          <provider-org ref=" A12 "/>
-          <receiver-org ref="B23 "/>
+          <transaction>
+            <provider-org ref=" A12 "/>
+            <receiver-org ref="B23 "/>
+          </transaction>
           <other-identifier>
             <owner-org ref="
               CDE "/>
@@ -62,8 +66,10 @@
         <iati-activity>
           <reporting-org ref="FR-INSEE-123"/>
           <participating-org ref="GB-GOVUK-123"/>
-          <provider-org ref="IT-RI-ABC"/>
-          <receiver-org ref="KE-RSO-XYZ"/>
+          <transaction>
+            <provider-org ref="IT-RI-ABC"/>
+            <receiver-org ref="KE-RSO-XYZ"/>
+          </transaction>
           <other-identifier>
             <owner-org ref="MW-CNM-12345"/>
           </other-identifier>
@@ -87,8 +93,10 @@
         <iati-activity>
           <reporting-org ref="FR-rcs-123"/>
           <participating-org ref="GB-chc-123"/>
-          <provider-org ref="bg-eik-ABC"/>
-          <receiver-org ref="NL-KvK-XYZ"/>
+          <transaction>
+            <provider-org ref="bg-eik-ABC"/>
+            <receiver-org ref="NL-KvK-XYZ"/>
+          </transaction>
           <other-identifier>
             <owner-org ref="Nl-KvK-12345"/>
           </other-identifier>
@@ -112,8 +120,10 @@
         <iati-activity>
           <reporting-org ref="22000"/>
           <participating-org ref="21000"/>
-          <provider-org ref="23000"/>
-          <receiver-org ref="21000"/>
+          <transaction>
+            <provider-org ref="23000"/>
+            <receiver-org ref="21000"/>
+          </transaction>
           <other-identifier>
             <owner-org ref="22000"/>
           </other-identifier>
@@ -137,8 +147,10 @@
         <iati-activity>
           <reporting-org ref="AA-Abc"/>
           <participating-org ref="NL-XYZ"/>
-          <provider-org ref="A12-123"/>
-          <receiver-org ref="B23-987"/>
+          <transaction>            
+            <provider-org ref="A12-123"/>
+            <receiver-org ref="B23-987"/>
+          </transaction>
           <other-identifier>
             <owner-org ref="CDE-XYZ"/>
           </other-identifier>
@@ -162,8 +174,10 @@
         <iati-activity>
           <reporting-org ref="GB-GOV-12345"/>
           <participating-org ref="NL-KVK-12345678"/>
-          <provider-org ref="AU-ABN-XYZ"/>
-          <receiver-org ref="CA-CC-AC"/>
+          <transaction>
+            <provider-org ref="AU-ABN-XYZ"/>
+            <receiver-org ref="CA-CC-AC"/>
+          </transaction>
           <other-identifier>
             <owner-org ref="XM-DAC-000"/>
           </other-identifier>
