@@ -16,6 +16,9 @@
           </transaction>
           <other-identifier type="A3" ref="
               "/>
+          <other-identifier type="B1" ref="
+              "/>
+          <related-activity ref="  "/>
         </iati-activity>
       </x:context>
 
@@ -27,8 +30,12 @@
       <x:expect label="It should be severity 'warning'." test="boolean(//provider-org/me:feedback[@id='1.4.7']/@type='warning')"/>
       <x:expect label="It should produce message 1.5.7 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.5.7'])"/>
       <x:expect label="It should be severity 'warning'." test="boolean(//receiver-org/me:feedback[@id='1.5.7']/@type='warning')"/>
-      <x:expect label="It should produce message 1.6.7 for receiver-org." test="boolean(//other-identifier/me:feedback[@id='1.6.7'])"/>
-      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier/me:feedback[@id='1.6.7']/@type='warning')"/>
+      <x:expect label="It should produce message 1.6.7 for other-identifier type A3." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.7'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.7']/@type='warning')"/>
+      <x:expect label="It should produce message 1.6.7 for other-identifier type B1." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.7'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.7']/@type='warning')"/>
+      <x:expect label="It should produce message 1.7.7 for related-activity." test="boolean(//related-activity/me:feedback[@id='1.7.7'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//related-activity/me:feedback[@id='1.7.7']/@type='warning')"/>
     </x:scenario>
 
     <x:scenario label="If an activity identifier contains leading or trailing spaces">
@@ -40,8 +47,11 @@
             <provider-org provider-activity-id=" A12 "/>
             <receiver-org receiver-activity-id="B23 "/>
           </transaction>
+          <other-identifier type="A3" ref="
+              CDE "/>
           <other-identifier type="B1" ref="
               CDE "/>
+          <related-activity ref=" 123 "/>
         </iati-activity>
       </x:context>
 
@@ -53,8 +63,12 @@
       <x:expect label="It should be severity 'error'." test="boolean(//provider-org/me:feedback[@id='1.4.1']/@type='danger')"/>
       <x:expect label="It should produce message 1.5.1 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.5.1'])"/>
       <x:expect label="It should be severity 'error'." test="boolean(//receiver-org/me:feedback[@id='1.5.1']/@type='danger')"/>
-      <x:expect label="It should produce message 1.6.1 for receiver-org." test="boolean(//other-identifier/me:feedback[@id='1.6.1'])"/>
-      <x:expect label="It should be severity 'error'." test="boolean(//other-identifier/me:feedback[@id='1.6.1']/@type='danger')"/>
+      <x:expect label="It should produce message 1.6.1 for other-identifier type A3." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.1']/@type='danger')"/>
+      <x:expect label="It should produce message 1.6.1 for other-identifier type B1." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.1']/@type='danger')"/>
+      <x:expect label="It should produce message 1.7.1 for related-activity." test="boolean(//related-activity/me:feedback[@id='1.7.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//related-activity/me:feedback[@id='1.7.1']/@type='danger')"/>
     </x:scenario>
 
     <x:scenario label="If the activity identifier starts with a prefix that is marked 'withdrawn'">
@@ -67,19 +81,25 @@
             <receiver-org receiver-activity-id="KE-RSO-XYZ"/>
           </transaction>
           <other-identifier type="A3" ref="MW-CNM-12345"/>
+          <other-identifier type="B1" ref="MW-CNM-12345"/>
+          <related-activity ref="KE-RSO-12345"/>
         </iati-activity>
       </x:context>
 
       <x:expect label="It should produce message 1.3.9 for iati-identifier." test="boolean(//iati-identifier/me:feedback[@id='1.3.9'])"/>
-      <x:expect label="It should be severity 'warning'." test="boolean(//iati-identifier/me:feedback[@id='1.3.9']/@type='warning')"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//iati-identifier/me:feedback[@id='1.3.9']/@type='info')"/>
       <x:expect label="It should produce message 1.9.9 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.9.9'])"/>
       <x:expect label="It should be severity 'info'." test="boolean(//participating-org/me:feedback[@id='1.9.9']/@type='info')"/>
       <x:expect label="It should produce message 1.4.9 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.4.9'])"/>
       <x:expect label="It should be severity 'info'." test="boolean(//provider-org/me:feedback[@id='1.4.9']/@type='info')"/>
       <x:expect label="It should produce message 1.5.9 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.5.9'])"/>
       <x:expect label="It should be severity 'info'." test="boolean(//receiver-org/me:feedback[@id='1.5.9']/@type='info')"/>
-      <x:expect label="It should produce message 1.6.9 for receiver-org." test="boolean(//other-identifier/me:feedback[@id='1.6.9'])"/>
-      <x:expect label="It should be severity 'info'." test="boolean(//other-identifier/me:feedback[@id='1.6.9']/@type='info')"/>
+      <x:expect label="It should produce message 1.6.9 for other-identifier type A3." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.9'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.9']/@type='info')"/>
+      <x:expect label="It should produce message 1.6.9 for other-identifier type B1." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.9'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.9']/@type='info')"/>
+      <x:expect label="It should produce message 1.7.9 for related-activity." test="boolean(//related-activity/me:feedback[@id='1.7.9'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//related-activity/me:feedback[@id='1.7.9']/@type='info')"/>
     </x:scenario>
 
     <x:scenario label="If the activity identifier prefix is not in uppercase">
@@ -92,6 +112,8 @@
             <receiver-org receiver-activity-id="NL-KvK-XYZ"/>
           </transaction>
           <other-identifier type="A3" ref="Nl-KvK-12345"/>
+          <other-identifier type="B1" ref="Nl-KvK-12345"/>
+          <related-activity ref="Bg-eiK-12345"/>
         </iati-activity>
       </x:context>
 
@@ -103,8 +125,12 @@
       <x:expect label="It should be severity 'error'." test="boolean(//provider-org/me:feedback[@id='1.4.5']/@type='danger')"/>
       <x:expect label="It should produce message 1.5.5 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.5.5'])"/>
       <x:expect label="It should be severity 'error'." test="boolean(//receiver-org/me:feedback[@id='1.5.5']/@type='danger')"/>
-      <x:expect label="It should produce message 1.6.5 for receiver-org." test="boolean(//other-identifier/me:feedback[@id='1.6.5'])"/>
-      <x:expect label="It should be severity 'error'." test="boolean(//other-identifier/me:feedback[@id='1.6.5']/@type='danger')"/>
+      <x:expect label="It should produce message 1.6.5 for other-identifier type A3." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.5'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.5']/@type='danger')"/>
+      <x:expect label="It should produce message 1.6.5 for other-identifier type B1." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.5'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.5']/@type='danger')"/>
+      <x:expect label="It should produce message 1.7.5 for related-activity." test="boolean(//related-activity/me:feedback[@id='1.7.5'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//related-activity/me:feedback[@id='1.7.5']/@type='danger')"/>
     </x:scenario>
 
     <x:scenario label="If the activity identifier starts with a 5-digit code that was not on the list used up to IATI version 1.04">
@@ -117,6 +143,8 @@
             <receiver-org receiver-activity-id="21000DEF"/>
           </transaction>
           <other-identifier type="A3" ref="22000XYZ"/>
+          <other-identifier type="B1" ref="22000XYZ"/>
+          <related-activity ref="23000/1"/>
         </iati-activity>
       </x:context>
 
@@ -128,8 +156,12 @@
       <x:expect label="It should be severity 'warning'." test="boolean(//provider-org/me:feedback[@id='1.4.10']/@type='warning')"/>
       <x:expect label="It should produce message 1.5.10 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.5.10'])"/>
       <x:expect label="It should be severity 'warning'." test="boolean(//receiver-org/me:feedback[@id='1.5.10']/@type='warning')"/>
-      <x:expect label="It should produce message 1.6.10 for receiver-org." test="boolean(//other-identifier/me:feedback[@id='1.6.10'])"/>
-      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier/me:feedback[@id='1.6.10']/@type='warning')"/>
+      <x:expect label="It should produce message 1.6.10 for other-identifier type A3." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.10'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.10']/@type='warning')"/>
+      <x:expect label="It should produce message 1.6.10 for other-identifier type B1." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.10'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.10']/@type='warning')"/>
+      <x:expect label="It should produce message 1.7.10 for related-activity." test="boolean(//related-activity/me:feedback[@id='1.7.10'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//related-activity/me:feedback[@id='1.7.10']/@type='warning')"/>
     </x:scenario>
 
     <x:scenario label="If the activity identifier does not start with a known prefix">
@@ -142,6 +174,8 @@
             <receiver-org receiver-activity-id="B23-987-XYZ"/>
           </transaction>
           <other-identifier type="A3" ref="CDE-XYZ-123"/>
+          <other-identifier type="B1" ref="CDE-XYZ-123"/>
+          <related-activity ref="123-45-678"/>
         </iati-activity>
       </x:context>
 
@@ -153,8 +187,12 @@
       <x:expect label="It should be severity 'warning'." test="boolean(//provider-org/me:feedback[@id='1.4.8']/@type='warning')"/>
       <x:expect label="It should produce message 1.5.8 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.5.8'])"/>
       <x:expect label="It should be severity 'warning'." test="boolean(//receiver-org/me:feedback[@id='1.5.8']/@type='warning')"/>
-      <x:expect label="It should produce message 1.6.8 for receiver-org." test="boolean(//other-identifier/me:feedback[@id='1.6.8'])"/>
-      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier/me:feedback[@id='1.6.8']/@type='warning')"/>
+      <x:expect label="It should produce message 1.6.8 for other-identifier type A3." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.8'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.8']/@type='warning')"/>
+      <x:expect label="It should produce message 1.6.8 for other-identifier type B1." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.8'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.8']/@type='warning')"/>
+      <x:expect label="It should produce message 1.7.8 for related-activity." test="boolean(//related-activity/me:feedback[@id='1.7.8'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//related-activity/me:feedback[@id='1.7.8']/@type='warning')"/>
     </x:scenario>
 
     <x:scenario label="If the activity identifier does not start with an organisation identifier approved by the IATI Registry">
@@ -168,19 +206,25 @@
             <receiver-org receiver-activity-id="CA-CC-AC-000"/>
           </transaction>
           <other-identifier type="A3" ref="XM-DAC-000-111"/>
+          <other-identifier type="B1" ref="XM-DAC-000-111"/>
+          <related-activity ref="XI-IATIME-000"/>
         </iati-activity>
       </x:context>
 
       <x:expect label="It should produce message 1.3.11 for iati-identifier." test="boolean(//iati-identifier/me:feedback[@id='1.3.11'])"/>
       <x:expect label="It should be severity 'error'." test="boolean(//iati-identifier/me:feedback[@id='1.3.11']/@type='danger')"/>
       <x:expect label="It should produce message 1.9.11 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.9.11'])"/>
-      <x:expect label="It should be severity 'info'." test="boolean(//participating-org/me:feedback[@id='1.9.11']/@type='info')"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//participating-org/me:feedback[@id='1.9.11']/@type='warning')"/>
       <x:expect label="It should produce message 1.4.11 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.4.11'])"/>
-      <x:expect label="It should be severity 'info'." test="boolean(//provider-org/me:feedback[@id='1.4.11']/@type='info')"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//provider-org/me:feedback[@id='1.4.11']/@type='warning')"/>
       <x:expect label="It should produce message 1.5.11 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.5.11'])"/>
-      <x:expect label="It should be severity 'info'." test="boolean(//receiver-org/me:feedback[@id='1.5.11']/@type='info')"/>
-      <x:expect label="It should produce message 1.6.11 for receiver-org." test="boolean(//other-identifier/me:feedback[@id='1.6.11'])"/>
-      <x:expect label="It should be severity 'info'." test="boolean(//other-identifier/me:feedback[@id='1.6.11']/@type='info')"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//receiver-org/me:feedback[@id='1.5.11']/@type='warning')"/>
+      <x:expect label="It should produce message 1.6.11 for other-identifier type A3." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.11'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier[1]/me:feedback[@id='1.6.11']/@type='warning')"/>
+      <x:expect label="It should produce message 1.6.11 for other-identifier type B1." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.11'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//other-identifier[2]/me:feedback[@id='1.6.11']/@type='warning')"/>
+      <x:expect label="It should produce message 1.7.11 for related-activity." test="boolean(//related-activity/me:feedback[@id='1.7.11'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//related-activity/me:feedback[@id='1.7.11']/@type='warning')"/>
     </x:scenario>
 
   </x:scenario>
