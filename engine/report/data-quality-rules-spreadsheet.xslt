@@ -26,6 +26,7 @@
     <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
@@ -42,6 +43,9 @@
           <text:p>Severity</text:p>
       </table:table-cell>
       <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
+        <text:p>Rule set(s)</text:p>
+      </table:table-cell>
+      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
           <text:p>Message</text:p>
       </table:table-cell>
       <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
@@ -56,43 +60,23 @@
     </table:table-row>
   </xsl:template>
 
-  <xsl:template match="Y" mode="office-spreadsheet-cells">
-    <xsl:variable name="t"><me:a>abc</me:a><me:b>aa</me:b></xsl:variable>
-    <xsl:apply-templates select="$t" mode="office-spreadsheet-cell"/>
-  </xsl:template>
-
   <xsl:template match="*" mode="office-spreadsheet-cells">
     <xsl:variable name="empty"><me:x></me:x></xsl:variable>
+    <xsl:variable name="t"><xsl:apply-templates select="me:src" mode="ruleset-list"/></xsl:variable>
+    <xsl:variable name="rulesetseverities"><xsl:value-of select="$t/me:t" separator=", "/></xsl:variable>
+    
     <xsl:apply-templates select="@class" mode="office-spreadsheet-cell"/>
     <xsl:apply-templates select="@id" mode="office-spreadsheet-cell"/>
     <xsl:apply-templates select="$meta//me:severity[@type=current()/@type]" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="$rulesetseverities" mode="office-spreadsheet-cell"/>
     <xsl:apply-templates select="(me:message, $empty)[1]" mode="office-spreadsheet-cell"/>
     <xsl:apply-templates select="(me:description, $empty)[1]" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="ancestor::xsl:template[1]/@match" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="(ancestor::xsl:template[1]/@match, $empty)[1]" mode="office-spreadsheet-cell"/>
     <xsl:apply-templates select="ancestor::*[local-name(.)=('if','when')][1]/@test" mode="office-spreadsheet-cell"/>
   </xsl:template>
 
-  <xsl:template match="/" mode="html-body">
-    <div class="container-fluid" role="main">
-      <table class="table">
-        <xsl:for-each-group select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//me:feedback"
-          group-by="@class">
-          <xsl:sort select="count($meta//me:category[@class=current-grouping-key()]/preceding-sibling::*)"/>
-          <xsl:apply-templates select="current-group()">
-            <xsl:sort select="@id" data-type="number"/>
-          </xsl:apply-templates>
-        </xsl:for-each-group>
-      </table>
-    </div>
-  </xsl:template>
-
-  <xsl:template match="me:feedback" mode="never">
-    <tr>
-      <xsl:variable name="type" select="@type"/>
-      <td><a name="{@id}"></a><xsl:value-of select="@id"/></td>
-      <td class="{@type}"><xsl:value-of select="$meta//me:severity[@type=$type]"/></td>
-      <td><code><xsl:value-of select="ancestor::xsl:if[1]/@test"/></code></td>
-    </tr>
+  <xsl:template match="me:src" mode="ruleset-list">
+    <me:t>{@ref}<xsl:if test="@versions and @versions!='any'">:{@versions}</xsl:if><xsl:if test="@type"> ({$meta//me:severity[@type=current()/@type]})</xsl:if></me:t>
   </xsl:template>
 
   <xsl:template match="code">
