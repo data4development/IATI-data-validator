@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"  
+  xslt-version="3.0">
+
+  <x:scenario label="Organisation identifiers">
+    
+    <x:scenario label="If an organisation identifier has no value (or only whitespace)">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref=" "/>
+          <participating-org ref="  "/>
+          <provider-org ref="  "/>
+          <receiver-org ref=""/>
+          <other-identifier>
+            <owner-org ref="
+              "/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should produce message 1.14.7 for reporting-org." test="boolean(//reporting-org/me:feedback[@id='1.14.7'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//reporting-org/me:feedback[@id='1.14.7']/@type='danger')"/>
+      <x:expect label="It should produce message 1.8.7 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.8.7'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//participating-org/me:feedback[@id='1.8.7']/@type='warning')"/>
+      <x:expect label="It should produce message 1.10.7 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.10.7'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//provider-org/me:feedback[@id='1.10.7']/@type='warning')"/>
+      <x:expect label="It should produce message 1.15.7 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.15.7'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//receiver-org/me:feedback[@id='1.15.7']/@type='warning')"/>
+      <x:expect label="It should produce message 1.11.7 for receiver-org." test="boolean(//owner-org/me:feedback[@id='1.11.7'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//owner-org/me:feedback[@id='1.11.7']/@type='warning')"/>
+    </x:scenario>
+    
+    <x:scenario label="If an organisation identifier contains leading or trailing spaces">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref=" ABC"/>
+          <participating-org ref="XYZ "/>
+          <provider-org ref=" A12 "/>
+          <receiver-org ref="B23 "/>
+          <other-identifier>
+            <owner-org ref="
+              CDE "/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should produce message 1.14.1 for reporting-org." test="boolean(//reporting-org/me:feedback[@id='1.14.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//reporting-org/me:feedback[@id='1.14.1']/@type='danger')"/>
+      <x:expect label="It should produce message 1.8.1 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.8.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//participating-org/me:feedback[@id='1.8.1']/@type='danger')"/>
+      <x:expect label="It should produce message 1.10.1 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.10.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//provider-org/me:feedback[@id='1.10.1']/@type='danger')"/>
+      <x:expect label="It should produce message 1.15.1 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.15.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//receiver-org/me:feedback[@id='1.15.1']/@type='danger')"/>
+      <x:expect label="It should produce message 1.11.1 for receiver-org." test="boolean(//owner-org/me:feedback[@id='1.11.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//owner-org/me:feedback[@id='1.11.1']/@type='danger')"/>
+    </x:scenario>
+      
+    <x:scenario label="If the organisation identifier starts with a prefix that is marked 'withdrawn'">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref="FR-INSEE-123"/>
+          <participating-org ref="GB-GOVUK-123"/>
+          <provider-org ref="IT-RI-ABC"/>
+          <receiver-org ref="KE-RSO-XYZ"/>
+          <other-identifier>
+            <owner-org ref="MW-CNM-12345"/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should produce message 1.14.9 for reporting-org." test="boolean(//reporting-org/me:feedback[@id='1.14.9'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//reporting-org/me:feedback[@id='1.14.9']/@type='warning')"/>
+      <x:expect label="It should produce message 1.8.9 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.8.9'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//participating-org/me:feedback[@id='1.8.9']/@type='info')"/>
+      <x:expect label="It should produce message 1.10.9 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.10.9'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//provider-org/me:feedback[@id='1.10.9']/@type='info')"/>
+      <x:expect label="It should produce message 1.15.9 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.15.9'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//receiver-org/me:feedback[@id='1.15.9']/@type='info')"/>
+      <x:expect label="It should produce message 1.11.9 for receiver-org." test="boolean(//owner-org/me:feedback[@id='1.11.9'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//owner-org/me:feedback[@id='1.11.9']/@type='info')"/>
+    </x:scenario>
+    
+    <x:scenario label="If the organisation identifier prefix is not in uppercase">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref="FR-rcs-123"/>
+          <participating-org ref="GB-chc-123"/>
+          <provider-org ref="bg-eik-ABC"/>
+          <receiver-org ref="NL-KvK-XYZ"/>
+          <other-identifier>
+            <owner-org ref="Nl-KvK-12345"/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should produce message 1.14.5 for reporting-org." test="boolean(//reporting-org/me:feedback[@id='1.14.5'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//reporting-org/me:feedback[@id='1.14.5']/@type='danger')"/>
+      <x:expect label="It should produce message 1.8.5 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.8.5'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//participating-org/me:feedback[@id='1.8.5']/@type='danger')"/>
+      <x:expect label="It should produce message 1.10.5 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.10.5'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//provider-org/me:feedback[@id='1.10.5']/@type='danger')"/>
+      <x:expect label="It should produce message 1.15.5 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.15.5'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//receiver-org/me:feedback[@id='1.15.5']/@type='danger')"/>
+      <x:expect label="It should produce message 1.11.5 for receiver-org." test="boolean(//owner-org/me:feedback[@id='1.11.5'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//owner-org/me:feedback[@id='1.11.5']/@type='danger')"/>
+    </x:scenario>
+    
+    <x:scenario label="If the organisation identifier is a 5-digit code that was not on the list used up to IATI version 1.04">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref="22000"/>
+          <participating-org ref="21000"/>
+          <provider-org ref="23000"/>
+          <receiver-org ref="21000"/>
+          <other-identifier>
+            <owner-org ref="22000"/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should produce message 1.14.10 for reporting-org." test="boolean(//reporting-org/me:feedback[@id='1.14.10'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//reporting-org/me:feedback[@id='1.14.10']/@type='danger')"/>
+      <x:expect label="It should produce message 1.8.10 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.8.10'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//participating-org/me:feedback[@id='1.8.10']/@type='warning')"/>
+      <x:expect label="It should produce message 1.10.10 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.10.10'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//provider-org/me:feedback[@id='1.10.10']/@type='warning')"/>
+      <x:expect label="It should produce message 1.15.10 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.15.10'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//receiver-org/me:feedback[@id='1.15.10']/@type='warning')"/>
+      <x:expect label="It should produce message 1.11.10 for receiver-org." test="boolean(//owner-org/me:feedback[@id='1.11.10'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//owner-org/me:feedback[@id='1.11.10']/@type='warning')"/>
+    </x:scenario>
+    
+    <x:scenario label="If the organisation identifier does not start with a known prefix">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref="AA-Abc"/>
+          <participating-org ref="NL-XYZ"/>
+          <provider-org ref="A12-123"/>
+          <receiver-org ref="B23-987"/>
+          <other-identifier>
+            <owner-org ref="CDE-XYZ"/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should produce message 1.14.8 for reporting-org." test="boolean(//reporting-org/me:feedback[@id='1.14.8'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//reporting-org/me:feedback[@id='1.14.8']/@type='danger')"/>
+      <x:expect label="It should produce message 1.8.8 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.8.8'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//participating-org/me:feedback[@id='1.8.8']/@type='warning')"/>
+      <x:expect label="It should produce message 1.10.8 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.10.8'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//provider-org/me:feedback[@id='1.10.8']/@type='warning')"/>
+      <x:expect label="It should produce message 1.15.8 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.15.8'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//receiver-org/me:feedback[@id='1.15.8']/@type='warning')"/>
+      <x:expect label="It should produce message 1.11.8 for receiver-org." test="boolean(//owner-org/me:feedback[@id='1.11.8'])"/>
+      <x:expect label="It should be severity 'warning'." test="boolean(//owner-org/me:feedback[@id='1.11.8']/@type='warning')"/>
+    </x:scenario>
+
+    <x:scenario label="If the organisation identifier is not approved by the IATI Registry">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref="GB-GOV-12345"/>
+          <participating-org ref="NL-KVK-12345678"/>
+          <provider-org ref="AU-ABN-XYZ"/>
+          <receiver-org ref="CA-CC-AC"/>
+          <other-identifier>
+            <owner-org ref="XM-DAC-000"/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should produce message 1.14.12 for reporting-org." test="boolean(//reporting-org/me:feedback[@id='1.14.12'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//reporting-org/me:feedback[@id='1.14.12']/@type='danger')"/>
+      <x:expect label="It should produce message 1.8.12 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.8.12'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//participating-org/me:feedback[@id='1.8.12']/@type='info')"/>
+      <x:expect label="It should produce message 1.10.12 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.10.12'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//provider-org/me:feedback[@id='1.10.12']/@type='info')"/>
+      <x:expect label="It should produce message 1.15.12 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.15.12'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//receiver-org/me:feedback[@id='1.15.12']/@type='info')"/>
+      <x:expect label="It should produce message 1.11.12 for receiver-org." test="boolean(//owner-org/me:feedback[@id='1.11.12'])"/>
+      <x:expect label="It should be severity 'info'." test="boolean(//owner-org/me:feedback[@id='1.11.12']/@type='info')"/>
+    </x:scenario>
+  
+  </x:scenario>
+    
+</x:description>

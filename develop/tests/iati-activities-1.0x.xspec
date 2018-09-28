@@ -6,6 +6,7 @@
   
   <x:param name="iati-version">1.05</x:param>
   
+  <x:import href="iati/organisation-identifiers.xspec"/>
+  <x:import href="iati/sectors.xspec"/>
   <x:import href="iati/countries-regions-1.0x.xspec"/>
-  <x:import href="iati/sectors.xspec"/>  
 </x:description>
