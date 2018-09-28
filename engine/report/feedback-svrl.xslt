@@ -15,16 +15,29 @@
 
   <xsl:template match="me:feedback">
     <svrl:failed-assert test="false()" location="{path(..)}">
-      <xsl:attribute name="role">
-        <xsl:choose>
-          <xsl:when test="@type='danger'">error</xsl:when>
-          <xsl:when test="@type='warning'">warning</xsl:when>
-          <xsl:when test="@type='info'">info</xsl:when>
-          <xsl:when test="@type='success'">info</xsl:when>
-        </xsl:choose>
-      </xsl:attribute>
+      <xsl:apply-templates select="@type"/>
       <svrl:property-reference property="class">{@class}</svrl:property-reference>
+      <xsl:apply-templates select="me:src"/>      
       <svrl:text fpi="{@id}"><xsl:copy-of select="me:message/@*"/><xsl:copy-of select="me:message/(*|text())"/></svrl:text>
     </svrl:failed-assert>
   </xsl:template>
+  
+  <xsl:template match="me:src">
+    <svrl:property-reference property="src">
+      <xsl:apply-templates select="@type"/>
+      <xsl:text>{@ref}</xsl:text>
+    </svrl:property-reference>
+  </xsl:template>
+  
+  <xsl:template match="@type">
+      <xsl:attribute name="role">
+        <xsl:choose>
+        <xsl:when test=".='danger'">error</xsl:when>
+        <xsl:when test=".='warning'">warning</xsl:when>
+        <xsl:when test=".='info'">info</xsl:when>
+        <xsl:when test=".='success'">info</xsl:when>
+        </xsl:choose>
+      </xsl:attribute>
+  </xsl:template>
+  
 </xsl:stylesheet>
