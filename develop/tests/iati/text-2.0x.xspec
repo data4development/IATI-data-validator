@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="../../../engine/data-quality/rules/iati.xslt"
+  xslt-version="3.0">
+
+  <x:scenario label="Text (2.0x)">
+      
+    <x:scenario label="If a text element does not contain a narrative element">
+      <x:context>
+          <iati-activity>
+            <title></title>
+            <description></description>
+          </iati-activity>
+      </x:context>
+      <x:expect label="It should produce message 4.3.1 for a title." test="boolean(//title/me:feedback[@id='4.3.1'])"/>
+      <x:expect label="It should produce message 4.4.1 for a description." test="boolean(//description/me:feedback[@id='4.4.1'])"/>
+    </x:scenario>
+
+    <x:scenario label="If a text element contains a narrative element with only whitespace">
+      <x:context>
+        <iati-activity>
+          <title>
+            <narrative>    </narrative>
+          </title>
+          <description>
+            <narrative>
+              
+            </narrative>
+          </description>
+        </iati-activity>
+      </x:context>
+      <x:expect label="It should produce message 4.3.1 for a title." test="boolean(//title/me:feedback[@id='4.3.1'])"/>
+      <x:expect label="It should produce message 4.4.1 for a description." test="boolean(//description/me:feedback[@id='4.4.1'])"/>
+    </x:scenario>
+    
+  </x:scenario>  
+  
+</x:description>

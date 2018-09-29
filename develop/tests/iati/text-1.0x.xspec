@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="../../../engine/data-quality/rules/iati.xslt"
+  xslt-version="3.0">
+
+  <x:scenario label="Text (1.0x)">
+      
+    <x:scenario label="If a text element contains only whitespace">
+      <x:context>
+        <iati-activity>
+          <title>
+          </title>
+          <description>          </description>
+        </iati-activity>
+      </x:context>
+      <x:expect label="It should produce message 4.3.2 for a title." test="boolean(//title/me:feedback[@id='4.3.2'])"/>
+      <x:expect label="It should produce message 4.4.2 for a description." test="boolean(//description/me:feedback[@id='4.4.2'])"/>
+    </x:scenario>
+    
+  </x:scenario>  
+  
+</x:description>
