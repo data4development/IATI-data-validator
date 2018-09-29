@@ -44,7 +44,7 @@
         <me:feedback class="{$class}" id="{$idclass}.9">
           <xsl:attribute name="type">
             <xsl:choose>
-              <xsl:when test="local-name($item)='iati-identifier' or local-name($item/..)='reporting-org'">warning</xsl:when>
+              <xsl:when test="local-name($item/..)='reporting-org'">warning</xsl:when>
               <xsl:otherwise>info</xsl:otherwise>
             </xsl:choose>                                  
           </xsl:attribute>
@@ -85,7 +85,13 @@
       </xsl:when>
         
       <xsl:when test="matches($item, '^[0-9]{5}.+$')">
-        <me:feedback type="warning" class="{$class}" id="{$idclass}.10">
+        <me:feedback class="{$class}" id="{$idclass}.10">
+          <xsl:attribute name="type">
+            <xsl:choose>
+              <xsl:when test="local-name($item)='iati-identifier'">danger</xsl:when>
+              <xsl:otherwise>warning</xsl:otherwise>
+            </xsl:choose>                                  
+          </xsl:attribute>
           <me:src ref="iati" versions="1.x" href="me:iati-url('organisation-identifiers/')"/>
           <me:message>The identifier starts with a 5-digit code, but is not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
         </me:feedback>
@@ -104,7 +110,7 @@
         </me:feedback>
       </xsl:when>
 
-      <xsl:when test="not($item=$known-publisher-ids) and local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')">
+      <xsl:when test="not($item=$known-publisher-ids) and local-name($item)='ref' and local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')">
         <me:feedback class="{$class}" id="{$idclass}.12">
           <xsl:attribute name="type">
             <xsl:choose>
@@ -118,7 +124,7 @@
       </xsl:when>
       
       <!-- stop further processing of organisation identifiers -->
-      <xsl:when test="local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')"/>
+      <xsl:when test="local-name($item)='ref' and local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')"/>
       
       <xsl:when test="not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id))">
         <me:feedback class="{$class}" id="{$idclass}.11">
