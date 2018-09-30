@@ -483,6 +483,7 @@
     <mapping>
         <path>//iati-activity/transaction/aid-type/@code</path>
         <codelist ref="AidType" />
+        <condition>@vocabulary = '1' or not(@vocabulary)</condition>
         <class ref="financial"/>
         <message>The aid type is invalid.</message>
     </mapping>
