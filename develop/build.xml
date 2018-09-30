@@ -4,6 +4,9 @@
     Developer targets
   </description>
 
+  <property name="xspec.fail" value="false"/>
+  <import file="xspec/build.xml" optional="yes"/>
+  
   <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
   <extension-point name="update-external-data"
   description="(Dev) Update the external data to use in the validator"
@@ -45,5 +48,15 @@
       
         dot -Tsvg -o ant-graph.svg engine/tmp/ant-graph.dot
     </echo>
+  </target>
+  
+  <target name="tests" description="Run the tests">
+    <!-- TODO: as we use a global variable to pass around the IATI version to use in checks, we can't test 1.05 and 2.03 in the same run -->
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="../develop/tests/iati-activities-1.0x.xspec"/>
+    </antcall>
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="../develop/tests/iati-activities-2.0x.xspec"/>
+    </antcall>
   </target>
 </project>
