@@ -52,7 +52,7 @@
     <xsl:if test="not(policy-marker/@vocabulary=('1','') or not(policy-marker/@vocabulary))">
       <me:feedback type="danger" class="information" id="106.1.1">
         <me:src ref="minbuza" versions="any"/>
-        <me:message>The policy-marker vocabulary code must be either omitted or at least one region vocabulary value must be 1 (OECD/DAC).</me:message>
+        <me:message>The activity must have a policy-marker using the OECD DAC vocabulary.</me:message>
       </me:feedback>
     </xsl:if>
     
@@ -72,7 +72,7 @@
       ) and not (
       transaction[provider-org/@ref='XM-DAC-7' and transaction-type/@code='11']
       )">
-      <me:feedback type="warning" class="traceability" id="100.2.2">
+      <me:feedback type="success" class="traceability" id="100.2.2">
         <me:src ref="minbuza"/>
         <me:message>If the Dutch Ministry (<code>XM-DAC-7</code>) is a donor or provider of incoming funds, the activity must have a transaction of type <code>11</code> (incoming commitment)</me:message>
       </me:feedback>

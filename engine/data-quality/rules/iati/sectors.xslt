@@ -33,7 +33,8 @@
         </xsl:call-template>
       </xsl:if>
     </xsl:for-each-group>
-    
+
+<!-- TODO: overlaps with 6.2.2/6.6.2/6.7.2 -->
     <xsl:if test="count(sector)>0 and count(transaction/sector)>0">
       <me:feedback type="warning" class="classifications" id="2.1.3">
         <me:src ref="iati" versions="2.0x" href="me:iati-url('activity-standard/iati-activities/iati-activity/sector/')"/>

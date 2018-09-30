@@ -22,7 +22,7 @@
       and not(receiver-org/@receiver-activity-id)">
       <me:feedback type="warning" class="financial" id="7.1.2">
         <me:src ref="practice" versions="any"/>
-        <me:message>The transaction is a commitment from the activity, and has a <code>provider-activity-id</code> that is different from the activity identifier but no <code>receiver-activity-id</code>.</me:message>
+        <me:message>The transaction is a outgoing commitment from the activity, but has no <code>receiver-activity-id</code>. It might be that the <code>receiver-activity-id</code> is in the wrong place.</me:message>
       </me:feedback>
     </xsl:if>
   
@@ -32,7 +32,7 @@
       and not(receiver-org/@receiver-activity-id)">
       <me:feedback type="warning" class="financial" id="7.1.3">
         <me:src ref="practice" versions="any"/>
-        <me:message>The transaction is a disbursement from the activity, and has a <code>provider-activity-id</code> that is different from the activity identifier but no <code>receiver-activity-id</code>.</me:message>
+        <me:message>The transaction is a disbursement from the activity, but has no <code>receiver-activity-id</code>. It might be that the <code>receiver-activity-id</code> is in the wrong place.</me:message>
       </me:feedback>
     </xsl:if>
   
@@ -79,7 +79,8 @@
       </xsl:when>
       <xsl:when test="not(provider-org/@provider-activity-id!='')">
         <me:feedback type="warning" class="financial" id="7.3.4">
-          <me:src ref="practice" versions="any"/>
+          <me:src ref="iati" versions="any"/>
+          <me:src ref="minbuza" type="danger" versions="any"/>
           <me:message>The incoming transaction has no provider actvity identifier.</me:message>
         </me:feedback>
       </xsl:when>
@@ -118,8 +119,8 @@
           <me:message>The outgoing transaction has no receiver organisation identifier or name.</me:message>
         </me:feedback>
       </xsl:when>
-      <xsl:when test="not(receiver-org/@receiver-activity-id!='')">
-        <me:feedback type="warning" class="financial" id="7.4.4">
+      <xsl:when test="receiver-org/@ref!='' and not(receiver-org/@receiver-activity-id!='')">
+        <me:feedback type="info" class="financial" id="7.4.4">
           <me:src ref="practice" versions="any"/>
           <me:message>The outgoing transaction has no receiver activity identifier.</me:message>
         </me:feedback>
@@ -163,9 +164,9 @@
     </xsl:if>
   
     <xsl:if test="xs:date(period-start/@iso-date) + xs:yearMonthDuration('P1Y') lt xs:date(period-end/@iso-date)">
-      <me:feedback type="info" class="financial" id="7.5.3">
+      <me:feedback type="success" class="financial" id="7.5.3">
         <me:src ref="iati" versions="any"/>
-        <me:message>The budget period should be one year or less.</me:message>
+        <me:message>The budget period is longer than a year.</me:message>
       </me:feedback>
     </xsl:if>
     
@@ -176,6 +177,7 @@
     <xsl:if test="not(budget)">
       <me:feedback type="warning" class="financial" id="7.7.2">
         <me:src ref="iati" versions="any"/>
+        <me:src ref="minbuza" type="danger" versions="any"/>
         <me:message>No budgets have been defined for this activity.</me:message>
       </me:feedback>
     </xsl:if>

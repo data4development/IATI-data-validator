@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
   xmlns:me="http://iati.me"
-  stylesheet="../../../../engine/data-quality/rules/iati.xslt"
   xslt-version="3.0">
 
   <x:scenario label="Recipient countries only">
-    
+
     <x:scenario label="There is only one recipient-country element:">
       <x:scenario label="If it has no percentage or the percentage is 100">
         <x:context>
           <iati-activity>
             <recipient-country code="AL"/>
           </iati-activity>     
-
           <iati-activity>
             <recipient-country code="AL" percentage="100"/>
           </iati-activity>
         </x:context>
         <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
       </x:scenario>
-      
+
       <x:scenario label="If the percentage is other than 100">
         <x:context>
           <iati-activity>
             <recipient-country code="AL" percentage="33"/>
-          </iati-activity>       
+          </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.1.4." test="boolean(//me:feedback[@id='3.1.4'])"/>
       </x:scenario>
@@ -39,7 +37,7 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.1.1." test="boolean(//me:feedback[@id='3.1.1'])"/>
-      </x:scenario>      
+      </x:scenario>
 
       <x:scenario label="If some have no percentage">
         <x:context>
@@ -49,7 +47,7 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.1.1." test="boolean(//me:feedback[@id='3.1.1'])"/>
-      </x:scenario>      
+      </x:scenario>
 
       <x:scenario label="If percentages do not add up to 100">
         <x:context>
@@ -59,7 +57,7 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.1.2." test="boolean(//me:feedback[@id='3.1.2'])"/>
-      </x:scenario>      
+      </x:scenario>
 
       <x:scenario label="If percentages do not add up to 100 ± 0.01">
         <x:context>
@@ -69,8 +67,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.1.2." test="boolean(//me:feedback[@id='3.1.2'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If percentages add up to 100 ± 0.01">
         <x:context>
           <iati-activity>
@@ -79,37 +77,37 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
-      </x:scenario>            
+      </x:scenario>
     </x:scenario>
-          
-  </x:scenario>  
+
+  </x:scenario>
 
   <x:scenario label="Recipient regions only (single vocabulary)">
-    
+
     <x:scenario label="There is only one recipient-region element:">
       <x:scenario label="If it has no percentage or the percentage is 100">
         <x:context>
           <iati-activity>
             <recipient-region code="89"/>
-          </iati-activity>     
-          
+          </iati-activity>
+
           <iati-activity>
             <recipient-region code="389" percentage="100"/>
           </iati-activity>
         </x:context>
         <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
       </x:scenario>
-      
+
       <x:scenario label="If the percentage is other than 100">
         <x:context>
           <iati-activity>
             <recipient-region code="89" percentage="33"/>
-          </iati-activity>       
+          </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.4." test="boolean(//me:feedback[@id='3.4.4'])"/>
       </x:scenario>
     </x:scenario>
-    
+
     <x:scenario label="There are multiple recipient-region elements:">
       <x:scenario label="If none have a percentage">
         <x:context>
@@ -119,8 +117,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.1." test="boolean(//me:feedback[@id='3.4.1'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If some have no percentage">
         <x:context>
           <iati-activity>
@@ -129,8 +127,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.1." test="boolean(//me:feedback[@id='3.4.1'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If percentages do not add up to 100">
         <x:context>
           <iati-activity>
@@ -139,8 +137,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.2." test="boolean(//me:feedback[@id='3.4.2'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If percentages do not add up to 100 ± 0.01">
         <x:context>
           <iati-activity>
@@ -149,8 +147,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.2." test="boolean(//me:feedback[@id='3.4.2'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If percentages add up to 100 ± 0.01">
         <x:context>
           <iati-activity>
@@ -159,21 +157,21 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
-      </x:scenario>            
+      </x:scenario>
     </x:scenario>
-    
-  </x:scenario>  
+
+  </x:scenario>
 
   <x:scenario label="Recipient regions only (multiple vocabularies)">
-    
+
     <x:scenario label="There is only one recipient-region element per vocabulary:">
       <x:scenario label="If it has no percentage or the percentage is 100">
         <x:context>
           <iati-activity>
             <recipient-region code="89"/>
             <recipient-region code="X1" vocabulary="99"/>
-          </iati-activity>     
-          
+          </iati-activity>
+
           <iati-activity>
             <recipient-region code="89"/>
             <recipient-region code="X1" vocabulary="99" percentage="100"/>
@@ -181,18 +179,18 @@
         </x:context>
         <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
       </x:scenario>
-      
+
       <x:scenario label="If a percentage is other than 100">
         <x:context>
           <iati-activity>
             <recipient-region code="89"/>
             <recipient-region code="X1" vocabulary="99" percentage="33"/>
-          </iati-activity>       
+          </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.4." test="boolean(//me:feedback[@id='3.4.4'])"/>
       </x:scenario>
     </x:scenario>
-    
+
     <x:scenario label="There are multiple recipient-region elements:">
       <x:scenario label="If none have a percentage">
         <x:context>
@@ -203,8 +201,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.1." test="boolean(//me:feedback[@id='3.4.1'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If some have no percentage">
         <x:context>
           <iati-activity>
@@ -214,8 +212,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.1." test="boolean(//me:feedback[@id='3.4.1'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If percentages do not add up to 100">
         <x:context>
           <iati-activity>
@@ -225,8 +223,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.2." test="boolean(//me:feedback[@id='3.4.2'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If percentages do not add up to 100 ± 0.01">
         <x:context>
           <iati-activity>
@@ -236,8 +234,8 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should produce 'geo' message 3.4.2." test="boolean(//me:feedback[@id='3.4.2'])"/>
-      </x:scenario>      
-      
+      </x:scenario>
+
       <x:scenario label="If percentages add up to 100 ± 0.01">
         <x:context>
           <iati-activity>
@@ -247,9 +245,9 @@
           </iati-activity>
         </x:context>
         <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
-      </x:scenario>            
+      </x:scenario>
     </x:scenario>
-    
-  </x:scenario>  
-  
+
+  </x:scenario>
+
 </x:description>

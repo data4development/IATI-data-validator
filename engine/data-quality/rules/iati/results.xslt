@@ -19,7 +19,7 @@
     <xsl:if test="@measure='2' and (ancestor::result/@aggregation-status=true())">
       <me:feedback type="warning" class="performance" id="8.1.3">
         <me:src ref="practice" versions="any"/>
-        <me:message>The indicator is a percentage, but part of a result marked as aggregatable.</me:message>
+        <me:message>The indicator is a percentage, but part of a result marked as suitable for aggregation.</me:message>
       </me:feedback>
     </xsl:if>
     
@@ -139,24 +139,12 @@
     <xsl:next-match/>
   </xsl:template>
 
-  <xsl:template match="period/*[self::period or self::target]/location" mode="rules" priority="8.7">
+  <xsl:template match="baseline/location|target/location|actual/location" mode="rules" priority="8.7">
     
     <xsl:if test="not(@ref=ancestor::iati-activity/location/@ref)">
       <me:feedback type="danger" class="performance" id="8.7.1">
         <me:src ref="iati" versions="any"/>
-        <me:message>The location reference is not specified in this activity.</me:message>
-      </me:feedback>
-    </xsl:if>
-    
-    <xsl:next-match/>
-  </xsl:template>
-  
-  <xsl:template match="dimension" mode="rules" priority="8.8">
-    
-    <xsl:if test="not(@name) or @name=''">
-      <me:feedback type="danger" class="performance" id="8.8.1">
-        <me:src ref="iati" versions="any"/>
-        <me:message>The location reference is not specified in this activity.</me:message>
+        <me:message>The location that the indicator references is not specified in this activity.</me:message>
       </me:feedback>
     </xsl:if>
     

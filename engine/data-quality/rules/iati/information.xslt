@@ -11,7 +11,7 @@
   
   <xsl:template match="document-link" mode="rules" priority="6.1">
     <xsl:if test="@format=('application/javascript')">
-      <me:feedback type="info" class="documents" id="6.1.1">
+      <me:feedback type="warning" class="documents" id="6.1.1">
         <me:src ref="practice" versions="any"/>
         <me:message>The document format is invalid.</me:message>
       </me:feedback>
@@ -39,13 +39,6 @@
       <me:feedback type="danger" class="information" id="6.2.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The activity status is missing.</me:message>
-      </me:feedback>
-    </xsl:if>
-  
-    <xsl:if test="not(sector) and not(transaction/sector)">
-      <me:feedback type="warning" class="classifications" id="6.2.2">
-        <me:src ref="iati" versions="any"/>
-        <me:message>The activity should have a sector classification for either the activity or the transactions.</me:message>
       </me:feedback>
     </xsl:if>
   
@@ -87,6 +80,36 @@
     <xsl:next-match/>
   </xsl:template>
 
+  <xsl:template match="iati-activity[sector]" mode="rules" priority="6.6">
+    <xsl:if test="transaction/sector">
+      <me:feedback type="warning" class="classifications" id="6.6.2">
+        <me:src ref="iati" versions="any"/>
+        <me:message>If the activity has a sector classification, none of the transactions should have a sector classification.</me:message>
+      </me:feedback>
+    </xsl:if>
+    
+    <xsl:next-match/>
+  </xsl:template>
+
+  <xsl:template match="iati-activity[not(sector)]" mode="rules" priority="6.7">
+    <xsl:choose>
+      <xsl:when test="not(transaction[sector])">
+        <me:feedback type="warning" class="classifications" id="6.2.2">
+          <me:src ref="iati" versions="any"/>
+          <me:message>The activity should have a sector classification for either the activity or for all transactions.</me:message>
+        </me:feedback>
+      </xsl:when>
+      <xsl:when test="transaction[not(sector)]">
+        <me:feedback type="warning" class="classifications" id="6.7.2">
+          <me:src ref="iati" versions="any"/>
+          <me:message>If transactions have a sector classification, they must be used for all transactions.</me:message>
+        </me:feedback>
+      </xsl:when>      
+    </xsl:choose>
+    
+    <xsl:next-match/>
+  </xsl:template>
+  
   <xsl:template match="reporting-org" mode="rules" priority="6.3">
     <xsl:if test="not(@type) or @type=''">
       <me:feedback type="warning" class="identification" id="6.3.1">
