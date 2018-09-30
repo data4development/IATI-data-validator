@@ -5,11 +5,11 @@ LABEL maintainer="Rolf Kleef <rolf@drostan.org>" \
   repository="https://github.com/data4development/IATI-data-validator"
 
 ENV ANT_VERSION    1.10.1
-ENV SAXON_MAIN     9.8
-ENV SAXON_VERSION  9-8-0-4J
+ENV SAXON_VERSION  9.8.0-14
 
 ENV HOME /home
 ENV ANT_HOME /opt/ant
+ENV SAXON_HOME /opt/ant
 
 WORKDIR $HOME
 
@@ -23,9 +23,7 @@ RUN wget -q http://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION
   rm apache-ant-${ANT_VERSION}-bin.tar.gz && \
   mv apache-ant-${ANT_VERSION} ${ANT_HOME}
 
-RUN wget -q https://downloads.sourceforge.net/project/saxon/Saxon-HE/${SAXON_MAIN}/SaxonHE${SAXON_VERSION}.zip && \
-  unzip SaxonHE${SAXON_VERSION}.zip saxon9he.jar && \
-  rm SaxonHE${SAXON_VERSION}.zip && \
+RUN wget -q http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar && \
   mv *.jar ${ANT_HOME}/lib
 
 ENV PATH $PATH:$ANT_HOME/bin
