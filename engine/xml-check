@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# Check the input files for well-formedness and schema errors, produce a feedback file if appropriate
+
+WORKSPACE=/workspace
+
+mkdir -p $WORKSPACE/tmp/xmltest
+mkdir -p $WORKSPACE/tmp/xmltestlog
+mkdir -p $WORKSPACE/tmp/xmlschemalog
+mkdir -p $WORKSPACE/tmp/iatifeedback
+mkdir -p $WORKSPACE/tmp/feedback
+
+cd $WORKSPACE/input
+find . -path "./.git" -prune -o -type f -print | while read FILE; do
+
+  cd $WORKSPACE/src
+  NAME=`basename $FILE`
+
+  xmllint --recover --output "$WORKSPACE/tmp/xmltest/$NAME" "$WORKSPACE/input/$NAME" 2> "$WORKSPACE/tmp/xmltestlog/$NAME"
+
+  if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
+    mv "$WORKSPACE/tmp/xmltest/$NAME" $WORKSPACE/src
+  else
+    cp $WORKSPACE/input/$NAME $WORKSPACE/src
+    rm "$WORKSPACE/tmp/xmltest/$NAME"
+  fi
+
+  XMLROOT=`xmllint --xpath "local-name(/*)" "$NAME" 2> /dev/null`
+  XMLATTR=`xmllint --xpath "string(/*/@version)" "$NAME" 2> /dev/null`
+  
+  if [[ "$XMLROOT." == "iati-activities." || "$XMLROOT." == "iati-organisations." ]]; then
+    if [[ $XMLATTR. =~ 1\.0[1-5]\. || $XMLATTR. =~ 2\.0[1-3]\. ]]; then
+      VERSION=$XMLATTR
+    elif [[ $XMLATTR. =~ 1\..* ]]; then
+      VERSION=1.05
+    else
+      VERSION=2.03
+    fi
+    
+    if xmllint --noout --schema /home/lib/schemata/$VERSION/$XMLROOT-schema.xsd "$NAME" 2> "$WORKSPACE/tmp/xmlschemalog/$NAME"; then
+      rm "$WORKSPACE/tmp/xmlschemalog/$NAME"
+      if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
+        echo '<recovered-iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+      else
+        echo '<iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+      fi
+    else
+      if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
+        echo '<recovered-iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+      else
+        echo '<iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+      fi       
+    fi
+    
+  
+  elif [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then 
+    echo '<not-an-xml-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
+    rm "$WORKSPACE/src/$NAME"
+  else
+    echo '<not-an-iati-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
+    rm "$WORKSPACE/src/$NAME"
+  fi 
+
+done

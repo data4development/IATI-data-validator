@@ -8,6 +8,8 @@
   exclude-result-prefixes="functx"
   expand-text="yes">
   
+  <xsl:param name="filename"/>
+  
   <!-- support functions and templates -->
   <xsl:include href="../../lib/functx.xslt"/>
   <xsl:include href="lib/codelist-functions.xslt"/>
@@ -15,6 +17,7 @@
   <xsl:include href="lib/percentages.xslt"/>
   
   <!-- IATI rules -->
+  <xsl:include href="iati/technical.xslt"/>
   <xsl:include href="iati/codelists.xslt"/>
   <xsl:include href="iati/sectors.xslt"/>
   <xsl:include href="iati/identifiers.xslt"/>

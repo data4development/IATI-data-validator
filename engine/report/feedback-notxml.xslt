@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:me="http://iati.me"
+  exclude-result-prefixes="xs"
+  version="3.0"
+  expand-text="yes">
+  
+  <xsl:param name="filename"/>
+  
+  <xsl:template match="/not-an-xml-file">
+    <not-an-iati-file xmlns:me="http://iati.me">
+      <me:feedback type="danger" class="iati" id="0.1.1">
+        <me:src ref="iati" versions="any"/>
+        <me:message>The file is not an IATI file and not a proper XML file. The raw feedback from xmllint:
+
+{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</me:message>
+      </me:feedback>
+    </not-an-iati-file>
+  </xsl:template>
+
+  <xsl:template match="/not-an-iati-file">
+    <not-an-iati-file xmlns:me="http://iati.me">
+      <me:feedback type="danger" class="iati" id="0.2.1">
+        <me:src ref="iati" versions="any"/>
+        <me:message>The file is not an IATI file.</me:message>
+      </me:feedback>
+    </not-an-iati-file>
+  </xsl:template>
+  
+</xsl:stylesheet>

@@ -14,7 +14,7 @@ ENV SAXON_HOME /opt/ant
 WORKDIR $HOME
 
 RUN apt-get update && \
-  apt-get -y install --no-install-recommends wget && \
+  apt-get -y install --no-install-recommends wget libxml2-utils && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 

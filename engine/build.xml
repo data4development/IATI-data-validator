@@ -10,6 +10,7 @@
   <import file="/develop/build.xml" optional="yes"/>
 
   <target name="init" description="Set up workspace directories here.">
+    <mkdir dir="/workspace/input"/>
     <mkdir dir="/workspace/src"/>
     <mkdir dir="/workspace/dest"/>
     <mkdir dir="/workspace/svrl"/>
@@ -25,9 +26,14 @@
     <echo level="info">Intermediate results have been deleted from dest and tmp directories.</echo>
   </target>
 
+  <target name="xml-check" description="Check if the source data is valid IATI XML.">
+    <exec executable="./xml-check"/>
+    <xslt basedir="/workspace/tmp/feedback/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="report/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
+  </target>
+
   <target name="rules" description="Check the source data against IATI rules." depends="init">
     <echo level="info">Check the source data against a generic IATI ruleset.</echo>
-    <xslt basedir="/workspace/src/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false"/>
+    <xslt basedir="/workspace/src/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
   <target name="rules-big" description="Check the source data against IATI rules." depends="init">
