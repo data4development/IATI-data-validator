@@ -457,7 +457,7 @@
     <mapping>
         <path>//iati-activity/sector/@code</path>
         <codelist ref="Sector" />
-        <condition>@vocabulary = '1' or not(@vocabulary)</condition>
+        <condition>@vocabulary = ('1', 'DAC') or not(@vocabulary)</condition>
         <class ref="classifications"/>
         <message>The OECD DAC sector is invalid.</message>
     </mapping>
@@ -693,5 +693,37 @@
         <codelist ref="Currency" />
         <class ref="financial"/>
         <message>The currency code is invalid.</message>
+    </mapping>
+    
+<!-- Version 1.05 mappings -->
+    <mapping>
+        <path>//iati-activity/crs-add/aidtype-flag/@code</path>
+        <codelist ref="AidTypeFlag" />
+        <class ref="iati"/>
+        <message>The AidType flag is invalid.</message>
+    </mapping>
+    <mapping>
+        <path>//iati-activity/location/administrative/@country</path>
+        <codelist ref="Country" />
+        <class ref="geo"/>
+        <message>The country code is invalid.</message>
+    </mapping>
+    <mapping>
+        <path>//iati-activity/location/coordinates/@precision</path>
+        <codelist ref="GeographicalPrecision" />
+        <class ref="geo"/>
+        <message>The geographical precision code is invalid.</message>
+    </mapping>
+    <mapping>
+        <path>//iati-activity/location/gazetteer-entry/@gazetteer-ref</path>
+        <codelist ref="GazetteerAgency" />
+        <class ref="geo"/>
+        <message>The gazeteer agency code is invalid.</message>
+    </mapping>
+    <mapping>
+        <path>//iati-activity/location/location-type/@code</path>
+        <codelist ref="LocationType" />
+        <class ref="geo"/>
+        <message>The location type code is invalid.</message>
     </mapping>
 </mappings>
