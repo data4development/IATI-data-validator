@@ -13,10 +13,10 @@ mkdir -p $WORKSPACE/tmp/feedback
 cd $WORKSPACE/input
 find . -path "./.git" -prune -o -type f -print | while read FILE; do
 
-  cd $WORKSPACE/src
   NAME=`basename $FILE`
 
-  xmllint --recover --output "$WORKSPACE/tmp/xmltest/$NAME" "$WORKSPACE/input/$NAME" 2> "$WORKSPACE/tmp/xmltestlog/$NAME"
+  cd $WORKSPACE/input
+  xmllint --recover --output "$WORKSPACE/tmp/xmltest/$NAME" "$NAME" 2> "$WORKSPACE/tmp/xmltestlog/$NAME"
 
   if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
     mv "$WORKSPACE/tmp/xmltest/$NAME" $WORKSPACE/src
@@ -25,6 +25,7 @@ find . -path "./.git" -prune -o -type f -print | while read FILE; do
     rm "$WORKSPACE/tmp/xmltest/$NAME"
   fi
 
+  cd $WORKSPACE/src
   XMLROOT=`xmllint --xpath "local-name(/*)" "$NAME" 2> /dev/null`
   XMLATTR=`xmllint --xpath "string(/*/@version)" "$NAME" 2> /dev/null`
   
