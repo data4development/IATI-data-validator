@@ -9,7 +9,7 @@
   <!-- Include additional development targets if available -->
   <import file="/develop/build.xml" optional="yes"/>
 
-  <target name="init" description="Set up workspace directories here.">
+  <target name="init" description="Set up workspace directories.">
     <mkdir dir="/workspace/input"/>
     <mkdir dir="/workspace/src"/>
     <mkdir dir="/workspace/dest"/>
@@ -18,56 +18,56 @@
     <mkdir dir="/workspace/reports"/>
   </target>
 
-  <target name="clean" depends="init" description="Clean intermediary results.">
+  <target name="clean" depends="init" description="Clean intermediary results and feedback files.">
     <delete>
-      <fileset dir="/workspace/tmp" includes="*"/>
+      <fileset dir="/workspace/tmp" includes="**/*"/>
       <fileset dir="/workspace/dest" includes="*.xml"/>
     </delete>
     <echo level="info">Intermediate results have been deleted from dest and tmp directories.</echo>
   </target>
 
-  <target name="xml-check" description="Check if the source data is valid IATI XML.">
+  <target name="xml-check" description="Verify that the files in input/ are IATI XML files." depends="init">
+    <echo level="info">Verify that the files in input/ are IATI XML files.</echo>
     <exec executable="./xml-check"/>
     <xslt basedir="/workspace/tmp/feedback/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="report/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
-  <target name="rules" description="Check the source data against IATI rules." depends="init">
-    <echo level="info">Check the source data against a generic IATI ruleset.</echo>
+  <target name="rules" description="Check the files source data against IATI rules." depends="init">
+    <echo level="info">Check the data files in src/ against the ruleset.</echo>
     <xslt basedir="/workspace/src/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
-  <target name="rules-big" description="Check the source data against IATI rules." depends="init">
-    <echo level="info">Check the source data against a generic IATI ruleset.</echo>
+  <!-- Check the source data for big files against IATI rules. Separate target for cluster. -->
+  <target name="rules-big" depends="xml-check">
+    <echo level="info">Check the data files in src against the ruleset.</echo>
     <xslt basedir="/workspace/src-big/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false"/>
   </target>
 
-  <target name="report" description="Generate data quality feedback reports." depends="rules, html-skeleton">
-    <echo level="info">Generate data quality feedback reports.</echo>
+  <target name="report" description="Generate a data quality feedback HTML page." depends="init, html-skeleton">
+    <echo level="info">Generate data quality feedback report in the report/ folder.</echo>
     <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="report/feedback.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.feedback.html"/>
     </xslt>
   </target>
 
   <target name="json" description="Generate JSON output." depends="init">
-    <echo level="info">Generate the JSON file for the feedback.</echo>
+    <echo level="info">Generate JSON feedback files in json/.</echo>
     <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/json" style="report/feedback-json.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.json"/>
     </xslt>
   </target>
 
 <target name="svrl" description="Generate data quality SVRL reports." depends="init">
-    <echo level="info">Generate data quality SVRL reports.</echo>
+    <echo level="info">Generate data quality SVRL reports in svrl/.</echo>
     <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.svrl"/>
     </xslt>
   </target>
 
-  <target name="data-quality-rules" description="Generate overview of the data quality rules." depends="html-skeleton">
-    <echo level="info">Generate overview of the data quality rules.</echo>
-    <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.html" style="report/data-quality-rules.xslt"/>
-  </target>
-
-  <target name="data-quality-rules-spreadsheet" description="Generate overview of the data quality rules as a spreadsheet.">
+  <target name="feedback" description="Do the XML checks and validate the rules." depends="xml-check, rules"/>
+  <target name="redo-feedback" description="Redo all steps for the feedback." depends="clean, xml-check, rules"/>
+  
+  <target name="data-quality-rules-spreadsheet" description="Generate overview of the data quality rules as a spreadsheet." depends="init">
     <echo level="info">Generate overview of the data quality rules as a spreadsheet.</echo>
     <delete file="/workspace/reports/data-quality-rules.fods"/>
     <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.fods" style="report/data-quality-rules-spreadsheet.xslt">
