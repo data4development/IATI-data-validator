@@ -21,7 +21,7 @@ find . -path "./.git" -prune -o -type f -print | while read FILE; do
   if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
     mv "$WORKSPACE/tmp/xmltest/$NAME" $WORKSPACE/src
   else
-    cp $WORKSPACE/input/$NAME $WORKSPACE/src
+    cp --preserve $WORKSPACE/input/$NAME $WORKSPACE/src
     rm "$WORKSPACE/tmp/xmltest/$NAME"
   fi
 
