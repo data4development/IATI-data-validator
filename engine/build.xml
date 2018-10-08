@@ -13,6 +13,7 @@
     <mkdir dir="/workspace/input"/>
     <mkdir dir="/workspace/src"/>
     <mkdir dir="/workspace/dest"/>
+    <mkdir dir="/workspace/json"/>
     <mkdir dir="/workspace/svrl"/>
     <mkdir dir="/workspace/tmp"/>
     <mkdir dir="/workspace/reports"/>
