@@ -8,8 +8,10 @@
   
   <xsl:param name="filename"/>
   
+  <xsl:variable name="schemaVersion" select="doc('../data-quality/rules/iati.xslt')/xsl:variable[@name='schemaVersion']"/>
+  
   <xsl:template match="/not-an-xml-file">
-    <not-an-iati-file xmlns:me="http://iati.me">
+    <not-an-iati-file xmlns:me="http://iati.me" me:schemaVersion="{$schemaVersion}">
       <me:feedback type="danger" class="iati" id="0.1.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The file is not an IATI file and not a proper XML file. The raw feedback from xmllint:
@@ -20,7 +22,7 @@
   </xsl:template>
 
   <xsl:template match="/not-an-iati-file">
-    <not-an-iati-file xmlns:me="http://iati.me">
+    <not-an-iati-file xmlns:me="http://iati.me" me:schemaVersion="{$schemaVersion}">
       <me:feedback type="danger" class="iati" id="0.2.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The file is not an IATI file.</me:message>

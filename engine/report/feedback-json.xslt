@@ -18,6 +18,7 @@
   <xsl:template match="/">
     <xsl:variable name="j">
       <map>
+        <string key="schemaVersion">{*/@me:schemaVersion}</string>
         <array key="activities">
           <xsl:apply-templates select="iati-activities/iati-activity"/>
         </array>

@@ -10,6 +10,8 @@
   
   <xsl:param name="filename"/>
   
+  <xsl:variable name="schemaVersion">0.9.2</xsl:variable>
+  
   <!-- support functions and templates -->
   <xsl:include href="../../lib/functx.xslt"/>
   <xsl:include href="lib/codelist-functions.xslt"/>
@@ -56,6 +58,9 @@
     <xsl:copy>
       <xsl:if test="name(.)='iati-identifier'">
         <xsl:attribute name="me:id">{iati-identifier}</xsl:attribute>  
+      </xsl:if>
+      <xsl:if test="name(.)=('iati-activities', 'iati-organisations')">
+        <xsl:attribute name="me:schemaVersion">{$schemaVersion}</xsl:attribute>  
       </xsl:if>
       <xsl:apply-templates select="@*|node()"/>
       <xsl:apply-templates select="@*" mode="rules"/>

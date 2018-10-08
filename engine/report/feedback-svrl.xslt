@@ -9,6 +9,7 @@
   
   <xsl:template match="/">
     <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+      <xsl:attribute name="schemaVersion" select="*/@me:schemaVersion"/>
       <xsl:apply-templates select="//me:feedback"/>
     </svrl:schematron-output>      
   </xsl:template>
