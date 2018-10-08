@@ -3,29 +3,33 @@
 # Check the input files for well-formedness and schema errors, produce a feedback file if appropriate
 
 WORKSPACE=/workspace
+INPUTDIR=${1:-input}
+SRCDIR=${2:-src}
 
 mkdir -p $WORKSPACE/tmp/xmltest
 mkdir -p $WORKSPACE/tmp/xmltestlog
 mkdir -p $WORKSPACE/tmp/xmlschemalog
 mkdir -p $WORKSPACE/tmp/iatifeedback
 mkdir -p $WORKSPACE/tmp/feedback
+mkdir -p $WORKSPACE/input
+mkdir -p $WORKSPACE/input-big
 
-cd $WORKSPACE/input
+cd $WORKSPACE/$INPUTDIR
 find . -path "./.git" -prune -o -type f -print | while read FILE; do
 
   NAME=`basename $FILE`
 
-  cd $WORKSPACE/input
+  cd $WORKSPACE/$INPUTDIR
   xmllint --recover --output "$WORKSPACE/tmp/xmltest/$NAME" "$NAME" 2> "$WORKSPACE/tmp/xmltestlog/$NAME"
 
   if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
-    mv "$WORKSPACE/tmp/xmltest/$NAME" $WORKSPACE/src
+    mv "$WORKSPACE/tmp/xmltest/$NAME" $WORKSPACE/$SRCDIR
   else
-    cp --preserve $WORKSPACE/input/$NAME $WORKSPACE/src
+    cp --preserve $WORKSPACE/$INPUTDIR/$NAME $WORKSPACE/$SRCDIR
     rm "$WORKSPACE/tmp/xmltest/$NAME"
   fi
 
-  cd $WORKSPACE/src
+  cd $WORKSPACE/$SRCDIR
   XMLROOT=`xmllint --xpath "local-name(/*)" "$NAME" 2> /dev/null`
   XMLATTR=`xmllint --xpath "string(/*/@version)" "$NAME" 2> /dev/null`
   
