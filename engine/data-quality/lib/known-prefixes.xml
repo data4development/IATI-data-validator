@@ -95,6 +95,7 @@
    <code status="active">GE-RS</code>
    <code status="active">GG-RCE</code>
    <code status="active">GH-DSW</code>
+   <code status="active">GT-CISP</code>
    <code status="active">HK-CR</code>
    <code status="active">HR-MBS</code>
    <code status="active">HR-OIB</code>
@@ -130,6 +131,8 @@
    <code status="active">KZ-BIN</code>
    <code status="active">LB-CR</code>
    <code status="active">LB-MOI</code>
+   <code status="active">LK-DRC</code>
+   <code status="active">LK-NGO</code>
    <code status="withdrawn">LS-LCN</code>
    <code status="active">LT-PVM</code>
    <code status="active">LT-RC</code>
@@ -209,6 +212,7 @@
    <code status="active">XM-OCHA</code>
    <code status="active">XR-EUCB</code>
    <code status="active">XR-NUTS</code>
+   <code status="active">YE-MSAL</code>
    <code status="active">ZA-CIP</code>
    <code status="active">ZA-NPO</code>
    <code status="withdrawn">ZA-PBO</code>
