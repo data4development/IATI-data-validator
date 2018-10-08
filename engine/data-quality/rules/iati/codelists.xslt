@@ -12,7 +12,7 @@
             <me:message>The IATI version of the dataset is not a valid version number.</me:message>
          </me:feedback>
       </xsl:if>
-       <xsl:next-match/>
+      <xsl:next-match/>
    </xsl:template>
     <xsl:template match="//iati-activity" mode="rules" priority="9.2">
       <xsl:if test="me:codeListFail(@budget-not-provided, 'BudgetNotProvided')">
@@ -796,7 +796,7 @@
       </xsl:if>
       <xsl:next-match/>
    </xsl:template>
-    <xsl:template match="//iati-activity/sector[@vocabulary = '1' or not(@vocabulary)]"
+    <xsl:template match="//iati-activity/sector[@vocabulary = ('1', 'DAC') or not(@vocabulary)]"
                  mode="rules"
                  priority="9.76">
       <xsl:if test="me:codeListFail(@code, 'Sector')">
@@ -836,7 +836,7 @@
       </xsl:if>
       <xsl:next-match/>
    </xsl:template>
-    <xsl:template match="//iati-activity/transaction/aid-type"
+    <xsl:template match="//iati-activity/transaction/aid-type[@vocabulary = '1' or not(@vocabulary)]"
                  mode="rules"
                  priority="9.80">
       <xsl:if test="me:codeListFail(@code, 'AidType')">
@@ -1211,6 +1211,63 @@
          <me:feedback type="danger" class="financial" id="9.114.1">
             <me:src ref="iati" versions="any"/>
             <me:message>The currency code is invalid.</me:message>
+         </me:feedback>
+      </xsl:if>
+      <xsl:next-match/>
+   </xsl:template>
+    
+
+    <xsl:template match="//iati-activity/crs-add/aidtype-flag"
+                 mode="rules"
+                 priority="9.116">
+      <xsl:if test="me:codeListFail(@code, 'AidTypeFlag')">
+         <me:feedback type="danger" class="iati" id="9.116.1">
+            <me:src ref="iati" versions="any"/>
+            <me:message>The AidType flag is invalid.</me:message>
+         </me:feedback>
+      </xsl:if>
+      <xsl:next-match/>
+   </xsl:template>
+    <xsl:template match="//iati-activity/location/administrative"
+                 mode="rules"
+                 priority="9.117">
+      <xsl:if test="me:codeListFail(@country, 'Country')">
+         <me:feedback type="danger" class="geo" id="9.117.1">
+            <me:src ref="iati" versions="any"/>
+            <me:message>The country code is invalid.</me:message>
+         </me:feedback>
+      </xsl:if>
+      <xsl:next-match/>
+   </xsl:template>
+    <xsl:template match="//iati-activity/location/coordinates"
+                 mode="rules"
+                 priority="9.118">
+      <xsl:if test="me:codeListFail(@precision, 'GeographicalPrecision')">
+         <me:feedback type="danger" class="geo" id="9.118.1">
+            <me:src ref="iati" versions="any"/>
+            <me:message>The geographical precision code is invalid.</me:message>
+         </me:feedback>
+      </xsl:if>
+      <xsl:next-match/>
+   </xsl:template>
+    <xsl:template match="//iati-activity/location/gazetteer-entry"
+                 mode="rules"
+                 priority="9.119">
+      <xsl:if test="me:codeListFail(@gazetteer-ref, 'GazetteerAgency')">
+         <me:feedback type="danger" class="geo" id="9.119.1">
+            <me:src ref="iati" versions="any"/>
+            <me:message>The gazeteer agency code is invalid.</me:message>
+         </me:feedback>
+      </xsl:if>
+      <xsl:next-match/>
+   </xsl:template>
+    <xsl:template match="//iati-activity/location/location-type"
+                 mode="rules"
+                 priority="9.120">
+      <xsl:if test="me:codeListFail(@code, 'LocationType')">
+         <me:feedback type="danger" class="geo" id="9.120.1">
+            <me:src ref="iati" versions="any"/>
+            <me:message>The location type code is invalid.</me:message>
          </me:feedback>
       </xsl:if>
       <xsl:next-match/>
