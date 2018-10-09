@@ -31,11 +31,46 @@ docker run --rm \
 This will show the available _targets_ in the system, using the local folder as 
 a workspace.
 
-* `init` will set up the necessary folders.
-* `feedback` will do the XML checks and check the rules (these steps can also be run 
-independently)
-* `report`, `svrl` and `json` will transform the feedback file into a static HTML page, 
-an SVRL file and a JSON file respectively.
+Using an alias will make it easier to use the targets:
+
+```bash
+alias iati-validator='docker run --rm -u=`id -u`:`id -g` -v `pwd`:/workspace data4development/iati-data-validator'
+```
+
+### Initialise the local workspace in the current folder.
+
+```
+iati-validator init
+```
+
+### Add the raw input files to the folder `input`, and create the feedback files:
+
+```
+iati-validator feedback
+```
+
+1. This will run `xml-check` to check whether the XML files are well-formed and validate 
+   according to the IATI schema, and put the files in the `src` folder.
+2. Next, it will run `rules` to apply the validation rules to the these files, to create 
+   the feedback files in the `dest` folder.
+
+### Create JSON and SVRL versions of the feedback files
+
+```
+iati-validator json
+iati-validator svrl
+```
+
+The files will be put in the `json` and `svrl` folders.
+
+### Create a static HTML page with feedback
+
+```
+iati-validator report
+```
+
+The reports will be available as `report/<filename>.feedback.html`.
+
 
 ## Run the validator as a stand-alone service
 
