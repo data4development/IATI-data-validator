@@ -49,6 +49,12 @@
         dot -Tsvg -o ant-graph.svg engine/tmp/ant-graph.dot
     </echo>
   </target>
+
+  <target name="nonxml" depends="xml-check">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="../develop/tests/non-iati-files.xspec"/>
+    </antcall>    
+  </target>
   
   <target name="tests" description="Run the tests">
     <!-- TODO: as we use a global variable to pass around the IATI version to use in checks, we can't test 1.05 and 2.03 in the same run -->

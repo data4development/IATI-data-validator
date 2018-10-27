@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="/develop/lib/identity.xslt"
+  xslt-version="3.0">
+
+  <!-- These scenarios expect that xml-check has been run, and the result files are in ../testspace/dest -->
+  
+  <x:scenario label="Non-XML files">
+    <x:scenario label="If the input is a text file">
+      <x:context href="../testspace/dest/not-xml.feedback.xml"/>
+      <x:expect label="It should produce message 0.1.1" test="boolean(/not-an-xml-file/me:feedback[@id='0.1.1'])"/>      
+    </x:scenario>
+  </x:scenario>
+
+</x:description>
