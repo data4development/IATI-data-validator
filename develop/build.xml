@@ -50,13 +50,13 @@
     </echo>
   </target>
 
-  <target name="nonxml" depends="xml-check">
+  <target name="non-iati-file-tests" depends="xml-check, rules">
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="../develop/tests/non-iati-files.xspec"/>
     </antcall>    
   </target>
   
-  <target name="tests" description="Run the tests">
+  <target name="tests" description="Run the tests" depends="non-iati-file-tests">
     <!-- TODO: as we use a global variable to pass around the IATI version to use in checks, we can't test 1.05 and 2.03 in the same run -->
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="../develop/tests/iati-activities-1.0x.xspec"/>

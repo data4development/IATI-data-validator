@@ -6,10 +6,45 @@
 
   <!-- These scenarios expect that xml-check has been run, and the result files are in ../testspace/dest -->
   
-  <x:scenario label="Non-XML files">
+  <x:scenario label="Non-IATI files">
     <x:scenario label="If the input is a text file">
       <x:context href="../testspace/dest/not-xml.feedback.xml"/>
-      <x:expect label="It should produce message 0.1.1" test="boolean(/not-an-xml-file/me:feedback[@id='0.1.1'])"/>      
+      <x:expect label="It should produce message 0.1.1 and root not-an-xml-file" test="boolean(/not-an-xml-file/me:feedback[@id='0.1.1'])"/>      
+    </x:scenario>
+    
+    <x:scenario label="If the input is a broken XML file">
+      <x:context href="../testspace/dest/broken-xml.feedback.xml"/>
+      <x:expect label="It should produce message 0.1.1 and root not-an-xml-file" test="boolean(/not-an-xml-file/me:feedback[@id='0.1.1'])"/>      
+    </x:scenario>
+
+    <x:scenario label="If the input is valid XML but not an IAT file">
+      <x:context href="../testspace/dest/xml-but-not-iati.feedback.xml"/>
+      <x:expect label="It should produce message 0.2.1 and root not-an-iati-file" test="boolean(/not-an-iati-file/me:feedback[@id='0.2.1'])"/>      
+    </x:scenario>
+
+    <x:scenario label="If the input is an IATI file but with an XML error (error in reporting-org closing tag)">
+      <x:context href="../testspace/dest/iati-with-xml-errors.feedback.xml"/>
+      <x:expect label="It should produce message 0.5.1" test="boolean(/iati-activities/me:feedback[@id='0.5.1'])"/>
+      <x:expect label="It should contain xmllint text about opening and ending tag mismatch" test="contains(/iati-activities/me:feedback[@id='0.5.1'], 'Opening and ending tag mismatch')"/>
+      <x:expect label="It should not produce message 0.3.1" test="not(/iati-activities/me:feedback[@id='0.3.1'])"/>
+      <x:expect label="It should not produce message 0.4.1" test="not(/iati-activities/me:feedback[@id='0.4.1'])"/>
+    </x:scenario>
+
+    <x:scenario label="If the input is an IATI file but with an XML error (error in reporting-org closing tag) and an IATI schema error (no activity-date/@iso-date)">
+      <x:context href="../testspace/dest/iati-with-xml-and-schema-errors.feedback.xml"/>
+      <x:expect label="It should produce message 0.4.1" test="boolean(/iati-activities/me:feedback[@id='0.4.1'])"/>
+      <x:expect label="It should contain xmllint text about opening and ending tag mismatch" test="contains(/iati-activities/me:feedback[@id='0.4.1'], 'Opening and ending tag mismatch')"/>
+      <x:expect label="It should contain xmllint text about iso-date not being valid" test="contains(/iati-activities/me:feedback[@id='0.4.1'], 'attribute ''iso-date'': '''' is not a valid value of the atomic type ''xs:date''')"/>
+      <x:expect label="It should not produce message 0.3.1" test="not(/iati-activities/me:feedback[@id='0.3.1'])"/>
+      <x:expect label="It should not produce message 0.5.1" test="not(/iati-activities/me:feedback[@id='0.5.1'])"/>
+    </x:scenario>
+    
+    <x:scenario label="If the input is an IATI file but with an IATI schema error (no activity-date/@iso-date)">
+      <x:context href="../testspace/dest/iati-with-schema-errors.feedback.xml"/>
+      <x:expect label="It should produce message 0.3.1" test="boolean(/iati-activities/me:feedback[@id='0.3.1'])"/>
+      <x:expect label="It should contain xmllint text about iso-date not being valid" test="contains(/iati-activities/me:feedback[@id='0.3.1'], 'attribute ''iso-date'': '''' is not a valid value of the atomic type ''xs:date''')"/>
+      <x:expect label="It should not produce message 0.4.1" test="not(/iati-activities/me:feedback[@id='0.4.1'])"/>
+      <x:expect label="It should not produce message 0.5.1" test="not(/iati-activities/me:feedback[@id='0.5.1'])"/>
     </x:scenario>
   </x:scenario>
 

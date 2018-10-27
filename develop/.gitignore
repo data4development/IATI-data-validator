@@ -1,2 +1,3 @@
 tests/xspec
 tests/*-result.html
+testspace/src

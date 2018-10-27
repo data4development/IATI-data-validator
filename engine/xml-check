@@ -21,7 +21,7 @@ find . -path "./.git" -prune -o -type f -print | while read FILE; do
 
   cd $WORKSPACE/$INPUTDIR
   xmllint --recover --output "$WORKSPACE/tmp/xmltest/$NAME" "$NAME" 2> "$WORKSPACE/tmp/xmltestlog/$NAME"
-
+  
   if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
     mv "$WORKSPACE/tmp/xmltest/$NAME" $WORKSPACE/$SRCDIR
   else
@@ -58,7 +58,8 @@ find . -path "./.git" -prune -o -type f -print | while read FILE; do
     fi
     
   
-  elif [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then 
+  elif [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
+     
     echo '<not-an-xml-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
     rm "$WORKSPACE/src/$NAME"
   else

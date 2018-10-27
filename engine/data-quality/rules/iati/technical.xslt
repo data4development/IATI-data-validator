@@ -24,7 +24,7 @@
   </xsl:template>
   
   <xsl:template match="recovered-iati-file-with-schema-errors" mode="technical">
-    <me:feedback type="danger" class="iati" id="0.3.1">
+    <me:feedback type="danger" class="iati" id="0.4.1">
       <me:src ref="iati" versions="any"/>
       <me:message>The file is not a valid XML. A recovered version also is not a valid IATI file.
 The raw feedback from xmllint:
@@ -38,7 +38,7 @@ The raw feedback from schema validation:
   </xsl:template>
 
   <xsl:template match="recovered-iati-file" mode="technical">
-    <me:feedback type="danger" class="iati" id="0.3.1">
+    <me:feedback type="danger" class="iati" id="0.5.1">
       <me:src ref="iati" versions="any"/>
       <me:message>The file is not a valid XML. A recovered version does form a valid IATI file, but may not contain all information. The raw feedback from xmllint:
         
