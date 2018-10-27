@@ -11,5 +11,10 @@
             <code>2</code>
             <name>UN</name>
         </codelist-item>
+        <codelist-item>
+            <code>99</code>
+            <name>Reporting Organisation</name>
+            <description>The region reported corresponds to a region vocabulary maintained by the reporting organisation for this activity.</description>
+        </codelist-item>
     </codelist-items>
 </codelist>
