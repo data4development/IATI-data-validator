@@ -36,5 +36,7 @@ ENV PATH $PATH:$ANT_HOME/bin
 COPY . $HOME
 VOLUME /workspace
 
-ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
-CMD ["-p"]
+#ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
+#CMD ["-p"]
+ENTRYPOINT ["/home/webhook"]
+CMD ["-verbose", "-hooks=/home/webhook-c/hooks.json", "-hotreload"]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "test2",
+    "execute-command": "/home/webhook-c/test2.sh",
+    "include-command-output-in-response": true,
+    "response-headers": [
+      {"name": "X-DataWorkbench", "value": "validation request received"}
+    ],
+    "command-working-directory": "/workspace",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "url",
+        "name": "format"
+      },
+      {
+        "source": "url",
+        "name": "source"
+      },
+      {
+        "source": "url",
+        "name": "destination"
+      }
+    ]
+  },
+
+  {
+    "id": "svrl",
+    "execute-command": "/home/webhook-c/svrl.sh",
+    "include-command-output-in-response": true,
+    "response-headers": [
+      {"name": "X-DataWorkbench", "value": "validation request received"},
+      {"name": "Content-Type", "value": "application/xml"}
+    ],
+    "command-working-directory": "/workspace",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "url",
+        "name": "source"
+      },
+      {
+        "source": "url",
+        "name": "destination"
+      }
+    ]
+  },
+
+  {
+    "id": "json",
+    "execute-command": "/home/webhook-c/json.sh",
+    "include-command-output-in-response": true,
+    "response-headers": [
+      {"name": "X-DataWorkbench", "value": "validation request received"},
+      {"name": "Content-Type", "value": "application/json"}
+    ],
+    "command-working-directory": "/workspace",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "url",
+        "name": "source"
+      },
+      {
+        "source": "url",
+        "name": "destination"
+      }
+    ]
+  }
+
+
+]
