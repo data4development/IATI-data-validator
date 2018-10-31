@@ -39,4 +39,4 @@ VOLUME /workspace
 #ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
 #CMD ["-p"]
 ENTRYPOINT ["/home/webhook"]
-CMD ["-urlprefix=api/process", "-hooks=/home/webhook-scripts/hooks.json", "-hotreload"]
+CMD ["-urlprefix=process", "-hooks=/home/webhook-scripts/hooks.json", "-hotreload"]
