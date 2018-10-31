@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" schemaVersion="0.9.2">
+  <svrl:failed-assert test="false()" location="/" role="error">
+    <svrl:property-reference property="class">technical</svrl:property-reference>
+    <svrl:text fpi="0.0.1">URL is invalid.</svrl:text>
+  </svrl:failed-assert>
+</svrl:schematron-output>
