@@ -1,6 +1,6 @@
 [
   {
-    "id": "svrl",
+    "id": "get-svrl",
     "execute-command": "/home/webhook-scripts/feedback.sh",
     "include-command-output-in-response": true,
     "response-headers": [
@@ -22,7 +22,7 @@
   },
 
   {
-    "id": "json",
+    "id": "get-json",
     "execute-command": "/home/webhook-scripts/feedback.sh",
     "include-command-output-in-response": true,
     "response-headers": [
@@ -44,7 +44,7 @@
   },
   
   {
-    "id": "feedback",
+    "id": "get-feedback",
     "execute-command": "/home/webhook-scripts/feedback.sh",
     "include-command-output-in-response": true,
     "response-headers": [
