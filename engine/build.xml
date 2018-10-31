@@ -4,6 +4,8 @@
     IATI Data Validator
   </description>
 
+  <property name="filemask" value=""/>
+  
   <!-- Use config/build.xml to add artifacts to extension points -->
   <import file="/workspace/config/iati-data-validator.xml" optional="yes"/>
   <!-- Include additional development targets if available -->
@@ -21,16 +23,20 @@
 
   <target name="clean" depends="init" description="Clean intermediary results and feedback files.">
     <delete>
-      <fileset dir="/workspace/tmp" includes="**/*"/>
-      <fileset dir="/workspace/dest" includes="*.xml"/>
+      <fileset dir="/workspace/tmp" includes="**/${filemask}*"/>
+      <fileset dir="/workspace/dest" includes="${filemask}*.xml"/>
     </delete>
     <echo level="info">Intermediate results have been deleted from dest and tmp directories.</echo>
   </target>
 
   <target name="xml-check" description="Verify that the files in input/ are IATI XML files." depends="init">
     <echo level="info">Verify that the files in input/ are IATI XML files.</echo>
-    <exec executable="./xml-check"/>
-    <xslt basedir="/workspace/tmp/feedback/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="report/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
+    <exec executable="./xml-check">
+      <arg value="input"/>
+      <arg value="src"/>
+      <arg value="${filemask}"/>
+    </exec>
+    <xslt basedir="/workspace/tmp/feedback/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="report/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
   <target name="xml-check-big" depends="init">
@@ -44,7 +50,7 @@
   
   <target name="rules" description="Check the files source data against IATI rules." depends="init">
     <echo level="info">Check the data files in src/ against the ruleset.</echo>
-    <xslt basedir="/workspace/src/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
+    <xslt basedir="/workspace/src/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
   <!-- Check the source data for big files against IATI rules. Separate target for cluster. -->
@@ -62,14 +68,14 @@
 
   <target name="json" description="Generate JSON output." depends="feedback">
     <echo level="info">Generate JSON feedback files in json/.</echo>
-    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/json" style="report/feedback-json.xslt" failOnError="false">
+    <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/json" style="report/feedback-json.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.json"/>
     </xslt>
   </target>
 
 <target name="svrl" description="Generate data quality SVRL reports." depends="feedback">
     <echo level="info">Generate data quality SVRL reports in svrl/.</echo>
-    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false">
+  <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.svrl"/>
     </xslt>
   </target>

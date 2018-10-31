@@ -5,6 +5,7 @@
 WORKSPACE=/workspace
 INPUTDIR=${1:-input}
 SRCDIR=${2:-src}
+FILEMASK=${3}*
 
 mkdir -p $WORKSPACE/tmp/xmltest
 mkdir -p $WORKSPACE/tmp/xmltestlog
@@ -15,7 +16,7 @@ mkdir -p $WORKSPACE/input
 mkdir -p $WORKSPACE/input-big
 
 cd $WORKSPACE/$INPUTDIR
-find . -path "./.git" -prune -o -type f -print | while read FILE; do
+find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FILE; do
 
   NAME=`basename $FILE`
 
