@@ -38,5 +38,6 @@ VOLUME /workspace
 
 #ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
 #CMD ["-p"]
+EXPOSE 9000
 ENTRYPOINT ["/home/webhook"]
 CMD ["-urlprefix=process", "-hooks=/home/webhook-scripts/hooks.json", "-hotreload"]
