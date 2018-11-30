@@ -12,5 +12,6 @@
   <x:import href="iati/sectors.xspec"/>
   <x:import href="iati/countries-regions-1.0x.xspec"/>
   <x:import href="iati/locations.xspec"/>
+  <x:import href="iati/geography.xspec"/>
   <x:import href="iati/text-1.0x.xspec"/>
 </x:description>

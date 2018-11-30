@@ -117,7 +117,7 @@
   </xsl:template>
 
   <xsl:template match="point[pos]" mode="rules" priority="3.3">
-    <xsl:analyze-string select="functx:trim(pos)" regex="^([+-]?\d+(\.\d+))?\s+([+-]?\d+(\.\d+))?$">
+    <xsl:analyze-string select="functx:trim(pos)" regex="^([+-]?\d+(\.\d+)?)\s+([+-]?\d+(\.\d+)?)$">
       <xsl:matching-substring>
         <xsl:if test="abs(number(regex-group(1)))>90">
           <me:feedback type="danger" class="geo" id="3.3.2">
