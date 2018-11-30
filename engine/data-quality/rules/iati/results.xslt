@@ -123,14 +123,14 @@
     </xsl:if>
 -->    
     <xsl:if test="not(target)">
-      <me:feedback type="warning" class="performance" id="8.6.2">
+      <me:feedback type="info" class="performance" id="8.6.2">
         <me:src ref="iati" versions="any"/>
         <me:message>The target for the period is missing.</me:message>
       </me:feedback>
     </xsl:if>
     
     <xsl:if test="not(actual)">
-      <me:feedback type="warning" class="performance" id="8.6.2">
+      <me:feedback type="info" class="performance" id="8.6.3">
         <me:src ref="iati" versions="any"/>
         <me:message>The actual for the period is missing.</me:message>
       </me:feedback>
