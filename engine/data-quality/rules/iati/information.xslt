@@ -9,14 +9,7 @@
   
   <xsl:variable name="mime-types" select="collection('../../lib/?select=mime-types*.xml')//code"/>
   
-  <xsl:template match="document-link" mode="rules" priority="6.1">
-    <xsl:if test="@format=('application/javascript')">
-      <me:feedback type="warning" class="documents" id="6.1.1">
-        <me:src ref="practice" versions="any"/>
-        <me:message>The document format is invalid.</me:message>
-      </me:feedback>
-    </xsl:if>
-  
+  <xsl:template match="document-link" mode="rules" priority="6.1"> 
     <xsl:if test="not(@format = $mime-types)">
       <me:feedback type="warning" class="documents" id="6.1.2">
         <me:src ref="iati" versions="any" href="http://www.iana.org/assignments/media-types/media-types.xhtml"/>
