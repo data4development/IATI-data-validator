@@ -58,7 +58,7 @@
   </xsl:template>
   
   <xsl:template match="baseline" mode="rules" priority="8.4">
-    <!-- todo: better way to determine start/end year? look at actual before planned --> separate function to re-use -->
+    <!-- todo: better way to determine start/end year? look at actual before planned -->
     <xsl:variable name="start-year" select="xs:integer(format-date(ancestor::iati-acitivity/activity-date[@type=('1','2')][1]/@iso-date,'[Y]'))"/>
     <xsl:variable name="end-year" select="xs:integer(format-date(ancestor::iati-acitivity/activity-date[@type=('3','4')][1]/@iso-date,'[Y]'))"/>
     
@@ -96,7 +96,7 @@
   </xsl:template>
 
   <xsl:template match="baseline/@value|target/@value|actual/@value" mode="rules" priority="8.5">
-    <xsl:if test="ancestor::result/@aggregation-status and not(. castable as xs:decimal)">
+    <xsl:if test="xs:boolean(ancestor::result/@aggregation-status) and not(. castable as xs:decimal)">
       <me:feedback type="danger" class="performance" id="8.5.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The {name(..)} value is not a number but the indicator is part of a result that can be aggregated.</me:message>
@@ -123,14 +123,14 @@
     </xsl:if>
 -->    
     <xsl:if test="not(target)">
-      <me:feedback type="warning" class="performance" id="8.6.2">
+      <me:feedback type="info" class="performance" id="8.6.2">
         <me:src ref="iati" versions="any"/>
         <me:message>The target for the period is missing.</me:message>
       </me:feedback>
     </xsl:if>
     
     <xsl:if test="not(actual)">
-      <me:feedback type="warning" class="performance" id="8.6.2">
+      <me:feedback type="info" class="performance" id="8.6.3">
         <me:src ref="iati" versions="any"/>
         <me:message>The actual for the period is missing.</me:message>
       </me:feedback>

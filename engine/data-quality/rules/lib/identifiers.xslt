@@ -40,7 +40,7 @@
         </me:feedback>
       </xsl:when>
 
-      <xsl:when test="some $prefix in $org-id-prefixes[@status='withdrawn'] satisfies starts-with(upper-case($item), $prefix)">
+      <xsl:when test="some $prefix in $org-id-prefixes[@status='withdrawn'] satisfies starts-with(upper-case($item), $prefix||'-')">
         <me:feedback class="{$class}" id="{$idclass}.9">
           <xsl:attribute name="type">
             <xsl:choose>
@@ -54,8 +54,8 @@
       </xsl:when>
 
       <xsl:when test="(
-        not (some $prefix in $org-id-prefixes satisfies starts-with($item, $prefix)) 
-        and (some $prefix in $org-id-prefixes satisfies starts-with(upper-case($item), $prefix)))">
+        not (some $prefix in $org-id-prefixes satisfies starts-with($item, $prefix||'-')) 
+        and (some $prefix in $org-id-prefixes satisfies starts-with(upper-case($item), $prefix||'-')))">
         <me:feedback type="danger" class="{$class}" id="{$idclass}.5">
           <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
           <me:message>The identifier is invalid: the prefix must be written in uppercase.</me:message>
@@ -96,8 +96,12 @@
           <me:message>The identifier starts with a 5-digit code, but is not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
         </me:feedback>
       </xsl:when>
+
+      <!-- stop further processing of known organisation identifiers -->
+      <xsl:when test="some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id||'-')"/>
+      <xsl:when test="$item=$known-publisher-ids and local-name($item)='ref' and local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')"/>
       
-      <xsl:when test="not(some $prefix in $org-id-prefixes satisfies starts-with($item, $prefix))">
+      <xsl:when test="not(some $prefix in $org-id-prefixes satisfies starts-with($item, $prefix||'-'))">
         <me:feedback class="{$class}" id="{$idclass}.8">
           <xsl:attribute name="type">
             <xsl:choose>
@@ -126,7 +130,7 @@
       <!-- stop further processing of organisation identifiers -->
       <xsl:when test="local-name($item)='ref' and local-name($item/..)=('reporting-org', 'participating-org', 'provider-org', 'receiver-org', 'owner-org')"/>
       
-      <xsl:when test="not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id))">
+      <xsl:when test="not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id||'-'))">
         <me:feedback class="{$class}" id="{$idclass}.11">
           <xsl:attribute name="type">
             <xsl:choose>

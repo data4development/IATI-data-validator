@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="../../../engine/data-quality/rules/iati.xslt"
+  xslt-version="3.0">
+
+  <x:scenario label="Geography">
+      
+    <x:scenario label="If a point has valid lat/lon numbers">
+      <x:context>
+        <iati-activity>
+          <location>
+            <point>
+              <pos>12 34</pos>
+            </point>
+            <point>
+              <pos>1.2 3.4</pos>
+            </point>
+            <point>
+              <pos>-90 -180</pos>
+            </point>
+            <point>
+              <pos>90 180</pos>
+            </point>
+            <point srsName="http://www.opengis.net/def/crs/EPSG/0/4326">
+              <pos>-3 140.88333</pos>
+            </point>
+          </location>
+        </iati-activity>
+      </x:context>
+      <x:expect label="It should not produce message 3.3.1." test="not(//me:feedback[@id='3.3.1'])"/>
+    </x:scenario>
+    
+  </x:scenario>  
+  
+</x:description>

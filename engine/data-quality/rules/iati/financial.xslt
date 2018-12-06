@@ -63,7 +63,7 @@
         </me:feedback>      
       </xsl:when>
       <xsl:when test="receiver-org">
-        <me:feedback type="danger" class="financial" id="7.3.2">
+        <me:feedback type="warning" class="financial" id="7.3.2">
           <me:src ref="practice" versions="any"/>
           <me:message>The incoming transaction does not need receiver information, and the information given does not match the activity.</me:message>
         </me:feedback>
@@ -105,7 +105,7 @@
         </me:feedback>
       </xsl:when>
       <xsl:when test="provider-org">
-        <me:feedback type="danger" class="financial" id="7.4.2">
+        <me:feedback type="warning" class="financial" id="7.4.2">
           <me:src ref="practice" versions="any"/>
           <me:message>The outgoing transaction does not need provider information, and the information given does not match the activity.</me:message>
         </me:feedback>

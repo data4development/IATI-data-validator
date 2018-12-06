@@ -220,6 +220,7 @@
    <code>application/ocsp-response</code>
    <code>application/octet-stream</code>
    <code>application/ODA</code>
+   <code>application/odm+xml</code>
    <code>application/ODX</code>
    <code>application/oebps-package+xml</code>
    <code>application/ogg</code>
@@ -367,14 +368,27 @@
    <code>application/vnd.3gpp.bsf+xml</code>
    <code>application/vnd.3gpp.GMOP+xml</code>
    <code>application/vnd.3gpp.mc-signalling-ear</code>
+   <code>application/vnd.3gpp.mcdata-affiliation-command+xml</code>
+   <code>application/vnd.3gpp.mcdata-info+xml</code>
    <code>application/vnd.3gpp.mcdata-payload</code>
+   <code>application/vnd.3gpp.mcdata-service-config+xml</code>
    <code>application/vnd.3gpp.mcdata-signalling</code>
+   <code>application/vnd.3gpp.mcdata-ue-config+xml</code>
+   <code>application/vnd.3gpp.mcdata-user-profile+xml</code>
    <code>application/vnd.3gpp.mcptt-affiliation-command+xml</code>
    <code>application/vnd.3gpp.mcptt-floor-request+xml</code>
    <code>application/vnd.3gpp.mcptt-info+xml</code>
    <code>application/vnd.3gpp.mcptt-location-info+xml</code>
    <code>application/vnd.3gpp.mcptt-mbms-usage-info+xml</code>
+   <code>application/vnd.3gpp.mcptt-service-config+xml</code>
    <code>application/vnd.3gpp.mcptt-signed+xml</code>
+   <code>application/vnd.3gpp.mcptt-ue-config+xml</code>
+   <code>application/vnd.3gpp.mcptt-ue-init-config+xml</code>
+   <code>application/vnd.3gpp.mcptt-user-profile+xml</code>
+   <code>application/vnd.3gpp.mcvideo-affiliation-command+xml</code>
+   <code>application/vnd.3gpp.mcvideo-affiliation-info+xml</code>
+   <code>application/vnd.3gpp.mcvideo-location-info+xml</code>
+   <code>application/vnd.3gpp.mcvideo-ue-config+xml</code>
    <code>application/vnd.3gpp.mid-call+xml</code>
    <code>application/vnd.3gpp.pic-bw-large</code>
    <code>application/vnd.3gpp.pic-bw-small</code>
@@ -598,6 +612,8 @@
    <code>application/vnd.evolv.ecig.settings</code>
    <code>application/vnd.evolv.ecig.theme</code>
    <code>application/vnd.eudora.data</code>
+   <code>application/vnd.exstream-empower+zip</code>
+   <code>application/vnd.exstream-package</code>
    <code>application/vnd.ezpix-album</code>
    <code>application/vnd.ezpix-package</code>
    <code>application/vnd.f-secure.mobile</code>
@@ -1063,6 +1079,7 @@
    <code>application/vnd.panoply</code>
    <code>application/vnd.paos.xml</code>
    <code>application/vnd.patentdive</code>
+   <code>application/vnd.patientecommsdoc</code>
    <code>application/vnd.pawaafile</code>
    <code>application/vnd.pcos</code>
    <code>application/vnd.pg.format</code>
@@ -1404,6 +1421,7 @@
    <code>audio/t140c</code>
    <code>audio/t38</code>
    <code>audio/telephone-event</code>
+   <code>audio/TETRA_ACELP</code>
    <code>audio/tone</code>
    <code>audio/UEMCLIP</code>
    <code>audio/ulpfec</code>
@@ -1432,6 +1450,7 @@
    <code>audio/vnd.dra</code>
    <code>audio/vnd.dts</code>
    <code>audio/vnd.dts.hd</code>
+   <code>audio/vnd.dts.uhd</code>
    <code>audio/vnd.dvb.file</code>
    <code>audio/vnd.everad.plj</code>
    <code>audio/vnd.hns.audio</code>
@@ -1632,6 +1651,7 @@
    <code>text/vnd.ms-mediapackage</code>
    <code>text/vnd.net2phone.commcenter.command</code>
    <code>text/vnd.radisys.msml-basic-layout</code>
+   <code>text/vnd.senx.warpscript</code>
    <code>text/vnd.si.uricatalogue</code>
    <code>text/vnd.sun.j2me.app-descriptor</code>
    <code>text/vnd.trolltech.linguist</code>

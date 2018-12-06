@@ -196,6 +196,28 @@
       <x:expect label="It should be severity 'info'." test="boolean(//owner-org/me:feedback[@id='1.11.12']/@type='info')"/>
     </x:scenario>
 
+    <x:scenario label="If the organisation identifier exists but does not start with a known prefix">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref="SE-0"/>
+          <participating-org ref="NI-MIGOB-3602"/>
+          <transaction>
+            <provider-org ref="FR-SIRET-4028868160030"/>
+            <receiver-org ref="ZA-CIPC-2001/005850/08"/>
+          </transaction>
+          <other-identifier>
+            <owner-org ref="US-USAGOV"/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should not produce message 1.14.* for reporting-org." test="not(//reporting-org/me:feedback[starts-with(@id, '1.14.')])"/>
+      <x:expect label="It should not produce message 1.8.* for participating-org." test="not(//participating-org/me:feedback[starts-with(@id, '1.8.')])"/>
+      <x:expect label="It should not produce message 1.10.* for provider-org." test="not(//provider-org/me:feedback[starts-with(@id, '1.10.')])"/>
+      <x:expect label="It should not produce message 1.15.* for receiver-org." test="not(//receiver-org/me:feedback[starts-with(@id, '1.15.')])"/>
+      <x:expect label="It should not produce message 1.11.* for owner-org." test="not(//owner-org/me:feedback[starts-with(@id, '1.11.')])"/>
+    </x:scenario>
+    
   </x:scenario>
 
 </x:description>

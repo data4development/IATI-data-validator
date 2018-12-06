@@ -198,8 +198,7 @@
     <x:scenario label="If the activity identifier does not start with an organisation identifier approved by the IATI Registry">
       <x:context>
         <iati-activity>
-          <!-- TODO: prefix test uses starts-with without looking at first char of remaining string, so GB-GOV-1 matches activity id GB-GOV-12345-ABC -->
-          <iati-identifier>GB-GOV-A12345-ABC</iati-identifier>
+          <iati-identifier>GB-GOV-12345-ABC</iati-identifier>
           <participating-org activity-id="NL-KVK-12345678-XYZ"/>
           <transaction>
             <provider-org provider-activity-id="AU-ABN-XYZ-123"/>
@@ -207,7 +206,7 @@
           </transaction>
           <other-identifier type="A3" ref="XM-DAC-000-111"/>
           <other-identifier type="B1" ref="XM-DAC-000-111"/>
-          <related-activity ref="XI-IATIME-000"/>
+          <related-activity ref="XI-IATI-000-111"/>
         </iati-activity>
       </x:context>
 
@@ -227,6 +226,27 @@
       <x:expect label="It should be severity 'warning'." test="boolean(//related-activity/me:feedback[@id='1.7.11']/@type='warning')"/>
     </x:scenario>
 
+    <x:scenario label="If the organisation identifier exists but does not start with a known prefix">
+      <x:context>
+        <iati-activity>
+          <reporting-org ref="SE-0-123"/>
+          <participating-org ref="NI-MIGOB-3602-123"/>
+          <transaction>
+            <provider-org ref="FR-SIRET-4028868160030-123"/>
+            <receiver-org ref="ZA-CIPC-2001/005850/08-123"/>
+          </transaction>
+          <other-identifier>
+            <owner-org ref="US-USAGOV-123"/>
+          </other-identifier>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should not produce message 1.14.* for reporting-org." test="not(//reporting-org/me:feedback[starts-with(@id, '1.14.')])"/>
+      <x:expect label="It should not produce message 1.8.* for participating-org." test="not(//participating-org/me:feedback[starts-with(@id, '1.8.')])"/>
+      <x:expect label="It should not produce message 1.10.* for provider-org." test="not(//provider-org/me:feedback[starts-with(@id, '1.10.')])"/>
+      <x:expect label="It should not produce message 1.15.* for receiver-org." test="not(//receiver-org/me:feedback[starts-with(@id, '1.15.')])"/>
+      <x:expect label="It should not produce message 1.11.* for owner-org." test="not(//owner-org/me:feedback[starts-with(@id, '1.11.')])"/>
+    </x:scenario>
   </x:scenario>
 
 </x:description>
