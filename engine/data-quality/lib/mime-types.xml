@@ -355,6 +355,8 @@
    <code>application/trig</code>
    <code>application/ttml+xml</code>
    <code>application/tve-trigger</code>
+   <code>application/tzif</code>
+   <code>application/tzif-leap</code>
    <code>application/ulpfec</code>
    <code>application/urc-grpsheet+xml</code>
    <code>application/urc-ressheet+xml</code>
@@ -388,7 +390,11 @@
    <code>application/vnd.3gpp.mcvideo-affiliation-command+xml</code>
    <code>application/vnd.3gpp.mcvideo-affiliation-info+xml</code>
    <code>application/vnd.3gpp.mcvideo-location-info+xml</code>
+   <code>application/vnd.3gpp.mcvideo-mbms-usage-info+xml</code>
+   <code>application/vnd.3gpp.mcvideo-service-config+xml</code>
+   <code>application/vnd.3gpp.mcvideo-transmission-request+xml</code>
    <code>application/vnd.3gpp.mcvideo-ue-config+xml</code>
+   <code>application/vnd.3gpp.mcvideo-user-profile+xml</code>
    <code>application/vnd.3gpp.mid-call+xml</code>
    <code>application/vnd.3gpp.pic-bw-large</code>
    <code>application/vnd.3gpp.pic-bw-small</code>
