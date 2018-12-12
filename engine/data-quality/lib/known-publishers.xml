@@ -184,6 +184,11 @@
    <code>DE-CR-RA000220-VR3810</code>
    <code>DE-CR-VR32914</code>
    <code>DK-CVR-12006004</code>
+   <code>DK-CVR-12921047</code>
+   <code>DK-CVR-13078513</code>
+   <code>DK-CVR-14723692</code>
+   <code>DK-CVR-14766383</code>
+   <code>DK-CVR-16077593</code>
    <code>DK-CVR-18243717</code>
    <code>DK-CVR-19348407</code>
    <code>DK-CVR-20074035</code>
@@ -191,11 +196,14 @@
    <code>DK-CVR-20699310</code>
    <code>DK-CVR-25191501</code>
    <code>DK-CVR-29439915</code>
+   <code>DK-CVR-31378028</code>
    <code>DK-CVR-33985339</code>
+   <code>DK-CVR-35429867</code>
    <code>DK-CVR-36980214</code>
    <code>DK-CVR-37295728</code>
    <code>DK-CVR-40781218</code>
    <code>DK-CVR-44623528</code>
+   <code>DK-CVR-58185728</code>
    <code>DK-CVR-63407216</code>
    <code>DK-CVR-88136411</code>
    <code>EG-MOSS-7802</code>
@@ -478,6 +486,7 @@
    <code>GB-COH-06587734</code>
    <code>GB-COH-06735120</code>
    <code>GB-COH-07157505</code>
+   <code>GB-COH-07291220</code>
    <code>GB-COH-07321996</code>
    <code>GB-COH-07627789</code>
    <code>GB-COH-07629751</code>
@@ -543,6 +552,7 @@
    <code>GB-COH-OC305127</code>
    <code>GB-COH-OC308299</code>
    <code>GB-COH-OC369553</code>
+   <code>GB-COH-RC000297</code>
    <code>GB-COH-RC000346</code>
    <code>GB-COH-RC000631</code>
    <code>GB-COH-RC000658</code>
@@ -677,6 +687,7 @@
    <code>NG-CAC-692943</code>
    <code>NG-CAC-BN2422029</code>
    <code>NG-CAC-IT-23286</code>
+   <code>NG-CAC-RC481360</code>
    <code>NI-MIGOB-3602</code>
    <code>NL-CCI-20081098</code>
    <code>NL-KVK-06702132</code>
@@ -747,6 +758,7 @@
    <code>NL-KVK-41077447</code>
    <code>NL-KVK-41078390</code>
    <code>NL-KVK-41118168</code>
+   <code>NL-KVK-41146461</code>
    <code>NL-KVK-41146484</code>
    <code>NL-KVK-41149287</code>
    <code>NL-KVK-41149486</code>
@@ -803,6 +815,7 @@
    <code>NL-KVK-41217595</code>
    <code>NL-KVK-41223308</code>
    <code>NL-KVK-41236410</code>
+   <code>NL-KVK-50130536</code>
    <code>NL-KVK-51018586</code>
    <code>NL-KVK-51756811</code>
    <code>NL-KVK-52957535</code>
@@ -831,7 +844,6 @@
    <code>NL-KVK-810625921</code>
    <code>NL-KVK-855689493</code>
    <code>NL-KVK-9099028</code>
-   <code>NL-KvK-41146461</code>
    <code>NL-KvK-41177601</code>
    <code>NO-BRC-871033552</code>
    <code>NO-BRC-897554372</code>
@@ -868,6 +880,7 @@
    <code>RS-APR-17062603</code>
    <code>RW-RGB-002-RGB-NGO-2017</code>
    <code>RW-RGB-101-RGB-NGO-2014</code>
+   <code>RW-RGB-61-RGB-NGO-2017</code>
    <code>SACU</code>
    <code>SAVE LIFE ON EARTH FOUNDATION (GLOBAL UNIVERSAL INTERNATIONAL) NGO NPO VSO</code>
    <code>SE-0</code>
@@ -898,6 +911,7 @@
    <code>TZ-TRA-116315386</code>
    <code>TZ-TRA-119-705-363</code>
    <code>TZ-TRA-121406209</code>
+   <code>TZ-TRA-131888783</code>
    <code>UG-NGB-0498</code>
    <code>UG-NGB-10890</code>
    <code>UG-NGB-1826</code>
@@ -940,6 +954,7 @@
    <code>US-EIN-132574963</code>
    <code>US-EIN-134166228</code>
    <code>US-EIN-14-1945286</code>
+   <code>US-EIN-16-1644867</code>
    <code>US-EIN-20-1173866</code>
    <code>US-EIN-20-4451390</code>
    <code>US-EIN-203908371</code>
@@ -948,6 +963,7 @@
    <code>US-EIN-23-7069110</code>
    <code>US-EIN-237297651</code>
    <code>US-EIN-237413005</code>
+   <code>US-EIN-26-0642778</code>
    <code>US-EIN-26-1931968</code>
    <code>US-EIN-26-4129153</code>
    <code>US-EIN-260126537</code>
@@ -1096,7 +1112,6 @@
    <code>ZW-PVO-WO1789</code>
    <code>ZW-ROD-MA988/87</code>
    <code>bmb-mm</code>
-   <code>cbi-nigeria</code>
    <code>ciks</code>
    <code>eco-fuelafrica</code>
    <code>farmradio</code>

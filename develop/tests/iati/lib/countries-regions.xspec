@@ -26,6 +26,26 @@
         </x:context>
         <x:expect label="It should produce 'geo' message 3.1.4." test="boolean(//me:feedback[@id='3.1.4'])"/>
       </x:scenario>
+      
+      <x:scenario label="If the country has a percentage 100.00 (with decimals)">
+        <x:context>
+          <iati-activity>
+            <recipient-country code="JO" percentage="100.00"/>
+          </iati-activity>
+        </x:context>
+        <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
+      </x:scenario>
+      
+      <x:scenario label="If the country has a non-numeric percentage">
+        <x:context>
+          <iati-activity>
+            <recipient-country code="JO" percentage="hundred"/>
+          </iati-activity>
+        </x:context>
+        <!-- TODO: make sure non-numeric percentages get flagged (via schema check or other) -->
+        <x:expect label="It should not produce a 'geo' message." test="not(//me:feedback[starts-with(@id, '3.1.2')])"/>
+      </x:scenario>
+      
     </x:scenario>
 
     <x:scenario label="There are multiple recipient-country elements:">
@@ -78,8 +98,20 @@
         </x:context>
         <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
       </x:scenario>
-    </x:scenario>
 
+      <x:scenario label="If some have a non-numeric percentage" pending="Test for numeric values to be added to validation rule">
+        <x:context>
+          <iati-activity>
+            <recipient-country code="JO" percentage="100"/>
+            <recipient-country code="JO" percentage="hundred"/>
+          </iati-activity>
+        </x:context>
+        <!-- TODO: make sure non-numeric percentages get flagged (via schema check or other) -->
+        <x:expect label="It should produce a 'geo' message ." test="boolean(//me:feedback[starts-with(@id, '3.1.2')])"/>
+      </x:scenario>
+
+    </x:scenario>
+    
   </x:scenario>
 
   <x:scenario label="Recipient regions only (single vocabulary)">

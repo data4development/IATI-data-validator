@@ -47,14 +47,18 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
       rm "$WORKSPACE/tmp/xmlschemalog/$NAME"
       if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
         echo '<recovered-iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+        echo "$NAME: recovered-iati-file"
       else
         echo '<iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+        echo "$NAME: iati-file"
       fi
     else
       if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
         echo '<recovered-iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+        echo "$NAME: recovered-iati-file-with-schema-errors"
       else
         echo '<iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+        echo "$NAME: iati-file-with-schema-errors"
       fi       
     fi
     
@@ -62,9 +66,11 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
   elif [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
      
     echo '<not-an-xml-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
+    echo "$NAME: not-an-xml-file"
     rm "$WORKSPACE/src/$NAME"
   else
     echo '<not-an-iati-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
+    echo "$NAME: not-an-iati-file"
     rm "$WORKSPACE/src/$NAME"
   fi 
 
