@@ -10,13 +10,6 @@
   <xsl:variable name="mime-types" select="collection('../../lib/?select=mime-types*.xml')//code"/>
   
   <xsl:template match="document-link" mode="rules" priority="6.1"> 
-    <xsl:if test="not(@format = $mime-types)">
-      <me:feedback type="warning" class="documents" id="6.1.2">
-        <me:src ref="iati" versions="any" href="http://www.iana.org/assignments/media-types/media-types.xhtml"/>
-        <me:message>The document format is unknown.</me:message>
-      </me:feedback>
-    </xsl:if>
-  
     <xsl:if test="not(language/@code) or language/@code=''">
       <me:feedback type="info" class="documents" id="6.1.4">
         <me:src ref="iati" versions="any"/>
