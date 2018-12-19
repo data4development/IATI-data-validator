@@ -29,11 +29,18 @@
       <me:message>The file is not a valid XML. A recovered version also is not a valid IATI file.
 The raw feedback from xmllint:
 
-{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}
+<xsl:choose>
+  <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
+  <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
+</xsl:choose>
         
 The raw feedback from schema validation:
         
-{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</me:message>
+<xsl:choose>
+  <xsl:when test="unparsed-text-available('/workspace/tmp/xmlschemalog/' || $filename)">{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</xsl:when>
+  <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
+</xsl:choose>
+      </me:message>
     </me:feedback>
   </xsl:template>
 
@@ -42,7 +49,11 @@ The raw feedback from schema validation:
       <me:src ref="iati" versions="any"/>
       <me:message>The file is not a valid XML. A recovered version does form a valid IATI file, but may not contain all information. The raw feedback from xmllint:
         
-{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</me:message>
+<xsl:choose>
+  <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
+  <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
+</xsl:choose>
+      </me:message>
     </me:feedback>
   </xsl:template>
   
