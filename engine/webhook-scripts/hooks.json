@@ -63,6 +63,24 @@
         "name": "feedback"
       }
     ]
+  },
+  
+  {
+    "id": "inhouse",
+    "execute-command": "/home/webhook-scripts/inhouse.sh",
+    "include-command-output-in-response": false,
+    "response-headers": [
+      {"name": "X-DataWorkbench", "value": "Validation process started."},
+      {"name": "Content-Type", "value": "text/plain"}
+    ],
+    "command-working-directory": "/home",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "url",
+        "name": "basename"
+      }
+    ]
   }
   
 ]
