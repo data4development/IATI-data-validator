@@ -16,7 +16,10 @@
         <me:src ref="iati" versions="any"/>
         <me:message>The file is not a proper XML file. The raw feedback from xmllint:
 
-{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</me:message>
+<xsl:choose>
+  <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
+  <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
+</xsl:choose></me:message>
       </me:feedback>
     </not-an-xml-file>
   </xsl:template>

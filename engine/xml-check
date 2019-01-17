@@ -14,64 +14,68 @@ mkdir -p $WORKSPACE/tmp/iatifeedback
 mkdir -p $WORKSPACE/tmp/feedback
 mkdir -p $WORKSPACE/input
 mkdir -p $WORKSPACE/input-big
+mkdir -p $WORKSPACE/dest
 
 cd $WORKSPACE/$INPUTDIR
 find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FILE; do
 
   NAME=`basename $FILE`
-
-  cd $WORKSPACE/$INPUTDIR
-  xmllint --recover --output "$WORKSPACE/tmp/xmltest/$NAME" "$NAME" 2> "$WORKSPACE/tmp/xmltestlog/$NAME"
   
-  if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
-    mv "$WORKSPACE/tmp/xmltest/$NAME" $WORKSPACE/$SRCDIR
-  else
-    cp --preserve $WORKSPACE/$INPUTDIR/$NAME $WORKSPACE/$SRCDIR
-    rm "$WORKSPACE/tmp/xmltest/$NAME"
-  fi
-
-  cd $WORKSPACE/$SRCDIR
-  XMLROOT=`xmllint --xpath "local-name(/*)" "$NAME" 2> /dev/null`
-  XMLATTR=`xmllint --xpath "string(/*/@version)" "$NAME" 2> /dev/null`
+  if [ ! -e "$WORKSPACE/dest/${NAME/%.xml/.feedback.xml}" ] && [ ! -e "$WORKSPACE/$SRCDIR/$NAME" ]; then  
   
-  if [[ "$XMLROOT." == "iati-activities." || "$XMLROOT." == "iati-organisations." ]]; then
-    if [[ $XMLATTR. =~ 1\.0[1-5]\. || $XMLATTR. =~ 2\.0[1-3]\. ]]; then
-      VERSION=$XMLATTR
-    elif [[ $XMLATTR. =~ 1\..* ]]; then
-      VERSION=1.05
-    else
-      VERSION=2.03
-    fi
+    cd $WORKSPACE/$INPUTDIR
+    xmllint --recover --output "$WORKSPACE/tmp/xmltest/$NAME" "$NAME" 2> "$WORKSPACE/tmp/xmltestlog/$NAME"
     
-    if xmllint --noout --schema /home/lib/schemata/$VERSION/$XMLROOT-schema.xsd "$NAME" 2> "$WORKSPACE/tmp/xmlschemalog/$NAME"; then
-      rm "$WORKSPACE/tmp/xmlschemalog/$NAME"
-      if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
-        echo '<recovered-iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
-        echo "$NAME: recovered-iati-file"
+    if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
+      mv "$WORKSPACE/tmp/xmltest/$NAME" $WORKSPACE/$SRCDIR
+    else
+      cp --preserve $WORKSPACE/$INPUTDIR/$NAME $WORKSPACE/$SRCDIR
+      rm "$WORKSPACE/tmp/xmltest/$NAME"
+    fi
+  
+    cd $WORKSPACE/$SRCDIR
+    XMLROOT=`xmllint --xpath "local-name(/*)" "$NAME" 2> /dev/null`
+    XMLATTR=`xmllint --xpath "string(/*/@version)" "$NAME" 2> /dev/null`
+    
+    if [[ "$XMLROOT." == "iati-activities." || "$XMLROOT." == "iati-organisations." ]]; then
+      if [[ $XMLATTR. =~ 1\.0[1-5]\. || $XMLATTR. =~ 2\.0[1-3]\. ]]; then
+        VERSION=$XMLATTR
+      elif [[ $XMLATTR. =~ 1\..* ]]; then
+        VERSION=1.05
       else
-        echo '<iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
-        echo "$NAME: iati-file"
+        VERSION=2.03
       fi
-    else
-      if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
-        echo '<recovered-iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
-        echo "$NAME: recovered-iati-file-with-schema-errors"
+      
+      if xmllint --noout --schema /home/lib/schemata/$VERSION/$XMLROOT-schema.xsd "$NAME" 2> "$WORKSPACE/tmp/xmlschemalog/$NAME"; then
+        rm "$WORKSPACE/tmp/xmlschemalog/$NAME"
+        if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
+          echo '<recovered-iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+          echo "$NAME: recovered-iati-file"
+        else
+          echo '<iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+          echo "$NAME: iati-file"
+        fi
       else
-        echo '<iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
-        echo "$NAME: iati-file-with-schema-errors"
-      fi       
-    fi
+        if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
+          echo '<recovered-iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+          echo "$NAME: recovered-iati-file-with-schema-errors"
+        else
+          echo '<iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
+          echo "$NAME: iati-file-with-schema-errors"
+        fi       
+      fi
+      
     
-  
-  elif [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
-     
-    echo '<not-an-xml-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
-    echo "$NAME: not-an-xml-file"
-    rm "$WORKSPACE/src/$NAME"
-  else
-    echo '<not-an-iati-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
-    echo "$NAME: not-an-iati-file"
-    rm "$WORKSPACE/src/$NAME"
-  fi 
+    elif [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
+       
+      echo '<not-an-xml-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
+      echo "$NAME: not-an-xml-file"
+      rm "$WORKSPACE/src/$NAME"
+    else
+      echo '<not-an-iati-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
+      echo "$NAME: not-an-iati-file"
+      rm "$WORKSPACE/src/$NAME"
+    fi 
 
+  fi
 done

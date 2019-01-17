@@ -12,6 +12,12 @@
       <x:expect label="It should produce message 0.1.1 and root not-an-xml-file" test="boolean(/not-an-xml-file/me:feedback[@id='0.1.1'])"/>      
     </x:scenario>
     
+    <x:scenario label="If the input is an Excel file (archive format)">
+      <x:context href="../testspace/dest/xlsx-spreadsheet-with-extension.feedback.xml"/>
+      <x:expect label="It should produce message 0.1.1 and root not-an-xml-file" test="boolean(/not-an-xml-file/me:feedback[@id='0.1.1'])"/>
+      <x:expect label="It should contain a warning about a potential binary file" test="contains(/not-an-xml-file/me:feedback[@id='0.1.1'], 'maybe a binary file')"/>
+    </x:scenario>
+    
     <x:scenario label="If the input is a broken XML file">
       <x:context href="../testspace/dest/broken-xml.feedback.xml"/>
       <x:expect label="It should produce message 0.1.1 and root not-an-xml-file" test="boolean(/not-an-xml-file/me:feedback[@id='0.1.1'])"/>      
