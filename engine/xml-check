@@ -13,7 +13,6 @@ mkdir -p $WORKSPACE/tmp/xmlschemalog
 mkdir -p $WORKSPACE/tmp/iatifeedback
 mkdir -p $WORKSPACE/tmp/feedback
 mkdir -p $WORKSPACE/input
-mkdir -p $WORKSPACE/input-big
 mkdir -p $WORKSPACE/dest
 
 cd $WORKSPACE/$INPUTDIR
