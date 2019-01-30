@@ -6,7 +6,7 @@ if [ "$WORKSPACE." = "$MY_PATH." ]; then
   echo -e "Using ./develop/testspace as /workspace\n"
 fi
 
-OTHER_VOLUMES="-v ${MY_PATH}/engine:/home -v ${MY_PATH}/develop:/develop"
+OTHER_VOLUMES="-v ${MY_PATH}:/home -v ${MY_PATH}/develop:/develop"
 
 if [ "$1." = "root." ]; then
   USER="0:0"

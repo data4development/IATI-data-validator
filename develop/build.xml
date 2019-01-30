@@ -43,10 +43,10 @@
     </grand>
 
     <echo>
-      Ant target graph available as engine/tmp/ant-graph.dot
+      Ant target graph available as tmp/ant-graph.dot
       To create an SVG image fromt this, you need GraphViz and run:
       
-        dot -Tsvg -o ant-graph.svg engine/tmp/ant-graph.dot
+        dot -Tsvg -o ant-graph.svg tmp/ant-graph.dot
     </echo>
   </target>
 

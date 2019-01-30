@@ -3,9 +3,9 @@ docs/\.sass-cache
 docs/Gemfile\.lock
 
 build\.svg
-engine/\.bash_history
-engine/tmp/
+\.bash_history
+tmp/
 
 \.~*#
 
-engine/webhook
+webhook

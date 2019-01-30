@@ -69,7 +69,7 @@ EOT
 
     if [ "$1." != "webhook." ]; then
       ENTRY="--entrypoint=/opt/ant/bin/ant"
-      PARAMETERS="-e ${@:--p}"
+      PARAMETERS="-e -f build-engine.xml ${@:--p}"
     fi
         
     if [[ -f ${MY_PATH}/develop/engine-start ]]; then

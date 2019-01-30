@@ -1,0 +1,8 @@
+.dockerignore
+.git/
+.gitignore
+Dockerfile
+develop/
+docs/
+tmp/
+README*
