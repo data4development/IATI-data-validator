@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DataWorkbench">
+  
+  <property file="docker.properties"/>
+  <property name="repo" value="localbuild"/>
+  <property name="tag" value="0.0.0"/>    
+
+  <target name="build"
+    description="Docker build image for next version">
+    <echo message="docker build -t ${repo}:next ."></echo>
+    
+    <exec executable="docker" dir="engine">
+      <arg value="build"/>
+      <arg value="-t"/>
+      <arg value="${repo}:next"/>
+      <arg value="."/>
+    </exec>
+  </target>
+    
+  <target name="release" description="Docker tag as release (make sure to do a version bump first)">
+    <echo message="docker tag ${repo}:next ${repo}:${tag}"/>
+    <exec executable="docker">
+      <arg value="tag"/>
+      <arg value="${repo}:next"/>
+      <arg value="${repo}:${tag}"/>
+    </exec>    
+    
+    <echo message="git tag ${tag}"/>
+    <exec executable="git">
+      <arg value="tag"/>
+      <arg value="${tag}"/>
+    </exec>
+    
+  </target>
+  
+  <target name="push"
+    description="Docker push image">
+    <echo message="docker push ${repo}:${tag} ."></echo>
+    
+    <exec executable="docker">
+      <arg value="push"/>
+      <arg value="${repo}:${tag}"/>
+    </exec>
+  </target>
+  
+  <import file="develop/xspec/build.xml" />
+  <target name="test" description="Run Xspec tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="develop/tests/iati-activities-1.0x.xspec"/>
+    </antcall>
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="develop/tests/iati-activities-2.0x.xspec"/>
+    </antcall>
+  </target>
+</project>
