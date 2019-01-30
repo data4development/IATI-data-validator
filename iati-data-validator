@@ -66,6 +66,12 @@ EOT
     # Use the local code of the engine if available
     MY_PATH=$(dirname `readlink -f "$0"`)
     WORKSPACE=`pwd`
+
+    if [ "$1." != "webhook." ]; then
+      ENTRY="--entrypoint=/opt/ant/bin/ant"
+      PARAMETERS="-e ${@:--p}"
+    fi
+        
     if [[ -f ${MY_PATH}/develop/engine-start ]]; then
       . ${MY_PATH}/develop/engine-start
     fi
@@ -75,6 +81,6 @@ EOT
       -p 9000:9000 \
       $OTHER_VOLUMES \
       $ENTRY \
-      webhook $PARAMETERS
+      iati-data-validator $PARAMETERS
     ;;
 esac
