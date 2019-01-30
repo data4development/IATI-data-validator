@@ -7,21 +7,21 @@
 
   <target name="build"
     description="Docker build image for next version">
-    <echo message="docker build -t ${repo}:next ."></echo>
+    <echo message="docker build -t ${img}:latest ."></echo>
     
-    <exec executable="docker" dir="engine">
+    <exec executable="docker" dir=".">
       <arg value="build"/>
       <arg value="-t"/>
-      <arg value="${repo}:next"/>
+      <arg value="${img}:latest"/>
       <arg value="."/>
     </exec>
   </target>
     
   <target name="release" description="Docker tag as release (make sure to do a version bump first)">
-    <echo message="docker tag ${repo}:next ${repo}:${tag}"/>
+    <echo message="docker tag ${img}:latest ${repo}:${tag}"/>
     <exec executable="docker">
       <arg value="tag"/>
-      <arg value="${repo}:next"/>
+      <arg value="${img}:latest"/>
       <arg value="${repo}:${tag}"/>
     </exec>    
     
