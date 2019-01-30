@@ -39,24 +39,9 @@
     <xslt basedir="/workspace/tmp/feedback/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="report/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
-  <target name="xml-check-big" depends="init">
-    <echo level="info">Verify that the files in input-big/ are IATI XML files.</echo>
-    <exec executable="./xml-check">
-      <arg value="input-big"/>
-      <arg value="src-big"/>
-    </exec>
-    <xslt basedir="/workspace/tmp/feedback/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="report/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
-  </target>
-  
   <target name="rules" description="Check the files source data against IATI rules." depends="init">
     <echo level="info">Check the data files in src/ against the ruleset.</echo>
     <xslt basedir="/workspace/src/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
-  </target>
-
-  <!-- Check the source data for big files against IATI rules. Separate target for cluster. -->
-  <target name="rules-big" depends="xml-check">
-    <echo level="info">Check the data files in src-big/ against the ruleset.</echo>
-    <xslt basedir="/workspace/src-big/" includes="**/*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false"/>
   </target>
 
   <target name="report" description="Generate a data quality feedback HTML page." depends="init, html-skeleton">
@@ -81,7 +66,6 @@
   </target>
 
   <target name="feedback" description="Do the XML checks and validate the rules." depends="xml-check, rules"/>
-  <target name="feedback-big" depends="xml-check-big, rules-big"/>
   <target name="redo-feedback" description="Redo all steps for the feedback." depends="clean, xml-check, rules"/>
   
   <target name="data-quality-rules-spreadsheet" description="Generate overview of the data quality rules as a spreadsheet." depends="init">
