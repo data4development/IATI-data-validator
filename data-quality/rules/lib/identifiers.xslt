@@ -7,8 +7,8 @@
   expand-text="yes">
 
   <xsl:variable name="org-id-prefixes" select="doc('../../lib/known-prefixes.xml')//code"/>
-  <xsl:variable name="known-publisher-ids" select="doc('/home/data-quality/lib/known-publishers.xml')//code"/>
-  <xsl:variable name="known-10x-ids" select="doc('/home/data-quality/lib/known-publishers-104.xml')//code"/>
+  <xsl:variable name="known-publisher-ids" select="doc('../../lib/known-publishers.xml')//code"/>
+  <xsl:variable name="known-10x-ids" select="doc('../../lib/known-publishers-104.xml')//code"/>
 
   <xsl:template name="identifier_check">
     <xsl:param name="item"/>

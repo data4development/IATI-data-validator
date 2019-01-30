@@ -11,7 +11,7 @@
   
   <xsl:template match="dummy">
     <codelist>
-      <xsl:apply-templates select="json-to-xml(unparsed-text('/home/tmp/iati-publishers.json'))//json:string[@key=('iati_id') and functx:trim(.)!='']">
+      <xsl:apply-templates select="json-to-xml(unparsed-text('../../tmp/iati-publishers.json'))//json:string[@key=('iati_id') and functx:trim(.)!='']">
         <xsl:sort select="functx:trim(.)"/>    
       </xsl:apply-templates>  
     </codelist>
