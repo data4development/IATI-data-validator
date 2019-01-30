@@ -2,6 +2,7 @@
 .git/
 .gitignore
 Dockerfile
+docker.properties
 develop/
 docs/
 tmp/

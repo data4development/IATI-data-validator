@@ -52,31 +52,31 @@
 
   <target name="non-iati-file-tests" depends="xml-check, rules">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="../develop/tests/non-iati-files.xspec"/>
+      <param name="xspec.xml" location="develop/tests/non-iati-files.xspec"/>
     </antcall>
   </target>
   
   <target name="iati-1.0x-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="../develop/tests/iati-activities-1.0x.xspec"/>
+      <param name="xspec.xml" location="develop/tests/iati-activities-1.0x.xspec"/>
     </antcall>
   </target>
   
   <target name="iati-2.0x-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="../develop/tests/iati-activities-2.0x.xspec"/>
+      <param name="xspec.xml" location="develop/tests/iati-activities-2.0x.xspec"/>
     </antcall>
   </target>
   
   <target name="minbuza-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="../develop/tests/minbuza.xspec"/>
+      <param name="xspec.xml" location="develop/tests/minbuza.xspec"/>
     </antcall>
   </target>
   
   <target name="dfid-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="../develop/tests/dfid.xspec"/>
+      <param name="xspec.xml" location="develop/tests/dfid.xspec"/>
     </antcall>
   </target>
   
