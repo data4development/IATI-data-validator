@@ -40,4 +40,4 @@ VOLUME /workspace
 #CMD ["-p"]
 EXPOSE 9000
 ENTRYPOINT ["/home/webhook"]
-CMD ["-urlprefix=process", "-hooks=/home/webhook-scripts/hooks.json", "-hotreload"]
+CMD ["-urlprefix=process", "-hooks=/home/webhook-scripts/hooks.json", "-hotreload", "-verbose"]
