@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Process a single file from Google Storage
 # Parameters:
 # $1 - basename of the file (typically the md5sum of the file)
@@ -18,7 +18,7 @@ HTTP_STATUS=$(curl -s "$API/iati-files/dataworkbench-iati/download/$basename.xml
 # If available:
 if [[ $HTTP_STATUS == 200 ]]; then 
   # Run the XML check and the rules
-  ant feedback -S -q -Dfilemask=$basename
+  ant -f build-engine.xml feedback -S -q -Dfilemask=$basename
   
   # Store the result
   
@@ -34,7 +34,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   # Run the JSON conversion
   
-  ant json -S -q -Dfilemask=$basename
+  ant -f build-engine.xml json -S -q -Dfilemask=$basename
   
   # Store the result
   
@@ -49,7 +49,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$basename%22%7D"
   
   # Run the SVRL conversion
-  ant svrl -S -q -Dfilemask=$basename
+  ant -f build-engine.xml svrl -S -q -Dfilemask=$basename
   
   # Store the result
   

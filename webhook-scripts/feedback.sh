@@ -33,7 +33,7 @@ then
   mv $tfile /workspace/input/$md5sum.xml
   
   # generate and return the svrl output
-  ant $target -S -q -Dfilemask=$md5sum
+  ant -f build-engine.xml $target -S -q -Dfilemask=$md5sum
   cat /workspace/$resultdir/$md5sum.$resultext
 
 else
