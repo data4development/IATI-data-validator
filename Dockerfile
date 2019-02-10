@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-slim
+FROM openjdk:11-jdk-slim
 
 LABEL maintainer="Rolf Kleef <rolf@drostan.org>" \
   description="IATI Data Validator Engine" \

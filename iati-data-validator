@@ -79,6 +79,7 @@ EOT
     docker run --rm -u=${USER} \
       -v $WORKSPACE:/workspace \
       -p 9000:9000 \
+      -m 3g \
       $OTHER_VOLUMES \
       $ENTRY \
       iati-data-validator $PARAMETERS
