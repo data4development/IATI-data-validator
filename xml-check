@@ -7,13 +7,14 @@ INPUTDIR=${1:-input}
 SRCDIR=${2:-src}
 FILEMASK=${3}*
 
-mkdir -p $WORKSPACE/tmp/xmltest
-mkdir -p $WORKSPACE/tmp/xmltestlog
-mkdir -p $WORKSPACE/tmp/xmlschemalog
-mkdir -p $WORKSPACE/tmp/iatifeedback
-mkdir -p $WORKSPACE/tmp/feedback
-mkdir -p $WORKSPACE/input
-mkdir -p $WORKSPACE/dest
+mkdir -p \
+  $WORKSPACE/tmp/xmltest \
+  $WORKSPACE/tmp/xmltestlog \
+  $WORKSPACE/tmp/xmlschemalog \
+  $WORKSPACE/tmp/iatifeedback \
+  $WORKSPACE/tmp/feedback \
+  $WORKSPACE/input \
+  $WORKSPACE/dest
 
 cd $WORKSPACE/$INPUTDIR
 find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FILE; do
