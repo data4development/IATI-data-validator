@@ -14,11 +14,12 @@ basename=$1
 mkdir -p /workspace/input
 
 HTTP_STATUS=$(curl -s "$API/iati-files/dataworkbench-iati/download/$basename.xml" -o "/workspace/input/$basename.xml" -w "%{http_code}")
+echo "Inhouse: retrieved $basename.xml with status $HTTP_STATUS"
 
 # If available:
 if [[ $HTTP_STATUS == 200 ]]; then 
   # Run the XML check and the rules
-  ant -f build-engine.xml feedback -S -q -Dfilemask=$basename
+  ant -f build-engine.xml -Dfilemask=$basename feedback
   
   # Store the result
   
@@ -34,7 +35,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   # Run the JSON conversion
   
-  ant -f build-engine.xml json -S -q -Dfilemask=$basename
+  ant -f build-engine.xml -S -q -Dfilemask=$basename json
   
   # Store the result
   
@@ -49,7 +50,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$basename%22%7D"
   
   # Run the SVRL conversion
-  ant -f build-engine.xml svrl -S -q -Dfilemask=$basename
+  ant -f build-engine.xml -S -q -Dfilemask=$basename svrl
   
   # Store the result
   

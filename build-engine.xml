@@ -51,14 +51,14 @@
     </xslt>
   </target>
 
-  <target name="json" description="Generate JSON output." depends="feedback">
+  <target name="json" description="Generate JSON output from feedback.">
     <echo level="info">Generate JSON feedback files in json/.</echo>
     <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/json" style="report/feedback-json.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.json"/>
     </xslt>
   </target>
 
-<target name="svrl" description="Generate data quality SVRL reports." depends="feedback">
+  <target name="svrl" description="Generate SVRL reports from feedback.">
     <echo level="info">Generate data quality SVRL reports in svrl/.</echo>
   <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.svrl"/>
