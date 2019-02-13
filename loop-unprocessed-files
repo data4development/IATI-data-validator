@@ -17,6 +17,7 @@ do
   
   if [ -z $MD5 ]; then
     echo "$PREFIX: Nothing found to process, waiting"
+    sleep 1m
   
   else
     echo "$PREFIX: Found $MD5 -- start processing"
@@ -33,6 +34,4 @@ do
     ./webhook-scripts/inhouse.sh $MD5    
   fi
   
-  echo "$PREFIX: Loop unprocessed files: wait a minute"
-  sleep 10m
 done
