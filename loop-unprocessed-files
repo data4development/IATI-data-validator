@@ -7,10 +7,36 @@ API=http://validator-api/api
 while :
 do
 
-  # request a file to be processed
+  # request a file to be processe
+
+  # Refresh a report after 48 hours (JSON is the last bit updated in the processing
+  # so we check for this to select incomplete or obsolete data)
+  TDone=`date -d "48 hours ago" --iso-8601=seconds`
+  # Restart processing if the last start was more than 1 hour ago
+  TProc=`date -d "1 hour ago" --iso-8601=seconds`
+
+  QUERY=`cat <<EOT
+{
+  "limit": 1, 
+  "where": {
+  "and": [
+    {"or": [
+      {"json-updated": {"exists": false}},
+      {"json-updated": {"lt": "$TDone"}}
+    ]},
+    {"or":[
+      {"processing": {"exists": false}},
+      {"processing": {"lt": "$TProc"}}
+    ]}
+    ]
+  }
+}
+EOT`
   
+  # Get (-G) a dataset with the query
   DATASET=`curl -s --header 'Accept: application/xml' \
-  'http://www.dataworkbench.io/api/iati-datasets?filter=%7B%20%20%20%22limit%22%3A%201%2C%20%20%20%20%22where%22%3A%20%7B%20%20%20%22and%22%3A%20%5B%20%20%20%20%20%20%20%7B%22svrl-updated%22%3A%20%7B%22exists%22%3A%20false%7D%2C%20%20%20%20%20%20%20%22processing%22%3A%20%7B%22exists%22%3A%20false%7D%20%20%20%20%20%20%20%7D%20%20%20%20%20%5D%20%20%20%7D%20%7D'`
+  -G --data-urlencode "filter=$QUERY" \
+  "$API/iati-datasets"`
   
   MD5=`echo $DATASET | xmllint --xpath '//md5/text()' -`
   DSID=`echo $DATASET | xmllint --xpath '//id/text()' -`
