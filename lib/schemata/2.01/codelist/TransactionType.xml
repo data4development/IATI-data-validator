@@ -1,4 +1,4 @@
-<codelist name="TransactionType" xml:lang="en" complete="1">
+<codelist name="TransactionType" xml:lang="en" complete="1" embedded="1">
     <metadata>
         <name>
             <narrative>Transaction Type</narrative>
@@ -17,7 +17,7 @@
         <codelist-item>
             <code>2</code>
             <name>
-                <narrative>Outgoing Commitment</narrative>
+                <narrative>Commitment</narrative>
             </name>
             <description>
                 <narrative>A firm, written obligation from a donor or provider to provide a specified amount of funds, under particular terms and conditions, for specific purposes, for the benefit of the recipient. </narrative>
@@ -29,7 +29,7 @@
                 <narrative>Disbursement</narrative>
             </name>
             <description>
-                <narrative>Outgoing funds that are placed at the disposal of a recipient government or organisation, or funds transferred between two separately reported activities.</narrative>
+                <narrative>Outgoing funds that are placed at the disposal of a recipient government or organisation, or funds transferred between two separately reported activities.Under IATI traceability standards the recipient of a disbursement should also be required to report their activities to IATI.</narrative>
             </description>
         </codelist-item>
         <codelist-item>
@@ -38,13 +38,13 @@
                 <narrative>Expenditure</narrative>
             </name>
             <description>
-                <narrative>Outgoing funds that are spent on goods and services for the activity.</narrative>
+                <narrative>Outgoing funds that are spent on goods and services for the activity. The recipients of expenditures fall outside of IATI traceability standards.</narrative>
             </description>
         </codelist-item>
         <codelist-item>
             <code>5</code>
             <name>
-                <narrative>Interest Payment</narrative>
+                <narrative>Interest Repayment</narrative>
             </name>
             <description>
                 <narrative>The actual amount of interest paid on a loan or line of credit, including fees.</narrative>
@@ -93,15 +93,6 @@
             </name>
             <description>
                 <narrative>A commitment made by a funding organisation to underwrite a loan or line of credit entered into by a third party. </narrative>
-            </description>
-        </codelist-item>
-        <codelist-item>
-            <code>11</code>
-            <name>
-                <narrative>Incoming Commitment</narrative>
-            </name>
-            <description>
-                <narrative>A firm, written obligation from a donor or provider to provide a specified amount of funds, under particular terms and conditions, reported by a recipient for this activity.</narrative>
             </description>
         </codelist-item>
     </codelist-items>
