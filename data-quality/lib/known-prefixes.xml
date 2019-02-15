@@ -67,6 +67,7 @@
    <code status="active">EE-RIK</code>
    <code status="active">EG-MOSS</code>
    <code status="active">ES-DIR3</code>
+   <code status="active">ES-MDJ</code>
    <code status="active">ES-RMC</code>
    <code status="active">ET-CSA</code>
    <code status="active">ET-MFA</code>
@@ -128,6 +129,8 @@
    <code status="withdrawn">KE-RSO</code>
    <code status="active">KG-ID</code>
    <code status="active">KG-INN</code>
+   <code status="active">KG-OKPO</code>
+   <code status="active">KG-TIN</code>
    <code status="active">KR-BRN</code>
    <code status="active">KZ-BIN</code>
    <code status="active">LB-CR</code>
@@ -178,6 +181,7 @@
    <code status="active">RU-INN</code>
    <code status="active">RU-OGRN</code>
    <code status="active">RW-RGB</code>
+   <code status="active">RW-RRA</code>
    <code status="withdrawn">SE-BLV</code>
    <code status="withdrawn">SE-KK</code>
    <code status="active">SE-ON</code>

@@ -45,6 +45,18 @@
     <xsl:next-match/>
   </xsl:template>
 
+  <xsl:template match="result[@aggregation-status]" mode="rules" priority="8.8">
+    
+    <xsl:if test="not(@aggregation-status castable as xs:boolean)">
+      <me:feedback type="error" class="performance" id="8.8.1">
+        <me:src ref="iati" versions="any"/>
+        <me:message>The result aggregation status is not a valid boolean value.</me:message>
+      </me:feedback>
+    </xsl:if>
+    
+    <xsl:next-match/>
+  </xsl:template>
+  
   <xsl:template match="indicator/reference" mode="rules" priority="8.3">
     
     <xsl:if test="@vocabulary='99' and (not(@indicator-uri) or @indicator-uri='')">
@@ -96,7 +108,7 @@
   </xsl:template>
 
   <xsl:template match="baseline/@value|target/@value|actual/@value" mode="rules" priority="8.5">
-    <xsl:if test="xs:boolean(ancestor::result/@aggregation-status) and not(. castable as xs:decimal)">
+    <xsl:if test="ancestor::result/@aggregation-status castable as xs:boolean and xs:boolean(ancestor::result/@aggregation-status) and not(. castable as xs:decimal)">
       <me:feedback type="danger" class="performance" id="8.5.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The {name(..)} value is not a number but the indicator is part of a result that can be aggregated.</me:message>

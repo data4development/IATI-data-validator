@@ -5,7 +5,6 @@
    <code>application/3gpp-ims+xml</code>
    <code>application/A2L</code>
    <code>application/activemessage</code>
-   <code>application/activemessage</code>
    <code>application/activity+json</code>
    <code>application/alto-costmap+json</code>
    <code>application/alto-costmapfilter+json</code>
@@ -106,6 +105,7 @@
    <code>application/epub+zip</code>
    <code>application/eshop</code>
    <code>application/example</code>
+   <code>application/expect-ct-report+json</code>
    <code>application/fastinfoset</code>
    <code>application/fastsoap</code>
    <code>application/fdt+xml</code>
@@ -230,6 +230,7 @@
    <code>application/patch-ops-error+xml</code>
    <code>application/pdf</code>
    <code>application/PDX</code>
+   <code>application/pem-certificate-chain</code>
    <code>application/pgp-encrypted</code>
    <code>application/pgp-signature</code>
    <code>application/pidf-diff+xml</code>
@@ -344,6 +345,7 @@
    <code>application/tamp-update-confirm</code>
    <code>application/taxii+json</code>
    <code>application/tei+xml</code>
+   <code>application/TETRA_ISI</code>
    <code>application/thraud+xml</code>
    <code>application/timestamp-query</code>
    <code>application/timestamp-reply</code>
@@ -787,7 +789,6 @@
    <code>application/vnd.lotus-organizer</code>
    <code>application/vnd.lotus-screencam</code>
    <code>application/vnd.lotus-wordpro</code>
-   <code>application/vnd.macports.portpkg</code>
    <code>application/vnd.macports.portpkg</code>
    <code>application/vnd.mapbox-vector-tile</code>
    <code>application/vnd.marlin.drm.actiontoken+xml</code>
@@ -1234,6 +1235,7 @@
    <code>application/vnd.vectorworks</code>
    <code>application/vnd.vel+json</code>
    <code>application/vnd.verimatrix.vcas</code>
+   <code>application/vnd.veryant.thin</code>
    <code>application/vnd.vidsoft.vidconference</code>
    <code>application/vnd.visio</code>
    <code>application/vnd.visionary</code>
