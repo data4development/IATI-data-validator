@@ -18,6 +18,8 @@ echo "Inhouse: retrieved $basename.xml with status $HTTP_STATUS"
 
 # If available:
 if [[ $HTTP_STATUS == 200 ]]; then 
+  # Make sure we process the file again by removing the target for ant
+  rm -f /workspace/dest/$basename.feedback.xml
   # Run the XML check and the rules
   ant -f build-engine.xml -Dfilemask=$basename feedback
   
@@ -36,7 +38,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   
   # Run the JSON conversion
-  
+  rm -f /workspace/json/$basename.json
   ant -f build-engine.xml -Dfilemask=$basename json
   
   # Store the result
@@ -53,6 +55,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   
   # Run the SVRL conversion
+  rm -f /workspace/svrl/$basename.svrl
   ant -f build-engine.xml -S -q -Dfilemask=$basename svrl
   
   # Store the result
