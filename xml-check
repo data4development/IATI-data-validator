@@ -6,6 +6,8 @@ WORKSPACE=/workspace
 INPUTDIR=${1:-input}
 SRCDIR=${2:-src}
 FILEMASK=${3}*
+PREFIX="XML check"
+API=http://validator-api/api
 
 mkdir -p \
   $WORKSPACE/tmp/xmltest \
@@ -50,18 +52,46 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
         rm "$WORKSPACE/tmp/xmlschemalog/$NAME"
         if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
           echo '<recovered-iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
-          echo "$NAME: recovered-iati-file"
+          echo "$PREFIX $NAME: recovered-iati-file"
+          
+          APIDATA="{\"md5\": \"$NAME\", \"file-type\": \"recovered-iati-file\", \"iati-version\": \"$VERSION\"}"
+  
+          curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+            -d "$APIDATA" \
+            "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+          
         else
           echo '<iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
-          echo "$NAME: iati-file"
+          echo "$PREFIX $NAME: iati-file"
+          
+          APIDATA="{\"md5\": \"$NAME\", \"file-type\": \"iati-file\", \"iati-version\": \"$VERSION\"}"
+  
+          curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+            -d "$APIDATA" \
+            "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+          
         fi
       else
         if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
           echo '<recovered-iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
-          echo "$NAME: recovered-iati-file-with-schema-errors"
+          echo "$PREFIX $NAME: recovered-iati-file-with-schema-errors"
+
+          APIDATA="{\"md5\": \"$NAME\", \"file-type\": \"recovered-iati-file-with-schema-errors\", \"iati-version\": \"$VERSION\"}"
+  
+          curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+            -d "$APIDATA" \
+            "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+          
         else
           echo '<iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
-          echo "$NAME: iati-file-with-schema-errors"
+          echo "$PREFIX $NAME: iati-file-with-schema-errors"
+
+          APIDATA="{\"md5\": \"$NAME\", \"file-type\": \"iati-file-with-schema-errors\", \"iati-version\": \"$VERSION\"}"
+  
+          curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+            -d "$APIDATA" \
+            "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+
         fi       
       fi
       
@@ -69,12 +99,25 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
     elif [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
        
       echo '<not-an-xml-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
-      echo "$NAME: not-an-xml-file"
+      echo "$PREFIX $NAME: not-an-xml-file"
       rm "$WORKSPACE/src/$NAME"
+      
+      APIDATA="{\"md5\": \"$NAME\", \"file-type\": \"not-an-xml-file\"}"
+
+      curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+        -d "$APIDATA" \
+        "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+      
     else
       echo '<not-an-iati-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
-      echo "$NAME: not-an-iati-file"
+      echo "$PREFIX $NAME: not-an-iati-file"
       rm "$WORKSPACE/src/$NAME"
+
+      APIDATA="{\"md5\": \"$NAME\", \"file-type\": \"not-an-iati-file\"}"
+
+      curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+        -d "$APIDATA" \
+        "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
     fi 
 
   fi
