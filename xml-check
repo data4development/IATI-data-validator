@@ -58,7 +58,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
   
           curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
             -d "$APIDATA" \
-            "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+            "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$NAME%22%7D"
           
         else
           echo '<iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
@@ -68,7 +68,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
   
           curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
             -d "$APIDATA" \
-            "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+            "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$NAME%22%7D"
           
         fi
       else
@@ -80,7 +80,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
   
           curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
             -d "$APIDATA" \
-            "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+            "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$NAME%22%7D"
           
         else
           echo '<iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
@@ -90,7 +90,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
   
           curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
             -d "$APIDATA" \
-            "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+            "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$NAME%22%7D"
 
         fi       
       fi
@@ -106,7 +106,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
 
       curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
         -d "$APIDATA" \
-        "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+        "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$NAME%22%7D"
       
     else
       echo '<not-an-iati-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
@@ -117,7 +117,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
 
       curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
         -d "$APIDATA" \
-        "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$NAME%22%7D"
+        "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$NAME%22%7D"
     fi 
 
   fi

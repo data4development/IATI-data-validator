@@ -54,7 +54,7 @@ EOT`
     echo "$PREFIX: update iati-datasets $MD5 to indicate processing"
     curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
     -d "$APIDATA" \
-    "$API/iati-datasets/upsertWithWhere?where=%7B%22id%22%3A%22$DSID%22%7D"
+    "$API/iati-datasets/update?where=%7B%22id%22%3A%22$DSID%22%7D"
 
     echo "$PREFIX: process $MD5"
     ./webhook-scripts/inhouse.sh $MD5    
