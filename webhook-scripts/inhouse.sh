@@ -69,6 +69,8 @@ if [[ $HTTP_STATUS == 200 ]]; then
     curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
     -d "$APIDATA" \
     "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
+  else
+    echo "Inhouse: svrl for $basename is not valid XML"
   fi
 
 fi
