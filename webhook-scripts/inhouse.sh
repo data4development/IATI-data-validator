@@ -33,7 +33,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   echo "Inhouse: update iati-datasets for feedback on $basename"
   curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
   -d "$APIDATA" \
-  "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$basename%22%7D"
+  "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   
   # Run the JSON conversion
   
@@ -50,7 +50,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   echo "Inhouse: update iati-datasets for json on $basename"
   curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
   -d "$APIDATA" \
-  "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$basename%22%7D"
+  "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   
   # Run the SVRL conversion
   ant -f build-engine.xml -S -q -Dfilemask=$basename svrl
@@ -68,7 +68,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
     echo "Inhouse: update iati-datasets for svrl on $basename"
     curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
     -d "$APIDATA" \
-    "$API/iati-datasets/upsertWithWhere?where=%7B%22md5%22%3A%22$basename%22%7D"
+    "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   fi
 
 fi
