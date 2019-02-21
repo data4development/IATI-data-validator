@@ -55,7 +55,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
         
         APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"recovered-iati-file\", \"iati-version\": \"$VERSION\"}"
 
-        curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+        curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
           -d "$APIDATA" \
           "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
         
@@ -65,7 +65,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
         
         APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"iati-file\", \"iati-version\": \"$VERSION\"}"
 
-        curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+        curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
           -d "$APIDATA" \
           "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
         
@@ -77,7 +77,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
 
         APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"recovered-iati-file-with-schema-errors\", \"iati-version\": \"$VERSION\"}"
 
-        curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+        curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
           -d "$APIDATA" \
           "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
         
@@ -87,7 +87,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
 
         APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"iati-file-with-schema-errors\", \"iati-version\": \"$VERSION\"}"
 
-        curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+        curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
           -d "$APIDATA" \
           "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
 
@@ -103,7 +103,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
     
     APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"not-an-xml-file\"}"
 
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+    curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
       -d "$APIDATA" \
       "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
     
@@ -114,7 +114,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
 
     APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"not-an-iati-file\"}"
 
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+    curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
       -d "$APIDATA" \
       "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
   fi 
