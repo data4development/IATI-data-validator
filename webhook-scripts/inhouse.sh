@@ -78,5 +78,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
 
 fi
 
-# Remove the files from the local node
-find /workspace -name "${basename}*" -delete
+# Remove the files from the local node if no second parameter given (allows to keep the artefacts for debugging)
+if [[ -z $2 ]]; then
+  find /workspace -name "${basename}*" -delete
+fi
