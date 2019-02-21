@@ -26,7 +26,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   # Store the result
   
   echo "Inhouse: store feedback for $basename"
-  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml" "$API/iati-files/dataworkbench-iatifeedback/upload"
+  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/dataworkbench-iatifeedback/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/dest/$basename.feedback.xml)
   
@@ -43,7 +43,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   # Store the result
   echo "Inhouse: store json for $basename"
-  curl -sS -F "file=@/workspace/json/$basename.json" "$API/iati-files/dataworkbench-json/upload"
+  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-files/dataworkbench-json/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/json/$basename.json)
   
@@ -62,7 +62,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   if xmllint --noout /workspace/svrl/$basename.svrl 2> "/dev/null"; then
     echo "Inhouse: store svrl for $basename"
-    curl -sS -F "file=@/workspace/svrl/$basename.svrl" "$API/iati-files/dataworkbench-svrl/upload"
+    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-files/dataworkbench-svrl/upload"
   
     FILEDATE=$(date -Iseconds -r /workspace/svrl/$basename.svrl)
   
