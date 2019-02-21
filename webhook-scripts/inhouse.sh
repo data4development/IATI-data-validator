@@ -26,14 +26,14 @@ if [[ $HTTP_STATUS == 200 ]]; then
   # Store the result
   
   echo "Inhouse: store feedback for $basename"
-  curl -F "file=@/workspace/dest/$basename.feedback.xml" "$API/iati-files/dataworkbench-iatifeedback/upload"
+  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml" "$API/iati-files/dataworkbench-iatifeedback/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/dest/$basename.feedback.xml)
   
   APIDATA="{\"md5\": \"$basename\", \"feedback-updated\": \"$FILEDATE\", \"feedback-version\": \"$VERSION\"}"
   
   echo "Inhouse: update iati-datasets for feedback on $basename"
-  curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+  curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
   -d "$APIDATA" \
   "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   
@@ -43,33 +43,33 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   # Store the result
   echo "Inhouse: store json for $basename"
-  curl -F "file=@/workspace/json/$basename.json" "$API/iati-files/dataworkbench-json/upload"
+  curl -sS -F "file=@/workspace/json/$basename.json" "$API/iati-files/dataworkbench-json/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/json/$basename.json)
   
   APIDATA="{\"md5\": \"$basename\", \"json-updated\": \"$FILEDATE\", \"json-version\": \"$VERSION\"}"
   
   echo "Inhouse: update iati-datasets for json on $basename"
-  curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+  curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
   -d "$APIDATA" \
   "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   
   # Run the SVRL conversion
   rm -f /workspace/svrl/$basename.svrl
-  ant -f build-engine.xml -S -q -Dfilemask=$basename svrl
+  ant -f build-engine.xml -Dfilemask=$basename svrl
   
   # Store the result
   
   if xmllint --noout /workspace/svrl/$basename.svrl 2> "/dev/null"; then
     echo "Inhouse: store svrl for $basename"
-    curl -F "file=@/workspace/svrl/$basename.svrl" "$API/iati-files/dataworkbench-svrl/upload"
+    curl -sS -F "file=@/workspace/svrl/$basename.svrl" "$API/iati-files/dataworkbench-svrl/upload"
   
     FILEDATE=$(date -Iseconds -r /workspace/svrl/$basename.svrl)
   
     APIDATA="{\"md5\": \"$basename\", \"svrl-updated\": \"$FILEDATE\", \"svrl-version\": \"$VERSION\"}"
   
     echo "Inhouse: update iati-datasets for svrl on $basename"
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+    curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
     -d "$APIDATA" \
     "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   else
