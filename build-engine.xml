@@ -68,6 +68,10 @@
   <target name="feedback" description="Do the XML checks and validate the rules." depends="xml-check, rules"/>
   <target name="redo-feedback" description="Redo all steps for the feedback." depends="clean, xml-check, rules"/>
   
+  <target name="full-feedback" description="Do the XML checks and validate the rules." depends="xml-check, rules"/>
+  <target name="full-svrl" description="Do the XML checks and validate the rules." depends="xml-check, rules, svrl"/>
+  <target name="full-json" description="Do the XML checks and validate the rules." depends="xml-check, rules, json"/>
+
   <target name="data-quality-rules-spreadsheet" description="Generate overview of the data quality rules as a spreadsheet." depends="init">
     <echo level="info">Generate overview of the data quality rules as a spreadsheet.</echo>
     <delete file="/workspace/reports/data-quality-rules.fods"/>
