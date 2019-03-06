@@ -22,7 +22,9 @@ do
   "and": [
     {"or": [
       {"json-updated": {"exists": false}},
-      {"json-updated": {"lt": "$TDone"}}
+      {"json-updated": {"lt": "$TDone"}},
+      {"svrl-updated": {"exists": false}},
+      {"svrl-updated": {"lt": "$TDone"}}
     ]},
     {"or":[
       {"processing": {"exists": false}},
