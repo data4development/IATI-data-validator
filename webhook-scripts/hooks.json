@@ -22,6 +22,29 @@
   },
 
   {
+    "id": "get-svrl-debug",
+    "execute-command": "/home/webhook-scripts/feedback.sh",
+    "include-command-output-in-response": true,
+    "include-command-output-in-response-on-error": true,
+    "response-headers": [
+      {"name": "X-DataWorkbench", "value": "Validation with SVRL output in debug mode processed."},
+      {"name": "Content-Type", "value": "application/xml"}
+    ],
+    "command-working-directory": "/workspace",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "url",
+        "name": "source"
+      },
+      {
+        "source": "string",
+        "name": "svrl"
+      }
+    ]
+  },
+
+  {
     "id": "get-json",
     "execute-command": "/home/webhook-scripts/feedback.sh",
     "include-command-output-in-response": true,
