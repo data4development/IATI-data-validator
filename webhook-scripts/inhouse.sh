@@ -18,13 +18,15 @@ echo "Inhouse: retrieved $basename.xml with status $HTTP_STATUS"
 
 # If available:
 if [[ $HTTP_STATUS == 200 ]]; then 
+  # Make sure we process the file again by removing the target for ant
+  rm -f /workspace/dest/$basename.feedback.xml
   # Run the XML check and the rules
   ant -f build-engine.xml -Dfilemask=$basename feedback
   
   # Store the result
   
   echo "Inhouse: store feedback for $basename"
-  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml" "$API/iati-files/dataworkbench-iatifeedback/upload"
+  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/dataworkbench-iatifeedback/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/dest/$basename.feedback.xml)
   
@@ -36,12 +38,12 @@ if [[ $HTTP_STATUS == 200 ]]; then
   "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
   
   # Run the JSON conversion
-  
+  rm -f /workspace/json/$basename.json
   ant -f build-engine.xml -Dfilemask=$basename json
   
   # Store the result
   echo "Inhouse: store json for $basename"
-  curl -sS -F "file=@/workspace/json/$basename.json" "$API/iati-files/dataworkbench-json/upload"
+  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-files/dataworkbench-json/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/json/$basename.json)
   
@@ -60,7 +62,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   if xmllint --noout /workspace/svrl/$basename.svrl 2> "/dev/null"; then
     echo "Inhouse: store svrl for $basename"
-    curl -sS -F "file=@/workspace/svrl/$basename.svrl" "$API/iati-files/dataworkbench-svrl/upload"
+    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-files/dataworkbench-svrl/upload"
   
     FILEDATE=$(date -Iseconds -r /workspace/svrl/$basename.svrl)
   
@@ -76,5 +78,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
 
 fi
 
-# Remove the files from the local node
-find /workspace -name "${basename}*" -delete
+# Remove the files from the local node if no second parameter given (allows to keep the artefacts for debugging)
+if [[ -z $2 ]]; then
+  find /workspace -name "${basename}*" -delete
+fi

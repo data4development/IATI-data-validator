@@ -19,7 +19,10 @@
       <me:src ref="iati" versions="any"/>
       <me:message>The file is not a valid IATI file. The raw feedback from schema validation:
 
-{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</me:message>
+<xsl:choose>
+  <xsl:when test="unparsed-text-available('/workspace/tmp/xmlschemalog/' || $filename)">{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</xsl:when>
+  <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
+</xsl:choose></me:message>
     </me:feedback>
   </xsl:template>
   

@@ -1,0 +1,65 @@
+#!/bin/sh
+
+PREFIX="Loop unprocessed files"
+API=http://validator-api/api
+
+# loop forever
+while :
+do
+
+  # request a file to be processed
+
+  # Refresh a report after 48 hours (JSON is the last bit updated in the processing
+  # so we check for this to select incomplete or obsolete data)
+  TDone=`date -d "48 hours ago" --iso-8601=seconds`
+  # Restart processing if the last start was more than 1 hour ago
+  TProc=`date -d "1 hour ago" --iso-8601=seconds`
+
+  QUERY=`cat <<EOT
+{
+  "limit": 1, 
+  "where": {
+  "and": [
+    {"or": [
+      {"json-updated": {"exists": false}},
+      {"json-updated": {"lt": "$TDone"}},
+      {"svrl-updated": {"exists": false}},
+      {"svrl-updated": {"lt": "$TDone"}}
+    ]},
+    {"or":[
+      {"processing": {"exists": false}},
+      {"processing": {"lt": "$TProc"}}
+    ]}
+    ]
+  }
+}
+EOT`
+  
+  # Get (-G) a dataset with the query
+  DATASET=`curl -s --header 'Accept: application/xml' \
+  -G --data-urlencode "filter=$QUERY" \
+  "$API/iati-datasets"`
+  
+  MD5=`echo $DATASET | xmllint --xpath '//md5/text()' -`
+  DSID=`echo $DATASET | xmllint --xpath '//id/text()' -`
+  
+  if [ -z $MD5 ]; then
+    echo "$PREFIX: Nothing found to process, waiting"
+    sleep 1m
+  
+  else
+    echo "$PREFIX: Found $MD5 -- start processing"
+    
+    NOW=`date --iso-8601=seconds`
+    APIDATA="{\"processing\": \"$NOW\"}"
+  
+    echo "$PREFIX: update iati-datasets $MD5 to indicate processing"
+    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+    -d "$APIDATA" \
+    "$API/iati-datasets/update?where=%7B%22id%22%3A%22$DSID%22%7D"
+
+    echo "$PREFIX: process $MD5"
+    ./webhook-scripts/inhouse.sh $MD5    
+  fi
+  
+done
