@@ -7,7 +7,7 @@ API=http://validator-api/api
 while :
 do
 
-  # request a file to be processe
+  # request a file to be processed
 
   # Refresh a report after 48 hours (JSON is the last bit updated in the processing
   # so we check for this to select incomplete or obsolete data)
