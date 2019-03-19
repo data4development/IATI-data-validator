@@ -31,6 +31,19 @@
       <x:expect label="It should not produce message 3.3.1." test="not(//me:feedback[@id='3.3.1'])"/>
     </x:scenario>
     
+    <x:scenario label="If a point has lat/lon numbers separated by non-XML whitespace">
+      <x:context>
+        <iati-activity>
+          <location>
+            <point><!-- Unicode U+00A0 non-breaking space -->
+              <pos>20.82 92.36</pos>
+            </point>
+          </location>
+        </iati-activity>
+      </x:context>
+      <x:expect label="It should produce message 3.3.1." test="boolean(//me:feedback[@id='3.3.1'])"/>
+    </x:scenario>
+    
   </x:scenario>  
   
 </x:description>
