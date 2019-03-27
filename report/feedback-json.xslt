@@ -11,7 +11,7 @@
   <xsl:output  method="text" indent="yes" media-type="text/json" omit-xml-declaration="yes"/>
   
   <xsl:import href="../lib/functx.xslt"/>
-  <xsl:import href="../lib/iati.me/feedback-plain.xslt"/>
+  <xsl:import href="../lib/iati.me/feedback-plain.xslt"/><!-- todo: provides templates for context strings, rename -->
   <xsl:variable name="categories" select="$feedback-meta/me:categories/me:category"/>
   <xsl:variable name="severities" select="$feedback-meta/me:severities/me:severity"/>
   
@@ -19,12 +19,34 @@
     <xsl:variable name="j">
       <map>
         <string key="schemaVersion">{*/@me:schemaVersion}</string>
-        <array key="activities">
-          <xsl:apply-templates select="iati-activities/iati-activity"/>
-        </array>
+        <xsl:apply-templates/>
       </map>
     </xsl:variable>
    {xml-to-json($j)}
+  </xsl:template>
+
+  <xsl:template match="iati-activities">
+    <string key="filetype">iati-activities</string>
+    <xsl:apply-templates select="." mode="validation"/>
+    <xsl:call-template name="feedback">
+      <xsl:with-param name="feedback" select="me:feedback"/>
+    </xsl:call-template>
+    <array key="activities">
+      <xsl:apply-templates select="iati-activity"/>
+    </array>    
+  </xsl:template>
+  
+  <xsl:template match="*" mode="validation">
+    <string key="validation">
+      <xsl:choose>
+        <xsl:when test="'0.1.1'=me:feedback/@id">not-xml</xsl:when>        
+        <xsl:when test="'0.2.1'=me:feedback/@id">not-iati</xsl:when>        
+        <xsl:when test="'0.3.1'=me:feedback/@id">schema-errors</xsl:when>
+        <xsl:when test="'0.4.1'=me:feedback/@id">xml-and-schema-errors</xsl:when>
+        <xsl:when test="'0.5.1'=me:feedback/@id">xml-errors</xsl:when>
+        <xsl:otherwise>ok</xsl:otherwise>
+      </xsl:choose>
+    </string>
   </xsl:template>
 
   <xsl:template match="iati-activity">
@@ -32,31 +54,38 @@
       <string key="title">{title[1]/narrative[1]}</string>
       <string key="identifier">{iati-identifier}</string>
       <string key="publisher">{reporting-org/@ref}</string>
-      <array key="feedback">
-        <xsl:for-each-group select="descendant::me:feedback" group-by="@class">
-          <map>
-            <string key="category">{current-grouping-key()}</string>
-            <string key="label">{$feedback-meta/me:categories/me:category[@class=current-grouping-key()]/me:title}</string>
-            <array key="messages">
-              <xsl:for-each-group select="current-group()" group-by="@id">
-                <map>
-                  <string key="id">{current-grouping-key()}</string>
-                  <string key="text">{current-group()[1]/me:message}</string>
-                  <array key="rulesets">
-                    <xsl:apply-templates select="current-group()[1]/me:src"/>
-                  </array>
-                  <array key="context">
-                    <xsl:apply-templates select="current-group()"/>
-                  </array>
-                </map>                
-              </xsl:for-each-group>              
-            </array>
-          </map>
-        </xsl:for-each-group>
-      </array>
+      <xsl:call-template name="feedback">
+        <xsl:with-param name="feedback" select="descendant::me:feedback"/>
+      </xsl:call-template>
     </map>
   </xsl:template>
 
+  <xsl:template name="feedback">
+    <xsl:param name="feedback"/>
+    <array key="feedback">
+      <xsl:for-each-group select="$feedback" group-by="@class">
+        <map>
+          <string key="category">{current-grouping-key()}</string>
+          <string key="label">{$feedback-meta/me:categories/me:category[@class=current-grouping-key()]/me:title}</string>
+          <array key="messages">
+            <xsl:for-each-group select="current-group()" group-by="@id">
+              <map>
+                <string key="id">{current-grouping-key()}</string>
+                <string key="text">{current-group()[1]/me:message}</string>
+                <array key="rulesets">
+                  <xsl:apply-templates select="current-group()[1]/me:src"/>
+                </array>
+                <array key="context">
+                  <xsl:apply-templates select="current-group()"/>
+                </array>
+              </map>                
+            </xsl:for-each-group>              
+          </array>
+        </map>
+      </xsl:for-each-group>
+    </array>
+  </xsl:template>
+  
   <xsl:template match="me:src">
     <map>
       <string key="src">{@ref}</string>
