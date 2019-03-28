@@ -39,11 +39,11 @@ Common elements:
 * The `schemaversion` is the version of the validation rules used to create the feedback.
 * The `filetype` of the file: `iati-activities`, `iati-organisations`, ...
 * The file-level validation result:
-  * `not-xml`: the file does not contain (valid) XML and cannot be recognised as IATI
-  * `not-iati`: the file contains valid XML data but not IATI
-  * `schema-errors`: the file contains IATI data with schema errors
-  * `xml-errors`: the file has XML errors, and in a recovered version is valid IATI
-  * `xml-and-schema-errors`: the file has XML errors, and in a recovered version also has IATI schema errors
+  * `not-an-xml-file`: the file does not contain (valid) XML and cannot be recognised as IATI
+  * `not-an-iati-file`: the file contains valid XML data but not IATI
+  * `iati-with-schema-errors`: the file contains IATI data with schema errors
+  * `iati-with-xml-errors`: the file has XML errors, and in a recovered version is valid IATI
+  * `iati-with-xml-and-schema-errors`: the file has XML errors, and in a recovered version also has IATI schema errors
 * An array of file-level feedback messages (see format below).
 
 For an IATI activities file, this is completed with:

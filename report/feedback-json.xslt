@@ -39,11 +39,11 @@
   <xsl:template match="*" mode="validation">
     <string key="validation">
       <xsl:choose>
-        <xsl:when test="'0.1.1'=me:feedback/@id">not-xml</xsl:when>        
-        <xsl:when test="'0.2.1'=me:feedback/@id">not-iati</xsl:when>        
-        <xsl:when test="'0.3.1'=me:feedback/@id">schema-errors</xsl:when>
-        <xsl:when test="'0.4.1'=me:feedback/@id">xml-and-schema-errors</xsl:when>
-        <xsl:when test="'0.5.1'=me:feedback/@id">xml-errors</xsl:when>
+        <xsl:when test="'0.1.1'=me:feedback/@id">not-an-xml-file</xsl:when>        
+        <xsl:when test="'0.2.1'=me:feedback/@id">not-an-iati-file</xsl:when>        
+        <xsl:when test="'0.3.1'=me:feedback/@id">iati-with-schema-errors</xsl:when>
+        <xsl:when test="'0.4.1'=me:feedback/@id">iati-with-xml-and-schema-errors</xsl:when>
+        <xsl:when test="'0.5.1'=me:feedback/@id">iati-with-xml-errors</xsl:when>
         <xsl:otherwise>ok</xsl:otherwise>
       </xsl:choose>
     </string>
