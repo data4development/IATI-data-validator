@@ -3,6 +3,7 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:me="http://iati.me"
+  xmlns:functx="http://www.functx.com"
   exclude-result-prefixes="xs me"
   version="3.0"
   expand-text="yes">
@@ -25,17 +26,26 @@
    {xml-to-json($j)}
   </xsl:template>
 
-  <xsl:template match="iati-activities">
-    <string key="filetype">iati-activities</string>
+  <xsl:template match="iati-activities|iati-organisations">
+    <string key="filetype">{local-name(.)}</string>
     <xsl:apply-templates select="." mode="validation"/>
     <xsl:call-template name="feedback">
       <xsl:with-param name="feedback" select="me:feedback"/>
     </xsl:call-template>
-    <array key="activities">
-      <xsl:apply-templates select="iati-activity"/>
-    </array>    
+
+    <xsl:where-populated>
+      <array key="activities">
+        <xsl:apply-templates select="iati-activity"/>
+      </array>          
+    </xsl:where-populated>
+
+    <xsl:where-populated>
+      <array key="organisations">
+        <xsl:apply-templates select="iati-organisation"/>
+      </array>          
+    </xsl:where-populated>
   </xsl:template>
-  
+
   <xsl:template match="*" mode="validation">
     <string key="validation">
       <xsl:choose>
@@ -60,6 +70,17 @@
     </map>
   </xsl:template>
 
+  <xsl:template match="iati-organisation">
+    <map>
+      <string key="title">{name[1]/narrative[1]}</string>
+      <string key="identifier">{organisation-identifier/text()[1]}</string>
+      <string key="publisher">{reporting-org/@ref}</string>
+      <xsl:call-template name="feedback">
+        <xsl:with-param name="feedback" select="descendant::me:feedback"/>
+      </xsl:call-template>
+    </map>
+  </xsl:template>
+  
   <xsl:template name="feedback">
     <xsl:param name="feedback"/>
     <array key="feedback">
