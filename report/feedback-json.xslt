@@ -26,9 +26,14 @@
    {xml-to-json($j)}
   </xsl:template>
 
-  <xsl:template match="iati-activities|iati-organisations">
-    <string key="filetype">{local-name(.)}</string>
-    <xsl:apply-templates select="." mode="validation"/>
+  <xsl:template match="/*">
+    <string key="filetype">
+      <xsl:apply-templates select="." mode="filetype"/>
+    </string>
+    <string key="validation">
+      <xsl:apply-templates select="." mode="validation"/>
+    </string>
+    
     <xsl:call-template name="feedback">
       <xsl:with-param name="feedback" select="me:feedback"/>
     </xsl:call-template>
@@ -46,8 +51,16 @@
     </xsl:where-populated>
   </xsl:template>
 
+  <xsl:template match="iati-activities|iati-organisations" mode="filetype">
+    <xsl:value-of select="local-name(.)"/>  
+  </xsl:template>
+  
+  <xsl:template match="*" mode="filetype">
+    <xsl:text>not-iati</xsl:text>  
+  </xsl:template>
+  
   <xsl:template match="*" mode="validation">
-    <string key="validation">
+    
       <xsl:choose>
         <xsl:when test="'0.1.1'=me:feedback/@id">not-an-xml-file</xsl:when>        
         <xsl:when test="'0.2.1'=me:feedback/@id">not-an-iati-file</xsl:when>        
@@ -56,7 +69,7 @@
         <xsl:when test="'0.5.1'=me:feedback/@id">iati-with-xml-errors</xsl:when>
         <xsl:otherwise>ok</xsl:otherwise>
       </xsl:choose>
-    </string>
+    
   </xsl:template>
 
   <xsl:template match="iati-activity">
@@ -80,7 +93,7 @@
       </xsl:call-template>
     </map>
   </xsl:template>
-  
+
   <xsl:template name="feedback">
     <xsl:param name="feedback"/>
     <array key="feedback">
