@@ -6,7 +6,7 @@
       <narrative></narrative>
     </not-reporting-org>
     <title>
-      <narrative>Error in closing tag for reporting-org</narrative>
+      <narrative>Activity with a closing tag error and a schema validation error</narrative>
     </title>
     <description>
       <narrative></narrative>
