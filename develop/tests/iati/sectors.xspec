@@ -112,20 +112,6 @@
       <x:expect label="It should produce message '6.7.2' if some transactions have no sector classification." test="boolean(/iati-activity[3]/me:feedback[@id='6.7.2'])"/>
     </x:scenario>
     
-    <x:scenario label="If there are withdrawn sectors">
-      <x:context>
-        <iati-activity>
-          <sector code="92030"/>
-        </iati-activity>
-        <iati-activity>
-          <transaction>
-            <sector code="92010"/>
-          </transaction>
-        </iati-activity>
-      </x:context>
-      <x:expect label="It should not produce a 6.6.* message." test="not(//me:feedback[starts-with(@id, '6.6.')])"/>
-    </x:scenario>
-    
   </x:scenario>  
   
 </x:description>

@@ -4,20 +4,6 @@
   xslt-version="3.0">
 
   <x:scenario label="IATI version number">
-    <x:scenario label="If it has a non-existing version number for iati-activities">
-      <x:context>
-        <iati-activities version="1.6"/>
-      </x:context>
-      <x:expect label="It should produce message 9.1.1" test="boolean(//iati-activities/me:feedback[@id='9.1.1'])"/>
-    </x:scenario>
-
-    <x:scenario label="If it has a non-existing version number for iati-organisations">
-      <x:context>
-        <iati-organisations version="1.6"/>
-      </x:context>
-      <x:expect label="It should produce message 9.97.1" test="boolean(//iati-organisations/me:feedback[@id='9.97.1'])"/>
-    </x:scenario>
-    
   </x:scenario>
 
 </x:description>

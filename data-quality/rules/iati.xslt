@@ -29,10 +29,6 @@
   <xsl:include href="iati/information.xslt"/>
   <xsl:include href="iati/financial.xslt"/>
   <xsl:include href="iati/results.xslt"/>
-  
-  <!-- General practice and donor rules -->
-  <xsl:include href="praxis.xslt"/>
-  <xsl:include href="donors.xslt"/>
 
   <xsl:output indent="yes"/>
   
