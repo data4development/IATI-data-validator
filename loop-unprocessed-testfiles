@@ -40,6 +40,7 @@ EOT`
   -G --data-urlencode "filter=$QUERY" \
   "$API/iati-testdatasets"`
   
+  FID=`echo $DATASET | xmllint --xpath '//fileid/text()' -`
   DSID=`echo $DATASET | xmllint --xpath '//id/text()' -`
   
   if [ -z $DSID ]; then
@@ -58,7 +59,7 @@ EOT`
     "$API/iati-testdatasets/update?where=%7B%22id%22%3A%22$DSID%22%7D"
 
     echo "$PREFIX: process $DSID"
-    ./webhook-scripts/inhouse-testfiles.sh $DSID    
+    ./webhook-scripts/inhouse-testfiles.sh $FID    
   fi
   
 done
