@@ -23,7 +23,7 @@ echo "$PREFIX: retrieved $filename with status $HTTP_STATUS"
 
 # If available:
 if [[ $HTTP_STATUS == 200 ]]; then 
-  basename=${$filename%.*}
+  basename=${filename%.*}
   
   # Make sure we process the file again by removing the target for ant
   rm -f /workspace/dest/$basename.feedback.xml
@@ -33,7 +33,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   # Store the result
   
   echo "$PREFIX: store feedback for $basename ($filename)"
-  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-testfiles/$CONTAINER_FEEDBACK/upload"
+  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/$CONTAINER_FEEDBACK/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/dest/$basename.feedback.xml)
   
@@ -50,7 +50,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   # Store the result
   echo "$PREFIX: store json for $basename ($filename)"
-  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-testfiles/$CONTAINER_JSON/upload"
+  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-files/$CONTAINER_JSON/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/json/$basename.json)
   
@@ -69,7 +69,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   if xmllint --noout /workspace/svrl/$basename.svrl 2> "/dev/null"; then
     echo "$PREFIX: store svrl for $basename ($filename)"
-    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-testfiles/$CONTAINER_SVRL/upload"
+    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-files/$CONTAINER_SVRL/upload"
   
     FILEDATE=$(date -Iseconds -r /workspace/svrl/$basename.svrl)
   
