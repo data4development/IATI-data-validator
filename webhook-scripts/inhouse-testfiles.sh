@@ -42,7 +42,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   echo "$PREFIX: update iati-testdatasets for feedback on $basename ($filename)"
   curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
   -d "$APIDATA" \
-  "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$basename%22%7D"
+  "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$filename%22%7D"
   
   # Run the JSON conversion
   rm -f /workspace/json/$basename.json
@@ -54,12 +54,12 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   FILEDATE=$(date -Iseconds -r /workspace/json/$basename.json)
   
-  APIDATA="{\"md5\": \"$basename\", \"json-updated\": \"$FILEDATE\", \"json-version\": \"$VERSION\"}"
+  APIDATA="{\"json-updated\": \"$FILEDATE\", \"json-version\": \"$VERSION\"}"
   
   echo "$PREFIX: update iati-testdatasets for json on $basename ($filename)"
   curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
   -d "$APIDATA" \
-  "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$basename%22%7D"
+  "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$filename%22%7D"
   
   # Run the SVRL conversion
   rm -f /workspace/svrl/$basename.svrl
@@ -73,12 +73,12 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
     FILEDATE=$(date -Iseconds -r /workspace/svrl/$basename.svrl)
   
-    APIDATA="{\"md5\": \"$basename\", \"svrl-updated\": \"$FILEDATE\", \"svrl-version\": \"$VERSION\"}"
+    APIDATA="{\"svrl-updated\": \"$FILEDATE\", \"svrl-version\": \"$VERSION\"}"
   
     echo "$PREFIX: update iati-testdatasets for svrl on $basename ($filename)"
     curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
     -d "$APIDATA" \
-    "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$basename%22%7D"
+    "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$filename%22%7D"
   else
     echo "$PREFIX: svrl for $basename is not valid XML"
   fi
