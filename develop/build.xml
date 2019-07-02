@@ -44,9 +44,10 @@
 
     <echo>
       Ant target graph available as tmp/ant-graph.dot
-      To create an SVG image fromt this, you need GraphViz and run:
+      To create and view an SVG image fromt this, you need GraphViz and run:
       
-        dot -Tsvg -o ant-graph.svg tmp/ant-graph.dot
+        dot -Tsvg -o tmp/ant-graph.svg tmp/ant-graph.dot
+        open tmp/ant-graph.svg
     </echo>
   </target>
 
