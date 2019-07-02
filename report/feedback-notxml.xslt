@@ -12,7 +12,7 @@
   
   <xsl:template match="/not-an-xml-file">
     <not-an-xml-file xmlns:me="http://iati.me" me:schemaVersion="{$schemaVersion}">
-      <me:feedback type="danger" class="iati" id="0.1.1">
+      <me:feedback type="critical" class="iati" id="0.1.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The file is not a proper XML file. The raw feedback from xmllint:
 
@@ -26,7 +26,7 @@
 
   <xsl:template match="/not-an-iati-file">
     <not-an-iati-file xmlns:me="http://iati.me" me:schemaVersion="{$schemaVersion}">
-      <me:feedback type="danger" class="iati" id="0.2.1">
+      <me:feedback type="critical" class="iati" id="0.2.1">
         <me:src ref="iati" versions="any"/>
         <me:message>The file is not an IATI file.</me:message>
       </me:feedback>

@@ -6,7 +6,7 @@
       <title>IATI file</title>
     </category>
     
-    <!-- following AidStream main categories -->
+    <!-- following IATI main categories -->
     <category class="identifiers">
       <title>Identification</title>
     </category>
@@ -37,54 +37,17 @@
     <category class="performance">
       <title>Performance</title>
     </category>    
-    
-    <!-- Extensions -->
-    <category class="traceability">
-      <title>Traceability</title>
-    </category>
-    <category class="exclusions">
-      <title>Exclusions</title>
-    </category>
-    <category class="inclusions">
-      <title>Inclusions</title>
-    </category>
-    
-    <!-- deprecated -->
-    <category class="codelists">
-      <title>Code lists</title>
-    </category>
-    <category class="sectors">
-      <title>Classifications</title>
-    </category>
-    <category class="language">
-      <title>Language and text</title>
-    </category>
-    <category class="results">
-      <title>Results</title>
-    </category>    
-  </categories>
+      </categories>
 
   <severities>
+    <severity type="critical">Critical</severity>
     <severity type="danger">Error</severity>
     <severity type="warning">Warning</severity>
     <severity type="info">Improvement</severity>
-    <severity type="success">Optimisation</severity>
+    <severity type="success">Information</severity>
   </severities>
 
   <sources>
     <source id="iati" logo="iati.png">IATI Standard</source>
-    <source id="minbuza" logo="minbuza.svg" href="http://helpdesk-opendata-minbuza.nl">Netherlands - Ministry of Foreign Affairs</source>
-    <source id="dfid" logo="dfid.png" href="https://devtracker.dfid.gov.uk/">UK - Department for International Development (DFID)</source>
-
-    <!-- additional sources -->
-    <source id="exclusions" logo="stop.svg">Your exclusion policy</source>
-    <source id="inclusions" logo="ok.svg">Your inclusion policy</source>
-    <source id="practice">Common practice</source>
-    <source id="n/a">Not specified</source>
-    
-    <!-- deprecated -->
-    <source id="iati-xsd" logo="iati.png">IATI schema validation</source>
-    <source id="iati-doc" logo="iati.png">IATI documentation</source>
-    
   </sources>
 </meta>

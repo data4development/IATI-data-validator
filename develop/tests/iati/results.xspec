@@ -1,46 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
   xmlns:me="http://iati.me"
-  stylesheet="../../../data-quality/rules/iati.xslt"
   xslt-version="3.0">
 
   <x:scenario label="Results">
-      
-    <x:scenario label="If there are non-aggregateable results">
-      <x:context>
-        <iati-activity>
-          <result aggregation-status="0">
-            <indicator>
-              <baseline value="abc"/>
-              <period>
-                <target value="def"/>
-                <actual value="xyz"/>
-              </period>
-            </indicator>
-          </result>
-        </iati-activity>
-      </x:context>
-      <x:expect label="It should not produce message 8.5.1." test="not(//me:feedback[@id='8.5.1'])"/>
-    </x:scenario>
-    
-    <x:scenario label="If there are aggregateable results">
-      <x:context>
-        <iati-activity>
-          <result aggregation-status="1">
-            <indicator>
-              <baseline value="abc"/>
-              <period>
-                <target value="def"/>
-                <actual value="xyz"/>
-              </period>
-            </indicator>
-          </result>
-        </iati-activity>
-      </x:context>
-      <x:expect label="It should produce message 8.5.1 for a non-number baseline value." test="boolean(//baseline/me:feedback[@id='8.5.1'])"/>
-      <x:expect label="It should produce message 8.5.1 for a non-number target value." test="boolean(//target/me:feedback[@id='8.5.1'])"/>
-      <x:expect label="It should produce message 8.5.1 for a non-number actual value." test="boolean(//actual/me:feedback[@id='8.5.1'])"/>
-    </x:scenario>
   </x:scenario>  
   
 </x:description>

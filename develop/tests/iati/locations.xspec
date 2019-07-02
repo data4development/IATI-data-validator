@@ -1,34 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
   xmlns:me="http://iati.me"
-  stylesheet="../../../data-quality/rules/iati.xslt"
   xslt-version="3.0">
 
   <x:scenario label="Locations">
-      
-    <x:scenario label="If a location used in a result indicator is not specified in the activity">
-      <x:context>
-        <iati-activity>
-          <result>
-            <indicator>
-              <baseline>
-                <location ref="ABC"/>
-              </baseline>
-              <target>
-                <location ref="DEF"/>
-              </target>
-              <actual>
-                <location ref="GHI"/>
-              </actual>
-            </indicator>
-          </result>
-        </iati-activity>
-      </x:context>
-      <x:expect label="It should produce message 8.7.1 for a baseline." test="boolean(//baseline/location/me:feedback[@id='8.7.1'])"/>
-      <x:expect label="It should produce message 8.7.1 for a target." test="boolean(//target/location/me:feedback[@id='8.7.1'])"/>
-      <x:expect label="It should produce message 8.7.1 for an actual." test="boolean(//actual/location/me:feedback[@id='8.7.1'])"/>
-    </x:scenario>
-    
   </x:scenario>  
   
 </x:description>

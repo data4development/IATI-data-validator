@@ -131,4 +131,3 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
   fi 
 
 done
-

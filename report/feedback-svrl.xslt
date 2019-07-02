@@ -33,6 +33,7 @@
   <xsl:template match="@type">
       <xsl:attribute name="role">
         <xsl:choose>
+        <xsl:when test=".='critical'">critical</xsl:when>
         <xsl:when test=".='danger'">error</xsl:when>
         <xsl:when test=".='warning'">warning</xsl:when>
         <xsl:when test=".='info'">info</xsl:when>
