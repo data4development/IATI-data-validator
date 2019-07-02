@@ -68,20 +68,14 @@
     </antcall>
   </target>
   
-  <target name="minbuza-tests">
-    <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/minbuza.xspec"/>
-    </antcall>
-  </target>
-  
-  <target name="dfid-tests">
-    <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/dfid.xspec"/>
-    </antcall>
-  </target>
-  
-  <target name="tests" description="Run the tests" 
-    depends="non-iati-file-tests, iati-1.0x-tests, iati-2.0x-tests, minbuza-tests, dfid-tests">
+  <target name="test" description="Run the tests" 
+    depends="iati-1.0x-tests, iati-2.0x-tests">
     <!-- TODO: as we use a global variable to pass around the IATI version to use in checks, we can't test 1.05 and 2.03 in the same run -->
   </target>
-</project>
+
+  <target name="tests" description="Run all the tests (don't stop at first failure)">
+    <antcall target="test">
+      <param name="xspec.fail" value="false"/>
+    </antcall>
+  </target>
+  </project>

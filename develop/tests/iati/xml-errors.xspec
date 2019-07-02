@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
   xmlns:me="http://iati.me"
-  stylesheet="../../../data-quality/rules/iati.xslt"
   xslt-version="3.0">
   
   <x:scenario label="XML errors">
-    
-    <x:scenario label="If a boolean attribute contains a non-boolean value">
-      <x:context>
-        <iati-activity>
-          <result aggregation-status="True">
-            <indicator>
-              <baseline value="not a number"/>
-            </indicator>
-          </result>
-        </iati-activity>
-      </x:context>
-      <x:expect label="It should produce message 8.8.1." test="boolean(//me:feedback[@id='8.8.1'])"/>
-      <x:expect label="It should not produce message 8.5.1." test="not(//me:feedback[@id='8.5.1'])"/>
-    </x:scenario>
   </x:scenario>
     
 </x:description>

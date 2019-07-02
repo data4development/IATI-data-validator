@@ -20,6 +20,7 @@
     <xsl:variable name="j">
       <map>
         <string key="schemaVersion">{*/@me:schemaVersion}</string>
+        <string key="iatiVersion">{*/@me:iatiVersion}</string>
         <xsl:apply-templates/>
       </map>
     </xsl:variable>

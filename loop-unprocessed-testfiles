@@ -36,10 +36,11 @@ do
 EOT`
   
   # Get (-G) a dataset with the query
-  DATASET=`curl -s --header 'Accept: application/xml' \
+  DATASET=`curl -sS --header 'Accept: application/xml' \
   -G --data-urlencode "filter=$QUERY" \
   "$API/iati-testdatasets"`
   
+  FID=`echo $DATASET | xmllint --xpath '//fileid/text()' -`
   DSID=`echo $DATASET | xmllint --xpath '//id/text()' -`
   
   if [ -z $DSID ]; then
@@ -53,12 +54,12 @@ EOT`
     APIDATA="{\"processing\": \"$NOW\"}"
   
     echo "$PREFIX: update iati-testdatasets $DSID to indicate processing"
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+    curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
     -d "$APIDATA" \
     "$API/iati-testdatasets/update?where=%7B%22id%22%3A%22$DSID%22%7D"
 
     echo "$PREFIX: process $DSID"
-    ./webhook-scripts/inhouse-testfiles.sh $DSID    
+    ./webhook-scripts/inhouse-testfiles.sh $FID    
   fi
   
 done

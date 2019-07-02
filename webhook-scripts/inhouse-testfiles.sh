@@ -23,10 +23,8 @@ echo "$PREFIX: retrieved $filename with status $HTTP_STATUS"
 
 # If available:
 if [[ $HTTP_STATUS == 200 ]]; then 
-  # get the real md5 of the file: the basename is the unique filename created by the upload
-  basename=$(md5sum /workspace/input/$filename | cut -f 1 -d \ )
-  mv /workspace/input/$filename /workspace/input/$basename
-
+  basename=${filename%.*}
+  
   # Make sure we process the file again by removing the target for ant
   rm -f /workspace/dest/$basename.feedback.xml
   # Run the XML check and the rules
@@ -35,16 +33,16 @@ if [[ $HTTP_STATUS == 200 ]]; then
   # Store the result
   
   echo "$PREFIX: store feedback for $basename ($filename)"
-  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-testfiles/$CONTAINER_FEEDBACK/upload"
+  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/$CONTAINER_FEEDBACK/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/dest/$basename.feedback.xml)
   
-  APIDATA="{\"md5\": \"$basename\", \"feedback-updated\": \"$FILEDATE\", \"feedback-version\": \"$VERSION\"}"
+  APIDATA="{\"feedback-updated\": \"$FILEDATE\", \"feedback-version\": \"$VERSION\"}"
   
   echo "$PREFIX: update iati-testdatasets for feedback on $basename ($filename)"
   curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
   -d "$APIDATA" \
-  "$API/iati-testdatasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
+  "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$filename%22%7D"
   
   # Run the JSON conversion
   rm -f /workspace/json/$basename.json
@@ -52,16 +50,16 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   # Store the result
   echo "$PREFIX: store json for $basename ($filename)"
-  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-testfiles/$CONTAINER_JSON/upload"
+  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-files/$CONTAINER_JSON/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/json/$basename.json)
   
-  APIDATA="{\"md5\": \"$basename\", \"json-updated\": \"$FILEDATE\", \"json-version\": \"$VERSION\"}"
+  APIDATA="{\"json-updated\": \"$FILEDATE\", \"json-version\": \"$VERSION\"}"
   
   echo "$PREFIX: update iati-testdatasets for json on $basename ($filename)"
   curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
   -d "$APIDATA" \
-  "$API/iati-testdatasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
+  "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$filename%22%7D"
   
   # Run the SVRL conversion
   rm -f /workspace/svrl/$basename.svrl
@@ -71,16 +69,16 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   if xmllint --noout /workspace/svrl/$basename.svrl 2> "/dev/null"; then
     echo "$PREFIX: store svrl for $basename ($filename)"
-    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-testfiles/$CONTAINER_SVRL/upload"
+    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-files/$CONTAINER_SVRL/upload"
   
     FILEDATE=$(date -Iseconds -r /workspace/svrl/$basename.svrl)
   
-    APIDATA="{\"md5\": \"$basename\", \"svrl-updated\": \"$FILEDATE\", \"svrl-version\": \"$VERSION\"}"
+    APIDATA="{\"svrl-updated\": \"$FILEDATE\", \"svrl-version\": \"$VERSION\"}"
   
     echo "$PREFIX: update iati-testdatasets for svrl on $basename ($filename)"
     curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
     -d "$APIDATA" \
-    "$API/iati-testdatasets/update?where=%7B%22md5%22%3A%22$basename%22%7D"
+    "$API/iati-testdatasets/update?where=%7B%22fileid%22%3A%22$filename%22%7D"
   else
     echo "$PREFIX: svrl for $basename is not valid XML"
   fi

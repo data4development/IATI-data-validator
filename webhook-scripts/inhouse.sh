@@ -5,6 +5,8 @@
 
 cd /home 
 
+DEPLOY=${DEPLOY:=-staging-d4d-dataworkbench}
+
 API=http://validator-api/api
 VERSION=`grep 'variable name="schemaVersion"' data-quality/rules/iati.xslt | cut -f 2 -d \> | cut -f 1 -d \<`
 basename=$1
@@ -13,7 +15,7 @@ basename=$1
 
 mkdir -p /workspace/input
 
-HTTP_STATUS=$(curl -s "$API/iati-files/dataworkbench-iati/download/$basename.xml" -o "/workspace/input/$basename.xml" -w "%{http_code}")
+HTTP_STATUS=$(curl -s "$API/iati-files/dataworkbench-iati$DEPLOY/download/$basename.xml" -o "/workspace/input/$basename.xml" -w "%{http_code}")
 echo "Inhouse: retrieved $basename.xml with status $HTTP_STATUS"
 
 # If available:
@@ -26,7 +28,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   # Store the result
   
   echo "Inhouse: store feedback for $basename"
-  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/dataworkbench-iatifeedback/upload"
+  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/dataworkbench-iatifeedback$DEPLOY/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/dest/$basename.feedback.xml)
   
@@ -43,7 +45,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   # Store the result
   echo "Inhouse: store json for $basename"
-  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-files/dataworkbench-json/upload"
+  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-files/dataworkbench-json$DEPLOY/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/json/$basename.json)
   
@@ -62,7 +64,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   if xmllint --noout /workspace/svrl/$basename.svrl 2> "/dev/null"; then
     echo "Inhouse: store svrl for $basename"
-    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-files/dataworkbench-svrl/upload"
+    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-files/dataworkbench-svrl$DEPLOY/upload"
   
     FILEDATE=$(date -Iseconds -r /workspace/svrl/$basename.svrl)
   
