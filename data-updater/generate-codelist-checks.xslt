@@ -38,7 +38,8 @@
         <xsl:variable name="default">The code for {regex-group(2)} is not on the {$codelist} codelist.</xsl:variable>
         
         <axsl:template match="{regex-group(1) || $condition}" mode="rules" priority="{$pos}">
-          <axsl:if test="me:codeListFail({regex-group(2)}, '{$codelist}')">
+          <axsl:param name="iati-version" tunnel="yes"/>
+          <axsl:if test="me:codeListFail({regex-group(2)}, '{$codelist}', $iati-version)">
             <me:feedback type="danger" class="{($class, 'iati')[1]}" id="{$pos || '.1'}">
               <me:src ref="iati" versions="any"/>
               <me:message>{($message, $default)[1]}</me:message>
