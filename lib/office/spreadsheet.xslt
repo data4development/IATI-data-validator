@@ -43,6 +43,7 @@
   office:version="1.2"
   office:mimetype="application/vnd.oasis.opendocument.spreadsheet"
 
+  expand-text="yes"
   exclude-result-prefixes="functx iwb">
 
   <xsl:import href="../functx.xslt"/>
@@ -57,37 +58,35 @@
   </xsl:template>
 
   <xsl:template match="*" mode="office-spreadsheet-table">
-    <table:table table:name="{name(.)}" table:style-name="ta1">
-      <xsl:apply-templates select="." mode="office-spreadsheet-row"/>
+    <xsl:param name="table-structure" tunnel="yes"/>
+    <table:table table:name="{$table-structure/table-structure/@name}" 
+                 table:style-name="{($table-structure/table-structure/@table-style, 'ta1')[1]}">
+      <xsl:apply-templates select="*" mode="office-spreadsheet-row"/>
     </table:table>
   </xsl:template>
 
-  <xsl:template match="*" mode="office-spreadsheet-row-header">
-    <!-- First set column widths -->
-    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <!-- Next set the column headings -->
-    <table:table-row table:style-name="ro1">
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Col 1</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Col 2</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Column 3</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Column 4</text:p>
-      </table:table-cell>
-    </table:table-row>
+  <xsl:template match="*" mode="table-column">
+    <table:table-column table:style-name="{(@column-style, 'co1')[1]}" 
+                        table:default-cell-style-name="{(@cell-style, 'Default')[1]}"/>
+  </xsl:template>
+
+  <xsl:template match="*" mode="table-header-cell">
+    <table:table-cell table:style-name="{('Heading')[1]}" 
+                      office:value-type="{('string')[1]}" 
+                      calcext:value-type="{('string')[1]}">
+      <text:p>{./text()}</text:p>
+    </table:table-cell>
   </xsl:template>
 
   <xsl:template match="*" mode="office-spreadsheet-row">
+    <xsl:param name="table-structure" tunnel="yes"/>
     <xsl:if test="position()=1">
-      <xsl:apply-templates select="." mode="office-spreadsheet-row-header"/>
+      <!-- First set column widths -->
+      <xsl:apply-templates select="$table-structure//column" mode="table-column"/>
+      <!-- Next set the column headings -->
+      <table:table-row table:style-name="{($table-structure/table-header/@row-style, 'ro1')[1]}">
+        <xsl:apply-templates select="$table-structure/table-header/column" mode="table-header-cell"/>
+      </table:table-row>
     </xsl:if>
     <table:table-row table:style-name="ro1">
       <xsl:apply-templates select="." mode="office-spreadsheet-cells"/>
@@ -109,7 +108,7 @@
     </table:table-cell>
   </xsl:template>
 
-  <xsl:template match="/">
+  <xsl:template match="/" mode="office-spreadsheet">
     <office:document office:version="1.2" office:mimetype="application/vnd.oasis.opendocument.spreadsheet">
         <xsl:apply-templates select="." mode="office-spreadsheet-meta"/>
         <office:settings>

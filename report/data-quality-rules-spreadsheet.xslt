@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:me="http://iati.me"
-  xmlns:office="http://iati.me/office"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0"
-  xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0"
-  xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
 
   expand-text="yes"
-  exclude-result-prefixes="me office xs">
+  exclude-result-prefixes="me xs">
 
   <xsl:import href="../lib/office/spreadsheet.xslt"/>
   <xsl:variable name="meta" select="/me:meta"/>
   <xsl:variable name="calls" select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//xsl:call-template"/>
 
-  <xsl:template match="*" mode="office-spreadsheet-table">
+  <xsl:template match="/">
     <xsl:variable name="rules">
-      <xsl:apply-templates select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//me:feedback" mode="get-feedback-messages"/>
+      <rules>
+        <xsl:apply-templates select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//me:feedback" mode="get-feedback-messages"/>
+      </rules>
     </xsl:variable>
-    <table:table table:name="Rules" table:style-name="ta1">
-      <xsl:apply-templates select="$rules" mode="office-spreadsheet-row">
-        <xsl:sort select="@id"/>
-      </xsl:apply-templates>
-    </table:table>
+
+    <xsl:variable name="table-structure">
+      <table-header name="Rules">
+        <column column-style="co1">Class</column>
+        <column column-style="co1">ID</column>
+        <column column-style="co1">Severity</column>
+        <column column-style="co2">Ruleset(s)</column>
+        <column column-style="co4">Message</column>
+        <column column-style="co4">Description</column>
+        <column column-style="co4">Context (Xpath)</column>
+        <column column-style="co4">Test (Xpath)</column>
+      </table-header>
+    </xsl:variable>
+
+    <xsl:apply-templates select="$rules" mode="office-spreadsheet">
+      <xsl:with-param name="table-structure" select="$table-structure" tunnel="yes"/>
+    </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="*[ancestor::xsl:template[1][@match]]" mode="get-feedback-messages">
@@ -68,45 +78,6 @@
     <xsl:param name="item"/>
     <xsl:text>{$call/xsl:with-param[@name=$item]/text()}</xsl:text>
   </xsl:function>
-
-  <xsl:template match="*" mode="office-spreadsheet-row-header">
-    <!-- First set column widths -->
-    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <!-- Next set the column headings -->
-    <table:table-row table:style-name="ro1">
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Class</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>ID</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Severity</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-        <text:p>Rule set(s)</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Message</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Description</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Context (XPath)</text:p>
-      </table:table-cell>
-      <table:table-cell table:style-name="Heading" office:value-type="string" calcext:value-type="string">
-          <text:p>Test (XPath)</text:p>
-      </table:table-cell>
-    </table:table-row>
-  </xsl:template>
 
   <xsl:template match="*" mode="office-spreadsheet-cells">
     <xsl:apply-templates mode="office-spreadsheet-cell"
