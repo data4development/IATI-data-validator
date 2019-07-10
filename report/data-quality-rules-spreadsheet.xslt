@@ -12,14 +12,62 @@
 
   <xsl:import href="../lib/office/spreadsheet.xslt"/>
   <xsl:variable name="meta" select="/me:meta"/>
+  <xsl:variable name="calls" select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//xsl:call-template"/>
 
   <xsl:template match="*" mode="office-spreadsheet-table">
+    <xsl:variable name="rules">
+      <xsl:apply-templates select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//me:feedback" mode="get-feedback-messages"/>
+    </xsl:variable>
     <table:table table:name="Rules" table:style-name="ta1">
-      <xsl:apply-templates select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//me:feedback" mode="office-spreadsheet-row">
-        <xsl:sort select="@id" data-type="number"/>
+      <xsl:apply-templates select="$rules" mode="office-spreadsheet-row">
+        <xsl:sort select="@id"/>
       </xsl:apply-templates>
     </table:table>
   </xsl:template>
+
+  <xsl:template match="*[ancestor::xsl:template[1][@match]]" mode="get-feedback-messages">
+    <xsl:variable name="empty"><me:x></me:x></xsl:variable>
+    <xsl:variable name="t"><xsl:apply-templates select="me:src" mode="ruleset-list"/></xsl:variable>
+    <xsl:variable name="rulesetseverities"><xsl:value-of select="$t/me:t" separator=", "/></xsl:variable>
+
+    <rule class="{@class}"
+          id="{@id}"
+          rulesets="{$rulesetseverities}">
+      <severities>{$meta//me:severity[@type=current()/@type]}</severities>
+      <message>{(me:message, $empty)[1]}</message>
+      <description>{(me:description, $empty)[1]}</description>
+      <context>{(ancestor::xsl:template[1]/@match, $empty)[1]}</context>
+      <test>{ancestor::*[local-name(.)=('if','when')][1]/@test}</test>
+    </rule>    
+  </xsl:template>
+
+  <xsl:template match="*[ancestor::xsl:template[1][@name]]" mode="get-feedback-messages">
+    <!-- these are named templates called by other matches -->
+    <xsl:apply-templates select="$calls[@name=current()/ancestor::xsl:template/@name]" mode="get-feedback-calls">
+      <xsl:with-param name="rule" select="."/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="*" mode="get-feedback-calls">
+    <xsl:param name="rule"/>
+    <xsl:variable name="empty"><me:x></me:x></xsl:variable>
+    <!-- construct an instance of a match -->
+    <rule class="{me:param(., 'class')}"
+          id="{replace($rule/@id, '\{\$idclass\}', me:param(., 'idclass'))}"
+          rulesets="{me:param(., 'versions')}">
+      <severities>{$meta//me:severity[@type=$rule/@type]}</severities>
+      <message>{($rule/me:message, $empty)[1]}</message>
+      <description>{($rule/me:description, $empty)[1]}</description>
+      <context>{(ancestor::xsl:template[1]/@match, $empty)[1]}</context>
+      <test>{$rule/ancestor::*[local-name(.)=('if','when')][1]/@test}</test>
+    </rule>
+  </xsl:template>
+
+  <xsl:function name="me:param">
+    <xsl:param name="call"/>
+    <xsl:param name="item"/>
+    <xsl:text>{$call/xsl:with-param[@name=$item]/text()}</xsl:text>
+  </xsl:function>
 
   <xsl:template match="*" mode="office-spreadsheet-row-header">
     <!-- First set column widths -->
@@ -61,18 +109,14 @@
   </xsl:template>
 
   <xsl:template match="*" mode="office-spreadsheet-cells">
-    <xsl:variable name="empty"><me:x></me:x></xsl:variable>
-    <xsl:variable name="t"><xsl:apply-templates select="me:src" mode="ruleset-list"/></xsl:variable>
-    <xsl:variable name="rulesetseverities"><xsl:value-of select="$t/me:t" separator=", "/></xsl:variable>
-    
     <xsl:apply-templates select="@class" mode="office-spreadsheet-cell"/>
     <xsl:apply-templates select="@id" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="$meta//me:severity[@type=current()/@type]" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="$rulesetseverities" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="(me:message, $empty)[1]" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="(me:description, $empty)[1]" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="(ancestor::xsl:template[1]/@match, $empty)[1]" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="ancestor::*[local-name(.)=('if','when')][1]/@test" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="severities" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="@rulesets" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="message" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="description" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="context" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates select="test" mode="office-spreadsheet-cell"/>
   </xsl:template>
 
   <xsl:template match="me:src" mode="ruleset-list">
