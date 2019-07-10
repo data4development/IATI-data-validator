@@ -109,14 +109,8 @@
   </xsl:template>
 
   <xsl:template match="*" mode="office-spreadsheet-cells">
-    <xsl:apply-templates select="@class" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="@id" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="severities" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="@rulesets" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="message" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="description" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="context" mode="office-spreadsheet-cell"/>
-    <xsl:apply-templates select="test" mode="office-spreadsheet-cell"/>
+    <xsl:apply-templates mode="office-spreadsheet-cell"
+      select="(@class, @id, severities, @rulesets, message, description, context, test)"/>
   </xsl:template>
 
   <xsl:template match="me:src" mode="ruleset-list">
