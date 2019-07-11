@@ -8,6 +8,7 @@ organisation,1.12.13,Error,2.0x,"The identifier must not contain any of the symb
 identifiers,1.13.13,Error,1.0x,"The identifier must not contain any of the symbols /, &, | or ?.",,iati-organisation/iati-identifier,"matches($item, '[/&|?]')"
 identifiers,1.14.13,Error,,"The identifier must not contain any of the symbols /, &, | or ?.",,reporting-org/@ref,"matches($item, '[/&|?]')"
 organisation,1.15.13,Error,,"The identifier must not contain any of the symbols /, &, | or ?.",,receiver-org/@ref,"matches($item, '[/&|?]')"
+identifiers,1.7.2,Error,iati,The organisation identifier is missing.,,reporting-org,not(@ref)
 participating,1.8.13,Error,,"The identifier must not contain any of the symbols /, &, | or ?.",,participating-org/@ref,"matches($item, '[/&|?]')"
 information,11.1.1,Error,iati,The last-updated-datetime of the activity must not be in the future.,,iati-activity,@last-updated-datetime and @last-updated-datetime castable as xs:dateTime and xs:dateTime(@last-updated-datetime) gt $now
 information,11.1.2,Error,iati,The planned start date must be before the planned end date.,,iati-activity,activity-date[@type='1']/@iso-date and activity-date[@type='1']/@iso-date castable as xs:date and activity-date[@type='3']/@iso-date and activity-date[@type='3']/@iso-date castable as xs:date and xs:date(activity-date[@type='1']/@iso-date) gt xs:date(activity-date[@type='3']/@iso-date)
@@ -28,42 +29,50 @@ classifications,2.1.1,Error,,Percentages are missing for one or more {$items}.,,
 classifications,2.1.1,Error,,Percentages are missing for one or more {$items}.,,iati-activity[sector],count($group[not(@percentage)]) > 0
 classifications,2.1.2,Error,,Percentages for {$items} must add up to 100%.,,iati-activity[sector],abs(sum($group/@percentage)-100) > 0.0101
 classifications,2.1.2,Error,,Percentages for {$items} must add up to 100%.,,iati-activity[sector],abs(sum($group/@percentage)-100) > 0.0101
-classifications,2.1.4,Error,,"For a single {$item}, the percentage can be omitted or should be 100.",,iati-activity[sector],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
-classifications,2.1.4,Error,,"For a single {$item}, the percentage can be omitted or should be 100.",,iati-activity[sector],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
+classifications,2.1.4,Error,,"For a single {$item}, the percentage must either be omitted, or set to 100.",,iati-activity[sector],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
+classifications,2.1.4,Error,,"For a single {$item}, the percentage must either be omitted, or set to 100.",,iati-activity[sector],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
 classifications,2.2.1,Error,iati,"When using a reporting organisation sector code, it must include a narrative name.",,"sector[@vocabulary=('98', '99')]",not(narrative)
 geo,3.1.1,Error,,Percentages are missing for one or more {$items}.,,iati-activity[(recipient-country or recipient-region)],count($group[not(@percentage)]) > 0
 geo,3.1.1,Error,,Percentages are missing for one or more {$items}.,,iati-activity[(recipient-country and not(recipient-region))],count($group[not(@percentage)]) > 0
 geo,3.1.2,Error,,Percentages for {$items} must add up to 100%.,,iati-activity[(recipient-country or recipient-region)],abs(sum($group/@percentage)-100) > 0.0101
 geo,3.1.2,Error,,Percentages for {$items} must add up to 100%.,,iati-activity[(recipient-country and not(recipient-region))],abs(sum($group/@percentage)-100) > 0.0101
-geo,3.1.4,Error,,"For a single {$item}, the percentage can be omitted or should be 100.",,iati-activity[(recipient-country or recipient-region)],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
-geo,3.1.4,Error,,"For a single {$item}, the percentage can be omitted or should be 100.",,iati-activity[(recipient-country and not(recipient-region))],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
+geo,3.1.3,Error,iati,No recipient countries or regions specified.,,iati-activity[not(recipient-country) and not(recipient-region)],count(recipient-country) = 0
+geo,3.1.4,Error,,"For a single {$item}, the percentage must either be omitted, or set to 100.",,iati-activity[(recipient-country or recipient-region)],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
+geo,3.1.4,Error,,"For a single {$item}, the percentage must either be omitted, or set to 100.",,iati-activity[(recipient-country and not(recipient-region))],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
 geo,3.2.1,Error,,Percentages are missing for one or more {$items}.,,iati-activity[(recipient-country or recipient-region)],count($group[not(@percentage)]) > 0
 geo,3.2.2,Error,,Percentages for {$items} must add up to 100%.,,iati-activity[(recipient-country or recipient-region)],abs(sum($group/@percentage)-100) > 0.0101
-geo,3.2.4,Error,,"For a single {$item}, the percentage can be omitted or should be 100.",,iati-activity[(recipient-country or recipient-region)],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
+geo,3.2.4,Error,,"For a single {$item}, the percentage must either be omitted, or set to 100.",,iati-activity[(recipient-country or recipient-region)],$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
 geo,3.4.1,Error,,Percentages are missing for one or more {$items}.,,,count($group[not(@percentage)]) > 0
 geo,3.4.2,Error,,Percentages for {$items} must add up to 100%.,,,abs(sum($group/@percentage)-100) > 0.0101
-geo,3.4.4,Error,,"For a single {$item}, the percentage can be omitted or should be 100.",,,$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
+geo,3.4.4,Error,,"For a single {$item}, the percentage must either be omitted, or set to 100.",,,$group/@percentage and $group/@percentage castable as xs:decimal and xs:decimal($group/@percentage) !=100
 financial,3.6.2,Error,iati,"If the activity has recipient-country or recipient-region information, none of the transactions should have a recipient-country or recipient-region.",,iati-activity[recipient-country or recipient-region],transaction/recipient-country or transaction/recipient-region
 geo,3.7.1,Error,iati,The activity should have recipient-country or recipient-region information for either the activity or for all transactions.,,iati-activity[not(recipient-country or recipient-region)],not(transaction[recipient-country or recipient-region])
 geo,3.7.2,Error,iati,"If transactions have a recipient-country or recipient-region, they must be used for all transactions.",,iati-activity[not(recipient-country or recipient-region)],transaction[not(recipient-country or recipient-region)]
-information,4.1.1,Error,iati,"The activity should specify a default language, or the language should be specified for each narrative element.",,iati-activity,not(./@xml:lang) and descendant::narrative[not(@xml:lang)]
+information,4.1.1,Error,iati,"The activity must specify a default language, or the language should be specified for each narrative element.",,iati-activity,not(./@xml:lang) and descendant::narrative[not(@xml:lang)]
 organisation,4.5.1,Error,iati,"The organisation should specify a default language, or the language should be specified for each narrative element.",,iati-organisation,not(./@xml:lang) and descendant::narrative[not(@xml:lang)]
+documents,6.1.4,Error,iati,"Document Link must have a specified language, or the Activity must have a default language.",,document-link[not(ancestor::iati-activity/@xml:lang)],not(language) or not(language/@code) or language/@code=''
 participating,6.10.1,Error,iati,The participating organisation must have an identifier or a narrative name.,,participating-org,not(@ref) and not(narrative)
 information,6.11.1,Error,iati,The activity must have a planned or actual start date.,,iati-activity,"not(activity-date[@type=('1', '2')])"
 information,6.12.1,Error,iati,A activity in status pipeline/identification must not have an actual start date.,,iati-activity[activity-status/@code='1'],boolean(activity-date[@type='2'])
 information,6.12.2,Error,iati,A activity in status pipeline/identification must not have an actual end date.,,iati-activity[activity-status/@code='1'],boolean(activity-date[@type='4'])
 classifications,6.13.1,Error,iati,"When using a reporting organisation policy marker, it must include a narrative name.",,policy-marker[@vocabulary='99'],not(narrative)
 classifications,6.14.1,Error,iati,"When using a policy marker for vocabulary 1, it must include a significance.",,policy-marker[(@vocabulary='1') or not(@vocabulary)],not(@significance)
-classifications,6.2.2,Error,iati,The activity should have a sector classification for either the activity or for all transactions.,,iati-activity[not(sector)],not(transaction[sector])
-classifications,6.6.2,Error,iati,"If the activity has a sector classification, none of the transactions should have a sector classification.",,iati-activity[sector],transaction/sector
+information,6.2.1,Error,iati,Activity Status must be present.,,iati-activity,not(activity-status)
+classifications,6.2.2,Error,iati,"Each activity must have a specified Sector Classification, at either activity level, or for ALL transactions.",,iati-activity[not(sector)],not(transaction[sector])
+identification,6.3.1,Warning,iati,Organisation Type must be present.,,reporting-org,not(@type) or @type=''
+classifications,6.6.2,Error,iati,Sectors are present at both the activity AND transaction level. Sectors should only be present at activity OR transaction level.,,iati-activity[sector],transaction/sector
 classifications,6.7.2,Error,iati,"If transactions have a sector classification, they must be used for all transactions.",,iati-activity[not(sector)],transaction[not(sector)]
 information,6.8.1,Error,iati,The owner organisation must have an identifier or a narrative name.,,owner-org,not(@ref) and not(narrative)
 financial,6.9.1,Error,iati,The organisation must have an identifier or a narrative name.,,provider-org|receiver-org,not(@ref) and not(narrative)
-financial,7.5.3,Error,iati,The period is longer than a year.,,budget|total-budget|total-expenditure|recipient-country-budget|recipient-region-budget|recipient-org-budget,xs:date(period-start/@iso-date) + xs:yearMonthDuration('P1Y') lt xs:date(period-end/@iso-date)
-financial,7.8.1,Error,iati,The value has no currency and there is no default currency for this activity.,,value|loan-status|forecast,(not(@currency) or currency='') and (not(ancestor::iati-activity/@default-currency) or ancestor::iati-activity/@default-currency='')
+financial,7.5.2,Error,iati,Budget Value must include a Value Date.,,budget,not(value/@value-date)
+financial,7.5.3,Error,iati,The budget period must not be longer than a year.,,budget|total-budget|total-expenditure|recipient-country-budget|recipient-region-budget|recipient-org-budget,xs:date(period-start/@iso-date) + xs:yearMonthDuration('P1Y') lt xs:date(period-end/@iso-date)
+financial,7.6.1,Warning,iati,The transaction date is later than the date of the last update of the activity.,,transaction-date,@iso-date gt ancestor::iati-activity/@last-updated-datetime
+financial,7.6.2,Warning,iati,The transaction date is later than the date of generation of the activities file.,,transaction-date,@iso-date gt ancestor::iati-activities/@generated-datetime
+financial,7.8.1,Error,iati,"The Value must have a specified Currency, or the Activity must have a default Currency.",,value|loan-status|forecast,(not(@currency) or currency='') and (not(ancestor::iati-activity/@default-currency) or ancestor::iati-activity/@default-currency='')
 performance,8.10.1,Error,iati,"The actual must have a value when indicator measure is 1, 2, 3 or 4.",,"actual[../../@measure=('1', '2', '3', '4')]",not(@value)
 performance,8.11.1,Error,iati,"If a result has a reference code, the indicator must not have a reference code.",,indicator[reference],../reference
-performance,8.6.1,Error,iati,The start of the period is after the end of the period.,,period,period-start/@iso-date gt period-end/@iso-date
+performance,8.5.1,Error,iati,The {name(..)} value is not a number but the indicator is part of a result that can be aggregated.,,baseline/@value|target/@value|actual/@value,ancestor::result/@aggregation-status castable as xs:boolean and xs:boolean(ancestor::result/@aggregation-status) and not(. castable as xs:decimal)
+performance,8.6.1,Error,iati,The start of the period must be before the end of the period.,,period,period-start/@iso-date gt period-end/@iso-date
 financial,8.6.3,Error,iati,The start of the period is after the end of the period.,,budget|total-budget|total-expenditure|recipient-org-budget|recipient-country-budget|recipient-region-budget|planned-disbursement,period-start/@iso-date gt period-end/@iso-date
 performance,8.8.1,Error,iati,"The baseline must have a value when indicator measure is 1, 2, 3 or 4.",,"baseline[../@measure=('1', '2', '3', '4')]",not(@value)
 performance,8.9.1,Error,iati,"The target must have a value when indicator measure is 1, 2, 3 or 4.",,"target[../../@measure=('1', '2', '3', '4')]",not(@value)
