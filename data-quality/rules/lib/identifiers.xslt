@@ -145,7 +145,6 @@
 
     </xsl:choose>
 
-  <xsl:next-match/>
 </xsl:template>
 
 </xsl:stylesheet>
