@@ -54,6 +54,7 @@
     <xsl:param name="item"/>
     <xsl:param name="itemname"/>
     <xsl:param name="idclass"/>
+    <xsl:param name="iati-version" tunnel="yes"/>
     
     <xsl:if test="starts-with($iati-version, '2.')
       and (not($item/narrative) or not($item/narrative[functx:trim(.)!='']))">

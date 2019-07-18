@@ -57,7 +57,7 @@
     <xsl:next-match/>
   </xsl:template>
   
-  <xsl:template match="iati-activity[recipient-country and not(recipient-region) and starts-with($iati-version, '2.')]" mode="rules" priority="2.4">
+  <xsl:template match="iati-activity[recipient-country and not(recipient-region)]" mode="rules" priority="2.4">
     <xsl:call-template name="percentage-checks">
       <xsl:with-param name="group" select="recipient-country"/>
       <xsl:with-param name="class" select="'geo'"/>
@@ -71,21 +71,24 @@
   </xsl:template>
   
   <!--* It is feasible to have both a ``recipient-country`` and ``recipient-region`` in the same ``iati-activity``.  In such cases, the ``@percentage`` must be declared, and sum to 100 across both elements.-->
-  <xsl:template match="iati-activity[recipient-region and starts-with($iati-version, '2.')]" mode="rules" priority="2.5">    
-    <!-- Check for percentages for multiple recipient regions for the default vocabulary. -->    
-    <xsl:call-template name="geography-percentage-checks">
-      <xsl:with-param name="group" select="recipient-country|recipient-region[not(@vocabulary) or @vocabulary=('', '1')]"/>
-    </xsl:call-template>
-    
-    <!-- Check for multiple sector codes per vocabulary. -->
-    <xsl:for-each-group select="recipient-country|recipient-region" group-by="@vocabulary">
-      <xsl:if test="not(current-grouping-key()=('', '1'))">
-        <xsl:call-template name="geography-percentage-checks">
-          <xsl:with-param name="group" select="current-group()"/>
-          <xsl:with-param name="vocabulary" select="current-grouping-key()"/>
-        </xsl:call-template>
-      </xsl:if>
-    </xsl:for-each-group>
+  <xsl:template match="iati-activity[recipient-region]" mode="rules" priority="2.5">
+    <xsl:param name="iati-version" tunnel="yes"/>
+    <xsl:if test="starts-with($iati-version, '2.')">      
+      <!-- Check for percentages for multiple recipient regions for the default vocabulary. -->    
+      <xsl:call-template name="geography-percentage-checks">
+        <xsl:with-param name="group" select="recipient-country|recipient-region[not(@vocabulary) or @vocabulary=('', '1')]"/>
+      </xsl:call-template>
+      
+      <!-- Check for multiple sector codes per vocabulary. -->
+      <xsl:for-each-group select="recipient-region" group-by="@vocabulary">
+        <xsl:if test="not(current-grouping-key()=('', '1'))">
+          <xsl:call-template name="geography-percentage-checks">
+            <xsl:with-param name="group" select="(../recipient-country, current-group())"/>
+            <xsl:with-param name="vocabulary" select="current-grouping-key()"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:for-each-group>
+    </xsl:if>
     
     <xsl:next-match/>
   </xsl:template>

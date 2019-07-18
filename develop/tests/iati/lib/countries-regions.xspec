@@ -209,7 +209,7 @@
             <recipient-region code="X1" vocabulary="99" percentage="100"/>
           </iati-activity>
         </x:context>
-        <x:expect label="It should not produce any 'geo' feedback." test="not(//me:feedback[@class='geo'])"/>
+        <x:expect label="It should not produce 'geo' message 3.4.1." test="not(//me:feedback[@id='3.4.1'])"/>
       </x:scenario>
 
       <x:scenario label="If a percentage is other than 100">
@@ -271,7 +271,8 @@
       <x:scenario label="If percentages add up to 100 ± 0.01">
         <x:context>
           <iati-activity>
-            <recipient-region code="89"/>
+            <recipient-region code="88" percentage="90"/>
+            <recipient-region code="89" percentage="10"/>
             <recipient-region code="X1" vocabulary="99" percentage="66.66"/>
             <recipient-region code="X2" vocabulary="99" percentage="33.33"/>
           </iati-activity>
