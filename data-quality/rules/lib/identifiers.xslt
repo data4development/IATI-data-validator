@@ -9,12 +9,13 @@
   <xsl:variable name="org-id-prefixes" select="doc('../../lib/known-prefixes.xml')//code"/>
   <xsl:variable name="known-publisher-ids" select="doc('../../lib/known-publishers.xml')//code"/>
   <xsl:variable name="known-10x-ids" select="doc('../../lib/known-publishers-104.xml')//code"/>
+  <xsl:variable name="known-activity-ids" select="unparsed-text-lines('../../lib/known-activities.txt'), //iati-identifier"/>
 
   <xsl:template name="identifier_check">
     <xsl:param name="item"/>
     <xsl:param name="class"/>
     <xsl:param name="idclass"/>
-    <xsl:param name="versions" select="'any'"></xsl:param>
+    <xsl:param name="versions" select="'any'"/>
     
     <xsl:choose>
       <xsl:when test="functx:trim($item)=''">
@@ -142,6 +143,20 @@
           <me:message>The identifier does not begin with an organisation identifier approved by the IATI registry.</me:message>
         </me:feedback>
       </xsl:when>
+      
+      <xsl:when test="not($item=$known-activity-ids)">
+        <me:feedback class="{$class}" id="{$idclass}.13" type="danger">
+          <me:src ref="minbuza" versions="{$versions}"/>
+          <me:message>The activity identifier is not on our list of published activities and also not present in this file.</me:message>
+        </me:feedback>
+      </xsl:when>
+      
+      <xsl:otherwise>
+        <me:feedback class="{$class}" id="{$idclass}.15" type="danger">
+          <me:src ref="minbuza" versions="{$versions}"/>
+          <me:message>No identifier feedback.</me:message>
+        </me:feedback>
+      </xsl:otherwise>
 
     </xsl:choose>
 

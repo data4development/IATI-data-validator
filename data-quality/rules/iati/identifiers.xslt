@@ -74,7 +74,7 @@
     </xsl:call-template>
   </xsl:template>    
 
-  <xsl:template match="iati-organisation/iati-identifier" mode="rules" priority="1.13">
+  <xsl:template match="iati-organisation/iati-identifier|organisation-identifier" mode="rules" priority="1.13">
     <xsl:call-template name="identifier_check">
       <xsl:with-param name="item" select="."/>
       <xsl:with-param name="class">identifiers</xsl:with-param>
