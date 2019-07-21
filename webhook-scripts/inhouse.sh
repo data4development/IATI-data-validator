@@ -5,7 +5,11 @@
 
 cd /home 
 
-API=http://validator-api/api
+API={$API:-http://validator-api/api}
+BUCKET_SRC={$BUCKET_SRC:-dataworkbench-iati}
+BUCKET_FB={$BUCKET_FB:-dataworkbench-iatifeedback}
+BUCKET_JSON={$BUCKET_JSON:-dataworkbench-json}
+BUCKET_SVRL={$BUCKET_SVRL:-dataworkbench-svrl}
 VERSION=`grep 'variable name="schemaVersion"' data-quality/rules/iati.xslt | cut -f 2 -d \> | cut -f 1 -d \<`
 basename=$1
 
@@ -13,7 +17,7 @@ basename=$1
 
 mkdir -p /workspace/input
 
-HTTP_STATUS=$(curl -s "$API/iati-files/dataworkbench-iati/download/$basename.xml" -o "/workspace/input/$basename.xml" -w "%{http_code}")
+HTTP_STATUS=$(curl -s "$API/iati-files/$BUCKET_SRC/download/$basename.xml" -o "/workspace/input/$basename.xml" -w "%{http_code}")
 echo "Inhouse: retrieved $basename.xml with status $HTTP_STATUS"
 
 # If available:
@@ -26,7 +30,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   # Store the result
   
   echo "Inhouse: store feedback for $basename"
-  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/dataworkbench-iatifeedback/upload"
+  curl -sS -F "file=@/workspace/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/$BUCKET_FB/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/dest/$basename.feedback.xml)
   
@@ -43,7 +47,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   # Store the result
   echo "Inhouse: store json for $basename"
-  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-files/dataworkbench-json/upload"
+  curl -sS -F "file=@/workspace/json/$basename.json;type=application/json" "$API/iati-files/$BUCKET_JSON/upload"
   
   FILEDATE=$(date -Iseconds -r /workspace/json/$basename.json)
   
