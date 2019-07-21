@@ -57,12 +57,19 @@
   
   <xsl:template match="@*|node()">
     <xsl:param name="iati-version" tunnel="yes"/>
+    <xsl:param name="iati-activities" tunnel="yes"/>
     <xsl:copy>
       <xsl:variable name="use-iati-version">
         <xsl:choose>
           <xsl:when test="name(.)=('iati-activities', 'iati-organisations')">{me:iati-version(@version)}</xsl:when>
           <xsl:when test="$iati-version">{$iati-version}</xsl:when>
           <xsl:otherwise>2.03</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="use-iati-activities">
+        <xsl:choose>
+          <xsl:when test="name(.)=('iati-activities')">{.//iati-identifier}</xsl:when>
+          <xsl:otherwise>{$iati-activities}</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:if test="name(.)=('iati-activities', 'iati-organisations')">
@@ -72,15 +79,19 @@
       </xsl:if>
       <xsl:apply-templates select="@*|node()">
         <xsl:with-param name="iati-version" select="$use-iati-version" tunnel="yes"/>
+        <xsl:with-param name="iati-activities" select="$use-iati-activities" tunnel="yes"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="@*" mode="rules">
         <xsl:with-param name="iati-version" select="$use-iati-version" tunnel="yes"/>
+        <xsl:with-param name="iati-activities" select="$use-iati-activities" tunnel="yes"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="." mode="rules">
         <xsl:with-param name="iati-version" select="$use-iati-version" tunnel="yes"/>
+        <xsl:with-param name="iati-activities" select="$use-iati-activities" tunnel="yes"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="text()" mode="rules">
         <xsl:with-param name="iati-version" select="$use-iati-version" tunnel="yes"/>
+        <xsl:with-param name="iati-activities" select="$use-iati-activities" tunnel="yes"/>
       </xsl:apply-templates>
     </xsl:copy>
   </xsl:template>
