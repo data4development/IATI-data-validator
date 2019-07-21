@@ -56,8 +56,7 @@
     </antcall>
   </target>
   
-  <target name="test" description="Run the tests"
-    depends="non-iati-file-tests, minbuza-tests, dfid-tests">
+  <target name="test" description="Run the tests">
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="develop/tests/iati.xspec"/>
     </antcall>
@@ -75,7 +74,8 @@
     </antcall>
   </target>
   
-  <target name="tests" description="Run all the tests (don't stop at first failure)">
+  <target name="tests" description="Run all the tests (don't stop at first failure)"
+    depends="non-iati-file-tests, minbuza-tests, dfid-tests">
     <antcall target="test">
       <param name="xspec.fail" value="false"/>
       </antcall>
