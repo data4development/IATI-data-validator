@@ -81,7 +81,7 @@
     <mapping>
         <path>//iati-activity/country-budget-items/budget-item/@code</path>
         <codelist ref="BudgetIdentifier" />
-        <condition>@vocabulary = '1'</condition>
+        <condition>../@vocabulary = '1'</condition>
         <class ref="classifications"/>
         <message>The country budget identifier does not exist.</message>
     </mapping>
@@ -574,7 +574,7 @@
         <message>The currency code is invalid.</message>
     </mapping>
     <mapping>
-        <path>//*/@xml:lang</path>
+        <path>//@xml:lang</path>
         <codelist ref="Language" />
         <class ref="iati"/>
         <message>The language code is invalid.</message>
@@ -652,7 +652,7 @@
         <message>The budget status is invalid.</message>
     </mapping>
     <mapping>
-        <path>//iati-organisation/recipient-region-budget/@code</path>
+        <path>//iati-organisation/recipient-region-budget/recipient-region/@code</path>
         <codelist ref="Region" />
         <condition>@vocabulary = '1' or not(@vocabulary)</condition>
         <class ref="financial"/>
@@ -726,4 +726,26 @@
         <class ref="geo"/>
         <message>The location type code is invalid.</message>
     </mapping>
+    
+    <!-- additional mapping (appended to prevent renumbering earlier message ids -->
+    <mapping>
+        <path>//iati-organisation/recipient-country-budget/budget-line/value/@currency</path>
+        <codelist ref="Currency" />
+        <class ref="financial"/>
+        <message>The currency code is invalid.</message>
+    </mapping>
+    <mapping>
+        <path>//iati-organisation/recipient-org-budget/budget-line/value/@currency</path>
+        <codelist ref="Currency" />
+        <class ref="financial"/>
+        <message>The currency code is invalid.</message>
+    </mapping>
+    <mapping>
+        <path>//iati-activity/transaction/sector/@code</path>
+        <codelist ref="SectorCategory" />
+        <condition>@vocabulary = '2'</condition>
+        <class ref="financial"/>
+        <message>The DAC3 sector code is invalid.</message>
+    </mapping>    
+    
 </mappings>
