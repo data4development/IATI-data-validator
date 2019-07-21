@@ -83,6 +83,7 @@
    <code status="withdrawn">GB-GOVUK</code>
    <code status="active">GB-IRN</code>
    <code status="active">GB-LAE</code>
+   <code status="active">GB-LANI</code>
    <code status="active">GB-LAS</code>
    <code status="active">GB-MPR</code>
    <code status="active">GB-NHS</code>
@@ -97,11 +98,13 @@
    <code status="active">GE-RS</code>
    <code status="active">GG-RCE</code>
    <code status="active">GH-DSW</code>
+   <code status="active">GH-RGD</code>
    <code status="active">GT-CISP</code>
    <code status="active">HK-CR</code>
    <code status="active">HR-MBS</code>
    <code status="active">HR-OIB</code>
    <code status="active">HU-AFA</code>
+   <code status="active">ID-DJP</code>
    <code status="withdrawn">ID-KDN</code>
    <code status="active">ID-KHH</code>
    <code status="active">ID-KLN</code>
@@ -143,6 +146,7 @@
    <code status="active">LV-RE</code>
    <code status="active">MD-IDNO</code>
    <code status="active">ML-CCIM</code>
+   <code status="active">ML-MAT</code>
    <code status="active">ML-NIF</code>
    <code status="active">MM-MHA</code>
    <code status="active">MU-CR</code>
@@ -162,6 +166,7 @@
    <code status="active">NL-OWMS</code>
    <code status="active">NO-BRC</code>
    <code status="active">NP-CRO</code>
+   <code status="active">NP-IRD</code>
    <code status="active">NP-SWC</code>
    <code status="active">PE-SUNARP</code>
    <code status="active">PH-SEC</code>
@@ -186,10 +191,13 @@
    <code status="withdrawn">SE-KK</code>
    <code status="active">SE-ON</code>
    <code status="active">SG-ACRA</code>
+   <code status="active">SG-COC</code>
    <code status="active">SI-PRS</code>
    <code status="active">SI-TIN</code>
    <code status="active">SK-ORSR</code>
    <code status="withdrawn">SK-ZRSR</code>
+   <code status="active">SL-NRA</code>
+   <code status="active">SL-OARG</code>
    <code status="active">SN-NINEA</code>
    <code status="active">SO-MPND</code>
    <code status="active">SS-RRC</code>

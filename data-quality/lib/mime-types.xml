@@ -26,6 +26,9 @@
    <code>application/atomdeleted+xml</code>
    <code>application/atomicmail</code>
    <code>application/atomsvc+xml</code>
+   <code>application/atsc-dwd+xml</code>
+   <code>application/atsc-held+xml</code>
+   <code>application/atsc-rsat+xml</code>
    <code>application/ATXML</code>
    <code>application/auth-policy+xml</code>
    <code>application/bacnet-xdd+zip</code>
@@ -112,6 +115,7 @@
    <code>application/fhir+json</code>
    <code>application/fhir+xml</code>
    <code>application/fits</code>
+   <code>application/flexfec</code>
    <code>application/font-sfnt</code>
    <code>application/font-tdpfr</code>
    <code>application/font-woff</code>
@@ -189,6 +193,7 @@
    <code>application/mets+xml</code>
    <code>application/MF4</code>
    <code>application/mikey</code>
+   <code>application/mmt-aei+xml</code>
    <code>application/mmt-usd+xml</code>
    <code>application/mods+xml</code>
    <code>application/moss-keys</code>
@@ -224,6 +229,7 @@
    <code>application/ODX</code>
    <code>application/oebps-package+xml</code>
    <code>application/ogg</code>
+   <code>application/oscore</code>
    <code>application/oxps</code>
    <code>application/p2p-overlay+xml</code>
    <code>application/passport</code>
@@ -437,6 +443,7 @@
    <code>application/vnd.americandynamics.acc</code>
    <code>application/vnd.amiga.ami</code>
    <code>application/vnd.amundsen.maze+xml</code>
+   <code>application/vnd.android.ota</code>
    <code>application/vnd.anki</code>
    <code>application/vnd.anser-web-certificate-issue-initiation</code>
    <code>application/vnd.antix.game-component</code>
@@ -461,6 +468,7 @@
    <code>application/vnd.avistar+xml</code>
    <code>application/vnd.balsamiq.bmml+xml</code>
    <code>application/vnd.banana-accounting</code>
+   <code>application/vnd.bbf.usp.error</code>
    <code>application/vnd.bbf.usp.msg</code>
    <code>application/vnd.bbf.usp.msg+json</code>
    <code>application/vnd.balsamiq.bmpr</code>
@@ -483,6 +491,7 @@
    <code>application/vnd.chemdraw+xml</code>
    <code>application/vnd.chess-pgn</code>
    <code>application/vnd.chipnuts.karaoke-mmd</code>
+   <code>application/vnd.ciedi</code>
    <code>application/vnd.cinderella</code>
    <code>application/vnd.cirpack.isdn-ext</code>
    <code>application/vnd.citationstyles.style+xml</code>
@@ -750,6 +759,7 @@
    <code>application/vnd.is-xpr</code>
    <code>application/vnd.isac.fcs</code>
    <code>application/vnd.jam</code>
+   <code>application/vnd.iso11783-10+zip</code>
    <code>application/vnd.japannet-directory-service</code>
    <code>application/vnd.japannet-jpnstore-wakeup</code>
    <code>application/vnd.japannet-payment-wakeup</code>
@@ -782,6 +792,8 @@
    <code>application/vnd.liberty-request+xml</code>
    <code>application/vnd.llamagraphics.life-balance.desktop</code>
    <code>application/vnd.llamagraphics.life-balance.exchange+xml</code>
+   <code>application/vnd.logipipe.circuit+zip</code>
+   <code>application/vnd.loom</code>
    <code>application/vnd.lotus-1-2-3</code>
    <code>application/vnd.lotus-approach</code>
    <code>application/vnd.lotus-freelance</code>
@@ -1161,11 +1173,13 @@
    <code>application/vnd.sema</code>
    <code>application/vnd.semd</code>
    <code>application/vnd.semf</code>
+   <code>application/vnd.shade-save-file</code>
    <code>application/vnd.shana.informed.formdata</code>
    <code>application/vnd.shana.informed.formtemplate</code>
    <code>application/vnd.shana.informed.interchange</code>
    <code>application/vnd.shana.informed.package</code>
    <code>application/vnd.shootproof+json</code>
+   <code>application/vnd.shopkick+json</code>
    <code>application/vnd.sigrok.session</code>
    <code>application/vnd.SimTech-MindMapper</code>
    <code>application/vnd.siren+json</code>
@@ -1236,6 +1250,7 @@
    <code>application/vnd.vel+json</code>
    <code>application/vnd.verimatrix.vcas</code>
    <code>application/vnd.veryant.thin</code>
+   <code>application/vnd.ves.encrypted</code>
    <code>application/vnd.vidsoft.vidconference</code>
    <code>application/vnd.visio</code>
    <code>application/vnd.visionary</code>
@@ -1373,6 +1388,7 @@
    <code>audio/EVRCWB1</code>
    <code>audio/EVS</code>
    <code>audio/example</code>
+   <code>audio/flexfec</code>
    <code>audio/fwdred</code>
    <code>audio/G711-0</code>
    <code>audio/G719</code>
@@ -1498,10 +1514,17 @@
    <code>image/heic-sequence</code>
    <code>image/heif</code>
    <code>image/heif-sequence</code>
+   <code>image/hej2k</code>
+   <code>image/hsj2</code>
    <code>image/jls</code>
    <code>image/jp2</code>
+   <code>image/jph</code>
+   <code>image/jphc</code>
    <code>image/jpm</code>
    <code>image/jpx</code>
+   <code>image/jxr</code>
+   <code>image/jxrA</code>
+   <code>image/jxrS</code>
    <code>image/naplps</code>
    <code>image/png</code>
    <code>image/prs.btif</code>
@@ -1608,6 +1631,7 @@
    <code>text/ecmascript</code>
    <code>text/encaprtp</code>
    <code>text/example</code>
+   <code>text/flexfec</code>
    <code>text/fwdred</code>
    <code>text/grammar-ref-list</code>
    <code>text/html</code>
@@ -1662,6 +1686,7 @@
    <code>text/vnd.senx.warpscript</code>
    <code>text/vnd.si.uricatalogue</code>
    <code>text/vnd.sun.j2me.app-descriptor</code>
+   <code>text/vnd.sosi</code>
    <code>text/vnd.trolltech.linguist</code>
    <code>text/vnd.wap.si</code>
    <code>text/vnd.wap.sl</code>
@@ -1679,6 +1704,7 @@
    <code>video/DV</code>
    <code>video/encaprtp</code>
    <code>video/example</code>
+   <code>video/flexfec</code>
    <code>video/H261</code>
    <code>video/H263</code>
    <code>video/H263-1998</code>
@@ -1745,6 +1771,7 @@
    <code>video/vnd.sealed.swf</code>
    <code>video/vnd.sealedmedia.softseal.mov</code>
    <code>video/vnd.uvvu.mp4</code>
+   <code>video/vnd.youtube.yt</code>
    <code>video/vnd.vivo</code>
    <code>video/VP8</code>
 </codelist>
