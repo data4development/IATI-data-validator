@@ -1,16 +1,27 @@
 FROM openjdk:11-jdk-slim
 
-LABEL maintainer="Rolf Kleef <rolf@drostan.org>" \
+LABEL maintainer="Rolf Kleef <rolf@data4development.nl>" \
   description="IATI Data Validator Engine" \
   repository="https://github.com/data4development/IATI-data-validator"
 
-ENV ANT_VERSION    1.10.1
-ENV SAXON_VERSION  9.8.0-14
-ENV WEBHOOK_VERSION 2.6.8
+# To be adapted in the cluster or runtime config
+ENV \
+    API=http://validator-api/api \
+    BUCKET_SRC=dataworkbench-iati \
+    BUCKET_FB=dataworkbench-iatifeedback \
+    BUCKET_JSON=dataworkbench-json \
+    BUCKET_SVRL=dataworkbench-svrl
+# ----------
 
-ENV HOME /home
-ENV ANT_HOME /opt/ant
-ENV SAXON_HOME /opt/ant
+# To build the container
+ENV \
+    ANT_VERSION=1.10.1 \
+    SAXON_VERSION=9.8.0-14 \
+    WEBHOOK_VERSION=2.6.8
+    \
+    HOME=/home \
+    ANT_HOME=/opt/ant \
+    SAXON_HOME=/opt/ant
 
 WORKDIR $HOME
 
