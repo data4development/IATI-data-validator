@@ -35,7 +35,7 @@
     <xsl:if test="period-start/@iso-date gt period-end/@iso-date">
       <me:feedback type="danger" class="financial" id="8.6.3">
         <me:src ref="iati" versions="any"/>
-        <me:message>The start of the period is after the end of the period.</me:message>
+        <me:message>The start of the period must be before the end of the period.</me:message>
       </me:feedback>
     </xsl:if>
     
@@ -43,36 +43,45 @@
   </xsl:template>
   
   <xsl:template match="baseline[../@measure=('1', '2', '3', '4')]" mode="rules" priority="8.8">
+    <xsl:param name="iati-version" tunnel="yes"/>
     
-    <xsl:if test="not(@value)">
-      <me:feedback type="danger" class="performance" id="8.8.1">
-        <me:src ref="iati" versions="any"/>
-        <me:message>The baseline must have a value when indicator measure is 1, 2, 3 or 4.</me:message>
-      </me:feedback>
+    <xsl:if test="$iati-version='2.03'">
+      <xsl:if test="not(@value)">
+        <me:feedback type="danger" class="performance" id="8.8.1">
+          <me:src ref="iati" versions="2.03"/>
+          <me:message>The baseline must have a value when indicator measure is unit (1), percentage (2), nominal (3) or ordinal (4).</me:message>
+        </me:feedback>
+      </xsl:if>
     </xsl:if>
-    
+        
     <xsl:next-match/>
   </xsl:template>
   
   <xsl:template match="target[../../@measure=('1', '2', '3', '4')]" mode="rules" priority="8.9">
+    <xsl:param name="iati-version" tunnel="yes"/>
     
-    <xsl:if test="not(@value)">
-      <me:feedback type="danger" class="performance" id="8.9.1">
-        <me:src ref="iati" versions="any"/>
-        <me:message>The target must have a value when indicator measure is 1, 2, 3 or 4.</me:message>
-      </me:feedback>
+    <xsl:if test="$iati-version='2.03'">
+      <xsl:if test="not(@value)">
+        <me:feedback type="danger" class="performance" id="8.9.1">
+          <me:src ref="iati" versions="2.03"/>
+          <me:message>The target must have a value when indicator measure is unit (1), percentage (2), nominal (3) or ordinal (4).</me:message>
+        </me:feedback>
+      </xsl:if>
     </xsl:if>
     
     <xsl:next-match/>
   </xsl:template>
 
   <xsl:template match="actual[../../@measure=('1', '2', '3', '4')]" mode="rules" priority="8.10">
+    <xsl:param name="iati-version" tunnel="yes"/>
     
-    <xsl:if test="not(@value)">
-      <me:feedback type="danger" class="performance" id="8.10.1">
-        <me:src ref="iati" versions="any"/>
-        <me:message>The actual must have a value when indicator measure is 1, 2, 3 or 4.</me:message>
-      </me:feedback>
+    <xsl:if test="$iati-version='2.03'">
+      <xsl:if test="not(@value)">
+        <me:feedback type="danger" class="performance" id="8.10.1">
+          <me:src ref="iati" versions="2.03"/>
+          <me:message>The actual must have a value when indicator measure is unit (1), percentage (2), nominal (3) or ordinal (4).</me:message>
+        </me:feedback>
+      </xsl:if>
     </xsl:if>
     
     <xsl:next-match/>
