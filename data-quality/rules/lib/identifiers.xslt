@@ -11,6 +11,15 @@
     <xsl:param name="class"/>
     <xsl:param name="idclass"/>
     <xsl:param name="versions" select="'any'"></xsl:param>
+
+	<xsl:choose>
+      <xsl:when test="$item != functx:trim($item)">
+        <me:feedback type="danger" class="{$class}" id="{$idclass}.1">
+          <me:src ref="iati" versions="{$versions}"/>
+          <me:message>The identifier should not start or end with spaces or newlines.</me:message>
+        </me:feedback>
+      </xsl:when>
+	</xsl:choose>
    
     <xsl:choose>
       <xsl:when test="matches($item, '[/&amp;|?]')">
