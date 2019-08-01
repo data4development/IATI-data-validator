@@ -2,7 +2,9 @@
 <xsl:stylesheet version='3.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
   xmlns:me="http://iati.me"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-
+  xmlns:functx="http://www.functx.com"
+  xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0"
+  
   expand-text="yes"
   exclude-result-prefixes="me xs">
 
@@ -32,7 +34,7 @@
 
     <xsl:apply-templates select="$rules" mode="office-spreadsheet">
       <xsl:with-param name="table-structure" select="$table-structure" tunnel="yes"/>
-    </xsl:apply-templates>
+    </xsl:apply-templates>      
   </xsl:template>
 
   <xsl:template match="*[ancestor::xsl:template[1][@match]]" mode="get-feedback-messages">
@@ -44,7 +46,9 @@
           id="{@id}"
           rulesets="{$rulesetseverities}">
       <severities>{$meta//me:severity[@type=current()/@type]}</severities>
-      <message>{(me:message, $empty)[1]}</message>
+      <message>{(me:message, $empty)[1] 
+        => replace(functx:escape-for-regex("{$item}"), me:param(., 'item'))
+        => replace(functx:escape-for-regex("{$items}"), me:param(., 'items'))}</message>
       <description>{(me:description, $empty)[1]}</description>
       <context>{(ancestor::xsl:template[1]/@match, $empty)[1]}</context>
       <test>{ancestor::*[local-name(.)=('if','when')][1]/@test}</test>
@@ -66,7 +70,9 @@
           id="{replace($rule/@id, '\{\$idclass\}', me:param(., 'idclass'))}"
           rulesets="{me:param(., 'versions')}">
       <severities>{$meta//me:severity[@type=$rule/@type]}</severities>
-      <message>{($rule/me:message, $empty)[1]}</message>
+      <message>{($rule/me:message, $empty)[1] 
+        => replace(functx:escape-for-regex("{$item}"), me:param(., 'item'))
+        => replace(functx:escape-for-regex("{$items}"), me:param(., 'items'))}</message>
       <description>{($rule/me:description, $empty)[1]}</description>
       <context>{(ancestor::xsl:template[1]/@match, $empty)[1]}</context>
       <test>{$rule/ancestor::*[local-name(.)=('if','when')][1]/@test}</test>
