@@ -17,7 +17,7 @@
   <xsl:template match="iati-file-with-schema-errors" mode="technical">
     <me:feedback type="critical" class="iati" id="0.3.1">
       <me:src ref="iati" versions="any"/>
-      <me:message>The file is not a valid IATI file. The raw feedback from schema validation:
+      <me:message>This file fails schema validation. Please see below for technical details. If you are the owner of this files, please show this output to your publishing tool provider or technical team.
 
 <xsl:choose>
   <xsl:when test="unparsed-text-available('/workspace/tmp/xmlschemalog/' || $filename)">{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</xsl:when>
@@ -29,15 +29,16 @@
   <xsl:template match="recovered-iati-file-with-schema-errors" mode="technical">
     <me:feedback type="critical" class="iati" id="0.4.1">
       <me:src ref="iati" versions="any"/>
-      <me:message>The file is not a valid XML. A recovered version also is not a valid IATI file.
-The raw feedback from xmllint:
+      <me:message>This file is not valid XML and fails schema validation. Please see below for technical details. If you are the owner of this files, please show this output to your publishing tool provider or technical team.
+
+The raw feedback from XML validation:
 
 <xsl:choose>
   <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose>
         
-The raw feedback from schema validation:
+The raw feedback from schema validation of a recovered version of the file:
         
 <xsl:choose>
   <xsl:when test="unparsed-text-available('/workspace/tmp/xmlschemalog/' || $filename)">{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</xsl:when>
@@ -50,12 +51,14 @@ The raw feedback from schema validation:
   <xsl:template match="recovered-iati-file" mode="technical">
     <me:feedback type="critical" class="iati" id="0.5.1">
       <me:src ref="iati" versions="any"/>
-      <me:message>The file is not a valid XML. A recovered version does form a valid IATI file, but may not contain all information. The raw feedback from xmllint:
+      <me:message>The file is not valid XML. Please see below for technical details. If you are the owner of this files, please show this output to your publishing tool provider or technical team.
         
 <xsl:choose>
   <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose>
+
+A recovered version does pass schema validation as valid IATI, but may not contain all information. 
       </me:message>
     </me:feedback>
   </xsl:template>
