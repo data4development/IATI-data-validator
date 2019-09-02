@@ -159,7 +159,8 @@
                  mode="rules"
                  priority="9.14">
       <xsl:param name="iati-version" tunnel="yes"/>
-      <xsl:if test="me:codeListFail(., 'BudgetIdentifier', $iati-version)">
+      <!-- Hack: added test for IATI v2.03: it should not do a codelist check, non-embedded codelist removed -->
+      <xsl:if test="($iati-version != '2.03') and me:codeListFail(., 'BudgetIdentifier', $iati-version)">
          <me:feedback type="danger" class="classifications" id="9.14.1">
             <me:src ref="iati" versions="any"/>
             <me:message>The country budget identifier does not exist.</me:message>
@@ -510,7 +511,7 @@
       <xsl:if test="me:codeListFail(., 'BudgetType', $iati-version)">
          <me:feedback type="danger" class="financial" id="9.43.1">
             <me:src ref="iati" versions="any"/>
-            <me:message>The humanitarian scope type is invalid.</me:message>
+            <me:message>The planned disbursement budget type is invalid.</me:message>
          </me:feedback>
       </xsl:if>
       <xsl:next-match/>
@@ -522,7 +523,7 @@
       <xsl:if test="me:codeListFail(., 'OrganisationType', $iati-version)">
          <me:feedback type="danger" class="financial" id="9.44.1">
             <me:src ref="iati" versions="any"/>
-            <me:message>The humanitarian scope type is invalid.</me:message>
+            <me:message>The organisation type is invalid.</me:message>
          </me:feedback>
       </xsl:if>
       <xsl:next-match/>
@@ -1362,20 +1363,20 @@
       <xsl:next-match/>
    </xsl:template>
     
-
+   <!-- renamed to other-flag in IATI 2.01 -->
     <xsl:template match="//iati-activity/crs-add/aidtype-flag/@code"
                  mode="rules"
                  priority="9.116">
       <xsl:param name="iati-version" tunnel="yes"/>
       <xsl:if test="me:codeListFail(., 'AidTypeFlag', $iati-version)">
          <me:feedback type="danger" class="iati" id="9.116.1">
-            <me:src ref="iati" versions="any"/>
+            <me:src ref="iati" versions="1.0x"/>
             <me:message>The AidType flag is invalid.</me:message>
          </me:feedback>
       </xsl:if>
       <xsl:next-match/>
    </xsl:template>
-    <xsl:template match="//iati-activity/location/administrative/@country"
+    <xsl:template match="//iati-activity/location/administrative[@vocabulary = 'A4']/@code"
                  mode="rules"
                  priority="9.117">
       <xsl:param name="iati-version" tunnel="yes"/>
@@ -1411,7 +1412,7 @@
       </xsl:if>
       <xsl:next-match/>
    </xsl:template>
-    <xsl:template match="//iati-activity/location/location-type/@code"
+    <xsl:template match="//iati-activity/location/feature-designation/@code"
                  mode="rules"
                  priority="9.120">
       <xsl:param name="iati-version" tunnel="yes"/>
@@ -1461,5 +1462,4 @@
       </xsl:if>
       <xsl:next-match/>
    </xsl:template>    
-    
 </xsl:stylesheet>
