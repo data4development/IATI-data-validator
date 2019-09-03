@@ -17,8 +17,7 @@ ENV \
 ENV \
     ANT_VERSION=1.10.1 \
     SAXON_VERSION=9.8.0-14 \
-    WEBHOOK_VERSION=2.6.8
-    \
+    WEBHOOK_VERSION=2.6.8 \
     HOME=/home \
     ANT_HOME=/opt/ant \
     SAXON_HOME=/opt/ant
