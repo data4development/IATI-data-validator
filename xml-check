@@ -2,12 +2,12 @@
 
 # Check the input files for well-formedness and schema errors, produce a feedback file if appropriate
 
-WORKSPACE=/workspace
+WORKSPACE={$WORKSPACE:-/workspace}
 INPUTDIR=${1:-input}
 SRCDIR=${2:-src}
 FILEMASK=${3}*
 PREFIX="XML check"
-API=http://validator-api/api
+API={$API:-http://validator-api/api/v1}
 
 mkdir -p \
   $WORKSPACE/tmp/xmltest \
