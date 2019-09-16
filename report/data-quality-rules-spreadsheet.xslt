@@ -10,12 +10,12 @@
 
   <xsl:import href="../lib/office/spreadsheet.xslt"/>
   <xsl:variable name="meta" select="/me:meta"/>
-  <xsl:variable name="calls" select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//xsl:call-template"/>
+  <xsl:variable name="calls" select="collection('../?select=*.xslt;recurse=yes')//xsl:call-template"/>
 
   <xsl:template match="/">
     <xsl:variable name="rules">
       <rules>
-        <xsl:apply-templates select="collection('../data-quality/rules/?select=*.xslt;recurse=yes')//me:feedback" mode="get-feedback-messages"/>
+        <xsl:apply-templates select="collection('../?select=*.xslt;recurse=yes')//me:feedback" mode="get-feedback-messages"/>
       </rules>
     </xsl:variable>
 
