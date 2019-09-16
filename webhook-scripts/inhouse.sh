@@ -66,7 +66,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   if xmllint --noout /workspace/svrl/$basename.svrl 2> "/dev/null"; then
     echo "Inhouse: store svrl for $basename"
-    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-files/dataworkbench-svrl/upload"
+    curl -sS -F "file=@/workspace/svrl/$basename.svrl;type=application/xml" "$API/iati-files/$BUCKET_SVRL/upload"
   
     FILEDATE=$(date -Iseconds -r /workspace/svrl/$basename.svrl)
   
