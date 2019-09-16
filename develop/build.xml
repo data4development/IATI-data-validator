@@ -5,7 +5,7 @@
   </description>
 
   <property name="xspec.fail" value="false"/>
-  <import file="xspec/build.xml" optional="yes"/>
+  <import file="../lib/iati-rulesets/lib/xspec/build.xml" optional="yes"/>
   
   <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
   <extension-point name="update-external-data"
