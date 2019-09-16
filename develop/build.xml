@@ -46,21 +46,4 @@
     </echo>
   </target>
 
-  <target name="non-iati-file-tests" depends="xml-check, rules">
-    <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/non-iati-files.xspec"/>
-    </antcall>
-  </target>
-  
-  <target name="test" description="Run the tests">
-    <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/iati.xspec"/>
-    </antcall>
-  </target>
-
-  <target name="tests" description="Run all the tests (don't stop at first failure)">
-    <antcall target="test">
-      <param name="xspec.fail" value="false"/>
-    </antcall>
-  </target>
 </project>

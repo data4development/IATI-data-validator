@@ -87,4 +87,16 @@
       <fileset dir="share/html"/>
     </copy>
   </target>
+  
+  <target name="test" description="Run the tests" depends="xml-check, rules">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/validator.xspec"/>
+    </antcall>
+  </target>
+  
+  <target name="tests" description="Run all the tests (don't stop at first failure)">
+    <antcall target="test">
+      <param name="xspec.fail" value="false"/>
+    </antcall>
+  </target>
 </project>

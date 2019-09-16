@@ -1,7 +1,12 @@
 build\.svg
 \.bash_history
 tmp/
-
 \.~*#
-
 webhook
+tests/xspec
+testspace/src
+testspace/dest
+testspace/json
+testspace/svrl
+testspace/tmp
+testspace/reports
