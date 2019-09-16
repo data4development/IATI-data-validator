@@ -29,7 +29,7 @@
   </target>
   
   <!-- Document all the Ant targets and their dependencies -->
-  <typedef resource="net/ggtools/grand/antlib.xml" classpath="develop/lib/grand-1.9.5.jar"/>
+  <typedef resource="net/ggtools/grand/antlib.xml" classpath="lib/grand-1.9.5.jar"/>
   <target name="ant-graph"
     description="(Dev) Create a graph of the targets and their dependencies.">
 
