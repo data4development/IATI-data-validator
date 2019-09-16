@@ -9,7 +9,7 @@
   <!-- Use config/build.xml to add artifacts to extension points -->
   <import file="/workspace/config/iati-data-validator.xml" optional="yes"/>
   <!-- Include additional development targets if available -->
-  <import file="develop/build.xml" optional="yes"/>
+  <import file="helpers/build.xml" optional="yes"/>
 
   <target name="dwb_init" description="Set up workspace directories.">
     <mkdir dir="/workspace/input"/>
@@ -36,7 +36,7 @@
       <arg value="src"/>
       <arg value="${filemask}"/>
     </exec>
-    <xslt basedir="/workspace/tmp/feedback/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="report/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
+    <xslt basedir="/workspace/tmp/feedback/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
   <target name="rules" description="Check the files source data against IATI rules." depends="dwb_init">
@@ -46,21 +46,21 @@
 
   <target name="report" description="Generate a data quality feedback HTML page." depends="dwb_init, html-skeleton">
     <echo level="info">Generate data quality feedback report in the report/ folder.</echo>
-    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="report/feedback.xslt" failOnError="false">
+    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="helpers/feedback.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.feedback.html"/>
     </xslt>
   </target>
 
   <target name="json" description="Generate JSON output from feedback.">
     <echo level="info">Generate JSON feedback files in json/.</echo>
-    <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/json" style="report/feedback-json.xslt" failOnError="false">
+    <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/json" style="helpers/feedback-json.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.json"/>
     </xslt>
   </target>
 
   <target name="svrl" description="Generate SVRL reports from feedback.">
     <echo level="info">Generate data quality SVRL reports in svrl/.</echo>
-  <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false">
+  <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/svrl" style="helpers/feedback-svrl.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.svrl"/>
     </xslt>
   </target>
@@ -75,7 +75,7 @@
   <target name="data-quality-rules-spreadsheet" description="Generate overview of the data quality rules as a spreadsheet." depends="dwb_init">
     <echo level="info">Generate overview of the data quality rules as a spreadsheet.</echo>
     <delete file="/workspace/reports/data-quality-rules.fods"/>
-    <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.fods" style="report/data-quality-rules-spreadsheet.xslt">
+    <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.fods" style="helpers/data-quality-rules-spreadsheet.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl">
         <attribute name="http://saxon.sf.net/feature/suppressXsltNamespaceCheck" value="true"/>
       </factory>
