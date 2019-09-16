@@ -38,6 +38,6 @@
     </exec>
   </target>
   
-  <import file="develop/build.xml" />
+  <import file="helpers/build.xml" />
   <import file="build-engine.xml" />
 </project>
