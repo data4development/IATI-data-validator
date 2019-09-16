@@ -1,3 +1,6 @@
 [submodule "develop/xspec"]
 	path = develop/xspec
 	url = git@github.com:data4development/xspec.git
+[submodule "lib/iati-rulesets"]
+	path = lib/iati-rulesets
+	url = https://github.com/data4development/IATI-Rulesets.git
