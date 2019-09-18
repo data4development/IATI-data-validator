@@ -9,3 +9,8 @@ tmp/
 \.~*#
 
 webhook
+
+# ignore these on branch minbuza for now
+tests/
+testspace/
+lib/iati-rulesets/
