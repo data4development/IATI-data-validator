@@ -2,12 +2,12 @@
 
 # Check the input files for well-formedness and schema errors, produce a feedback file if appropriate
 
-WORKSPACE={$WORKSPACE:-/workspace}
+WORKSPACE=${WORKSPACE:-/workspace}
 INPUTDIR=${1:-input}
 SRCDIR=${2:-src}
 FILEMASK=${3}*
 PREFIX="XML check"
-API={$API:-none}
+API=${API:-none}
 
 VALLOGL=100
 VALLOGS=50

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PREFIX="Loop unprocessed files"
-API={$API:-http://validator-api/api/v1}
+API=${API:-http://validator-api/api/v1}
 
 # loop forever
 while :

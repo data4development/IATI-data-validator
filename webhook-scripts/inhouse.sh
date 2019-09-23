@@ -4,11 +4,11 @@
 # $1 - basename of the file (typically the md5sum of the file)
 
 cd /home 
-API={$API:-http://validator-api/api/v1}
-BUCKET_SRC={$BUCKET_SRC:-dataworkbench-iati}
-BUCKET_FB={$BUCKET_FB:-dataworkbench-iatifeedback}
-BUCKET_JSON={$BUCKET_JSON:-dataworkbench-json}
-BUCKET_SVRL={$BUCKET_SVRL:-dataworkbench-svrl}
+API=${API:-http://validator-api/api/v1}
+BUCKET_SRC=${BUCKET_SRC:-dataworkbench-iati}
+BUCKET_FB=${BUCKET_FB:-dataworkbench-iatifeedback}
+BUCKET_JSON=${BUCKET_JSON:-dataworkbench-json}
+BUCKET_SVRL=${BUCKET_SVRL:-dataworkbench-svrl}
 VERSION=`grep 'variable name="schemaVersion"' lib/iati-rulesets/rules/iati.xslt | cut -f 2 -d \> | cut -f 1 -d \<`
 basename=$1
 
