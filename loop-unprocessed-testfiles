@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PREFIX="Loop unprocessed testfiles"
-API=http://validator-api/api
+API=${API:-http://validator-api/api/v1}
 
 # loop forever
 while :
@@ -11,7 +11,7 @@ do
 
   # Refresh a report after 48 hours (JSON is the last bit updated in the processing
   # so we check for this to select incomplete or obsolete data)
-  TDone=`date -d "24 hours ago" --iso-8601=seconds`
+  TDone=`date -d "48 hours ago" --iso-8601=seconds`
   # Restart processing if the last start was more than 1 hour ago
   TProc=`date -d "1 hour ago" --iso-8601=seconds`
 

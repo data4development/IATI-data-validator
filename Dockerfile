@@ -10,7 +10,11 @@ ENV \
     BUCKET_SRC=dataworkbench-iati \
     BUCKET_FB=dataworkbench-iatifeedback \
     BUCKET_JSON=dataworkbench-json \
-    BUCKET_SVRL=dataworkbench-svrl
+    BUCKET_SVRL=dataworkbench-svrl \
+    BUCKET_TEST_SRC=dataworkbench-test} \
+    BUCKET_TEST_FB=dataworkbench-testfeedback} \
+    BUCKET_TEST_JSON=dataworkbench-testjson} \
+    BUCKET_TEST_SVRL=dataworkbench-testsvrl}
 # ----------
 
 # To build the container
