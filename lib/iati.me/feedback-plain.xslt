@@ -57,6 +57,19 @@
     <xsl:text> of {transaction-date/@iso-date}</xsl:text>
   </xsl:template>
 
+  <xsl:template match="transaction-date" mode="context">
+    <xsl:text>In </xsl:text>
+    <xsl:choose>
+      <xsl:when test="../transaction-type/@code='1'">incoming funds</xsl:when>
+      <xsl:when test="../transaction-type/@code='2'">(outgoing) commitment</xsl:when>
+      <xsl:when test="../transaction-type/@code='3'">disbursement</xsl:when>
+      <xsl:when test="../transaction-type/@code='4'">expenditure</xsl:when>
+      <xsl:when test="../transaction-type/@code='11'">incoming commitment</xsl:when>
+      <xsl:otherwise>transaction</xsl:otherwise>
+    </xsl:choose>
+    <xsl:text> of {@iso-date}</xsl:text>
+  </xsl:template>
+  
   <xsl:template match="budget" mode="context">
     In the budget of <xsl:value-of select="period-start/@iso-date"/> to <xsl:value-of select="period-end/@iso-date"/>
   </xsl:template>
