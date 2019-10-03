@@ -99,4 +99,10 @@
       <param name="xspec.fail" value="false"/>
     </antcall>
   </target>
+  
+  <target name="context-tests" description="Run the context-generation tests for messages">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/context.xspec"/>
+    </antcall>
+  </target>
 </project>

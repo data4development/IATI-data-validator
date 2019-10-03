@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="feedback-plain-test.xslt"
+  xslt-version="3.0">
+  
+  <x:scenario label="Budget context">
+    <x:context mode="context">
+      <budget type="1" status="1">
+        <period-start iso-date="2014-01-01" />
+        <period-end iso-date="2014-12-31" />
+        <value currency="EUR" value-date="2014-01-01">3000</value>
+        <me:feedback/>
+      </budget>
+    </x:context>
+    <x:expect label="It should contain the budget period start date" test="contains(., '2014-01-01')"/>
+    <x:expect label="It should contain the budget period end date" test="contains(., '2014-12-31')"/>
+  </x:scenario>
+</x:description>

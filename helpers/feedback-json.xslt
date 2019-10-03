@@ -130,7 +130,7 @@
   
   <xsl:template match="me:feedback">
     <map>
-      <string key="text"><xsl:apply-templates select="." mode="context"/></string>
+      <string key="text"><xsl:apply-templates select=".." mode="context"/></string>
     </map>
   </xsl:template>
 </xsl:stylesheet>
