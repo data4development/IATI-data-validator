@@ -98,7 +98,7 @@
   </xsl:template>
   
   <xsl:template match="target|actual" mode="context">
-    For the indicator "<xsl:apply-templates select="../../title"/>" in the period {../period-start/@iso-date} to {../period-end/@iso-date}
+    For the indicator "<xsl:apply-templates select="../../title"/>" in the period {../period-start/@iso-date} to {../period-end/@iso-date} for {name(.)} value {@value}
   </xsl:template>
   
   <xsl:template match="period" mode="context">
