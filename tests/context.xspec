@@ -16,4 +16,20 @@
     <x:expect label="It should contain the budget period start date" test="contains(., '2014-01-01')"/>
     <x:expect label="It should contain the budget period end date" test="contains(., '2014-12-31')"/>
   </x:scenario>
+
+  <x:scenario label="Document context">
+    <x:context mode="context">
+      <document-link format="some/wrong/format">
+        <title>
+          <narrative>
+            Some title
+          </narrative>
+        </title>
+        <me:feedback id="9.x"/>
+        ...
+      </document-link>      
+    </x:context>
+    <x:expect label="It should contain the document format" test="contains(., 'some/wrong/format')"/>
+  </x:scenario>
+  
 </x:description>

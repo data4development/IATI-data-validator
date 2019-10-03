@@ -24,6 +24,11 @@
     <xsl:text>{functx:trim(./(narrative, text())[1])}</xsl:text>
   </xsl:template>
   
+  <xsl:template match="me:feedback[starts-with(@id, '9.')]">
+    <xsl:param name="code"/>
+    <xsl:text> (code "{$code}")</xsl:text>
+  </xsl:template>
+  
   <xsl:template name="show-organisation">
     <xsl:choose>
       <xsl:when test="@ref">{@ref}</xsl:when>
@@ -61,7 +66,10 @@
   </xsl:template>
 
   <xsl:template match="document-link" mode="context">
-    For the document <xsl:apply-templates select="title"/>
+    For the document "<xsl:apply-templates select="title"/>"
+    <xsl:apply-templates select="me:feedback">
+      <xsl:with-param name="code" select="@format"/>
+    </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="result|indicator" mode="context">
