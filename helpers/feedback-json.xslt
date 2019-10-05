@@ -125,7 +125,12 @@
     <map>
       <string key="src">{@ref}</string>
       <string key="severity">{(@type, ../@type)[1]}</string>
+      <xsl:apply-templates select="@href"/>
     </map>    
+  </xsl:template>
+  
+  <xsl:template match="@href">
+    <string key="href">{.}</string>
   </xsl:template>
   
   <xsl:template match="me:feedback">
