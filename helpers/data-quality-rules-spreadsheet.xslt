@@ -27,6 +27,7 @@
         <column column-style="co2">Ruleset(s)</column>
         <column column-style="co4">Message</column>
         <column column-style="co4">Description</column>
+        <column column-style="co4">Guidance</column>
         <column column-style="co4">Context (Xpath)</column>
         <column column-style="co4">Test (Xpath)</column>
       </table-header>
@@ -50,6 +51,8 @@
         => replace(functx:escape-for-regex("{$item}"), me:param(., 'item'))
         => replace(functx:escape-for-regex("{$items}"), me:param(., 'items'))}</message>
       <description>{(me:description, $empty)[1]}</description>
+      <href>{(me:src[1]/@href, $empty)[1]
+        => replace(functx:escape-for-regex("$href"), me:param(., 'href'))}</href>
       <context>{(ancestor::xsl:template[1]/@match, $empty)[1]}</context>
       <test>{ancestor::*[local-name(.)=('if','when')][1]/@test}</test>
     </rule>    
@@ -74,6 +77,8 @@
         => replace(functx:escape-for-regex("{$item}"), me:param(., 'item'))
         => replace(functx:escape-for-regex("{$items}"), me:param(., 'items'))}</message>
       <description>{($rule/me:description, $empty)[1]}</description>
+      <href>{($rule/me:src[1]/@href, $empty)[1]
+        => replace(functx:escape-for-regex("$href"), me:param(., 'href'))}</href>
       <context>{(ancestor::xsl:template[1]/@match, $empty)[1]}</context>
       <test>{$rule/ancestor::*[local-name(.)=('if','when')][1]/@test}</test>
     </rule>
@@ -87,7 +92,7 @@
 
   <xsl:template match="*" mode="office-spreadsheet-cells">
     <xsl:apply-templates mode="office-spreadsheet-cell"
-      select="(@class, @id, severities, @rulesets, message, description, context, test)"/>
+      select="(@class, @id, severities, @rulesets, message, description, href, context, test)"/>
   </xsl:template>
 
   <xsl:template match="me:src" mode="ruleset-list">
