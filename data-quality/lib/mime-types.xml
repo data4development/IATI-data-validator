@@ -28,6 +28,7 @@
    <code>application/atomsvc+xml</code>
    <code>application/atsc-dwd+xml</code>
    <code>application/atsc-held+xml</code>
+   <code>application/atsc-rdt+json</code>
    <code>application/atsc-rsat+xml</code>
    <code>application/ATXML</code>
    <code>application/auth-policy+xml</code>
@@ -39,6 +40,7 @@
    <code>application/call-completion</code>
    <code>application/CALS-1840</code>
    <code>application/cbor</code>
+   <code>application/cbor-seq</code>
    <code>application/cccex</code>
    <code>application/ccmp+xml</code>
    <code>application/ccxml+xml</code>
@@ -193,6 +195,7 @@
    <code>application/mets+xml</code>
    <code>application/MF4</code>
    <code>application/mikey</code>
+   <code>application/mipc</code>
    <code>application/mmt-aei+xml</code>
    <code>application/mmt-usd+xml</code>
    <code>application/mods+xml</code>
@@ -211,6 +214,7 @@
    <code>application/msc-mixer+xml</code>
    <code>application/msword</code>
    <code>application/mud+json</code>
+   <code>application/multipart-core</code>
    <code>application/mxf</code>
    <code>application/n-quads</code>
    <code>application/n-triples</code>
@@ -325,6 +329,7 @@
    <code>application/simple-filter+xml</code>
    <code>application/simple-message-summary</code>
    <code>application/simpleSymbolContainer</code>
+   <code>application/sipc</code>
    <code>application/slate</code>
    <code>application/smil</code>
    <code>application/smil+xml</code>
@@ -336,8 +341,9 @@
    <code>application/srgs</code>
    <code>application/srgs+xml</code>
    <code>application/sru+xml</code>
-   <code>application/stix+json</code>
    <code>application/ssml+xml</code>
+   <code>application/stix+json</code>
+   <code>application/swid+xml</code>
    <code>application/tamp-apex-update</code>
    <code>application/tamp-apex-update-confirm</code>
    <code>application/tamp-community-update</code>
@@ -397,6 +403,7 @@
    <code>application/vnd.3gpp.mcptt-user-profile+xml</code>
    <code>application/vnd.3gpp.mcvideo-affiliation-command+xml</code>
    <code>application/vnd.3gpp.mcvideo-affiliation-info+xml</code>
+   <code>application/vnd.3gpp.mcvideo-info+xml</code>
    <code>application/vnd.3gpp.mcvideo-location-info+xml</code>
    <code>application/vnd.3gpp.mcvideo-mbms-usage-info+xml</code>
    <code>application/vnd.3gpp.mcvideo-service-config+xml</code>
@@ -433,7 +440,16 @@
    <code>application/vnd.adobe.xfdf</code>
    <code>application/vnd.aether.imp</code>
    <code>application/vnd.afpc.afplinedata</code>
+   <code>application/vnd.afpc.afplinedata-pagedef</code>
+   <code>application/vnd.afpc.foca-charset</code>
+   <code>application/vnd.afpc.foca-codedfont</code>
+   <code>application/vnd.afpc.foca-codepage</code>
    <code>application/vnd.afpc.modca</code>
+   <code>application/vnd.afpc.modca-formdef</code>
+   <code>application/vnd.afpc.modca-mediummap</code>
+   <code>application/vnd.afpc.modca-objectcontainer</code>
+   <code>application/vnd.afpc.modca-overlay</code>
+   <code>application/vnd.afpc.modca-pagesegment</code>
    <code>application/vnd.ah-barcode</code>
    <code>application/vnd.ahead.space</code>
    <code>application/vnd.airzip.filesecure.azf</code>
@@ -480,6 +496,8 @@
    <code>application/vnd.bluetooth.ep.oob</code>
    <code>application/vnd.bluetooth.le.oob</code>
    <code>application/vnd.bmi</code>
+   <code>application/vnd.bpf</code>
+   <code>application/vnd.bpf3</code>
    <code>application/vnd.businessobjects</code>
    <code>application/vnd.byu.uapi+json</code>
    <code>application/vnd.cab-jscript</code>
@@ -523,6 +541,8 @@
    <code>application/vnd.crick.clicker.template</code>
    <code>application/vnd.crick.clicker.wordbank</code>
    <code>application/vnd.criticaltools.wbs+xml</code>
+   <code>application/vnd.cryptii.pipe+json</code>
+   <code>application/vnd.crypto-shade-file</code>
    <code>application/vnd.ctc-posml</code>
    <code>application/vnd.ctct.ws+xml</code>
    <code>application/vnd.cups-pdf</code>
@@ -639,6 +659,7 @@
    <code>application/vnd.fdsn.mseed</code>
    <code>application/vnd.fdsn.seed</code>
    <code>application/vnd.ffsns</code>
+   <code>application/vnd.ficlab.flb+zip</code>
    <code>application/vnd.filmit.zfc</code>
    <code>application/vnd.fints</code>
    <code>application/vnd.firemonkeys.cloudcell</code>
@@ -786,8 +807,10 @@
    <code>application/vnd.Kinar</code>
    <code>application/vnd.koan</code>
    <code>application/vnd.kodak-descriptor</code>
+   <code>application/vnd.las</code>
    <code>application/vnd.las.las+json</code>
    <code>application/vnd.las.las+xml</code>
+   <code>application/vnd.laszip</code>
    <code>application/vnd.leap+json</code>
    <code>application/vnd.liberty-request+xml</code>
    <code>application/vnd.llamagraphics.life-balance.desktop</code>
@@ -1525,6 +1548,10 @@
    <code>image/jxr</code>
    <code>image/jxrA</code>
    <code>image/jxrS</code>
+   <code>image/jxs</code>
+   <code>image/jxsc</code>
+   <code>image/jxsi</code>
+   <code>image/jxss</code>
    <code>image/naplps</code>
    <code>image/png</code>
    <code>image/prs.btif</code>
@@ -1669,6 +1696,7 @@
    <code>text/vnd.DMClientScript</code>
    <code>text/vnd.dvb.subtitle</code>
    <code>text/vnd.esmertec.theme-descriptor</code>
+   <code>text/vnd.ficlab.flt</code>
    <code>text/vnd.fly</code>
    <code>text/vnd.fmi.flexstor</code>
    <code>text/vnd.gml</code>
@@ -1692,6 +1720,7 @@
    <code>text/vnd.wap.sl</code>
    <code>text/vnd.wap.wml</code>
    <code>text/vnd.wap.wmlscript</code>
+   <code>text/vtt</code>
    <code>text/xml</code>
    <code>text/xml-external-parsed-entity</code>
    <code>video/1d-interleaved-parityfec</code>
