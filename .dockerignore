@@ -5,5 +5,10 @@ Dockerfile
 docker.properties
 develop/
 docs/
+testspace/
 tmp/
 README*
+
+# TODO not needed in this branch, but used in develop branch
+tests/
+lib/iati-rulesets/
