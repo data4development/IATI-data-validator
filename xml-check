@@ -2,12 +2,15 @@
 
 # Check the input files for well-formedness and schema errors, produce a feedback file if appropriate
 
-WORKSPACE={$WORKSPACE:-/workspace}
+WORKSPACE=${WORKSPACE:-/workspace}
 INPUTDIR=${1:-input}
 SRCDIR=${2:-src}
 FILEMASK=${3}*
 PREFIX="XML check"
-API={$API:-http://validator-api/api/v1}
+API=${API:-none}
+
+VALLOGL=100
+VALLOGS=50
 
 mkdir -p \
   $WORKSPACE/tmp/xmltest \
@@ -27,9 +30,9 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
   cd $WORKSPACE/$INPUTDIR
   xmllint --recover --output "$WORKSPACE/tmp/xmltest/$NAME" "$NAME" 2> "$WORKSPACE/tmp/xmltestlog/$NAME"
   LL=`cat "$WORKSPACE/tmp/xmltestlog/$NAME" | wc -l`
-  if [[ $LL -gt 4000 ]]; then
-    echo "$PREFIX $MD5: limiting XML validation log of $LL lines to 4000 lines"
-    sed -i "2001,$((LL-2000))c...skipped $((LL-4000)) lines..." "$WORKSPACE/tmp/xmltestlog/$NAME" 
+  if [[ $LL -gt 100 ]]; then
+    echo "$PREFIX $MD5: limiting XML validation log of $LL lines to $VALLOGL lines"
+    sed -i "2001,$((LL-$VALLOGS))c...skipped $((LL-$VALLOGL)) lines..." "$WORKSPACE/tmp/xmltestlog/$NAME" 
   fi
   
   if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
@@ -58,50 +61,54 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
         echo '<recovered-iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
         echo "$PREFIX $MD5: recovered-iati-file"
         
-        APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"recovered-iati-file\", \"iati-version\": \"$VERSION\"}"
+        if [[ "$API" != "none" ]]; then
+          APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"recovered-iati-file\", \"iati-version\": \"$VERSION\"}"
 
-        curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
-          -d "$APIDATA" \
-          "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
-        
+          curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+            -d "$APIDATA" \
+            "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
+        fi        
       else
         echo '<iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
         echo "$PREFIX $MD5: iati-file"
         
-        APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"iati-file\", \"iati-version\": \"$VERSION\"}"
+        if [[ "$API" != "none" ]]; then
+          APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"iati-file\", \"iati-version\": \"$VERSION\"}"
 
-        curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
-          -d "$APIDATA" \
-          "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
-        
+          curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+            -d "$APIDATA" \
+            "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
+        fi        
       fi
     else
       LL=`cat "$WORKSPACE/tmp/xmlschemalog/$NAME" | wc -l`
       if [[ $LL -gt 4000 ]]; then
-        echo "$PREFIX $MD5: limiting schema validation log of $LL lines to 4000 lines"
-        sed -i "2001,$((LL-2000))c...skipped $((LL-4000)) lines..." "$WORKSPACE/tmp/xmlschemalog/$NAME" 
+        echo "$PREFIX $MD5: limiting schema validation log of $LL lines to $VALLOGL lines"
+        sed -i "2001,$((LL-$VALLOGS))c...skipped $((LL-$VALLOGL)) lines..." "$WORKSPACE/tmp/xmlschemalog/$NAME" 
       fi
 
       if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
         echo '<recovered-iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
         echo "$PREFIX $MD5: recovered-iati-file-with-schema-errors"
 
-        APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"recovered-iati-file-with-schema-errors\", \"iati-version\": \"$VERSION\"}"
+        if [[ "$API" != "none" ]]; then
+          APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"recovered-iati-file-with-schema-errors\", \"iati-version\": \"$VERSION\"}"
 
-        curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
-          -d "$APIDATA" \
-          "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
-        
+          curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+            -d "$APIDATA" \
+            "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
+        fi        
       else
         echo '<iati-file-with-schema-errors/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"
         echo "$PREFIX $MD5: iati-file-with-schema-errors"
 
-        APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"iati-file-with-schema-errors\", \"iati-version\": \"$VERSION\"}"
+        if [[ "$API" != "none" ]]; then
+          APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"iati-file-with-schema-errors\", \"iati-version\": \"$VERSION\"}"
 
-        curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
-          -d "$APIDATA" \
-          "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
-
+          curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+            -d "$APIDATA" \
+            "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
+        fi
       fi       
     fi
     
@@ -112,23 +119,25 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
     echo "$PREFIX $MD5: not-an-xml-file"
     rm "$WORKSPACE/src/$NAME"
     
-    APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"not-an-xml-file\"}"
+    if [[ "$API" != "none" ]]; then
+      APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"not-an-xml-file\"}"
 
-    curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
-      -d "$APIDATA" \
-      "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
-    
+      curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+        -d "$APIDATA" \
+        "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
+    fi    
   else
     echo '<not-an-iati-file/>' > "$WORKSPACE/tmp/feedback/$NAME"
     echo "$PREFIX $MD5: not-an-iati-file"
     rm "$WORKSPACE/src/$NAME"
 
-    APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"not-an-iati-file\"}"
+    if [[ "$API" != "none" ]]; then
+      APIDATA="{\"md5\": \"$MD5\", \"file-type\": \"not-an-iati-file\"}"
 
-    curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
-      -d "$APIDATA" \
-      "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
+      curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+        -d "$APIDATA" \
+        "$API/iati-datasets/update?where=%7B%22md5%22%3A%22$MD5%22%7D"
+    fi 
   fi 
 
 done
-

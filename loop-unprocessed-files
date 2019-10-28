@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PREFIX="Loop unprocessed files"
-API={$API:-http://validator-api/api/v1}
+API=${API:-http://validator-api/api/v1}
 
 # loop forever
 while :
@@ -36,7 +36,7 @@ do
 EOT`
   
   # Get (-G) a dataset with the query
-  DATASET=`curl -s --header 'Accept: application/xml' \
+  DATASET=`curl -sS --header 'Accept: application/xml' \
   -G --data-urlencode "filter=$QUERY" \
   "$API/iati-datasets"`
   
@@ -54,7 +54,7 @@ EOT`
     APIDATA="{\"processing\": \"$NOW\"}"
   
     echo "$PREFIX: update iati-datasets $MD5 to indicate processing"
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
+    curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
     -d "$APIDATA" \
     "$API/iati-datasets/update?where=%7B%22id%22%3A%22$DSID%22%7D"
 
