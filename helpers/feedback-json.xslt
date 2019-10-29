@@ -24,7 +24,7 @@
         <xsl:apply-templates/>
       </map>
     </xsl:variable>
-   {xml-to-json($j)}
+    {xml-to-json($j)}
   </xsl:template>
 
   <xsl:template match="/*">
@@ -35,8 +35,17 @@
       <xsl:apply-templates select="." mode="validation"/>
     </string>
     
+    <xsl:variable name="t" as="node()*">
+      <xsl:sequence select="me:feedback"/>
+      <xsl:if test="not(//me:feedback[@type=('danger', 'critical')])">
+        <me:feedback type="success" class="iati" id="0.0.1">
+          <me:src ref="iati" versions="any"/>
+          <me:message>Congratulations! This IATI activity file has successfully passed validation with no errors!</me:message>
+        </me:feedback>
+      </xsl:if>
+    </xsl:variable>
     <xsl:call-template name="feedback">
-      <xsl:with-param name="feedback" select="me:feedback"/>
+      <xsl:with-param name="feedback" select="$t"/>
     </xsl:call-template>
 
     <xsl:where-populated>

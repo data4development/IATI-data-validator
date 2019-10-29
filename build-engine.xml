@@ -88,7 +88,7 @@
     </copy>
   </target>
   
-  <target name="test" description="Run the tests" depends="xml-check, rules">
+  <target name="test" description="Run the tests" depends="xml-check, rules, json-tests">
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="tests/validator.xspec"/>
     </antcall>
@@ -105,4 +105,11 @@
       <param name="xspec.xml" location="tests/context.xspec"/>
     </antcall>
   </target>
+
+  <target name="json-tests" description="Run the JSON feedback tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/json-feedback.xspec"/>
+    </antcall>
+  </target>
+
 </project>

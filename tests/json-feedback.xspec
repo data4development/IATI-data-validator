@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="../helpers/feedback-json.xslt"
+  xslt-version="3.0">
+
+  <x:scenario label="JSON feedback: valid XML" focus="yes">
+    <x:scenario label="If the file has no IATI feedback of severity critical or error">
+      <x:context href="../testspace/dest/iati-no-feedback.feedback.xml"/>
+      <x:expect label="It should produce congratulations message 0.0.1" test="json-to-xml(.)//array[@key='messages']/map/string[@key='id' and .='0.0.1']"/>
+    </x:scenario>
+  </x:scenario>      
+
+</x:description>
