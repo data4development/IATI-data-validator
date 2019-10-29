@@ -6,7 +6,7 @@ LABEL maintainer="Rolf Kleef <rolf@data4development.nl>" \
 
 # To be adapted in the cluster or runtime config
 ENV \
-    API=http://validator-api/api \
+    API=none \
     BUCKET_SRC=dataworkbench-iati \
     BUCKET_FB=dataworkbench-iatifeedback \
     BUCKET_JSON=dataworkbench-json \
