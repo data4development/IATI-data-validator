@@ -85,7 +85,7 @@
   <xsl:template match="iati-activity">
     <map>
       <string key="title">{title[1]/narrative[1]}</string>
-      <string key="identifier">{iati-identifier}</string>
+      <string key="identifier">{iati-identifier/text()[1]}</string>
       <string key="publisher">{reporting-org/@ref}</string>
       <xsl:call-template name="feedback">
         <xsl:with-param name="feedback" select="descendant::me:feedback"/>
