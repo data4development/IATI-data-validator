@@ -37,7 +37,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   
   FILEDATE=$(date -Iseconds -r /workspace/dest/$basename.feedback.xml)
   
-  APIDATA="{\"feedback-updated\": \"$FILEDATE\", \"feedback-version\": \"$VERSION\", \"status\": \"Generating report\"}"
+  APIDATA="{\"feedback-updated\": \"$FILEDATE\", \"feedback-version\": \"$VERSION\", \"status\": \"Generating report (step 3 of 3)\"}"
   
   echo "$PREFIX: update iati-testdatasets for feedback on $basename ($filename)"
   curl -sS -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
