@@ -18,3 +18,12 @@ processing.
   HTML and JSON outputs.
 
 For more information see the [online documentation](https://data4development.github.io/IATI-data-validator/)
+
+Using git
+---------
+
+After cloning this repository, update the submodules recursively:
+
+`git submodule update --recursive`
+
+This will download the IATI-Rulesets, and within that, the Xspec testing library
