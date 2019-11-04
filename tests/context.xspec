@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="feedback-plain-test.xslt"
+  xslt-version="3.0">
+  
+  <x:scenario label="Budget context">
+    <x:context mode="context">
+      <budget type="1" status="1">
+        <period-start iso-date="2014-01-01" />
+        <period-end iso-date="2014-12-31" />
+        <value currency="EUR" value-date="2014-01-01">3000</value>
+        <me:feedback/>
+      </budget>
+    </x:context>
+    <x:expect label="It should contain the budget period start date" test="contains(., '2014-01-01')"/>
+    <x:expect label="It should contain the budget period end date" test="contains(., '2014-12-31')"/>
+  </x:scenario>
+
+  <x:scenario label="Document context">
+    <x:context mode="context">
+      <document-link format="some/wrong/format">
+        <title>
+          <narrative>
+            Some title
+          </narrative>
+        </title>
+        <me:feedback id="9.x"/>
+        ...
+      </document-link>      
+    </x:context>
+    <x:expect label="It should contain the document format" test="contains(., 'some/wrong/format')"/>
+  </x:scenario>
+  
+  <x:scenario label="Indicator target value context">
+    <x:context mode="context" select="//target">
+      <indicator>
+        <title>
+          <narrative>Indicator title</narrative>
+        </title>
+        <period>
+          <period-start iso-date="2013-01-01" />
+          <period-end iso-date="2013-03-31" />
+          <target value="314">
+            <me:feedback/>
+          </target>
+        </period>
+      </indicator>
+    </x:context>
+    <x:expect label="It should contain the indicator title" test="contains(., 'Indicator title')"/>
+    <x:expect label="It should contain the target period start date" test="contains(., '2013-01-01')"/>
+    <x:expect label="It should contain the target period end date" test="contains(., '2013-03-31')"/>
+    <x:expect label="It should contain the target period value" test="contains(., '314')"/>
+  </x:scenario>
+  
+</x:description>

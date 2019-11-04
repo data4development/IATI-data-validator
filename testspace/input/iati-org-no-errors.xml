@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iati-organisations version="2.02" generated-datetime="2018-11-07T05:25:55+00:00">
+  <iati-organisation last-updated-datetime="2018-11-07T05:25:55+00:00" xml:lang="en" default-currency="NPR" xmlns:aidstream="http://example.org/aidstream/ns#">
+    <organisation-identifier>NP-SWC-1234</organisation-identifier>
+    <name>
+      <narrative>Test Org Nepal</narrative>
+    </name>
+    <reporting-org type="24" ref="NP-SWC-1234">
+      <narrative>Test Org Nepal</narrative>
+    </reporting-org>
+  </iati-organisation>
+</iati-organisations>

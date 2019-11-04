@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <description>
+    Developer targets
+  </description>
+
+  <property name="xspec.fail" value="false"/>
+  <import file="../lib/iati-rulesets/lib/xspec/build.xml"/>
+  
+  <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
+  <extension-point name="update-external-data"
+  description="(Dev) Update the external data to use in the validator"
+  depends="org-id-prefixes, known-publishers, mime-types"/>
+
+  <target name="org-id-prefixes">
+    <get src="http://org-id.guide/download.xml" dest="tmp/org-id.xml"/>
+    <xslt in="tmp/org-id.xml" out="data-quality/lib/known-prefixes.xml" style="helpers/update-org-id-prefixes.xslt"/>
+  </target>
+
+  <target name="mime-types">
+    <get src="http://www.iana.org/assignments/media-types/media-types.xml" dest="tmp/mime-types.xml"/>
+    <xslt in="tmp/mime-types.xml" out="data-quality/lib/mime-types.xml" style="helpers/update-mime-types.xslt"/>
+  </target>
+
+  <target name="known-publishers">
+    <get src="http://www.dataworkbench.io/api/iati-publishers" dest="tmp/iati-publishers.json"/>
+    <touch file="lib/dummy.xml"/>
+    <xslt in="lib/dummy.xml" out="data-quality/lib/known-publishers.xml" style="helpers/update-known-iati-publishers.xslt"/>
+  </target>
+  
+  <!-- Document all the Ant targets and their dependencies -->
+  <typedef resource="net/ggtools/grand/antlib.xml" classpath="lib/grand-1.9.5.jar"/>
+  <target name="ant-graph"
+    description="(Dev) Create a graph of the targets and their dependencies.">
+
+    <grand output="tmp/ant-graph.dot" outputconfigfile="develop/ant-graph.properties" showgraphname="true">
+      <filter name="prefixed"/>
+    </grand>
+
+    <echo>
+      Ant target graph available as tmp/ant-graph.dot
+      To create and view an SVG image fromt this, you need GraphViz and run:
+      
+        dot -Tsvg -o tmp/ant-graph.svg tmp/ant-graph.dot
+        open tmp/ant-graph.svg
+    </echo>
+  </target>
+
+</project>
