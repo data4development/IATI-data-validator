@@ -17,13 +17,9 @@
   </xsl:template>
   
   <xsl:template match="*" mode="get-text">
-    <xsl:text>{functx:trim(./(narrative, text())[1])}</xsl:text>
+    <xsl:text>{functx:trim(narrative[1])}</xsl:text>
   </xsl:template>
 
-  <xsl:template match="*">
-    <xsl:text>{functx:trim(./(narrative, text())[1])}</xsl:text>
-  </xsl:template>
-  
   <xsl:template match="me:feedback[starts-with(@id, '9.')]">
     <xsl:param name="code"/>
     <xsl:text> (code "{$code}")</xsl:text>
@@ -79,34 +75,31 @@
   </xsl:template>
 
   <xsl:template match="document-link" mode="context">
-    For the document "<xsl:apply-templates select="title"/>"
-    <xsl:apply-templates select="me:feedback">
-      <xsl:with-param name="code" select="@format"/>
-    </xsl:apply-templates>
+    For the document "<xsl:apply-templates select="title" mode="get-text"/>"  ({@format})
   </xsl:template>
 
   <xsl:template match="result|indicator" mode="context">
-    For the {name(.)} "<xsl:apply-templates select="title"/>"
+    For the {name(.)} "<xsl:apply-templates select="title" mode="get-text"/>"
   </xsl:template>
 
   <xsl:template match="baseline|indicator/reference|indicator/description|result/description" mode="context">
-    For the {name(..)} "<xsl:apply-templates select="../title"/>"
+    For the {name(..)} "<xsl:apply-templates select="../title" mode="get-text"/>"
   </xsl:template>
   
   <xsl:template match="location/description" mode="context">
-    For the {name(..)} "<xsl:apply-templates select="../name"/>"
+    For the {name(..)} "<xsl:apply-templates select="../name" mode="get-text"/>"
   </xsl:template>
   
   <xsl:template match="target|actual" mode="context">
-    For the indicator "<xsl:apply-templates select="../../title"/>" in the period {../period-start/@iso-date} to {../period-end/@iso-date} for {name(.)} value {@value}
+    For the indicator "<xsl:apply-templates select="../../title" mode="get-text"/>" in the period {../period-start/@iso-date} to {../period-end/@iso-date} for {name(.)} value {@value}
   </xsl:template>
   
   <xsl:template match="period" mode="context">
-    In the indicator "<xsl:apply-templates select="../title"/>" in the period {period-start/@iso-date} to {period-end/@iso-date}
+    In the indicator "<xsl:apply-templates select="../title" mode="get-text"/>" in the period {period-start/@iso-date} to {period-end/@iso-date}
   </xsl:template>
 
   <xsl:template match="target/location|actual/location" mode="context">
-    For the {name(..)} location of the indicator "<xsl:apply-templates select="../../../title"/>" in the period {../../period-start/@iso-date} to {../../period-end/@iso-date}
+    For the {name(..)} location of the indicator "<xsl:apply-templates select="../../../title" mode="get-text"/>" in the period {../../period-start/@iso-date} to {../../period-end/@iso-date}
   </xsl:template>
 
   <xsl:template match="other-identifier" mode="context">
