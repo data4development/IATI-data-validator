@@ -7,7 +7,7 @@ Create data quality feedback for activity files in the
 The IATI Validator is available for a month of testing between 12 November and 11 December.
 
 * [IATI Validator test](https://test-validator.iatistandard.org/)
-* [Q&A: New IATI Validator launch (testing phase)](https://docs.google.com/document/d/1qUOgGQGFbKwmwk5RXNMleTL_3OTpMo_A58UhbjlYw_M/edit)
+* [Q&A: New IATI Validator launch (testing phase)](https://docs.google.com/document/d/1oOdq4keBXz6Ahmn3UiFYitSiQl3p7xDK51w_VWYVVPw/edit?usp=sharing)
 
 Please provide your feedback by using the Validator Feedback form on the tool or raise issues 
 here on Github. Users who are unable to access Github or use the Validator Feedback form are 
