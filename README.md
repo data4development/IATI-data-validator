@@ -4,7 +4,7 @@ IATI Data Validator
 Create data quality feedback for activity files in the
 [data standard of the International Aid Transparency Initiative](http://iatistandard.org).
 
-The IATI Validator is available for a month of testing between 11 November and 10 December.
+The IATI Validator is available for a month of testing between 12 November and 11 December.
 
 * [IATI Validator test](https://test-validator.iatistandard.org/)
 * [Q&A: New IATI Validator launch (testing phase)](https://docs.google.com/document/d/1qUOgGQGFbKwmwk5RXNMleTL_3OTpMo_A58UhbjlYw_M/edit)
