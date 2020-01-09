@@ -53,4 +53,75 @@
     <x:expect label="It should contain the target period value" test="contains(., '314')"/>
   </x:scenario>
   
+  <x:scenario label="Organisation file financial context">
+    <x:scenario label="If there is feedback on total-budget/value">
+      <x:context mode="context" select="//value">
+        <total-budget>
+          <period-start iso-date="2014-01-01" />
+          <period-end iso-date="2014-12-31" />
+          <value>
+            12301
+            <me:feedback/>
+          </value>
+        </total-budget>
+      </x:context>
+      <x:expect label="It should contain the total-budget period start" test="contains(., '2014-01-01')"/>
+      <x:expect label="It should contain the total-budget period end" test="contains(., '2014-12-31')"/>
+    </x:scenario>
+
+    <x:scenario label="If there is feedback on recipient-org-budget/value">
+      <x:context mode="context" select="//value">
+        <recipient-org-budget>
+          <period-start iso-date="2014-01-01" />
+          <period-end iso-date="2014-12-31" />
+          <value>
+            12301
+            <me:feedback/>
+          </value>
+        </recipient-org-budget>
+      </x:context>
+      <x:expect label="It should contain the recipient-org-budget period start" test="contains(., '2014-01-01')"/>
+      <x:expect label="It should contain the recipient-org-budget period end" test="contains(., '2014-12-31')"/>
+    </x:scenario>    
+
+    <x:scenario label="If there is feedback on total-budget/budget-line/value">
+      <x:context mode="context" select="//value">
+        <total-budget>
+          <period-start iso-date="2014-01-01" />
+          <period-end iso-date="2014-12-31" />
+          <budget-line>
+            <value>
+              123
+              <me:feedback/>
+            </value>
+            <narrative>Line item description</narrative>
+          </budget-line>
+        </total-budget>
+      </x:context>
+      <x:expect label="It should contain the total-budget period start" test="contains(., '2014-01-01')"/>
+      <x:expect label="It should contain the total-budget period end" test="contains(., '2014-12-31')"/>
+      <x:expect label="It should contain the budget-line narrative" test="contains(., 'Line item description')"/>
+    </x:scenario>
+    
+    <x:scenario label="If there is feedback on total-expenditure/expense-line/value">
+      <x:context mode="context" select="//value">
+        <total-expenditure>
+          <period-start iso-date="2014-01-01" />
+          <period-end iso-date="2014-12-31" />
+          <expense-line>
+            <value>
+              123
+              <me:feedback/>
+            </value>
+            <narrative>Line item description</narrative>
+          </expense-line>
+        </total-expenditure>
+      </x:context>
+      <x:expect label="It should contain the total-expenditure period start" test="contains(., '2014-01-01')"/>
+      <x:expect label="It should contain the total-expenditure period end" test="contains(., '2014-12-31')"/>
+      <x:expect label="It should contain the expense-line narrative" test="contains(., 'Line item description')"/>
+    </x:scenario>
+    
+  </x:scenario>
+
 </x:description>
