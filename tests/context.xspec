@@ -15,6 +15,7 @@
     </x:context>
     <x:expect label="It should contain the budget period start date" test="contains(., '2014-01-01')"/>
     <x:expect label="It should contain the budget period end date" test="contains(., '2014-12-31')"/>
+    <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
   </x:scenario>
 
   <x:scenario label="Document context">
@@ -30,6 +31,7 @@
       </document-link>      
     </x:context>
     <x:expect label="It should contain the document format" test="contains(., 'some/wrong/format')"/>
+    <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
   </x:scenario>
   
   <x:scenario label="Indicator target value context">
@@ -51,6 +53,119 @@
     <x:expect label="It should contain the target period start date" test="contains(., '2013-01-01')"/>
     <x:expect label="It should contain the target period end date" test="contains(., '2013-03-31')"/>
     <x:expect label="It should contain the target period value" test="contains(., '314')"/>
+    <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
   </x:scenario>
   
+  <x:scenario label="Organisation file financial context">
+    <x:scenario label="If there is feedback on total-budget/value">
+      <x:context mode="context" select="//value">
+        <total-budget>
+          <period-start iso-date="2014-01-01" />
+          <period-end iso-date="2014-12-31" />
+          <value>
+            12301
+            <me:feedback/>
+          </value>
+        </total-budget>
+      </x:context>
+      <x:expect label="It should contain the total-budget period start" test="contains(., '2014-01-01')"/>
+      <x:expect label="It should contain the total-budget period end" test="contains(., '2014-12-31')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+    </x:scenario>
+
+    <x:scenario label="If there is feedback on recipient-org-budget/value">
+      <x:context mode="context" select="//value">
+        <recipient-org-budget>
+          <period-start iso-date="2014-01-01" />
+          <period-end iso-date="2014-12-31" />
+          <value>
+            12301
+            <me:feedback/>
+          </value>
+        </recipient-org-budget>
+      </x:context>
+      <x:expect label="It should contain the recipient-org-budget period start" test="contains(., '2014-01-01')"/>
+      <x:expect label="It should contain the recipient-org-budget period end" test="contains(., '2014-12-31')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+    </x:scenario>    
+
+    <x:scenario label="If there is feedback on total-budget/budget-line/value">
+      <x:context mode="context" select="//value">
+        <total-budget>
+          <period-start iso-date="2014-01-01" />
+          <period-end iso-date="2014-12-31" />
+          <budget-line>
+            <value>
+              123
+              <me:feedback/>
+            </value>
+            <narrative>Line item description</narrative>
+          </budget-line>
+        </total-budget>
+      </x:context>
+      <x:expect label="It should contain the total-budget period start" test="contains(., '2014-01-01')"/>
+      <x:expect label="It should contain the total-budget period end" test="contains(., '2014-12-31')"/>
+      <x:expect label="It should contain the budget-line narrative" test="contains(., 'Line item description')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+    </x:scenario>
+    
+    <x:scenario label="If there is feedback on total-expenditure/expense-line/value">
+      <x:context mode="context" select="//value">
+        <total-expenditure>
+          <period-start iso-date="2014-01-01" />
+          <period-end iso-date="2014-12-31" />
+          <expense-line>
+            <value>
+              123
+              <me:feedback/>
+            </value>
+            <narrative>Line item description</narrative>
+          </expense-line>
+        </total-expenditure>
+      </x:context>
+      <x:expect label="It should contain the total-expenditure period start" test="contains(., '2014-01-01')"/>
+      <x:expect label="It should contain the total-expenditure period end" test="contains(., '2014-12-31')"/>
+      <x:expect label="It should contain the expense-line narrative" test="contains(., 'Line item description')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+    </x:scenario>    
+  </x:scenario>
+
+  <x:scenario label="Classification context information">
+    <x:scenario label="If there is feedback on a sector">
+      <x:context mode="context">
+        <sector code="99840" percentage="99" vocabulary="1">
+          <me:feedback/>
+        </sector>
+      </x:context>
+      <x:expect label="It should contain the sector code" test="contains(., '99840')"/>
+      <x:expect label="It should contain the sector vocabulary" test="contains(., '1')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+    </x:scenario>
+
+    <x:scenario label="If there is feedback on a tag">
+      <x:context mode="context">
+        <tag code="99840" vocabulary="1">
+          <me:feedback/>
+        </tag>
+      </x:context>
+      <x:expect label="It should contain the tag code" test="contains(., '99840')"/>
+      <x:expect label="It should contain the tag vocabulary" test="contains(., '1')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+    </x:scenario>
+
+    <x:scenario label="If there is feedback on a location class">
+      <x:context mode="context" select="//location-class">
+        <location ref="AF-KAN">
+          <location-class code="2">
+            <me:feedback/>
+          </location-class>
+        </location>
+      </x:context>
+      <x:expect label="It should contain the location-class code" test="contains(., '2')"/>
+      <x:expect label="It should contain the location ref" test="contains(., 'AF-KAN')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+<!--<x:expect label="Debug: show the result" test="false()"/>-->
+    </x:scenario>
+  </x:scenario>
+    
 </x:description>

@@ -66,46 +66,70 @@
     <xsl:text> of {@iso-date}</xsl:text>
   </xsl:template>
   
-  <xsl:template match="budget" mode="context">
-    In the budget of <xsl:value-of select="period-start/@iso-date"/> to <xsl:value-of select="period-end/@iso-date"/>
+  <xsl:template match="budget|total-budget|recipient-org-budget|recipient-country-budget|recipient-region-budget" mode="context">
+    <xsl:text>In the {local-name(.)} of {period-start/@iso-date} to {period-end/@iso-date}</xsl:text>
   </xsl:template>
 
+  <xsl:template match="budget-line/value|expense-line/value" mode="context">
+    <xsl:text>In the {local-name(..)} "</xsl:text>
+    <xsl:apply-templates select=".." mode="get-text"/>
+    <xsl:text>" of the {local-name(../..)} of {../../period-start/@iso-date} to {../../period-end/@iso-date}</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="value" mode="context">
+    <xsl:text>In the {local-name(..)} of {../period-start/@iso-date} to {../period-end/@iso-date}</xsl:text>
+  </xsl:template>
+  
   <xsl:template match="provider-org|receiver-org" mode="context">
     <xsl:text>In transaction of {../transaction-date/@iso-date} for {name(.)} </xsl:text><xsl:call-template name="show-organisation"/>
   </xsl:template>
 
   <xsl:template match="document-link" mode="context">
-    For the document "<xsl:apply-templates select="title" mode="get-text"/>"  ({@format})
+    <xsl:text>For the document "</xsl:text><xsl:apply-templates select="title" mode="get-text"/><xsl:text>" ({@format})</xsl:text>
   </xsl:template>
 
   <xsl:template match="result|indicator" mode="context">
-    For the {name(.)} "<xsl:apply-templates select="title" mode="get-text"/>"
+    <xsl:text>For the {name(.)} "</xsl:text><xsl:apply-templates select="title" mode="get-text"/><xsl:text>"</xsl:text>
   </xsl:template>
 
   <xsl:template match="baseline|indicator/reference|indicator/description|result/description" mode="context">
-    For the {name(..)} "<xsl:apply-templates select="../title" mode="get-text"/>"
+    <xsl:text>For the {name(..)} "</xsl:text><xsl:apply-templates select="../title" mode="get-text"/><xsl:text>"</xsl:text>
   </xsl:template>
   
   <xsl:template match="location/description" mode="context">
-    For the {name(..)} "<xsl:apply-templates select="../name" mode="get-text"/>"
+    <xsl:text>For the {name(..)} "</xsl:text><xsl:apply-templates select="../name" mode="get-text"/><xsl:text>"</xsl:text>
   </xsl:template>
   
   <xsl:template match="target|actual" mode="context">
-    For the indicator "<xsl:apply-templates select="../../title" mode="get-text"/>" in the period {../period-start/@iso-date} to {../period-end/@iso-date} for {name(.)} value {@value}
+    <xsl:text>For the indicator "</xsl:text>
+    <xsl:apply-templates select="../../title" mode="get-text"/>
+    <xsl:text>" in the period {../period-start/@iso-date} to {../period-end/@iso-date} for {name(.)} value {@value}</xsl:text>
   </xsl:template>
   
   <xsl:template match="period" mode="context">
-    In the indicator "<xsl:apply-templates select="../title" mode="get-text"/>" in the period {period-start/@iso-date} to {period-end/@iso-date}
+    <xsl:text>In the indicator "</xsl:text>
+    <xsl:apply-templates select="../title" mode="get-text"/>
+    <xsl:text>" in the period {period-start/@iso-date} to {period-end/@iso-date}</xsl:text>
   </xsl:template>
 
   <xsl:template match="target/location|actual/location" mode="context">
-    For the {name(..)} location of the indicator "<xsl:apply-templates select="../../../title" mode="get-text"/>" in the period {../../period-start/@iso-date} to {../../period-end/@iso-date}
+    <xsl:text>For the {name(..)} location of the indicator "</xsl:text>
+    <xsl:apply-templates select="../../../title" mode="get-text"/>
+    <xsl:text>" in the period {../../period-start/@iso-date} to {../../period-end/@iso-date}</xsl:text>
   </xsl:template>
 
   <xsl:template match="other-identifier" mode="context">
-    For the {name(.)} {@ref} of type {@type}
+    <xsl:text>For the {name(.)} {@ref} of type {@type}</xsl:text>
   </xsl:template>
   
+  <xsl:template match="sector|tag" mode="context">
+    <xsl:text>For {name(.)} {@code} in vocabulary {@vocabulary}</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="location-class" mode="context">
+    <xsl:text>For {name(.)} {@code} in location {../@ref}</xsl:text>
+  </xsl:template>
+
   <xsl:template match="@*|node()" mode="context">
   </xsl:template>
     
