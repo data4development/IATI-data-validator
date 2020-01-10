@@ -127,8 +127,45 @@
       <x:expect label="It should contain the total-expenditure period end" test="contains(., '2014-12-31')"/>
       <x:expect label="It should contain the expense-line narrative" test="contains(., 'Line item description')"/>
       <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
-    </x:scenario>
-    
+    </x:scenario>    
   </x:scenario>
 
+  <x:scenario label="Classification context information">
+    <x:scenario label="If there is feedback on a sector">
+      <x:context mode="context">
+        <sector code="99840" percentage="99" vocabulary="1">
+          <me:feedback/>
+        </sector>
+      </x:context>
+      <x:expect label="It should contain the sector code" test="contains(., '99840')"/>
+      <x:expect label="It should contain the sector vocabulary" test="contains(., '1')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+    </x:scenario>
+
+    <x:scenario label="If there is feedback on a tag">
+      <x:context mode="context">
+        <tag code="99840" vocabulary="1">
+          <me:feedback/>
+        </tag>
+      </x:context>
+      <x:expect label="It should contain the tag code" test="contains(., '99840')"/>
+      <x:expect label="It should contain the tag vocabulary" test="contains(., '1')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+    </x:scenario>
+
+    <x:scenario label="If there is feedback on a location class">
+      <x:context mode="context" select="//location-class">
+        <location ref="AF-KAN">
+          <location-class code="2">
+            <me:feedback/>
+          </location-class>
+        </location>
+      </x:context>
+      <x:expect label="It should contain the location-class code" test="contains(., '2')"/>
+      <x:expect label="It should contain the location ref" test="contains(., 'AF-KAN')"/>
+      <x:expect label="It should not contain newlines" test="not(contains(., '&#xa;'))"/>
+<!--<x:expect label="Debug: show the result" test="false()"/>-->
+    </x:scenario>
+  </x:scenario>
+    
 </x:description>

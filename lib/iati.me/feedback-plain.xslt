@@ -122,6 +122,14 @@
     <xsl:text>For the {name(.)} {@ref} of type {@type}</xsl:text>
   </xsl:template>
   
+  <xsl:template match="sector|tag" mode="context">
+    <xsl:text>For {name(.)} {@code} in vocabulary {@vocabulary}</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="location-class" mode="context">
+    <xsl:text>For {name(.)} {@code} in location {../@ref}</xsl:text>
+  </xsl:template>
+
   <xsl:template match="@*|node()" mode="context">
   </xsl:template>
     
