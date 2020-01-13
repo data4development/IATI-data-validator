@@ -56,6 +56,7 @@
    <code>application/cellml+xml</code>
    <code>application/cfw</code>
    <code>application/clue_info+xml</code>
+   <code>application/clue+xml</code>
    <code>application/cms</code>
    <code>application/cnrp+xml</code>
    <code>application/coap-group+json</code>
@@ -467,6 +468,7 @@
    <code>application/vnd.apache.thrift.compact</code>
    <code>application/vnd.apache.thrift.json</code>
    <code>application/vnd.api+json</code>
+   <code>application/vnd.aplextor.warrp+json</code>
    <code>application/vnd.apothekende.reservation+json</code>
    <code>application/vnd.apple.installer+xml</code>
    <code>application/vnd.apple.keynote</code>
@@ -687,6 +689,7 @@
    <code>application/vnd.futoin+json</code>
    <code>application/vnd.fuzzysheet</code>
    <code>application/vnd.genomatix.tuxedo</code>
+   <code>application/vnd.gentics.grd+json</code>
    <code>application/vnd.geo+json</code>
    <code>application/vnd.geocube+xml</code>
    <code>application/vnd.geogebra.file</code>
@@ -1469,6 +1472,7 @@
    <code>audio/t38</code>
    <code>audio/telephone-event</code>
    <code>audio/TETRA_ACELP</code>
+   <code>audio/TETRA_ACELP_BB</code>
    <code>audio/tone</code>
    <code>audio/UEMCLIP</code>
    <code>audio/ulpfec</code>
