@@ -20,10 +20,11 @@
     <xsl:variable name="j">
       <map>
         <string key="schemaVersion">{*/@me:schemaVersion}</string>
+        <string key="iatiVersion">{*/@me:iatiVersion}</string>
         <xsl:apply-templates/>
       </map>
     </xsl:variable>
-   {xml-to-json($j)}
+    {xml-to-json($j)}
   </xsl:template>
 
   <xsl:template match="/*">
@@ -75,7 +76,7 @@
   <xsl:template match="iati-activity">
     <map>
       <string key="title">{title[1]/narrative[1]}</string>
-      <string key="identifier">{iati-identifier}</string>
+      <string key="identifier">{iati-identifier/text()[1]}</string>
       <string key="publisher">{reporting-org/@ref}</string>
       <xsl:call-template name="feedback">
         <xsl:with-param name="feedback" select="descendant::me:feedback"/>
@@ -124,12 +125,17 @@
     <map>
       <string key="src">{@ref}</string>
       <string key="severity">{(@type, ../@type)[1]}</string>
+      <xsl:apply-templates select="@href"/>
     </map>    
+  </xsl:template>
+  
+  <xsl:template match="@href">
+    <string key="href">{.}</string>
   </xsl:template>
   
   <xsl:template match="me:feedback">
     <map>
-      <string key="text"><xsl:apply-templates select="." mode="context"/></string>
+      <string key="text"><xsl:apply-templates select=".." mode="context"/></string>
     </map>
   </xsl:template>
 </xsl:stylesheet>
