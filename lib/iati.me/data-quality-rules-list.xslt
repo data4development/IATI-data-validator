@@ -32,7 +32,6 @@
       <column style="co4" name="Message">{me:message 
         => replace(functx:escape-for-regex("{$item}"), me:param(., 'item'))
         => replace(functx:escape-for-regex("{$items}"), me:param(., 'items'))}</column>
-      <column style="co4" name="Description">{me:description}</column>
       <column style="co4" name="Guidance">{me:src[1]/@href
         => replace(functx:escape-for-regex("$href"), me:param(., 'href'))}</column>
       <column style="co4" name="Context (Xpath)">{ancestor::xsl:template[1]/@match}</column>
@@ -57,7 +56,6 @@
       <column style="co4" name="Message">{$rule/me:message 
         => replace(functx:escape-for-regex("{$item}"), me:param(., 'item'))
         => replace(functx:escape-for-regex("{$items}"), me:param(., 'items'))}</column>
-      <column style="co4" name="Description">{$rule/me:description}</column>
       <column style="co4" name="Guidance">{$rule/me:src[1]/@href
         => replace(functx:escape-for-regex("$href"), me:param(., 'href'))}</column>
       <column style="co4" name="Context (Xpath)">{ancestor::xsl:template[1]/@match}</column>
