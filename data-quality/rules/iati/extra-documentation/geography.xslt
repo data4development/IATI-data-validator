@@ -46,12 +46,12 @@
       <xsl:if test="not(current-grouping-key()=('', '1'))">
         <xsl:call-template name="percentage-checks">
           <xsl:with-param name="group" select="current-group()"/>
-          <xsl:with-param name="class" select="'geo'"/>
-          <xsl:with-param name="idclass" select="'3.4'"/>
-          <xsl:with-param name="item" select="'recipient region'"/>
-          <xsl:with-param name="items" select="'recipient regions'"/>
+          <xsl:with-param name="class">geo</xsl:with-param>
+          <xsl:with-param name="idclass">3.4</xsl:with-param>
+          <xsl:with-param name="item">recipient region</xsl:with-param>
+          <xsl:with-param name="items">recipient regions</xsl:with-param>
           <xsl:with-param name="vocabulary" select="current-grouping-key()"/>
-          <xsl:with-param name="iativersion" select="'1.x'"/>
+          <xsl:with-param name="iativersion">1.x</xsl:with-param>
         </xsl:call-template>
       </xsl:if>
     </xsl:for-each-group>
