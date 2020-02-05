@@ -351,8 +351,4 @@
     </xsl:choose>
   </xsl:function>
 
-  <xsl:template match="*">
-    <!--  -->
-  </xsl:template>
-
 </xsl:stylesheet>
