@@ -49,7 +49,8 @@
   <xsl:template match="*" mode="get-feedback-calls">
     <xsl:param name="rule"/>    
     <row>
-      <column style="co1" name="ID">{replace($rule/@id, '\{\$idclass\}', me:param(., 'idclass'))}</column>
+      <column style="co1" name="ID">{$rule/@id
+        => replace(functx:escape-for-regex('{$idclass}'), me:param(., 'idclass'))}</column>
       <column style="co1" name="Class">{me:param(., 'class')}</column>
       <column style="co1" name="Severity">{$meta//me:severity[@type=$rule/@type]}</column>
       <column style="co2" name="Ruleset(s)">{me:param(., 'versions')}</column>
