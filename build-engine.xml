@@ -82,6 +82,16 @@
     </xslt>
   </target>
 
+  <target name="data-quality-rules-csv" description="Generate overview of the data quality rules as a CSV file." depends="init">
+    <echo level="info">Generate overview of the data quality rules as a CSV file.</echo>
+    <delete file="/workspace/reports/data-quality-rules.csv"/>
+    <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.csv" style="report/data-quality-rules-csv.xslt">
+      <factory name="net.sf.saxon.TransformerFactoryImpl">
+        <attribute name="http://saxon.sf.net/feature/suppressXsltNamespaceCheck" value="true"/>
+      </factory>
+    </xslt>
+  </target>
+  
   <target name="html-skeleton" depends="init">
     <copy todir="/workspace/reports">
       <fileset dir="share/html"/>
