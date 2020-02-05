@@ -11,7 +11,7 @@
   <xsl:variable name="known-10x-ids" select="doc('../../lib/known-publishers-104.xml')//code"/>
   <xsl:variable name="known-activity-ids" select="unparsed-text-lines('../../lib/known-activities.txt')"/>
 
-  <xsl:template name="identifier_check">
+  <xsl:template match="*|@*" mode="identifier_check">
     <xsl:param name="item"/>
     <xsl:param name="class"/>
     <xsl:param name="idclass"/>
@@ -96,12 +96,12 @@
     <xsl:param name="idclass"/>
     <xsl:param name="versions" select="'any'"/>
     
-    <xsl:call-template name="identifier_check">
+    <xsl:apply-templates select="$item" mode="identifier_check">
       <xsl:with-param name="item" select="$item"/>
-      <xsl:with-param name="class">{$class}</xsl:with-param>
-      <xsl:with-param name="idclass">{$idclass}</xsl:with-param>
-      <xsl:with-param name="versions">{$versions}</xsl:with-param>      
-    </xsl:call-template>
+      <xsl:with-param name="class" select="$class"/>
+      <xsl:with-param name="idclass" select="$idclass"/>
+      <xsl:with-param name="versions" select="$versions"/>      
+    </xsl:apply-templates>
     
     <xsl:choose>
       <xsl:when test="(some $known-old-id in $known-10x-ids satisfies starts-with($item, $known-old-id))">
@@ -149,12 +149,12 @@
     <xsl:param name="versions" select="'any'"/>
     <xsl:param name="iati-activities" tunnel="yes"/>
     
-    <xsl:call-template name="identifier_check">
+    <xsl:apply-templates select="$item" mode="identifier_check">
       <xsl:with-param name="item" select="$item"/>
-      <xsl:with-param name="class">{$class}</xsl:with-param>
-      <xsl:with-param name="idclass">{$idclass}</xsl:with-param>
-      <xsl:with-param name="versions">{$versions}</xsl:with-param>      
-    </xsl:call-template>
+      <xsl:with-param name="class" select="$class"/>
+      <xsl:with-param name="idclass" select="$idclass"/>
+      <xsl:with-param name="versions" select="$versions"/>      
+    </xsl:apply-templates>
     
     <xsl:choose>
       <xsl:when test="(some $known-old-id in $known-10x-ids satisfies starts-with($item, $known-old-id))"/>
