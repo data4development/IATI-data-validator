@@ -21,40 +21,40 @@
     <xsl:param name="iati-version" tunnel="yes"/>
     <xsl:if test="starts-with($iati-version, '1.')">
       
-    <!--* When declaring multiple ``recipient-country`` or ``recipient-region`` then a ``@percentage`` must be declared.  These must sum to 100%.-->
-    <xsl:call-template name="percentage-checks">
-      <xsl:with-param name="group" select="recipient-country"/>
+      <!--* When declaring multiple ``recipient-country`` or ``recipient-region`` then a ``@percentage`` must be declared.  These must sum to 100%.-->
+      <xsl:call-template name="percentage-checks">
+        <xsl:with-param name="group" select="recipient-country"/>
+          <xsl:with-param name="class">geo</xsl:with-param>
+          <xsl:with-param name="idclass">3.1</xsl:with-param>
+          <xsl:with-param name="item">recipient country</xsl:with-param>
+          <xsl:with-param name="items">recipient countries</xsl:with-param>
+      </xsl:call-template>
+      
+      <!-- Check for percentages for multiple recipient regions for the default vocabulary. -->    
+      <xsl:call-template name="percentage-checks">
+        <xsl:with-param name="group" select="recipient-region[not(@vocabulary) or @vocabulary=('', '1')]"/>
         <xsl:with-param name="class">geo</xsl:with-param>
-        <xsl:with-param name="idclass">3.1</xsl:with-param>
+        <xsl:with-param name="idclass">3.2</xsl:with-param>
         <xsl:with-param name="item">recipient country</xsl:with-param>
         <xsl:with-param name="items">recipient countries</xsl:with-param>
-    </xsl:call-template>
-    
-    <!-- Check for percentages for multiple recipient regions for the default vocabulary. -->    
-    <xsl:call-template name="percentage-checks">
-      <xsl:with-param name="group" select="recipient-region[not(@vocabulary) or @vocabulary=('', '1')]"/>
-      <xsl:with-param name="class">geo</xsl:with-param>
-      <xsl:with-param name="idclass">3.2</xsl:with-param>
-      <xsl:with-param name="item">recipient country</xsl:with-param>
-      <xsl:with-param name="items">recipient countries</xsl:with-param>
-      <xsl:with-param name="vocabulary" select="'1'"/>
-      <xsl:with-param name="iativersion">1.x</xsl:with-param>
-    </xsl:call-template>
-    
-    <!-- Check for multiple recipient region codes per vocabulary. -->
-    <xsl:for-each-group select="recipient-region" group-by="@vocabulary">
-      <xsl:if test="not(current-grouping-key()=('', '1'))">
-        <xsl:call-template name="percentage-checks">
-          <xsl:with-param name="group" select="current-group()"/>
-          <xsl:with-param name="class">geo</xsl:with-param>
-          <xsl:with-param name="idclass">3.4</xsl:with-param>
-          <xsl:with-param name="item">recipient region</xsl:with-param>
-          <xsl:with-param name="items">recipient regions</xsl:with-param>
-          <xsl:with-param name="vocabulary" select="current-grouping-key()"/>
-          <xsl:with-param name="iativersion">1.x</xsl:with-param>
-        </xsl:call-template>
-      </xsl:if>
-    </xsl:for-each-group>
+        <xsl:with-param name="vocabulary" select="'1'"/>
+        <xsl:with-param name="iativersion">1.x</xsl:with-param>
+      </xsl:call-template>
+      
+      <!-- Check for multiple recipient region codes per vocabulary. -->
+      <xsl:for-each-group select="recipient-region" group-by="@vocabulary">
+        <xsl:if test="not(current-grouping-key()=('', '1'))">
+          <xsl:call-template name="percentage-checks">
+            <xsl:with-param name="group" select="current-group()"/>
+            <xsl:with-param name="class">geo</xsl:with-param>
+            <xsl:with-param name="idclass">3.4</xsl:with-param>
+            <xsl:with-param name="item">recipient region</xsl:with-param>
+            <xsl:with-param name="items">recipient regions</xsl:with-param>
+            <xsl:with-param name="vocabulary" select="current-grouping-key()"/>
+            <xsl:with-param name="iativersion">1.x</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:for-each-group>
     </xsl:if>
     <xsl:next-match/>
   </xsl:template>
