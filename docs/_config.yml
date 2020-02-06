@@ -14,3 +14,6 @@ defaults:
       layout: "default"
 
 remote_theme: data4development/dataworkbench-jekyll-theme
+
+plugins:
+  - jekyll-octicons
