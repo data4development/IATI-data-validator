@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<style TYPE='text/css'>
+.highlighter .add { 
+  background-color: #7fff7f;
+}
+
+.highlighter .remove { 
+  background-color: #ff7f7f;
+}
+
+.highlighter td.modify { 
+  background-color: #7f7fff;
+}
+
+.highlighter td.conflict { 
+  background-color: #f00;
+}
+
+.highlighter .spec { 
+  background-color: #aaa;
+}
+
+.highlighter .move { 
+  background-color: #ffa;
+}
+
+.highlighter .null { 
+  color: #888;
+}
+
+.highlighter table { 
+  border-collapse:collapse;
+}
+
+.highlighter td, .highlighter th {
+  border: 1px solid #2D4068;
+  padding: 3px 7px 2px;
+}
+
+.highlighter th, .highlighter .header, .highlighter .meta {
+  background-color: #aaf;
+  font-weight: bold;
+  padding-bottom: 4px;
+  padding-top: 5px;
+  text-align:left;
+}
+
+.highlighter tr.header th {
+  border-bottom: 2px solid black;
+}
+
+.highlighter tr.index td, .highlighter .index, .highlighter tr.header th.index {
+  background-color: white;
+  border: none;
+}
+
+.highlighter .gap {
+  color: #888;
+}
+
+.highlighter td {
+  empty-cells: show;
+}
+</style>
+</head>
+<body>
+<div class='highlighter'>
+<table>
+<thead>
+<tr class="header"><th>@@</th><th>ID</th><th>Class</th><th>Severity</th><th>Ruleset(s)</th><th>Message</th><th>Guidance</th><th>Context (Xpath)</th><th>Test (Xpath)</th></tr>
+</thead>
+<tbody>
+<tr class="gap"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td></td><td>1.3.11</td><td>identifiers</td><td></td><td></td><td>The identifier does not begin with an organisation identifier approved by the IATI registry.</td><td></td><td>iati-activity/iati-identifier</td><td>not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id||'-'))</td></tr>
+<tr class="modify"><td class="modify">→</td><td>1.3.13</td><td>identifiers</td><td>Error</td><td></td><td class="modify">The {$iati-activities} activity identifier is not published (yet) and also not present in this file.→The activity identifier is not published (yet) and also not present in this file.</td><td></td><td>iati-activity/iati-identifier</td><td>not($item=($known-activity-ids, //iati-identifier))</td></tr>
+<tr><td></td><td>1.4.10</td><td>financial</td><td></td><td></td><td>The identifier starts with a 5-digit code, but is not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</td><td>me:iati-url('organisation-identifiers/')</td><td>@provider-activity-id</td><td>matches($item, '^[0-9]{5}.+$')</td></tr>
+<tr><td></td><td>1.4.11</td><td>financial</td><td></td><td></td><td>The identifier does not begin with an organisation identifier approved by the IATI registry.</td><td></td><td>@provider-activity-id</td><td>not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id||'-'))</td></tr>
+<tr class="modify"><td class="modify">→</td><td>1.4.13</td><td>financial</td><td>Error</td><td></td><td class="modify">The {$iati-activities} activity identifier is not published (yet) and also not present in this file.→The activity identifier is not published (yet) and also not present in this file.</td><td></td><td>@provider-activity-id</td><td>not($item=($known-activity-ids, //iati-identifier))</td></tr>
+<tr><td></td><td>1.5.10</td><td>financial</td><td></td><td></td><td>The identifier starts with a 5-digit code, but is not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</td><td>me:iati-url('organisation-identifiers/')</td><td>@receiver-activity-id</td><td>matches($item, '^[0-9]{5}.+$')</td></tr>
+<tr><td></td><td>1.5.11</td><td>financial</td><td></td><td></td><td>The identifier does not begin with an organisation identifier approved by the IATI registry.</td><td></td><td>@receiver-activity-id</td><td>not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id||'-'))</td></tr>
+<tr class="modify"><td class="modify">→</td><td>1.5.13</td><td>financial</td><td>Error</td><td></td><td class="modify">The {$iati-activities} activity identifier is not published (yet) and also not present in this file.→The activity identifier is not published (yet) and also not present in this file.</td><td></td><td>@receiver-activity-id</td><td>not($item=($known-activity-ids, //iati-identifier))</td></tr>
+<tr><td></td><td>1.6.10</td><td>identifiers</td><td></td><td></td><td>The identifier starts with a 5-digit code, but is not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</td><td>me:iati-url('organisation-identifiers/')</td><td>other-identifier[upper-case(@type)=('A3')]/@ref</td><td>matches($item, '^[0-9]{5}.+$')</td></tr>
+<tr><td></td><td>1.6.11</td><td>identifiers</td><td></td><td></td><td>The identifier does not begin with an organisation identifier approved by the IATI registry.</td><td></td><td>other-identifier[upper-case(@type)=('A3')]/@ref</td><td>not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id||'-'))</td></tr>
+<tr class="modify"><td class="modify">→</td><td>1.6.13</td><td>identifiers</td><td>Error</td><td></td><td class="modify">The {$iati-activities} activity identifier is not published (yet) and also not present in this file.→The activity identifier is not published (yet) and also not present in this file.</td><td></td><td>other-identifier[upper-case(@type)=('A3')]/@ref</td><td>not($item=($known-activity-ids, //iati-identifier))</td></tr>
+<tr><td></td><td>1.7.10</td><td>identifiers</td><td></td><td></td><td>The identifier starts with a 5-digit code, but is not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</td><td>me:iati-url('organisation-identifiers/')</td><td>related-activity/@ref</td><td>matches($item, '^[0-9]{5}.+$')</td></tr>
+<tr><td></td><td>1.7.11</td><td>identifiers</td><td></td><td></td><td>The identifier does not begin with an organisation identifier approved by the IATI registry.</td><td></td><td>related-activity/@ref</td><td>not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id||'-'))</td></tr>
+<tr class="modify"><td class="modify">→</td><td>1.7.13</td><td>identifiers</td><td>Error</td><td></td><td class="modify">The {$iati-activities} activity identifier is not published (yet) and also not present in this file.→The activity identifier is not published (yet) and also not present in this file.</td><td></td><td>related-activity/@ref</td><td>not($item=($known-activity-ids, //iati-identifier))</td></tr>
+<tr><td></td><td>1.7.2</td><td>identifiers</td><td>Error</td><td>iati</td><td>The organisation identifier is missing.</td><td></td><td>reporting-org</td><td>not(@ref)</td></tr>
+<tr class="gap"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td></td><td>1.9.11</td><td>participating</td><td></td><td></td><td>The identifier does not begin with an organisation identifier approved by the IATI registry.</td><td></td><td>@activity-id</td><td>not(some $known-id in $known-publisher-ids satisfies starts-with($item, $known-id||'-'))</td></tr>
+<tr class="modify"><td class="modify">→</td><td>1.9.13</td><td>participating</td><td>Error</td><td></td><td class="modify">The {$iati-activities} activity identifier is not published (yet) and also not present in this file.→The activity identifier is not published (yet) and also not present in this file.</td><td></td><td>@activity-id</td><td>not($item=($known-activity-ids, //iati-identifier))</td></tr>
+<tr><td></td><td>100.1.1</td><td>traceability</td><td>Warning</td><td>minbuza</td><td>Include at least one activity with a transaction of type 11 (incoming commitment) that refers to the Dutch Ministry of Foreign Affairs (XM-DAC-7) as the provider, and that refers to a specific activity identifier of the Ministry.</td><td></td><td>iati-activities</td><td>not(//transaction[transaction-type/@code='11' and provider-org/@ref='XM-DAC-7' and provider-org/@provider-activity-id])</td></tr>
+<tr class="gap"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td></td><td>9.114.1</td><td>financial</td><td>Error</td><td>iati</td><td>The currency code is invalid.</td><td></td><td>//iati-organisation/total-budget/value/@currency</td><td>me:codeListFail(., 'Currency', $iati-version)</td></tr>
+<tr class="modify"><td class="modify">→</td><td>9.116.1</td><td>iati</td><td>Error</td><td class="modify">iati→iati:1.0x</td><td>The AidType flag is invalid.</td><td></td><td>//iati-activity/crs-add/aidtype-flag/@code</td><td>me:codeListFail(., 'AidTypeFlag', $iati-version)</td></tr>
+<tr class="modify"><td class="modify">→</td><td>9.117.1</td><td>geo</td><td>Error</td><td>iati</td><td>The country code is invalid.</td><td></td><td class="modify">//iati-activity/location/administrative/@country→//iati-activity/location/administrative[@vocabulary = 'A4']/@code</td><td>me:codeListFail(., 'Country', $iati-version)</td></tr>
+<tr><td></td><td>9.118.1</td><td>geo</td><td>Error</td><td>iati</td><td>The geographical precision code is invalid.</td><td></td><td>//iati-activity/location/coordinates/@precision</td><td>me:codeListFail(., 'GeographicalPrecision', $iati-version)</td></tr>
+<tr class="gap"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td></td><td>9.12.1</td><td>information</td><td>Error</td><td>iati</td><td>The contact information type is invalid.</td><td></td><td>//iati-activity/contact-info/@type</td><td>me:codeListFail(., 'ContactType', $iati-version)</td></tr>
+<tr class="modify"><td class="modify">→</td><td>9.120.1</td><td>geo</td><td>Error</td><td>iati</td><td>The location type code is invalid.</td><td></td><td class="modify">//iati-activity/location/location-type/@code→//iati-activity/location/feature-designation/@code</td><td>me:codeListFail(., 'LocationType', $iati-version)</td></tr>
+<tr><td></td><td>9.122.1</td><td>financial</td><td>Error</td><td>iati</td><td>The currency code is invalid.</td><td></td><td>//iati-organisation/recipient-country-budget/budget-line/value/@currency</td><td>me:codeListFail(., 'Currency', $iati-version)</td></tr>
+<tr class="gap"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td></td><td>9.13.1</td><td>classifications</td><td>Error</td><td>iati</td><td>The country budget identifier vocabulary is invalid.</td><td></td><td>//iati-activity/country-budget-items/@vocabulary</td><td>me:codeListFail(., 'BudgetIdentifierVocabulary', $iati-version)</td></tr>
+<tr class="modify"><td class="modify">→</td><td>9.14.1</td><td>classifications</td><td>Error</td><td>iati</td><td>The country budget identifier does not exist.</td><td></td><td>//iati-activity/country-budget-items/budget-item[../@vocabulary = '1']/@code</td><td class="modify">me:codeListFail(., 'BudgetIdentifier', $iati-version)→($iati-version != '2.03') and me:codeListFail(., 'BudgetIdentifier', $iati-version)</td></tr>
+<tr><td></td><td>9.15.1</td><td>classifications</td><td>Error</td><td>iati</td><td>The country budget item description type is invalid.</td><td></td><td>//iati-activity/country-budget-items/budget-item/description/@type</td><td>me:codeListFail(., 'DescriptionType', $iati-version)</td></tr>
+<tr class="gap"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td></td><td>9.42.1</td><td>participating</td><td>Error</td><td>iati</td><td>The organisation type is invalid.</td><td></td><td>//iati-activity/participating-org/@type</td><td>me:codeListFail(., 'OrganisationType', $iati-version)</td></tr>
+<tr class="modify"><td class="modify">→</td><td>9.43.1</td><td>financial</td><td>Error</td><td>iati</td><td class="modify">The humanitarian scope type is invalid.→The planned disbursement budget type is invalid.</td><td></td><td>//iati-activity/planned-disbursement/@type</td><td>me:codeListFail(., 'BudgetType', $iati-version)</td></tr>
+<tr class="modify"><td class="modify">→</td><td>9.44.1</td><td>financial</td><td>Error</td><td>iati</td><td class="modify">The humanitarian scope type is invalid.→The organisation type is invalid.</td><td></td><td>//iati-activity/planned-disbursement/provider-org/@type</td><td>me:codeListFail(., 'OrganisationType', $iati-version)</td></tr>
+<tr><td></td><td>9.45.1</td><td>financial</td><td>Error</td><td>iati</td><td>The organisation type is invalid.</td><td></td><td>//iati-activity/planned-disbursement/receiver-org/@type</td><td>me:codeListFail(., 'OrganisationType', $iati-version)</td></tr>
+<tr class="gap"><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
