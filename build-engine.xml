@@ -98,29 +98,30 @@
     </copy>
   </target>
   
-  <target name="test" description="Run the tests" depends="xml-check, rules, json-tests">
-    <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="tests/validator.xspec"/>
-    </antcall>
-  </target>
+  <target name="test" description="Run test suites" depends="xml-check, rules, test-context, test-json, test-validator"/>
   
-  <target name="tests" description="Run all the tests (don't stop at first failure)">
+  <target name="tests" description="Run all tests (don't stop at failure)">
     <antcall target="test">
       <param name="xspec.fail" value="false"/>
     </antcall>
   </target>
   
-  <target name="context-tests" description="Run the context-generation tests for messages">
+  <target name="test-context" description="Run the context-generation tests for messages">
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="tests/context.xspec"/>
     </antcall>
   </target>
 
-  <target name="json-tests" description="Run the JSON feedback tests"
+  <target name="test-json" description="Run the JSON feedback tests"
     depends="xml-check, rules">
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="tests/json-feedback.xspec"/>
     </antcall>
   </target>
 
+  <target name="test-validator" description="Run the Validator tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/validator.xspec"/>
+    </antcall>
+  </target>
 </project>
