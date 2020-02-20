@@ -14,18 +14,19 @@
 
   <target name="org-id-prefixes">
     <get src="http://org-id.guide/download.xml" dest="tmp/org-id.xml"/>
-    <xslt in="tmp/org-id.xml" out="data-quality/lib/known-prefixes.xml" style="helpers/update-org-id-prefixes.xslt"/>
+    <xslt in="tmp/org-id.xml" out="lib/iati-rulesets/var/known-orgid-prefixes.xml" style="helpers/update-org-id-prefixes.xslt"/>
   </target>
 
   <target name="mime-types">
     <get src="http://www.iana.org/assignments/media-types/media-types.xml" dest="tmp/mime-types.xml"/>
-    <xslt in="tmp/mime-types.xml" out="data-quality/lib/mime-types.xml" style="helpers/update-mime-types.xslt"/>
+    <xslt in="tmp/mime-types.xml" out="lib/iati-rulesets/var/mime-types.xml" style="helpers/update-mime-types.xslt"/>
   </target>
 
   <target name="known-publishers">
     <get src="http://www.dataworkbench.io/api/iati-publishers" dest="tmp/iati-publishers.json"/>
-    <touch file="lib/dummy.xml"/>
-    <xslt in="lib/dummy.xml" out="data-quality/lib/known-publishers.xml" style="helpers/update-known-iati-publishers.xslt"/>
+    <xslt out="lib/iati-rulesets/var/known-publishers.xml"
+      in="helpers/update-known-iati-publishers.xslt"
+      style="helpers/update-known-iati-publishers.xslt"/>    
   </target>
   
   <!-- Document all the Ant targets and their dependencies -->
