@@ -3,6 +3,8 @@
 PREFIX="Loop unprocessed files"
 API=${API:-http://validator-api/api/v1}
 
+./update-data.sh
+
 # loop forever
 while :
 do
