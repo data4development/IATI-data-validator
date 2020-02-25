@@ -21,10 +21,17 @@
       <map>
         <string key="schemaVersion">{*/@me:schemaVersion}</string>
         <string key="iatiVersion">{*/@me:iatiVersion}</string>
+        <map key="summary">
+          <number key="critical">{count(distinct-values(//me:feedback[@type='critical']/@id))}</number>
+          <number key="danger">{count(distinct-values(//me:feedback[@type='danger']/@id))}</number>
+          <number key="warning">{count(distinct-values(//me:feedback[@type='warning']/@id))}</number>
+          <number key="info">{count(distinct-values(//me:feedback[@type='info']/@id))}</number>
+          <number key="success">{count(distinct-values(//me:feedback[@type='success']/@id))}</number>            
+        </map>
         <xsl:apply-templates/>
       </map>
     </xsl:variable>
-    {xml-to-json($j)}
+    <xsl:text>{xml-to-json($j)}</xsl:text>
   </xsl:template>
 
   <xsl:template match="/*">
