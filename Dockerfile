@@ -34,12 +34,12 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-RUN wget -q http://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
+RUN wget -q https://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
   tar -xzf apache-ant-${ANT_VERSION}-bin.tar.gz && \
   rm apache-ant-${ANT_VERSION}-bin.tar.gz && \
   mv apache-ant-${ANT_VERSION} ${ANT_HOME}
 
-RUN wget -q http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar && \
+RUN wget -q https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar && \
   mv *.jar ${ANT_HOME}/lib
 
 RUN wget -q https://github.com/adnanh/webhook/releases/download/${WEBHOOK_VERSION}/webhook-linux-amd64.tar.gz && \
