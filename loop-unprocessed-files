@@ -42,8 +42,8 @@ EOT`
   -G --data-urlencode "filter=$QUERY" \
   "$API/iati-datasets"`
   
-  MD5=`echo $DATASET | xmllint --xpath '//md5/text()' -`
-  DSID=`echo $DATASET | xmllint --xpath '//id/text()' -`
+  MD5=`echo $DATASET | xmllint --xpath '//md5/text()' -` 2> "/dev/null"
+  DSID=`echo $DATASET | xmllint --xpath '//id/text()' -` 2> "/dev/null"
   
   if [ -z $MD5 ]; then
     echo "$PREFIX: Nothing found to process, waiting"
