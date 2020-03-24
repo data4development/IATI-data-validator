@@ -4,11 +4,10 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:me="http://iati.me"
   xmlns:functx="http://www.functx.com"
-  exclude-result-prefixes="xs me"
+  exclude-result-prefixes="xs me functx"
   version="3.0"
   expand-text="yes">
   
-<!--  <xsl:output method="json"/>-->
   <xsl:output  method="text" indent="yes" media-type="text/json" omit-xml-declaration="yes"/>
   
   <xsl:import href="../lib/functx.xslt"/>
@@ -60,8 +59,7 @@
     <xsl:text>not-iati</xsl:text>  
   </xsl:template>
   
-  <xsl:template match="*" mode="validation">
-    
+  <xsl:template match="*" mode="validation">    
       <xsl:choose>
         <xsl:when test="'0.1.1'=me:feedback/@id">not-an-xml-file</xsl:when>        
         <xsl:when test="'0.2.1'=me:feedback/@id">not-an-iati-file</xsl:when>        
@@ -70,7 +68,6 @@
         <xsl:when test="'0.5.1'=me:feedback/@id">iati-with-xml-errors</xsl:when>
         <xsl:otherwise>ok</xsl:otherwise>
       </xsl:choose>
-    
   </xsl:template>
 
   <xsl:template match="iati-activity">
@@ -135,7 +132,7 @@
   
   <xsl:template match="me:feedback">
     <map>
-      <string key="text"><xsl:apply-templates select=".." mode="context"/></string>
+      <string key="text"><xsl:apply-templates select="." mode="context"/></string>
     </map>
   </xsl:template>
 </xsl:stylesheet>

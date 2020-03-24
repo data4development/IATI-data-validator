@@ -67,7 +67,8 @@
 
   <!-- Context information for participating-org -->
   <xsl:template match="document-link/me:feedback" mode="context">
-    For the document <xsl:apply-templates select="../title"/>
+    <xsl:text>For the document</xsl:text> 
+    <xsl:apply-templates select="../title"/>
   </xsl:template>
 
   <xsl:template match="result/me:feedback|indicator/me:feedback" mode="context">
@@ -98,6 +99,10 @@
     For the {name(..)} {../@ref} of type {../@type}
   </xsl:template>
   
+  <xsl:template match="related-activity/me:feedback" mode="context">
+    For the {name(..)} {../@ref}
+  </xsl:template>
+
   <xsl:template match="@*|node()" mode="context">
   </xsl:template>
     
