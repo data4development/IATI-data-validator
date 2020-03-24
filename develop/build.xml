@@ -74,6 +74,20 @@
     </antcall>
   </target>
   
+  <target name="test-json" description="Run the JSON feedback tests">
+    <!--depends="xml-check, rules">-->
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="develop/tests/json-feedback.xspec"/>
+    </antcall>
+  </target>
+  
+  <target name="test-svrl" description="Run the SVRL feedback tests">
+    <!--depends="xml-check, rules">-->
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="develop/tests/svrl-feedback.xspec"/>
+    </antcall>
+  </target>
+
   <target name="tests" description="Run all the tests (don't stop at first failure)"
     depends="non-iati-file-tests, minbuza-tests, dfid-tests">
     <antcall target="test">
