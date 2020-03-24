@@ -188,7 +188,7 @@
   <xsl:template match="related-activity/@ref" mode="rules" priority="1.7">
     <xsl:call-template name="act_identifier_check">
       <xsl:with-param name="item" select="."/>
-      <xsl:with-param name="class">identifiers</xsl:with-param>
+      <xsl:with-param name="class">relations</xsl:with-param>
       <xsl:with-param name="idclass">1.7</xsl:with-param>
     </xsl:call-template>
     <xsl:next-match/>
