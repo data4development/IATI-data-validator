@@ -189,6 +189,7 @@
         <me:feedback class="{$class}" id="{$idclass}.13" type="danger">
           <me:src ref="minbuza" versions="{$versions}"/>
           <me:message>The activity identifier is not published (yet) and also not present in this file.</me:message>
+          <me:property-reference property="activity-identifier">{$item}</me:property-reference>
         </me:feedback>
       </xsl:when>        
       

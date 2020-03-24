@@ -17,10 +17,15 @@
   <xsl:template match="me:feedback">
     <svrl:failed-assert test="false()" location="{path(..)}">
       <xsl:apply-templates select="@type"/>
+      <xsl:apply-templates select="me:property-reference"/>
       <svrl:property-reference property="class">{@class}</svrl:property-reference>
       <xsl:apply-templates select="me:src"/>      
       <svrl:text fpi="{@id}"><xsl:copy-of select="me:message/@*"/><xsl:copy-of select="me:message/(*|text())"/></svrl:text>
     </svrl:failed-assert>
+  </xsl:template>
+  
+  <xsl:template match="me:property-reference">
+    <svrl:property-reference property="{@property}">{.}</svrl:property-reference>  
   </xsl:template>
   
   <xsl:template match="me:src">
@@ -41,5 +46,4 @@
         </xsl:choose>
       </xsl:attribute>
   </xsl:template>
-  
 </xsl:stylesheet>

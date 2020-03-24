@@ -251,6 +251,7 @@
       </x:context>
       <x:expect label="It should not produce message 1.8.* for participating-org/@ref." test="not(//participating-org/me:feedback[starts-with(@id, '1.8.')])"/>
       <x:expect label="It should produce message 1.9.13 for participating-org/@activity-id." test="boolean(//participating-org/me:feedback[@id='1.9.13'])"/>
+      <x:expect label="It should include a property with the activity id in message 1.9.13." test="boolean(//participating-org/me:feedback[@id='1.9.13']/me:property-reference[@property='activity-identifier']='XM-DAC-7-NOT-KNOWN')"/>
     </x:scenario>
 
     <x:scenario label="If the activity identifier is not in our list of published activity identifiers but published in this file">
