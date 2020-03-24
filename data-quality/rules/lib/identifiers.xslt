@@ -9,7 +9,7 @@
   <xsl:variable name="org-id-prefixes" select="doc('../../lib/known-prefixes.xml')//code"/>
   <xsl:variable name="known-publisher-ids" select="doc('../../lib/known-publishers.xml')//code"/>
   <xsl:variable name="known-10x-ids" select="doc('../../lib/known-publishers-104.xml')//code"/>
-  <xsl:variable name="known-activity-ids" select="unparsed-text-lines('../../lib/known-activities.txt'), //iati-identifier"/>
+  <xsl:variable name="known-activity-ids" select="unparsed-text-lines('../../lib/known-activities.txt')"/>
 
   <xsl:template name="identifier_check">
     <xsl:param name="item"/>
