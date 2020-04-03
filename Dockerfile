@@ -50,8 +50,7 @@ ENV PATH $PATH:$ANT_HOME/bin
 
 COPY . $HOME
 VOLUME /workspace
-
-#ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
-#CMD ["-p"]
 EXPOSE 9000
-ENTRYPOINT ["/home/loop-unprocessed-files"]
+
+ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
+CMD ["-p"]
