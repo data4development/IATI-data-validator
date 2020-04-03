@@ -3,6 +3,8 @@
 PREFIX="Loop unprocessed testfiles"
 API=${API:-http://validator-api/api/v1}
 
+./update-data.sh
+
 # loop forever
 while :
 do
@@ -22,9 +24,7 @@ do
   "and": [
     {"or": [
       {"json-updated": {"exists": false}},
-      {"json-updated": {"lt": "$TDone"}},
-      {"svrl-updated": {"exists": false}},
-      {"svrl-updated": {"lt": "$TDone"}}
+      {"svrl-updated": {"exists": false}}
     ]},
     {"or":[
       {"processing": {"exists": false}},
