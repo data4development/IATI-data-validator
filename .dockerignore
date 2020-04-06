@@ -6,4 +6,6 @@ docker.properties
 develop/
 docs/
 tmp/
+tests/xspec/*
+testspace/*
 README*

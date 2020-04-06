@@ -3,7 +3,6 @@ build\.svg
 tmp/
 \.~*#
 webhook
-tests/xspec
 testspace/src
 testspace/dest
 testspace/json
