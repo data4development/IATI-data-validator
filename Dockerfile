@@ -49,6 +49,8 @@ RUN wget -q https://github.com/adnanh/webhook/releases/download/${WEBHOOK_VERSIO
 ENV PATH $PATH:$ANT_HOME/bin
 
 COPY . $HOME
+RUN mkdir -p $HOME/tests/xspec && chmod go+w $HOME/tests/xspec  
+
 VOLUME /workspace
 EXPOSE 9000
 
