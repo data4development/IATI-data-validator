@@ -11,7 +11,7 @@
   <!-- Include additional development targets if available -->
   <import file="helpers/build.xml" optional="yes"/>
 
-  <target name="dwb_init" description="Set up workspace directories.">
+  <target name="init" description="Set up workspace directories.">
     <mkdir dir="/workspace/input"/>
     <mkdir dir="/workspace/src"/>
     <mkdir dir="/workspace/dest"/>
@@ -20,8 +20,8 @@
     <mkdir dir="/workspace/tmp"/>
     <mkdir dir="/workspace/reports"/>
   </target>
-
-  <target name="clean" depends="dwb_init" description="Clean intermediary results and feedback files.">
+  
+  <target name="clean" depends="init" description="Clean intermediary results and feedback files.">
     <delete>
       <fileset dir="/workspace/tmp" includes="**/${filemask}*"/>
       <fileset dir="/workspace/dest" includes="${filemask}*.xml"/>
@@ -29,7 +29,7 @@
     <echo level="info">Intermediate results have been deleted from dest and tmp directories.</echo>
   </target>
 
-  <target name="xml-check" description="Verify that the files in input/ are IATI XML files." depends="dwb_init">
+  <target name="xml-check" description="Verify that the files in input/ are IATI XML files." depends="init">
     <echo level="info">Verify that the files in input/ are IATI XML files.</echo>
     <exec executable="./xml-check">
       <arg value="input"/>
@@ -39,12 +39,12 @@
     <xslt basedir="/workspace/tmp/feedback/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
-  <target name="rules" description="Check the files source data against IATI rules." depends="dwb_init">
+  <target name="rules" description="Check the files source data against IATI rules." depends="init">
     <echo level="info">Check the data files in src/ against the ruleset.</echo>
     <xslt basedir="/workspace/src/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
-  <target name="report" description="Generate a data quality feedback HTML page." depends="dwb_init, html-skeleton, rules">
+  <target name="report" description="Generate a data quality feedback HTML page." depends="init, html-skeleton, rules">
     <echo level="info">Generate data quality feedback report in the report/ folder.</echo>
     <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="helpers/feedback.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.feedback.html"/>
@@ -72,7 +72,7 @@
   <target name="full-svrl" description="Do the XML checks, validate the rules, create svrl." depends="xml-check, rules, svrl"/>
   <target name="full-json" description="Do the XML checks, validate the rules, create json." depends="xml-check, rules, json"/>
 
-  <target name="data-quality-rules-spreadsheet" description="Generate overview of the data quality rules as a spreadsheet." depends="dwb_init">
+  <target name="data-quality-rules-spreadsheet" description="Generate overview of the data quality rules as a spreadsheet." depends="init">
     <echo level="info">Generate overview of the data quality rules as a spreadsheet.</echo>
     <delete file="/workspace/reports/data-quality-rules.fods"/>
     <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.fods" style="helpers/data-quality-rules-spreadsheet.xslt">
@@ -82,7 +82,7 @@
     </xslt>
   </target>
 
-  <target name="data-quality-rules-csv" description="Generate overview of the data quality rules as a CSV file." depends="dwb_init">
+  <target name="data-quality-rules-csv" description="Generate overview of the data quality rules as a CSV file." depends="init">
     <echo level="info">Generate overview of the data quality rules as a CSV file.</echo>
     <delete file="/workspace/reports/data-quality-rules.csv"/>
     <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.csv" style="helpers/data-quality-rules-csv.xslt">
@@ -92,7 +92,7 @@
     </xslt>
   </target>
   
-  <target name="html-skeleton" depends="dwb_init">
+  <target name="html-skeleton" depends="init">
     <copy todir="/workspace/reports">
       <fileset dir="share/html"/>
     </copy>

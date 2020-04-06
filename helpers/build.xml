@@ -5,7 +5,7 @@
   </description>
 
   <property name="xspec.fail" value="false"/>
-  <import file="../lib/iati-rulesets/lib/xspec/build.xml"/>
+  <include file="../lib/iati-rulesets/lib/xspec/build.xml"/>
   
   <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
   <extension-point name="update-external-data"
@@ -34,7 +34,7 @@
   <target name="ant-graph"
     description="(Dev) Create a graph of the targets and their dependencies.">
 
-    <grand output="tmp/ant-graph.dot" outputconfigfile="develop/ant-graph.properties" showgraphname="true">
+    <grand output="/workspace/tmp/ant-graph.dot" outputconfigfile="helpers/ant-graph.properties" showgraphname="true">
       <filter name="prefixed"/>
     </grand>
 
