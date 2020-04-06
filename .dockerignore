@@ -8,4 +8,5 @@ docs/
 tmp/
 tests/xspec/*
 testspace/*
+!testspace/input
 README*
