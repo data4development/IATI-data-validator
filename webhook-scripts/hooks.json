@@ -7,7 +7,7 @@
       {"name": "X-DataWorkbench", "value": "Validation with SVRL output processed."},
       {"name": "Content-Type", "value": "application/xml"}
     ],
-    "command-working-directory": "/workspace",
+    "command-working-directory": "/work/space",
     "pass-arguments-to-command":
     [
       {
@@ -30,7 +30,7 @@
       {"name": "X-DataWorkbench", "value": "Validation with SVRL output in debug mode processed."},
       {"name": "Content-Type", "value": "application/xml"}
     ],
-    "command-working-directory": "/workspace",
+    "command-working-directory": "/work/space",
     "pass-arguments-to-command":
     [
       {
@@ -52,7 +52,7 @@
       {"name": "X-DataWorkbench", "value": "Validation with JSON output processed."},
       {"name": "Content-Type", "value": "application/json"}
     ],
-    "command-working-directory": "/workspace",
+    "command-working-directory": "/work/space",
     "pass-arguments-to-command":
     [
       {
@@ -74,7 +74,7 @@
       {"name": "X-DataWorkbench", "value": "Validation with inline feedback output processed."},
       {"name": "Content-Type", "value": "application/xml"}
     ],
-    "command-working-directory": "/workspace",
+    "command-working-directory": "/work/space",
     "pass-arguments-to-command":
     [
       {

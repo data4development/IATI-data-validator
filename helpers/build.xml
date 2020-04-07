@@ -34,7 +34,7 @@
   <target name="ant-graph"
     description="(Dev) Create a graph of the targets and their dependencies.">
 
-    <grand output="/workspace/tmp/ant-graph.dot" outputconfigfile="helpers/ant-graph.properties" showgraphname="true">
+    <grand output="/work/space/tmp/ant-graph.dot" outputconfigfile="helpers/ant-graph.properties" showgraphname="true">
       <filter name="prefixed"/>
     </grand>
 

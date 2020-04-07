@@ -17,7 +17,7 @@
         <me:message>The file is not a proper XML file. The raw feedback from xmllint:
 
 <xsl:choose>
-  <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
+  <xsl:when test="unparsed-text-available('/work/space/tmp/xmltestlog/' || $filename)">{unparsed-text("/work/space/tmp/xmltestlog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose></me:message>
       </me:feedback>

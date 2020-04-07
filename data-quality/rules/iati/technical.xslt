@@ -7,8 +7,8 @@
   expand-text="yes">
   
   <xsl:template match="iati-activities|iati-organisations" mode="rules" priority="10.1">
-    <xsl:if test="doc-available('/workspace/tmp/iatifeedback/'||$filename)">
-      <xsl:apply-templates select="doc('/workspace/tmp/iatifeedback/'||$filename)/*" mode="technical"/>  
+    <xsl:if test="doc-available('/work/space/tmp/iatifeedback/'||$filename)">
+      <xsl:apply-templates select="doc('/work/space/tmp/iatifeedback/'||$filename)/*" mode="technical"/>  
     </xsl:if>
 
     <xsl:next-match/>
@@ -20,7 +20,7 @@
       <me:message>This file fails schema validation. Please see below for technical details. If you are the owner of this files, please show this output to your publishing tool provider or technical team.
 
 <xsl:choose>
-  <xsl:when test="unparsed-text-available('/workspace/tmp/xmlschemalog/' || $filename)">{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</xsl:when>
+  <xsl:when test="unparsed-text-available('/work/space/tmp/xmlschemalog/' || $filename)">{unparsed-text("/work/space/tmp/xmlschemalog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose></me:message>
     </me:feedback>
@@ -34,14 +34,14 @@
 The raw feedback from XML validation:
 
 <xsl:choose>
-  <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
+  <xsl:when test="unparsed-text-available('/work/space/tmp/xmltestlog/' || $filename)">{unparsed-text("/work/space/tmp/xmltestlog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose>
         
 The raw feedback from schema validation of a recovered version of the file:
         
 <xsl:choose>
-  <xsl:when test="unparsed-text-available('/workspace/tmp/xmlschemalog/' || $filename)">{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</xsl:when>
+  <xsl:when test="unparsed-text-available('/work/space/tmp/xmlschemalog/' || $filename)">{unparsed-text("/work/space/tmp/xmlschemalog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose>
       </me:message>
@@ -54,7 +54,7 @@ The raw feedback from schema validation of a recovered version of the file:
       <me:message>The file is not valid XML. Please see below for technical details. If you are the owner of this files, please show this output to your publishing tool provider or technical team.
         
 <xsl:choose>
-  <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
+  <xsl:when test="unparsed-text-available('/work/space/tmp/xmltestlog/' || $filename)">{unparsed-text("/work/space/tmp/xmltestlog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose>
 

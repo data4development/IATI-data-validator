@@ -6,13 +6,13 @@
 
   <x:scenario label="Non-IATI files: valid XML">
     <x:scenario label="If the file has IATI schema errors">
-      <x:context href="../testspace/dest/iati-with-schema-errors.feedback.xml"/>
+      <x:context href="/work/space/dest/iati-with-schema-errors.feedback.xml"/>
       <x:expect label="It should return root element iati-activities" test="boolean(/iati-activities)"/>
       <x:expect label="It should produce message 0.3.1" test="boolean(/iati-activities/me:feedback[@id='0.3.1'])"/>
     </x:scenario>
 
     <x:scenario label="If the file is not an IATI file">
-      <x:context href="../testspace/dest/xml-but-not-iati.feedback.xml"/>
+      <x:context href="/work/space/dest/xml-but-not-iati.feedback.xml"/>
       <x:expect label="It should return root element not-an-xml-file" test="boolean(/not-an-iati-file)"/>
       <x:expect label="It should produce message 0.1.1" test="boolean(/*/me:feedback[@id='0.2.1'])"/>
     </x:scenario>
@@ -20,19 +20,19 @@
 
   <x:scenario label="Non-IATI files: invalid XML (using xmllint --recover)">
     <x:scenario label="If the file is recoverable as valid IATI">
-      <x:context href="../testspace/dest/iati-with-xml-errors.feedback.xml"/>
+      <x:context href="/work/space/dest/iati-with-xml-errors.feedback.xml"/>
       <x:expect label="It should return root element iati-activities" test="boolean(/iati-activities)"/>
       <x:expect label="It should produce message 0.5.1" test="boolean(/iati-activities/me:feedback[@id='0.5.1'])"/>
     </x:scenario>
     
     <x:scenario label="If the file is recoverable as IATI with schema errors">
-      <x:context href="../testspace/dest/iati-with-xml-and-schema-errors.feedback.xml"/>
+      <x:context href="/work/space/dest/iati-with-xml-and-schema-errors.feedback.xml"/>
       <x:expect label="It should return root element iati-activities" test="boolean(/iati-activities)"/>
       <x:expect label="It should produce message 0.4.1" test="boolean(/iati-activities/me:feedback[@id='0.4.1'])"/>
     </x:scenario>
 
     <x:scenario label="If the file is not recoverable as IATI">
-      <x:context href="../testspace/dest/broken-xml.feedback.xml"/>
+      <x:context href="/work/space/dest/broken-xml.feedback.xml"/>
       <x:expect label="It should return root element not-an-xml-file" test="boolean(/not-an-xml-file)"/>
       <x:expect label="It should produce message 0.1.1" test="boolean(//me:feedback[@id='0.1.1'])"/>
     </x:scenario>    
@@ -40,13 +40,13 @@
   
   <x:scenario label="Non-IATI files: not XML at all">
     <x:scenario label="If the file is not XML">
-      <x:context href="../testspace/dest/not-xml.feedback.xml"/>
+      <x:context href="/work/space/dest/not-xml.feedback.xml"/>
       <x:expect label="It should return root element not-an-xml-file" test="boolean(/not-an-xml-file)"/>
       <x:expect label="It should produce message 0.1.1" test="boolean(/*/me:feedback[@id='0.1.1'])"/>
     </x:scenario>
 
     <x:scenario label="If the file is an Excel file">
-      <x:context href="../testspace/dest/xlsx-spreadsheet-with-extension.feedback.xml"/>
+      <x:context href="/work/space/dest/xlsx-spreadsheet-with-extension.feedback.xml"/>
       <x:expect label="It should return root element not-an-xml-file" test="boolean(/not-an-xml-file)"/>
       <x:expect label="It should produce message 0.1.1" test="boolean(/*/me:feedback[@id='0.1.1'])"/>
     </x:scenario>
