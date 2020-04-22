@@ -30,9 +30,13 @@ ENV \
 WORKDIR $HOME
 
 RUN apt-get update && \
-  apt-get -y install --no-install-recommends wget libxml2-utils curl && \
+  apt-get -y install --no-install-recommends wget libxml2-utils curl libgnutls-openssl27 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
+
+RUN wget -q http://ftp.debian.org/debian/pool/main/s/ssmtp/ssmtp_2.64-8.1+b1_amd64.deb && \
+  dpkg -i ssmtp_2.64-8.1+b1_amd64.deb && \
+  rm ssmtp_2.64-8.1+b1_amd64.deb
 
 RUN wget -q https://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
   tar -xzf apache-ant-${ANT_VERSION}-bin.tar.gz && \
