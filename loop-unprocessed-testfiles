@@ -59,12 +59,10 @@ EOT`
     -d "$APIDATA" \
     "$API/iati-testdatasets/update?where=%7B%22id%22%3A%22$DSID%22%7D"
 
-    echo "$PREFIX: process $DSID"
+    echo "$PREFIX: process $DSID in workspace $WSID"
     ./webhook-scripts/inhouse-testfiles.sh $FID
     
-    if [[ -n $WSID ]]; then
-      ./email-notification $WSID
-    fi    
+    ./email-notification $WSID
   fi
   
 done

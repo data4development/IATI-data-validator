@@ -34,9 +34,9 @@ Subject: Your IATI validation results are ready
 
 This is a message from the IATI Validator.
 
-Processing all of the files uploaded in your workspace has been completed.
+All of the files uploaded in your workspace have been validated.
 
-Your personal workspace is here:
+Your personal workspace with validation results is here:
 https://test-validator.iatistandard.org/validate/$WSID
 
 Your personal workspace (including your email address) will be automatically deleted after 72 hours.
@@ -49,7 +49,7 @@ EOF
       NOW=`date -u --iso-8601=seconds`
       APIDATA="{\"last-email-notification\": \"$NOW\"}"
 
-      echo "$PREFIX: update last-email-notification for '$WSID' ($NOW) to indicate processing"
+      echo "$PREFIX: update last-email-notification for iati-testworkspace '$WSID' ($NOW) to indicate processing"
       curl -sS -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' \
       -d "$APIDATA" \
       "$API/iati-testworkspaces/$WSID"
