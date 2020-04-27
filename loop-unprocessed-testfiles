@@ -62,7 +62,7 @@ EOT`
     echo "$PREFIX: process $DSID"
     ./webhook-scripts/inhouse-testfiles.sh $FID
     
-    if [ -z $WSID ]; then
+    if [[ -n $WSID ]]; then
       ./email-notification $WSID
     fi    
   fi
