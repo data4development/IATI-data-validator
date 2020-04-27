@@ -5,6 +5,7 @@ PREFIX="Loop unprocessed testfiles"
 
 if [[ -n $1 ]]; then
   WSID=$1
+  echo "$PREFIX: email notification for workspace $WSID"
 
   # get the workspace info
   HTTP_STATUS=$(curl -s "$API/iati-testworkspaces/$WSID" -o "./tmp_$WSID" -w "%{http_code}")

@@ -62,7 +62,7 @@ EOT`
     echo "$PREFIX: process $DSID in workspace $WSID"
     ./webhook-scripts/inhouse-testfiles.sh $FID
     
-    ./email-notification $WSID
+    ./email-notification.sh $WSID
   fi
   
 done
