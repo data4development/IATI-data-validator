@@ -42,13 +42,14 @@ EOT`
   
   FID=`echo $DATASET | xmllint --xpath '//fileid/text()' -` 2> "/dev/null"
   DSID=`echo $DATASET | xmllint --xpath '//id/text()' -` 2> "/dev/null"
+  WSID=`echo $DATASET | xmllint --xpath '//tmpworkspaceId/text()' -` 2> "/dev/null"
   
   if [ -z $DSID ]; then
     echo "$PREFIX: Nothing found to process, waiting"
     sleep 10s
   
   else
-    echo "$PREFIX: Found $DSID -- start processing"
+    echo "$PREFIX: Found $DSID in workspace '$WSID' -- start processing"
     
     NOW=`date --iso-8601=seconds`
     APIDATA="{\"processing\": \"$NOW\", \"status\": \"Processing validation rules (step 2 of 3)\"}"
@@ -58,8 +59,10 @@ EOT`
     -d "$APIDATA" \
     "$API/iati-testdatasets/update?where=%7B%22id%22%3A%22$DSID%22%7D"
 
-    echo "$PREFIX: process $DSID"
-    ./webhook-scripts/inhouse-testfiles.sh $FID    
+    echo "$PREFIX: process $DSID in workspace $WSID"
+    ./webhook-scripts/inhouse-testfiles.sh $FID
+    
+    ./email-notification.sh $WSID
   fi
   
 done
