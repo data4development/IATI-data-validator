@@ -167,5 +167,24 @@
 <!--<x:expect label="Debug: show the result" test="false()"/>-->
     </x:scenario>
   </x:scenario>
-    
+  
+  <x:scenario label="If there is a diagnostic message">
+    <x:context>
+      <iati-activity>
+        <sector code="123" percentage="22" vocabulary="1"/>
+        
+        <me:feedback xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          type="danger"
+          class="classifications"
+          id="2.1.4">
+          <me:src ref="iati"
+            versions="any"
+            href="https://drive.google.com/file/d/1GNnjeqDIyWwuuIkJ8pMjLhE99R_olSJP/view"/>
+          <me:message>For a single sector, the percentage must either be omitted, or set to 100.</me:message>
+          <me:diagnostic>For sector 123 in vocabulary 1</me:diagnostic>
+        </me:feedback>
+      </iati-activity>
+    </x:context>
+    <x:expect label="It should contain the diagnostic message" test="contains(., 'For sector 123 in vocabulary 1')"/>
+  </x:scenario>
 </x:description>

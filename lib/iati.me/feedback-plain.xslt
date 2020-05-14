@@ -32,6 +32,10 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="*[me:diagnostic]">
+    <xsl:text>{me:diagnostic}</xsl:text>
+  </xsl:template>
+
   <xsl:template match="reporting-org" mode="context">
     <xsl:text>In {name(.)} </xsl:text><xsl:call-template name="show-organisation"/>
   </xsl:template>
@@ -74,6 +78,10 @@
     <xsl:text>In the {local-name(..)} "</xsl:text>
     <xsl:apply-templates select=".." mode="get-text"/>
     <xsl:text>" of the {local-name(../..)} of {../../period-start/@iso-date} to {../../period-end/@iso-date}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="transaction/value" mode="context">
+    <xsl:text>In the transaction of {../transaction-date/@iso-date} with value {.}</xsl:text>
   </xsl:template>
   
   <xsl:template match="value" mode="context">
