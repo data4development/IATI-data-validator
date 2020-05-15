@@ -5,6 +5,7 @@
   </description>
 
   <property name="filemask" value=""/>
+  <property name="datasets" value="iati-datasets"/>
   
   <!-- Use config/build.xml to add artifacts to extension points -->
   <import file="/work/space/config/iati-data-validator.xml" optional="yes"/>
@@ -35,13 +36,14 @@
       <arg value="input"/>
       <arg value="src"/>
       <arg value="${filemask}"/>
+      <arg value="${datasets}"/>
     </exec>
-    <xslt basedir="/work/space/tmp/feedback/" includes="**/${filemask}*.xml" destdir="/work/space/dest" extension=".feedback.xml" style="data-quality/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
+    <xslt basedir="/work/space/tmp/feedback/" includes="**/${filemask}*" destdir="/work/space/dest" extension=".feedback.xml" style="data-quality/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
   <target name="rules" description="Check the files source data against IATI rules." depends="init">
     <echo level="info">Check the data files in src/ against the ruleset.</echo>
-    <xslt basedir="/work/space/src/" includes="**/${filemask}*.xml" destdir="/work/space/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
+    <xslt basedir="/work/space/src/" includes="**/${filemask}*" destdir="/work/space/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
   <target name="report" description="Generate a data quality feedback HTML page." depends="init, html-skeleton, rules">

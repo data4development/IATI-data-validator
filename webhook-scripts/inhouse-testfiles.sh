@@ -28,7 +28,7 @@ if [[ $HTTP_STATUS == 200 ]]; then
   # Make sure we process the file again by removing the target for ant
   rm -f /work/space/dest/$basename.feedback.xml
   # Run the XML check and the rules
-  ant -f build-engine.xml -Dfilemask=$basename feedback
+  ant -f build-engine.xml -Dfilemask=$basename -Ddatasets=iati-testdatasets feedback
   
   # Store the result
   
