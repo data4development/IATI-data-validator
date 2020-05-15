@@ -39,6 +39,24 @@
         </x:context>
         <x:expect label="It should include the document title" test="contains(., 'Fiche Projet')"/>
       </x:scenario>
+
+      <x:scenario label="If there is a diagnostic message">
+        <x:context>
+          <iati-activities>
+            <iati-activity>
+              <me:feedback xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                type="danger"
+                class="geo"
+                id="3.1.1">
+                <me:src ref="iati" versions="2.0x"/>
+                <me:message>Percentages are missing for one or more recipient countries.</me:message>
+                <me:diagnostic>For recipient countries UK.</me:diagnostic>
+              </me:feedback>
+            </iati-activity>
+          </iati-activities>
+        </x:context>
+        <x:expect label="It should include the diagnostic message" test="contains(., 'For recipient countries UK.')"/>
+      </x:scenario>
     </x:scenario>    
   </x:scenario>
 </x:description>

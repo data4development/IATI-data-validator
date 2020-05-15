@@ -148,8 +148,16 @@
   <xsl:template match="@href">
     <string key="href">{.}</string>
   </xsl:template>
+
+  <xsl:template match="me:feedback[me:diagnostic]">
+    <!-- use the diagnostic -->
+    <map>
+      <string key="text"><xsl:apply-templates select="." mode="context"/></string>
+    </map>
+  </xsl:template>
   
   <xsl:template match="me:feedback">
+    <!-- use information from the element containing the feedback -->
     <map>
       <string key="text"><xsl:apply-templates select=".." mode="context"/></string>
     </map>

@@ -32,7 +32,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="*[me:diagnostic]">
+  <xsl:template match="me:feedback[me:diagnostic]" mode="context" priority="2">
     <xsl:text>{me:diagnostic}</xsl:text>
   </xsl:template>
 

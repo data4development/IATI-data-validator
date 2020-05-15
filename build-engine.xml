@@ -120,8 +120,7 @@
     </antcall>
   </target>
 
-  <target name="test-json" description="Run the JSON feedback tests"
-    depends="xml-check, rules">
+  <target name="test-json" description="Run the JSON feedback tests">
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="tests/json-feedback.xspec"/>
     </antcall>

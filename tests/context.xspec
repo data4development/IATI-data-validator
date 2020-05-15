@@ -169,17 +169,13 @@
   </x:scenario>
   
   <x:scenario label="If there is a diagnostic message">
-    <x:context>
+    <x:context mode="context" select="//me:feedback">
       <iati-activity>
-        <sector code="123" percentage="22" vocabulary="1"/>
-        
         <me:feedback xmlns:xs="http://www.w3.org/2001/XMLSchema"
           type="danger"
           class="classifications"
           id="2.1.4">
-          <me:src ref="iati"
-            versions="any"
-            href="https://drive.google.com/file/d/1GNnjeqDIyWwuuIkJ8pMjLhE99R_olSJP/view"/>
+          <me:src ref="iati" versions="any"/>
           <me:message>For a single sector, the percentage must either be omitted, or set to 100.</me:message>
           <me:diagnostic>For sector 123 in vocabulary 1</me:diagnostic>
         </me:feedback>
