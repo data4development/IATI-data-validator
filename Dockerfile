@@ -22,6 +22,7 @@ ENV \
     ANT_VERSION=1.10.1 \
     SAXON_VERSION=9.8.0-14 \
     WEBHOOK_VERSION=2.6.8 \
+    SSMTP_VERSION=2.64-8+b2_amd64 \
     \
     HOME=/home \
     ANT_HOME=/opt/ant \
@@ -34,9 +35,9 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-RUN wget -q http://ftp.debian.org/debian/pool/main/s/ssmtp/ssmtp_2.64-8.1+b1_amd64.deb && \
-  dpkg -i ssmtp_2.64-8.1+b1_amd64.deb && \
-  rm ssmtp_2.64-8.1+b1_amd64.deb
+RUN wget -q http://ftp.debian.org/debian/pool/main/s/ssmtp/ssmtp_${SSMTP_VERSION}.deb && \
+  dpkg -i ssmtp_${SSMTP_VERSION}.deb && \
+  rm ssmtp_${SSMTP_VERSION}.deb
 
 RUN wget -q https://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
   tar -xzf apache-ant-${ANT_VERSION}-bin.tar.gz && \
