@@ -168,6 +168,41 @@
     </x:scenario>
   </x:scenario>
   
+  <x:scenario label="Transaction context">
+    <x:scenario label="If a transaction contains feedback">
+      <x:context mode="context">
+        <transaction>
+          <transaction-date iso-date="2020-02-02"/>
+          <value value-date="2020-01-01">123
+            <me:feedback>
+              <me:message>do not show</me:message>
+            </me:feedback>
+          </value>
+        </transaction>
+      </x:context>      
+      <x:expect label="It should contain the transaction date" test="contains(., '2020-02-02')"/>
+      <x:expect label="It should contain the transaction value" test="contains(., '123')"/>
+      <x:expect label="It should not contain the feedback message" test="not(contains(., 'do not show'))"/>
+    </x:scenario>
+
+    <x:scenario label="If a transaction value contains feedback">
+      <x:context mode="context" select="//value">
+        <transaction>
+          <transaction-date iso-date="2020-02-02"/>
+          <value value-date="2020-01-01" currency="EUR">123
+            <me:feedback>
+              <me:message>do not show</me:message>
+            </me:feedback>
+          </value>
+        </transaction>
+      </x:context>      
+      <x:expect label="It should contain the transaction date" test="contains(., '2020-02-02')"/>
+      <x:expect label="It should contain the transaction value" test="contains(., '123')"/>
+      <x:expect label="It should contain the transaction currency" test="contains(., 'EUR')"/>
+      <x:expect label="It should not contain the feedback message" test="not(contains(., 'do not show'))"/>
+    </x:scenario>
+  </x:scenario>
+  
   <x:scenario label="If there is a diagnostic message">
     <x:context mode="context" select="//me:feedback">
       <iati-activity>

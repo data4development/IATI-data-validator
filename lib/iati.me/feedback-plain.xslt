@@ -54,7 +54,7 @@
       <xsl:when test="transaction-type/@code='11'">incoming commitment</xsl:when>
       <xsl:otherwise>transaction</xsl:otherwise>
     </xsl:choose>
-    <xsl:text> of {transaction-date/@iso-date}</xsl:text>
+    <xsl:text> of {transaction-date/@iso-date} with value {value/@currency}{functx:trim(value/text()[1])}</xsl:text>
   </xsl:template>
 
   <xsl:template match="transaction-date" mode="context">
@@ -81,7 +81,7 @@
   </xsl:template>
 
   <xsl:template match="transaction/value" mode="context">
-    <xsl:text>In the transaction of {../transaction-date/@iso-date} with value {.}</xsl:text>
+    <xsl:text>In the transaction of {../transaction-date/@iso-date} with value {@currency}{functx:trim(text()[1])}</xsl:text>
   </xsl:template>
   
   <xsl:template match="value" mode="context">
