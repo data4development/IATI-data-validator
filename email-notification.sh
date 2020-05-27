@@ -26,9 +26,12 @@ if [[ -n $1 ]]; then
         or (.["last-email-notification"] < "$RECENT") )] | all'`
 
     if [[ $SEND == true ]]; then
-      EMAIL=`echo $WS | jq '.email'`
+      # get email, remove leadig and trailing quote
+      E1=`echo $WS | jq '.email'`
+      E2=${E1#\"}
+      EMAIL=${E2%\"}
 
-      cat <<EOF | ssmtp $EMAIL
+      cat <<EOF | msmtp $EMAIL
 To: $EMAIL
 From: iati-validator@data4development.nl
 Subject: Your IATI validation results are ready
