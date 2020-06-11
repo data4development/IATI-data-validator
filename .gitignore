@@ -1,7 +1,3 @@
-docs/_site/
-docs/\.sass-cache
-docs/Gemfile\.lock
-
 build\.svg
 \.bash_history
 tmp/
