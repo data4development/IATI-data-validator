@@ -11,6 +11,11 @@ tmp/
 webhook
 
 # ignore these on branch minbuza for now
-tests/
-testspace/
-lib/iati-rulesets/
+tests/xspec
+tests/*-result.html
+testspace/src
+testspace/dest
+testspace/json
+testspace/svrl
+testspace/tmp
+testspace/reports
