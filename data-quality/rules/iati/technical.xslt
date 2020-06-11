@@ -59,6 +59,4 @@ The raw feedback from schema validation:
       </me:message>
     </me:feedback>
   </xsl:template>
-  
-
 </xsl:stylesheet>  

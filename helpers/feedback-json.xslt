@@ -4,7 +4,7 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:me="http://iati.me"
   xmlns:functx="http://www.functx.com"
-  exclude-result-prefixes="xs me functx"
+  exclude-result-prefixes="xs me"
   version="3.0"
   expand-text="yes">
   
@@ -20,10 +20,17 @@
       <map>
         <string key="schemaVersion">{*/@me:schemaVersion}</string>
         <string key="iatiVersion">{*/@me:iatiVersion}</string>
+        <map key="summary">
+          <number key="critical">{count(distinct-values(//me:feedback[@type='critical']/@id))}</number>
+          <number key="danger">{count(distinct-values(//me:feedback[@type='danger']/@id))}</number>
+          <number key="warning">{count(distinct-values(//me:feedback[@type='warning']/@id))}</number>
+          <number key="info">{count(distinct-values(//me:feedback[@type='info']/@id))}</number>
+          <number key="success">{count(distinct-values(//me:feedback[@type='success']/@id))}</number>            
+        </map>
         <xsl:apply-templates/>
       </map>
     </xsl:variable>
-    {xml-to-json($j)}
+    <xsl:text>{xml-to-json($j)}</xsl:text>
   </xsl:template>
 
   <xsl:template match="/*">
@@ -34,8 +41,17 @@
       <xsl:apply-templates select="." mode="validation"/>
     </string>
     
+    <xsl:variable name="t" as="node()*">
+      <xsl:sequence select="me:feedback"/>
+      <xsl:if test="not(//me:feedback[@type=('danger', 'critical')])">
+        <me:feedback type="success" class="iati" id="0.0.1">
+          <me:src ref="iati" versions="any"/>
+          <me:message>Congratulations! This IATI file has successfully passed validation with no errors!</me:message>
+        </me:feedback>
+      </xsl:if>
+    </xsl:variable>
     <xsl:call-template name="feedback">
-      <xsl:with-param name="feedback" select="me:feedback"/>
+      <xsl:with-param name="feedback" select="$t"/>
     </xsl:call-template>
 
     <xsl:where-populated>
@@ -68,6 +84,7 @@
         <xsl:when test="'0.5.1'=me:feedback/@id">iati-with-xml-errors</xsl:when>
         <xsl:otherwise>ok</xsl:otherwise>
       </xsl:choose>
+    
   </xsl:template>
 
   <xsl:template match="iati-activity">
@@ -132,7 +149,7 @@
   
   <xsl:template match="me:feedback">
     <map>
-      <string key="text"><xsl:apply-templates select="." mode="context"/></string>
+      <string key="text"><xsl:apply-templates select=".." mode="context"/></string>
     </map>
   </xsl:template>
 </xsl:stylesheet>

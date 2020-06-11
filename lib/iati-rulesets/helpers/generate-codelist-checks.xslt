@@ -37,12 +37,19 @@
     
     <xsl:analyze-string select="path" regex="(.+)/([^/]+)">
       <xsl:matching-substring>
-        <xsl:variable name="default">The code for {regex-group(2)} is not on the {$codelist} codelist.</xsl:variable>
+        <xsl:variable name="default">The {regex-group(2)} code is invalid.</xsl:variable>
         
-        <axsl:template match="{regex-group(1) || $condition}" mode="rules" priority="{$pos}">
-          <axsl:if test="me:codeListFail({regex-group(2)}, '{$codelist}')">
+        <axsl:template match="{regex-group(1) || $condition || '/' || regex-group(2)}" mode="rules" priority="{$pos}">
+          <axsl:param name="iati-version" tunnel="yes"/>
+          <axsl:if test="me:codeListFail(., '{$codelist}', $iati-version)">
             <me:feedback type="danger" class="{($class, 'iati')[1]}" id="{$pos || '.1'}">
-              <me:src ref="iati" versions="any"/>
+              <me:src ref="iati" versions="any">
+                <xsl:attribute name="href">
+                  <xsl:text expand-text="no">{me:iati-url('codelists/</xsl:text>
+                  <xsl:text>{$codelist}</xsl:text>
+                  <xsl:text expand-text="no">/')}</xsl:text>
+                </xsl:attribute>                
+              </me:src>
               <me:message>{($message, $default)[1]}</me:message>
             </me:feedback>
           </axsl:if>
