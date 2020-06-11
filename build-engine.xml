@@ -97,4 +97,42 @@
       <fileset dir="share/html"/>
     </copy>
   </target>
+
+  <target name="run_testsuites" 
+    depends="xml-check, rules,
+    non-iati-file-tests, iati-tests, minbuza-tests, dfid-tests,
+    test-context, test-json, test-validator"/>
+  
+  <target name="test" description="Run test suites">
+    <symlink action="delete" link="/work/space"/>
+    <copy todir="/work/space">
+      <fileset dir="/home/testspace"/>
+    </copy>
+    <antcall target="run_testsuites"/>    
+  </target>
+  
+  <target name="tests" description="Run all tests (don't stop at failure)">
+    <antcall target="test">
+      <param name="xspec.fail" value="false"/>
+    </antcall>
+  </target>
+  
+  <target name="test-context" description="Run the context-generation tests for messages">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/context.xspec"/>
+    </antcall>
+  </target>
+
+  <target name="test-json" description="Run the JSON feedback tests"
+    depends="xml-check, rules">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/json-feedback.xspec"/>
+    </antcall>
+  </target>
+
+  <target name="test-validator" description="Run the Validator tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/validator.xspec"/>
+    </antcall>
+  </target>
 </project>
