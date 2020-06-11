@@ -47,13 +47,13 @@
     </echo>
   </target>
 
-  <target name="non-iati-file-tests" depends="xml-check, rules">
+  <target name="non-iati-file-tests">
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="lib/iati-rulesets/tests/non-iati-files.xspec"/>
     </antcall>
   </target>
   
-  <target name="test" description="Run the tests">
+  <target name="iati-tests">
     <antcall target="xspec.xspec" inheritall="false">
       <param name="xspec.xml" location="lib/iati-rulesets/tests/iati.xspec"/>
     </antcall>

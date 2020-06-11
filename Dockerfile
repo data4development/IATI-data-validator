@@ -18,6 +18,7 @@ ENV \
     ANT_VERSION=1.10.1 \
     SAXON_VERSION=9.8.0-14 \
     WEBHOOK_VERSION=2.6.8 \
+    \
     HOME=/home \
     ANT_HOME=/opt/ant \
     SAXON_HOME=/opt/ant
@@ -52,7 +53,7 @@ RUN mkdir -p $HOME/tests/xspec && \
   chmod go+w /work && \
   ln -s /workspace /work/space
 
-#ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
-#CMD ["-p"]
 EXPOSE 9000
-ENTRYPOINT ["/home/loop-unprocessed-files"]
+
+ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
+CMD ["-p"]
