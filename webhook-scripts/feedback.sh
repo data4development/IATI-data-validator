@@ -24,17 +24,17 @@ esac
 if echo "$1" | grep -Eq "$URLREGEX"
 then
   cd /home 
-  mkdir -p /workspace/input
+  mkdir -p /work/space/input
   
-  # put the source file into /workspace/input using the md5 as name
+  # put the source file into /work/space/input using the md5 as name
   tfile=$(mktemp /tmp/XXXXXXXXX)
   wget -q -O $tfile $1
   md5sum=$(md5sum $tfile | cut -d \  -f 1) 
-  mv $tfile /workspace/input/$md5sum.xml
+  mv $tfile /work/space/input/$md5sum.xml
   
   # generate and return the svrl output
   ant -f build-engine.xml full-$target -S -q -Dfilemask=$md5sum
-  cat /workspace/$resultdir/$md5sum.$resultext
+  cat /work/space/$resultdir/$md5sum.$resultext
 
 else
   cat /home/webhook-scripts/not-url.$resultext

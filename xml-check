@@ -2,7 +2,7 @@
 
 # Check the input files for well-formedness and schema errors, produce a feedback file if appropriate
 
-WORKSPACE=${WORKSPACE:-/workspace}
+WORKSPACE=${WORKSPACE:-/work/space}
 INPUTDIR=${1:-input}
 SRCDIR=${2:-src}
 FILEMASK=${3}*
@@ -55,7 +55,7 @@ find . -path "./.git" -name "$FILEMASK" -prune -o -type f -print | while read FI
       VERSION=2.03
     fi
     
-    if xmllint --noout --schema /home/lib/schemata/$VERSION/$XMLROOT-schema.xsd "$NAME" 2> "$WORKSPACE/tmp/xmlschemalog/$NAME"; then
+    if xmllint --noout --schema /home/lib/iati-rulesets/lib/schemata/$VERSION/$XMLROOT-schema.xsd "$NAME" 2> "$WORKSPACE/tmp/xmlschemalog/$NAME"; then
       rm "$WORKSPACE/tmp/xmlschemalog/$NAME"
       if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
         echo '<recovered-iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"

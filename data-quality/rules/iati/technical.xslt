@@ -7,8 +7,8 @@
   expand-text="yes">
   
   <xsl:template match="iati-activities|iati-organisations" mode="rules" priority="10.1">
-    <xsl:if test="doc-available('/workspace/tmp/iatifeedback/'||$filename)">
-      <xsl:apply-templates select="doc('/workspace/tmp/iatifeedback/'||$filename)/*" mode="technical"/>  
+    <xsl:if test="doc-available('/work/space/tmp/iatifeedback/'||$filename)">
+      <xsl:apply-templates select="doc('/work/space/tmp/iatifeedback/'||$filename)/*" mode="technical"/>  
     </xsl:if>
 
     <xsl:next-match/>
@@ -40,7 +40,7 @@ The raw feedback from xmllint:
 The raw feedback from schema validation:
         
 <xsl:choose>
-  <xsl:when test="unparsed-text-available('/workspace/tmp/xmlschemalog/' || $filename)">{unparsed-text("/workspace/tmp/xmlschemalog/" || $filename)}</xsl:when>
+  <xsl:when test="unparsed-text-available('/work/space/tmp/xmlschemalog/' || $filename)">{unparsed-text("/work/space/tmp/xmlschemalog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose>
       </me:message>
@@ -53,7 +53,7 @@ The raw feedback from schema validation:
       <me:message>The file is not a valid XML. A recovered version does form a valid IATI file, but may not contain all information. The raw feedback from xmllint:
         
 <xsl:choose>
-  <xsl:when test="unparsed-text-available('/workspace/tmp/xmltestlog/' || $filename)">{unparsed-text("/workspace/tmp/xmltestlog/" || $filename)}</xsl:when>
+  <xsl:when test="unparsed-text-available('/work/space/tmp/xmltestlog/' || $filename)">{unparsed-text("/work/space/tmp/xmltestlog/" || $filename)}</xsl:when>
   <xsl:otherwise>(not possible to present, maybe a binary file)</xsl:otherwise>
 </xsl:choose>
       </me:message>

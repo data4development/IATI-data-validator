@@ -5,7 +5,7 @@
   </description>
 
   <property name="xspec.fail" value="false"/>
-  <import file="xspec/build.xml" optional="yes"/>
+  <include file="../lib/iati-rulesets/lib/xspec/build.xml"/>
   
   <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
   <extension-point name="update-external-data"
@@ -14,31 +14,27 @@
 
   <target name="org-id-prefixes">
     <get src="http://org-id.guide/download.xml" dest="tmp/org-id.xml"/>
-    <xslt in="tmp/org-id.xml" out="data-quality/lib/known-prefixes.xml" style="data-updater/org-id/known-prefixes.xslt"/>
+    <xslt in="tmp/org-id.xml" out="lib/iati-rulesets/var/known-orgid-prefixes.xml" style="helpers/update-org-id-prefixes.xslt"/>
   </target>
 
   <target name="mime-types">
     <get src="http://www.iana.org/assignments/media-types/media-types.xml" dest="tmp/mime-types.xml"/>
-    <xslt in="tmp/mime-types.xml" out="data-quality/lib/mime-types.xml" style="data-updater/other/mime-types.xslt"/>
+    <xslt in="tmp/mime-types.xml" out="lib/iati-rulesets/var/mime-types.xml" style="helpers/update-mime-types.xslt"/>
   </target>
 
   <target name="known-publishers">
     <get src="http://www.dataworkbench.io/api/iati-publishers" dest="tmp/iati-publishers.json"/>
-    <touch file="lib/dummy.xml"/>
-    <xslt in="lib/dummy.xml" out="data-quality/lib/known-publishers.xml" style="data-updater/iati/known-publishers.xslt"/>
-  </target>
-  
-  <target name="update-codelist-rules" description="Update the codelist check rules based on the adapted IATI codelist mapping.">
-    <echo level="info">Update the codelist check rules based on the adapted IATI codelist mapping.</echo>
-    <xslt in="lib/schemata/mapping-rules.xml" out="data-quality/rules/iati/codelists.xslt" style="data-updater/generate-codelist-checks.xslt"/>
+    <xslt out="lib/iati-rulesets/var/known-publishers.xml"
+      in="helpers/update-known-iati-publishers.xslt"
+      style="helpers/update-known-iati-publishers.xslt"/>    
   </target>
   
   <!-- Document all the Ant targets and their dependencies -->
-  <typedef resource="net/ggtools/grand/antlib.xml" classpath="/develop/lib/grand-1.9.5.jar"/>
+  <typedef resource="net/ggtools/grand/antlib.xml" classpath="lib/grand-1.9.5.jar"/>
   <target name="ant-graph"
     description="(Dev) Create a graph of the targets and their dependencies.">
 
-    <grand output="tmp/ant-graph.dot" outputconfigfile="/develop/ant-graph.properties" showgraphname="true">
+    <grand output="/work/space/tmp/ant-graph.dot" outputconfigfile="helpers/ant-graph.properties" showgraphname="true">
       <filter name="prefixed"/>
     </grand>
 
@@ -46,45 +42,46 @@
       Ant target graph available as tmp/ant-graph.dot
       To create an SVG image fromt this, you need GraphViz and run:
       
-        dot -Tsvg -o ant-graph.svg tmp/ant-graph.dot
+        dot -Tsvg -o tmp/ant-graph.svg tmp/ant-graph.dot
+        open tmp/ant-graph.svg
     </echo>
   </target>
 
   <target name="non-iati-file-tests" depends="xml-check, rules">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/non-iati-files.xspec"/>
+      <param name="xspec.xml" location="lib/iati-rulesets/tests/non-iati-files.xspec"/>
     </antcall>
   </target>
   
   <target name="test" description="Run the tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/iati.xspec"/>
+      <param name="xspec.xml" location="lib/iati-rulesets/tests/iati.xspec"/>
     </antcall>
   </target>
   
   <target name="minbuza-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/minbuza.xspec"/>
+      <param name="xspec.xml" location="lib/iati-rulesets/tests/minbuza.xspec"/>
     </antcall>
   </target>
   
   <target name="dfid-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/dfid.xspec"/>
+      <param name="xspec.xml" location="lib/iati-rulesets/tests/dfid.xspec"/>
     </antcall>
   </target>
   
   <target name="test-json" description="Run the JSON feedback tests">
     <!--depends="xml-check, rules">-->
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/json-feedback.xspec"/>
+      <param name="xspec.xml" location="lib/iati-rulesets/tests/json-feedback.xspec"/>
     </antcall>
   </target>
   
   <target name="test-svrl" description="Run the SVRL feedback tests">
     <!--depends="xml-check, rules">-->
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/svrl-feedback.xspec"/>
+      <param name="xspec.xml" location="lib/iati-rulesets/tests/svrl-feedback.xspec"/>
     </antcall>
   </target>
 

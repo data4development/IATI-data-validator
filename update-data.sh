@@ -9,7 +9,7 @@ BUCKET_FILES_DIR=${BUCKET_FILES_DIR:=dwb}
 for FILE in known-activities.txt known-prefixes.xml known-publishers.xml; do
   curl -sS -o $FILE $API/iati-files/$BUCKET_FILES/download/${BUCKET_FILES_DIR}_$FILE
   if [[ $(wc -l <$FILE) -gt 1000 ]]; then
-    mv $FILE data-quality/lib/
+    mv $FILE lib/iati-rulesets/var
   else
     rm $FILE
   fi

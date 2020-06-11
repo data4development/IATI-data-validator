@@ -43,8 +43,14 @@ RUN wget -q https://github.com/adnanh/webhook/releases/download/${WEBHOOK_VERSIO
 
 ENV PATH $PATH:$ANT_HOME/bin
 
-COPY . $HOME
 VOLUME /workspace
+
+COPY . $HOME
+RUN mkdir -p $HOME/tests/xspec && \
+  chmod go+w $HOME/tests/xspec && \
+  mkdir -p /work && \
+  chmod go+w /work && \
+  ln -s /workspace /work/space
 
 #ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
 #CMD ["-p"]

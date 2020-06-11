@@ -38,14 +38,6 @@
     </exec>
   </target>
   
-  <import file="develop/xspec/build.xml" />
-  <target name="tests" description="Run Xspec tests">
-    <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="develop/tests/iati.xspec"/>
-    </antcall>
-    <echo>
-      See file develop/tests/xspec/iati-result.html
-    </echo>
-  </target>
-
+  <import file="helpers/build.xml" />
+  <import file="build-engine.xml" />
 </project>

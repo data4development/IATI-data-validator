@@ -5,14 +5,8 @@ docs/Gemfile\.lock
 build\.svg
 \.bash_history
 tmp/
-
 \.~*#
-
 webhook
-
-# ignore these on branch minbuza for now
-tests/xspec
-tests/*-result.html
 testspace/src
 testspace/dest
 testspace/json

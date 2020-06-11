@@ -72,8 +72,8 @@ EOT
       PARAMETERS="-e -f build-engine.xml ${@:--p}"
     fi
         
-    if [[ -f ${MY_PATH}/develop/engine-start ]]; then
-      . ${MY_PATH}/develop/engine-start
+    if [[ -f ${MY_PATH}/helpers/engine-start ]]; then
+      . ${MY_PATH}/helpers/engine-start
     fi
 
     docker run --rm -u=${USER} \
