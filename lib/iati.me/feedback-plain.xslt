@@ -32,6 +32,10 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="me:feedback[me:diagnostic]" mode="context" priority="2">
+    <xsl:text>{me:diagnostic}</xsl:text>
+  </xsl:template>
+
   <xsl:template match="reporting-org" mode="context">
     <xsl:text>In {name(.)} </xsl:text><xsl:call-template name="show-organisation"/>
   </xsl:template>
@@ -40,8 +44,20 @@
     <xsl:text>In {name(.)} </xsl:text><xsl:call-template name="show-organisation"/> (role {@role})
   </xsl:template>
 
-  <!-- Context information for transactions -->
-  <xsl:template match="transaction/me:feedback" mode="context">
+  <xsl:template match="transaction" mode="context">
+    <xsl:text>In </xsl:text>
+    <xsl:choose>
+      <xsl:when test="transaction-type/@code='1'">incoming funds</xsl:when>
+      <xsl:when test="transaction-type/@code='2'">(outgoing) commitment</xsl:when>
+      <xsl:when test="transaction-type/@code='3'">disbursement</xsl:when>
+      <xsl:when test="transaction-type/@code='4'">expenditure</xsl:when>
+      <xsl:when test="transaction-type/@code='11'">incoming commitment</xsl:when>
+      <xsl:otherwise>transaction</xsl:otherwise>
+    </xsl:choose>
+    <xsl:text> of {transaction-date/@iso-date} with value {value/@currency}{functx:trim(value/text()[1])}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="transaction-date" mode="context">
     <xsl:text>In </xsl:text>
     <xsl:choose>
       <xsl:when test="../transaction-type/@code='1'">incoming funds</xsl:when>
@@ -62,6 +78,10 @@
     <xsl:text>In the {local-name(..)} "</xsl:text>
     <xsl:apply-templates select=".." mode="get-text"/>
     <xsl:text>" of the {local-name(../..)} of {../../period-start/@iso-date} to {../../period-end/@iso-date}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="transaction/value" mode="context">
+    <xsl:text>In the transaction of {../transaction-date/@iso-date} with value {@currency}{functx:trim(text()[1])}</xsl:text>
   </xsl:template>
   
   <xsl:template match="value" mode="context">

@@ -5,18 +5,41 @@
   <property name="repo" value="localbuild"/>
   <property name="tag" value="0.0.0"/>    
 
-  <target name="build" description="Docker build image for next version">
+  <target name="build"
+    description="Docker build image for next version"
+    depends="git-branch">
     <echo message="version ${tag}"></echo>
     <echo message="docker build -t ${img}:latest ."></echo>
     
     <exec executable="docker">
       <arg value="build"/>
+      <arg value="--no-cache"/>
       <arg value="-t"/>
       <arg value="${img}:latest"/>
       <arg value="."/>
     </exec>
+
+    <echo message="docker tag ${img}:latest ${img}:${git.branch}"></echo>
+    <exec executable="docker">
+      <arg value="tag"/>
+      <arg value="${img}:latest"/>
+      <arg value="${img}:${git.branch}"/>
+    </exec>    
   </target>
-    
+
+  <target name="git-branch">
+    <exec executable="git"
+      outputproperty="git.branch-all"
+      failifexecutionfails="false">
+      <arg line="rev-parse --abbrev-ref HEAD"/>
+    </exec>
+    <exec executable="basename"
+      outputproperty="git.branch"
+      failifexecutionfails="false">
+      <arg line="${git.branch-all}"/>
+    </exec>
+  </target>
+  
   <target name="release" description="Tag Docker and git as release and push (make sure to do a version bump first)">
     <echo message="docker tag ${img}:latest ${repo}:${tag}"/>
     <exec executable="docker">

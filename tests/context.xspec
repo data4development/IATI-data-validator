@@ -167,5 +167,55 @@
 <!--<x:expect label="Debug: show the result" test="false()"/>-->
     </x:scenario>
   </x:scenario>
-    
+  
+  <x:scenario label="Transaction context">
+    <x:scenario label="If a transaction contains feedback">
+      <x:context mode="context">
+        <transaction>
+          <transaction-date iso-date="2020-02-02"/>
+          <value value-date="2020-01-01">123
+            <me:feedback>
+              <me:message>do not show</me:message>
+            </me:feedback>
+          </value>
+        </transaction>
+      </x:context>      
+      <x:expect label="It should contain the transaction date" test="contains(., '2020-02-02')"/>
+      <x:expect label="It should contain the transaction value" test="contains(., '123')"/>
+      <x:expect label="It should not contain the feedback message" test="not(contains(., 'do not show'))"/>
+    </x:scenario>
+
+    <x:scenario label="If a transaction value contains feedback">
+      <x:context mode="context" select="//value">
+        <transaction>
+          <transaction-date iso-date="2020-02-02"/>
+          <value value-date="2020-01-01" currency="EUR">123
+            <me:feedback>
+              <me:message>do not show</me:message>
+            </me:feedback>
+          </value>
+        </transaction>
+      </x:context>      
+      <x:expect label="It should contain the transaction date" test="contains(., '2020-02-02')"/>
+      <x:expect label="It should contain the transaction value" test="contains(., '123')"/>
+      <x:expect label="It should contain the transaction currency" test="contains(., 'EUR')"/>
+      <x:expect label="It should not contain the feedback message" test="not(contains(., 'do not show'))"/>
+    </x:scenario>
+  </x:scenario>
+  
+  <x:scenario label="If there is a diagnostic message">
+    <x:context mode="context" select="//me:feedback">
+      <iati-activity>
+        <me:feedback xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          type="danger"
+          class="classifications"
+          id="2.1.4">
+          <me:src ref="iati" versions="any"/>
+          <me:message>For a single sector, the percentage must either be omitted, or set to 100.</me:message>
+          <me:diagnostic>For sector 123 in vocabulary 1</me:diagnostic>
+        </me:feedback>
+      </iati-activity>
+    </x:context>
+    <x:expect label="It should contain the diagnostic message" test="contains(., 'For sector 123 in vocabulary 1')"/>
+  </x:scenario>
 </x:description>

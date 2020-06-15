@@ -1,6 +1,4 @@
-.dockerignore
-.git/
-.gitignore
+.*
 Dockerfile
 docker.properties
 develop/

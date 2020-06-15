@@ -26,7 +26,7 @@ ENV \
 WORKDIR $HOME
 
 RUN apt-get update && \
-  apt-get -y install --no-install-recommends wget libxml2-utils curl && \
+  apt-get -y install --no-install-recommends wget libxml2-utils curl libgnutls-openssl27 jq libjq1 libonig5 msmtp && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
