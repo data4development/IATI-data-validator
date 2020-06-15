@@ -14,17 +14,17 @@
 
   <target name="org-id-prefixes">
     <get src="http://org-id.guide/download.xml" dest="tmp/org-id.xml"/>
-    <xslt in="tmp/org-id.xml" out="lib/iati-rulesets/var/known-orgid-prefixes.xml" style="helpers/update-org-id-prefixes.xslt"/>
+    <xslt in="tmp/org-id.xml" out="lib/minbuza-rulesets/var/known-orgid-prefixes.xml" style="helpers/update-org-id-prefixes.xslt"/>
   </target>
 
   <target name="mime-types">
     <get src="http://www.iana.org/assignments/media-types/media-types.xml" dest="tmp/mime-types.xml"/>
-    <xslt in="tmp/mime-types.xml" out="lib/iati-rulesets/var/mime-types.xml" style="helpers/update-mime-types.xslt"/>
+    <xslt in="tmp/mime-types.xml" out="lib/minbuza-rulesets/var/mime-types.xml" style="helpers/update-mime-types.xslt"/>
   </target>
 
   <target name="known-publishers">
     <get src="http://www.dataworkbench.io/api/iati-publishers" dest="tmp/iati-publishers.json"/>
-    <xslt out="lib/iati-rulesets/var/known-publishers.xml"
+    <xslt out="lib/minbuza-rulesets/var/known-publishers.xml"
       in="helpers/update-known-iati-publishers.xslt"
       style="helpers/update-known-iati-publishers.xslt"/>    
   </target>
@@ -55,19 +55,19 @@
   
   <target name="iati-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="lib/iati-rulesets/tests/iati.xspec"/>
+      <param name="xspec.xml" location="lib/minbuza-rulesets/tests/iati.xspec"/>
     </antcall>
   </target>
   
   <target name="minbuza-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="lib/iati-rulesets/tests/minbuza.xspec"/>
+      <param name="xspec.xml" location="lib/minbuza-rulesets/tests/minbuza.xspec"/>
     </antcall>
   </target>
   
   <target name="dfid-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="lib/iati-rulesets/tests/dfid.xspec"/>
+      <param name="xspec.xml" location="lib/minbuza-rulesets/tests/dfid.xspec"/>
     </antcall>
   </target>
   

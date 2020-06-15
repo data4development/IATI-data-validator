@@ -12,6 +12,6 @@
   <xsl:include href="iati/technical.xslt"/>
   <xsl:include href="iati/traceability.xslt"/>
   
-  <xsl:include href="../../lib/iati-rulesets/rules/iati.xslt"/>
+  <xsl:include href="../../lib/minbuza-rulesets/rules/iati.xslt"/>
   
 </xsl:stylesheet>

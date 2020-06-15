@@ -6,9 +6,6 @@
   exclude-result-prefixes="functx"
   expand-text="yes">
   
-  <!-- Get all activity titles -->
-  <xsl:variable name="activity-titles" select="//title/(narrative|text())"/>
-  
   <xsl:template match="iati-activity" mode="rules" priority="4.1">
   
     <xsl:if test="not(./@xml:lang) and descendant::narrative[not(@xml:lang)]">
@@ -22,7 +19,9 @@
   </xsl:template>
   
   <xsl:template match="title" mode="rules" priority="4.2">
-  
+    <!-- Get all activity titles -->
+    <xsl:variable name="activity-titles" select="//title/(narrative|text())"/>
+        
     <!--todo: check if this works...-->
     <xsl:if test="count((narrative|text()) = $activity-titles) > 1">
       <me:feedback type="info" class="information" id="4.2.1">
