@@ -21,7 +21,7 @@
     <mkdir dir="/work/space/tmp"/>
     <mkdir dir="/work/space/reports"/>
   </target>
-  
+
   <target name="clean" depends="init" description="Clean intermediary results and feedback files.">
     <delete>
       <fileset dir="/work/space/tmp" includes="**/${filemask}*"/>
