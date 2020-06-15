@@ -6,7 +6,7 @@
 cd /home
 
 PREFIX="Inhouse files"
-API=${API:-http://validator-api/api/v1}
+API=${API:-none}
 BUCKET_SRC=${BUCKET_SRC:-dataworkbench-iati}
 BUCKET_FB=${BUCKET_FB:-dataworkbench-iatifeedback}
 BUCKET_JSON=${BUCKET_JSON:-dataworkbench-json}
