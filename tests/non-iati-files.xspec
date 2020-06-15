@@ -9,12 +9,14 @@
       <x:context href="/work/space/dest/iati-with-schema-errors.feedback.xml"/>
       <x:expect label="It should return root element iati-activities" test="boolean(/iati-activities)"/>
       <x:expect label="It should produce message 0.3.1" test="boolean(/iati-activities/me:feedback[@id='0.3.1'])"/>
+      <x:expect label="It should not produce message 0.4.1" test="not(/iati-activities/me:feedback[@id='0.4.1'])"/>
+      <x:expect label="It should not produce message 0.5.1" test="not(/iati-activities/me:feedback[@id='0.5.1'])"/>
     </x:scenario>
 
     <x:scenario label="If the file is not an IATI file">
       <x:context href="/work/space/dest/xml-but-not-iati.feedback.xml"/>
       <x:expect label="It should return root element not-an-xml-file" test="boolean(/not-an-iati-file)"/>
-      <x:expect label="It should produce message 0.1.1" test="boolean(/*/me:feedback[@id='0.2.1'])"/>
+      <x:expect label="It should produce message 0.2.1" test="boolean(/*/me:feedback[@id='0.2.1'])"/>
     </x:scenario>
   </x:scenario>      
 
@@ -23,12 +25,18 @@
       <x:context href="/work/space/dest/iati-with-xml-errors.feedback.xml"/>
       <x:expect label="It should return root element iati-activities" test="boolean(/iati-activities)"/>
       <x:expect label="It should produce message 0.5.1" test="boolean(/iati-activities/me:feedback[@id='0.5.1'])"/>
+      <x:expect label="It should contain xmllint text about opening and ending tag mismatch" test="contains(/iati-activities/me:feedback[@id='0.5.1'], 'Opening and ending tag mismatch')"/>
+      <x:expect label="It should not produce message 0.3.1" test="not(/iati-activities/me:feedback[@id='0.3.1'])"/>
+      <x:expect label="It should not produce message 0.4.1" test="not(/iati-activities/me:feedback[@id='0.4.1'])"/>
     </x:scenario>
     
     <x:scenario label="If the file is recoverable as IATI with schema errors">
       <x:context href="/work/space/dest/iati-with-xml-and-schema-errors.feedback.xml"/>
       <x:expect label="It should return root element iati-activities" test="boolean(/iati-activities)"/>
       <x:expect label="It should produce message 0.4.1" test="boolean(/iati-activities/me:feedback[@id='0.4.1'])"/>
+      <x:expect label="It should contain xmllint text about iso-date not being valid" test="contains(/iati-activities/me:feedback[@id='0.4.1'], 'attribute ''iso-date'': '''' is not a valid value of the atomic type ''xs:date''')"/>
+      <x:expect label="It should not produce message 0.3.1" test="not(/iati-activities/me:feedback[@id='0.3.1'])"/>
+      <x:expect label="It should not produce message 0.5.1" test="not(/iati-activities/me:feedback[@id='0.5.1'])"/>
     </x:scenario>
 
     <x:scenario label="If the file is not recoverable as IATI">

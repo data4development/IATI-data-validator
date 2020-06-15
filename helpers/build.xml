@@ -5,7 +5,7 @@
   </description>
 
   <property name="xspec.fail" value="false"/>
-  <include file="../lib/iati-rulesets/lib/xspec/build.xml"/>
+  <include file="../lib/xspec/build.xml"/>
   
   <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
   <extension-point name="update-external-data"
@@ -49,7 +49,7 @@
 
   <target name="non-iati-file-tests">
     <antcall target="xspec.xspec" inheritall="false">
-      <param name="xspec.xml" location="lib/iati-rulesets/tests/non-iati-files.xspec"/>
+      <param name="xspec.xml" location="tests/non-iati-files.xspec"/>
     </antcall>
   </target>
   
