@@ -6,7 +6,7 @@ description: >
   Publicly available IATI validator with data quality feedback and tests
   for the guidelines of the Dutch Ministry of Foreign Affairs
 brand: DataWorkbench
-github: https://github.com/data4development/IATI-data-validator
+github: data4development/IATI-data-validator
 
 defaults:
   -
@@ -14,6 +14,3 @@ defaults:
       layout: "default"
 
 remote_theme: data4development/dataworkbench-jekyll-theme
-
-plugins:
-  - jekyll-octicons

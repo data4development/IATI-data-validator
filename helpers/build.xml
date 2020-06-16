@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <description>
+    Developer targets
+  </description>
+
+  <property name="xspec.fail" value="false"/>
+  <include file="../lib/xspec/build.xml"/>
+  
+  <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
+  <extension-point name="update-external-data"
+  description="(Dev) Update the external data to use in the validator"
+  depends="org-id-prefixes, known-publishers, mime-types"/>
+
+  <target name="org-id-prefixes">
+    <get src="http://org-id.guide/download.xml" dest="tmp/org-id.xml"/>
+    <xslt in="tmp/org-id.xml" out="lib/minbuza-rulesets/var/known-orgid-prefixes.xml" style="helpers/update-org-id-prefixes.xslt"/>
+  </target>
+
+  <target name="mime-types">
+    <get src="http://www.iana.org/assignments/media-types/media-types.xml" dest="tmp/mime-types.xml"/>
+    <xslt in="tmp/mime-types.xml" out="lib/minbuza-rulesets/var/mime-types.xml" style="helpers/update-mime-types.xslt"/>
+  </target>
+
+  <target name="known-publishers">
+    <get src="http://www.dataworkbench.io/api/iati-publishers" dest="tmp/iati-publishers.json"/>
+    <xslt out="lib/minbuza-rulesets/var/known-publishers.xml"
+      in="helpers/update-known-iati-publishers.xslt"
+      style="helpers/update-known-iati-publishers.xslt"/>    
+  </target>
+  
+  <!-- Document all the Ant targets and their dependencies -->
+  <typedef resource="net/ggtools/grand/antlib.xml" classpath="lib/grand-1.9.5.jar"/>
+  <target name="ant-graph"
+    description="(Dev) Create a graph of the targets and their dependencies.">
+
+    <grand output="/work/space/tmp/ant-graph.dot" outputconfigfile="helpers/ant-graph.properties" showgraphname="true">
+      <filter name="prefixed"/>
+    </grand>
+
+    <echo>
+      Ant target graph available as tmp/ant-graph.dot
+      To create and view an SVG image fromt this, you need GraphViz and run:
+      
+        dot -Tsvg -o tmp/ant-graph.svg tmp/ant-graph.dot
+        open tmp/ant-graph.svg
+    </echo>
+  </target>
+
+  <target name="non-iati-file-tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/non-iati-files.xspec"/>
+    </antcall>
+  </target>
+  
+  <target name="iati-tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="lib/minbuza-rulesets/tests/iati.xspec"/>
+    </antcall>
+  </target>
+  
+  <target name="minbuza-tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="lib/minbuza-rulesets/tests/minbuza.xspec"/>
+    </antcall>
+  </target>
+  
+  <target name="dfid-tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="lib/minbuza-rulesets/tests/dfid.xspec"/>
+    </antcall>
+  </target>
+  
+</project>

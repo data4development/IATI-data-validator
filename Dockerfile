@@ -6,7 +6,7 @@ LABEL maintainer="Rolf Kleef <rolf@data4development.nl>" \
 
 # To be adapted in the cluster or runtime config
 ENV \
-    API=http://validator-api/api \
+    API=none \
     BUCKET_SRC=dataworkbench-iati \
     BUCKET_FB=dataworkbench-iatifeedback \
     BUCKET_JSON=dataworkbench-json \
@@ -18,6 +18,7 @@ ENV \
     ANT_VERSION=1.10.1 \
     SAXON_VERSION=9.8.0-14 \
     WEBHOOK_VERSION=2.6.8 \
+    \
     HOME=/home \
     ANT_HOME=/opt/ant \
     SAXON_HOME=/opt/ant
@@ -25,7 +26,7 @@ ENV \
 WORKDIR $HOME
 
 RUN apt-get update && \
-  apt-get -y install --no-install-recommends wget libxml2-utils curl && \
+  apt-get -y install --no-install-recommends wget libxml2-utils curl libgnutls-openssl27 jq libjq1 libonig5 msmtp && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
@@ -43,10 +44,16 @@ RUN wget -q https://github.com/adnanh/webhook/releases/download/${WEBHOOK_VERSIO
 
 ENV PATH $PATH:$ANT_HOME/bin
 
-COPY . $HOME
 VOLUME /workspace
 
-#ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
-#CMD ["-p"]
+COPY . $HOME
+RUN mkdir -p $HOME/tests/xspec && \
+  chmod go+w $HOME/tests/xspec && \
+  mkdir -p /work && \
+  chmod go+w /work && \
+  ln -s /workspace /work/space
+
 EXPOSE 9000
-ENTRYPOINT ["/home/loop-unprocessed-files"]
+
+ENTRYPOINT ["/opt/ant/bin/ant", "-e"]
+CMD ["-p"]

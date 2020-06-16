@@ -5,26 +5,27 @@
   </description>
 
   <property name="filemask" value=""/>
+  <property name="datasets" value="iati-datasets"/>
   
   <!-- Use config/build.xml to add artifacts to extension points -->
-  <import file="/workspace/config/iati-data-validator.xml" optional="yes"/>
+  <import file="/work/space/config/iati-data-validator.xml" optional="yes"/>
   <!-- Include additional development targets if available -->
-  <import file="/develop/build.xml" optional="yes"/>
+  <import file="helpers/build.xml" optional="yes"/>
 
   <target name="init" description="Set up workspace directories.">
-    <mkdir dir="/workspace/input"/>
-    <mkdir dir="/workspace/src"/>
-    <mkdir dir="/workspace/dest"/>
-    <mkdir dir="/workspace/json"/>
-    <mkdir dir="/workspace/svrl"/>
-    <mkdir dir="/workspace/tmp"/>
-    <mkdir dir="/workspace/reports"/>
+    <mkdir dir="/work/space/input"/>
+    <mkdir dir="/work/space/src"/>
+    <mkdir dir="/work/space/dest"/>
+    <mkdir dir="/work/space/json"/>
+    <mkdir dir="/work/space/svrl"/>
+    <mkdir dir="/work/space/tmp"/>
+    <mkdir dir="/work/space/reports"/>
   </target>
 
   <target name="clean" depends="init" description="Clean intermediary results and feedback files.">
     <delete>
-      <fileset dir="/workspace/tmp" includes="**/${filemask}*"/>
-      <fileset dir="/workspace/dest" includes="${filemask}*.xml"/>
+      <fileset dir="/work/space/tmp" includes="**/${filemask}*"/>
+      <fileset dir="/work/space/dest" includes="${filemask}*.xml"/>
     </delete>
     <echo level="info">Intermediate results have been deleted from dest and tmp directories.</echo>
   </target>
@@ -35,32 +36,33 @@
       <arg value="input"/>
       <arg value="src"/>
       <arg value="${filemask}"/>
+      <arg value="${datasets}"/>
     </exec>
-    <xslt basedir="/workspace/tmp/feedback/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="report/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
+    <xslt basedir="/work/space/tmp/feedback/" includes="**/${filemask}*" destdir="/work/space/dest" extension=".feedback.xml" style="data-quality/feedback-notxml.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
   <target name="rules" description="Check the files source data against IATI rules." depends="init">
     <echo level="info">Check the data files in src/ against the ruleset.</echo>
-    <xslt basedir="/workspace/src/" includes="**/${filemask}*.xml" destdir="/workspace/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
+    <xslt basedir="/work/space/src/" includes="**/${filemask}*" destdir="/work/space/dest" extension=".feedback.xml" style="data-quality/rules/iati.xslt" failOnError="false" filenameparameter="filename"/>
   </target>
 
-  <target name="report" description="Generate a data quality feedback HTML page." depends="init, html-skeleton">
+  <target name="report" description="Generate a data quality feedback HTML page." depends="init, html-skeleton, rules">
     <echo level="info">Generate data quality feedback report in the report/ folder.</echo>
-    <xslt basedir="/workspace/dest/" includes="**/*.feedback.xml" destdir="/workspace/reports" style="report/feedback.xslt" failOnError="false">
+    <xslt basedir="/work/space/dest/" includes="**/*.feedback.xml" destdir="/work/space/reports" style="helpers/feedback.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.feedback.html"/>
     </xslt>
   </target>
 
   <target name="json" description="Generate JSON output from feedback.">
     <echo level="info">Generate JSON feedback files in json/.</echo>
-    <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/json" style="report/feedback-json.xslt" failOnError="false">
+    <xslt basedir="/work/space/dest/" includes="**/${filemask}*.feedback.xml" destdir="/work/space/json" style="helpers/feedback-json.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.json"/>
     </xslt>
   </target>
 
   <target name="svrl" description="Generate SVRL reports from feedback.">
     <echo level="info">Generate data quality SVRL reports in svrl/.</echo>
-  <xslt basedir="/workspace/dest/" includes="**/${filemask}*.feedback.xml" destdir="/workspace/svrl" style="report/feedback-svrl.xslt" failOnError="false">
+  <xslt basedir="/work/space/dest/" includes="**/${filemask}*.feedback.xml" destdir="/work/space/svrl" style="helpers/feedback-svrl.xslt" failOnError="false">
       <globmapper from="*.feedback.xml" to="*.svrl"/>
     </xslt>
   </target>
@@ -68,14 +70,14 @@
   <target name="feedback" description="Do the XML checks and validate the rules." depends="xml-check, rules"/>
   <target name="redo-feedback" description="Redo all steps for the feedback." depends="clean, xml-check, rules"/>
   
-  <target name="full-feedback" description="Do the XML checks and validate the rules." depends="xml-check, rules"/>
-  <target name="full-svrl" description="Do the XML checks and validate the rules." depends="xml-check, rules, svrl"/>
-  <target name="full-json" description="Do the XML checks and validate the rules." depends="xml-check, rules, json"/>
+  <target name="full-feedback" description="(same as 'feedback')" depends="xml-check, rules"/>
+  <target name="full-svrl" description="Do the XML checks, validate the rules, create svrl." depends="xml-check, rules, svrl"/>
+  <target name="full-json" description="Do the XML checks, validate the rules, create json." depends="xml-check, rules, json"/>
 
   <target name="data-quality-rules-spreadsheet" description="Generate overview of the data quality rules as a spreadsheet." depends="init">
     <echo level="info">Generate overview of the data quality rules as a spreadsheet.</echo>
-    <delete file="/workspace/reports/data-quality-rules.fods"/>
-    <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.fods" style="report/data-quality-rules-spreadsheet.xslt">
+    <delete file="/work/space/reports/data-quality-rules.fods"/>
+    <xslt in="data-quality/meta.xml" out="/work/space/reports/data-quality-rules.fods" style="helpers/data-quality-rules-spreadsheet.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl">
         <attribute name="http://saxon.sf.net/feature/suppressXsltNamespaceCheck" value="true"/>
       </factory>
@@ -84,8 +86,8 @@
 
   <target name="data-quality-rules-csv" description="Generate overview of the data quality rules as a CSV file." depends="init">
     <echo level="info">Generate overview of the data quality rules as a CSV file.</echo>
-    <delete file="/workspace/reports/data-quality-rules.csv"/>
-    <xslt in="data-quality/meta.xml" out="/workspace/reports/data-quality-rules.csv" style="report/data-quality-rules-csv.xslt">
+    <delete file="/work/space/reports/data-quality-rules.csv"/>
+    <xslt in="data-quality/meta.xml" out="/work/space/reports/data-quality-rules.csv" style="helpers/data-quality-rules-csv.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl">
         <attribute name="http://saxon.sf.net/feature/suppressXsltNamespaceCheck" value="true"/>
       </factory>
@@ -93,8 +95,45 @@
   </target>
   
   <target name="html-skeleton" depends="init">
-    <copy todir="/workspace/reports">
+    <copy todir="/work/space/reports">
       <fileset dir="share/html"/>
     </copy>
+  </target>
+
+  <target name="run_testsuites" 
+    depends="xml-check, rules,
+    non-iati-file-tests, iati-tests, minbuza-tests, dfid-tests,
+    test-context, test-json, test-validator"/>
+  
+  <target name="test" description="Run test suites">
+    <symlink action="delete" link="/work/space"/>
+    <copy todir="/work/space">
+      <fileset dir="/home/testspace"/>
+    </copy>
+    <antcall target="run_testsuites"/>    
+  </target>
+  
+  <target name="tests" description="Run all tests (don't stop at failure)">
+    <antcall target="test">
+      <param name="xspec.fail" value="false"/>
+    </antcall>
+  </target>
+  
+  <target name="test-context" description="Run the context-generation tests for messages">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/context.xspec"/>
+    </antcall>
+  </target>
+
+  <target name="test-json" description="Run the JSON feedback tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/json-feedback.xspec"/>
+    </antcall>
+  </target>
+
+  <target name="test-validator" description="Run the Validator tests">
+    <antcall target="xspec.xspec" inheritall="false">
+      <param name="xspec.xml" location="tests/validator.xspec"/>
+    </antcall>
   </target>
 </project>

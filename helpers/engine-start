@@ -1,0 +1,18 @@
+#!/bin/bash
+echo -e "\nRunning in developer mode: using the engine source code at $MY_PATH\n"
+
+if [ "$WORKSPACE." = "$MY_PATH." ]; then
+  WORKSPACE=${MY_PATH}/testspace
+  echo -e "Using ./testspace as /workspace\n"
+fi
+
+OTHER_VOLUMES="-v ${MY_PATH}:/home"
+
+if [ "$1." = "root." ]; then
+  USER="0:0"
+  PARAMETERS=${@:2}
+  ENTRY="--entrypoint=/bin/bash -it"
+elif [ "$1." = "bash." ]; then
+  PARAMETERS=${@:2}
+  ENTRY="--entrypoint=/bin/bash -it"
+fi

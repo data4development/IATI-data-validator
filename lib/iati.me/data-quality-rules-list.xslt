@@ -9,15 +9,14 @@
 
   <xsl:import href="../functx.xslt"/>
   <xsl:variable name="meta" select="/me:meta"/>
-  <xsl:variable name="calls" select="collection('../../data-quality?select=*.xslt;recurse=yes')//xsl:call-template"/>
+  <xsl:variable name="calls" select="collection('../../?select=*.xslt;recurse=yes')//xsl:call-template"/>
 
   <xsl:template match="/">
     <xsl:variable name="rules">
       <file>
         <xsl:perform-sort>
           <xsl:sort select="column[@name='ID']"/>
-          <xsl:apply-templates select="collection('../../data-quality?select=*.xslt;recurse=yes')//me:feedback" mode="get-feedback-messages"/>
-          <xsl:apply-templates select="collection('../../report?select=*.xslt;recurse=yes')//me:feedback" mode="get-feedback-messages"/>
+          <xsl:apply-templates select="collection('../../?select=*.xslt;recurse=yes')//me:feedback" mode="get-feedback-messages"/>        
         </xsl:perform-sort>
       </file>
     </xsl:variable>
@@ -50,7 +49,8 @@
   <xsl:template match="*" mode="get-feedback-calls">
     <xsl:param name="rule"/>    
     <row>
-      <column style="co1" name="ID">{replace($rule/@id, '\{\$idclass\}', me:param(., 'idclass'))}</column>
+      <column style="co1" name="ID">{$rule/@id
+        => replace(functx:escape-for-regex('{$idclass}'), me:param(., 'idclass'))}</column>
       <column style="co1" name="Class">{me:param(., 'class')}</column>
       <column style="co1" name="Severity">{$meta//me:severity[@type=$rule/@type]}</column>
       <column style="co2" name="Ruleset(s)">{me:param(., 'versions')}</column>

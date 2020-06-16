@@ -1,8 +1,0 @@
-tests/xspec
-tests/*-result.html
-testspace/src
-testspace/dest
-testspace/json
-testspace/svrl
-testspace/tmp
-testspace/reports

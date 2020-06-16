@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="../rules/iati.xslt"
+  xslt-version="3.0">
+
+  <x:scenario label="Additional rules of the Department for International Development, UK">
+      
+    <x:scenario label="If there is no DAC 5-digit sector classification">
+      <x:context>
+        <!-- [1] -->
+        <iati-activity>
+        </iati-activity>
+        <!-- [2] -->
+        <iati-activity>
+          <sector code="ABC" vocabulary="99"/>
+        </iati-activity>
+        <!-- [3] -->
+        <iati-activity>
+          <transaction>
+            <sector code="ABC" vocabulary="99"/>
+          </transaction>
+        </iati-activity>
+        <!-- [4] -->
+        <iati-activity>
+          <transaction>
+            <sector code="ABC" vocabulary="99"/>
+          </transaction>
+          <transaction>
+            <sector code="11111"/>
+          </transaction>
+        </iati-activity>
+      </x:context>
+
+      <x:expect label="It should produce message 102.1.1 if there is no sector classification at all." test="boolean(//iati-activity[1]/me:feedback[@id='102.1.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//iati-activity[1]/me:feedback[@id='102.1.1']/@type='danger')"/>
+      <x:expect label="It should produce message 102.1.1 if there is a sector classification with another vocabulary." test="boolean(//iati-activity[2]/me:feedback[@id='102.1.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//iati-activity[2]/me:feedback[@id='102.1.1']/@type='danger')"/>      
+      <x:expect label="It should produce message 102.1.1 if there is a sector classification at the transaction level with another vocabulary." test="boolean(//iati-activity[3]/me:feedback[@id='102.1.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//iati-activity[3]/me:feedback[@id='102.1.1']/@type='danger')"/>      
+      <x:expect label="It should produce message 102.1.1 if a sector classification is missing for any transaction." test="boolean(//iati-activity[4]/me:feedback[@id='102.1.1'])"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//iati-activity[4]/me:feedback[@id='102.1.1']/@type='danger')"/>      
+    </x:scenario>
+    
+    <x:scenario label="If there is a DAC 5-digit sector classification" 
+      pending="To check: sectors at activity level? Or also allowed at transaction level?">
+      <x:context>
+        <!-- [1] -->
+        <iati-activity>
+          <sector code="11111"/>
+        </iati-activity>
+        <!-- [2] -->
+        <iati-activity>
+          <transaction>
+            <sector code="11111"/>
+          </transaction>
+        </iati-activity>
+        <!-- [3] -->
+        <iati-activity>
+          <transaction>
+            <sector code="11111"/>
+          </transaction>
+          <transaction>
+            <sector code="22222"/>
+          </transaction>
+        </iati-activity>
+      </x:context>
+      <x:expect label="It should not produce message 102.1.1 if there is a sector classification." test="not(//iati-activity[1]/me:feedback[@id='102.1.1'])"/>
+      <x:expect label="It should not produce message 102.1.1 if there is a sector classification at each transaction level." test="not(//iati-activity[2]/me:feedback[@id='102.1.1'])"/>
+      <x:expect label="It should not produce message 102.1.1 if there there are sector classifications for each transaction." test="not(//iati-activity[3]/me:feedback[@id='102.1.1'])"/>
+    </x:scenario>
+    
+  </x:scenario>
+
+</x:description>

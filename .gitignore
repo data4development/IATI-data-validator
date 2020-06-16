@@ -1,16 +1,11 @@
-docs/_site/
-docs/\.sass-cache
-docs/Gemfile\.lock
-
 build\.svg
 \.bash_history
 tmp/
-
 \.~*#
-
 webhook
-
-# ignore these on branch minbuza for now
-tests/
-testspace/
-lib/iati-rulesets/
+testspace/src
+testspace/dest
+testspace/json
+testspace/svrl
+testspace/tmp
+testspace/reports
