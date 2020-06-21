@@ -40,6 +40,7 @@
             <me:feedback type="danger" class="{$class}" id="{$idclass}.1">
               <me:src ref="iati" versions="{$versions}"/>
               <me:message>The identifier should not start or end with spaces or newlines.</me:message>
+              <me:property-reference property="activity-identifier">{$item}</me:property-reference>
             </me:feedback>
           </xsl:when>
         </xsl:choose>
@@ -51,6 +52,7 @@
             <me:feedback type="danger" class="{$class}" id="{$idclass}.5">
               <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
               <me:message>The identifier is invalid: the prefix must be written in uppercase.</me:message>
+              <me:property-reference property="activity-identifier">{$item}</me:property-reference>
             </me:feedback>
           </xsl:when>
           
@@ -64,6 +66,7 @@
               </xsl:attribute>
               <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
               <me:message>The identifier starts with a prefix that it is marked as 'withdrawn'.</me:message>
+              <me:property-reference property="activity-identifier">{$item}</me:property-reference>
             </me:feedback>
           </xsl:when>
 
@@ -80,6 +83,7 @@
               </xsl:attribute>
               <me:src ref="iati" versions="2.x" href="http://org-id.guide"/>
               <me:message>The identifier does not start with a known prefix.</me:message>
+              <me:property-reference property="activity-identifier">{$item}</me:property-reference>
             </me:feedback>
           </xsl:when>
           
@@ -109,6 +113,7 @@
         <me:feedback type="info" class="{$class}" id="1.2.12">
           <me:src ref="iati" versions="2.x"/>
           <me:message>The identifier uses a 1.04 code that has been replaced in 1.05.</me:message>
+          <me:property-reference property="activity-identifier">{$item}</me:property-reference>
         </me:feedback>
       </xsl:when>
     
@@ -122,6 +127,7 @@
           </xsl:attribute>
           <me:src ref="iati" versions="1.x" href="me:iati-url('organisation-identifiers/')"/>
           <me:message>The identifier is a 5-digit code, but not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
+          <me:property-reference property="activity-identifier">{$item}</me:property-reference>
         </me:feedback>
       </xsl:when>
         
@@ -135,6 +141,7 @@
           </xsl:attribute>
           <me:src ref="iati" versions="2.x"/>
           <me:message>The identifier is not an organisation identifier approved by the IATI registry.</me:message>
+          <me:property-reference property="activity-identifier">{$item}</me:property-reference>
         </me:feedback>
       </xsl:when>
     </xsl:choose>
@@ -168,6 +175,7 @@
           </xsl:attribute>
           <me:src ref="iati" versions="1.x" href="me:iati-url('organisation-identifiers/')"/>
           <me:message>The identifier starts with a 5-digit code, but is not on the list used up to IATI version 1.04. It may be intended as a CRS channel code.</me:message>
+          <me:property-reference property="activity-identifier">{$item}</me:property-reference>
         </me:feedback>
       </xsl:when>
       
@@ -181,6 +189,7 @@
           </xsl:attribute>
           <me:src ref="iati" versions="2.x"/>
           <me:message>The identifier does not begin with an organisation identifier approved by the IATI registry.</me:message>
+          <me:property-reference property="activity-identifier">{$item}</me:property-reference>
         </me:feedback>
       </xsl:when>
       
