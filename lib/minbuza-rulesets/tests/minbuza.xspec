@@ -74,6 +74,43 @@
       <x:expect label="It should not produce message 102.1.1 if there there are sector classifications for each transaction." test="not(//iati-activity[3]/me:feedback[@id='102.1.1'])"/>
     </x:scenario>
     
+    <x:scenario label="If there is an incoming commitment to the Dutch Ministry with an activity identifier">
+      <x:context>
+        <iati-activities>
+          <iati-activity>
+            <transaction humanitarian="0">
+              <transaction-type code="11" />
+              <provider-org ref="XM-DAC-7" provider-activity-id="XM-DAC-7-PPR-12345" type="10">
+                <narrative>Government of the Netherlands - Ministry of Foreign Affairs</narrative>
+              </provider-org>
+            </transaction>
+          </iati-activity>
+          <iati-activity>
+            <transaction humanitarian="0">
+              <transaction-type code="11" />
+              <provider-org ref="GB-1" provider-activity-id="GB-1-ABC-27557" type="10"/>
+            </transaction>
+          </iati-activity>
+        </iati-activities>
+      </x:context>
+      <x:expect label="It should not produce message 100.1.1." test="not(//me:feedback[@id='100.1.1'])"/>
+      
+    </x:scenario>
+
+    <x:scenario label="If there is no incoming commitment to the Dutch Ministry with an activity identifier">
+      <x:context>
+        <iati-activities>
+          <iati-activity>
+            <transaction humanitarian="0">
+              <transaction-type code="11" />
+              <provider-org ref="GB-1" provider-activity-id="GB-1-ABC-27557" type="10"/>
+            </transaction>
+          </iati-activity>
+        </iati-activities>
+      </x:context>
+      <x:expect label="It should produce message 100.1.1." test="boolean(//me:feedback[@id='100.1.1'])"/>
+      
+    </x:scenario>
   </x:scenario>
 
 </x:description>
