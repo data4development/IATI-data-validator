@@ -7,12 +7,12 @@
   <x:scenario label="JSON feedback">
     <x:scenario label="Valid file">
       <x:scenario label="If an activity file has no IATI feedback of severity critical or error">
-        <x:context href="/work/space/dest/iati-act-no-errors.feedback.xml"/>
+        <x:context href="files/iati-act-no-errors.feedback.xml"/>
         <x:expect label="It should produce congratulations message 0.0.1" test="json-to-xml(.)//array[@key='messages']/map/string[@key='id' and .='0.0.1']"/>
       </x:scenario>
       
       <x:scenario label="If an organisation file has no IATI feedback of severity critical or error">
-        <x:context href="/work/space/dest/iati-org-no-errors.feedback.xml"/>
+        <x:context href="files/iati-org-no-errors.feedback.xml"/>
         <x:expect label="It should produce congratulations message 0.0.1" test="json-to-xml(.)//array[@key='messages']/map/string[@key='id' and .='0.0.1']"/>
       </x:scenario>
     </x:scenario>      

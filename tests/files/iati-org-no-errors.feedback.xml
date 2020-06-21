@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iati-organisations xmlns:me="http://iati.me"
+                    me:id=""
+                    me:schemaVersion="0.10.0"
+                    me:iatiVersion="2.02"
+                    version="2.02"
+                    generated-datetime="2018-11-07T05:25:55+00:00">
+  <iati-organisation xmlns:aidstream="http://example.org/aidstream/ns#"
+                      last-updated-datetime="2018-11-07T05:25:55+00:00"
+                      xml:lang="en"
+                      default-currency="NPR">
+      <organisation-identifier>NP-SWC-1234<me:feedback class="identifiers" id="1.13.12" type="info">
+            <me:src ref="iati" versions="2.x"/>
+            <me:message>The identifier is not an organisation identifier approved by the IATI registry.</me:message>
+         </me:feedback>
+         <me:feedback class="organisation" id="1.12.12" type="info">
+            <me:src ref="iati" versions="2.x"/>
+            <me:message>The identifier is not an organisation identifier approved by the IATI registry.</me:message>
+         </me:feedback>
+      </organisation-identifier>
+      <name>
+         <narrative>Test Org Nepal</narrative>
+      </name>
+      <reporting-org type="24" ref="NP-SWC-1234">
+         <narrative>Test Org Nepal</narrative>
+         <me:feedback class="identifiers" id="1.14.12" type="danger">
+            <me:src ref="iati" versions="2.x"/>
+            <me:message>The identifier is not an organisation identifier approved by the IATI registry.</me:message>
+         </me:feedback>
+      </reporting-org>
+  </iati-organisation>
+</iati-organisations>
