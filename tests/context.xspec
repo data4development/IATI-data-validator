@@ -203,6 +203,24 @@
     </x:scenario>
   </x:scenario>
   
+  <x:scenario label="Location context">
+    <x:scenario label="If an administrative element contains feedback">
+      <x:context mode="context" select="//administrative">
+        <iati-activity>
+          <location ref="LOC-1">
+            <administrative code="NGA" vocabulary="A4">
+              <me:feedback>
+                <me:message>do not show</me:message>
+              </me:feedback>
+            </administrative>
+          </location>
+        </iati-activity>        
+      </x:context>      
+      <x:expect label="It should reference the location" test="contains(., 'LOC-1')"/>
+      <x:expect label="It should not contain the feedback message" test="not(contains(., 'do not show'))"/>
+    </x:scenario>
+  </x:scenario>
+  
   <x:scenario label="If there is a diagnostic message">
     <x:context mode="context" select="//me:feedback">
       <iati-activity>

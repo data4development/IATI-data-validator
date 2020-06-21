@@ -103,9 +103,13 @@
   <xsl:template match="baseline|indicator/reference|indicator/description|result/description" mode="context">
     <xsl:text>For the {name(..)} "</xsl:text><xsl:apply-templates select="../title" mode="get-text"/><xsl:text>"</xsl:text>
   </xsl:template>
-  
-  <xsl:template match="location/description" mode="context">
-    <xsl:text>For the {name(..)} "</xsl:text><xsl:apply-templates select="../name" mode="get-text"/><xsl:text>"</xsl:text>
+
+  <xsl:template match="location/location-class" mode="context">
+    <xsl:text>For {name(.)} {@code} in location {../@ref}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="location/description|location/administrative" mode="context">
+    <xsl:text>For the {name(..)} "</xsl:text><xsl:apply-templates select="../name" mode="get-text"/><xsl:text>" (reference "{../@ref}")</xsl:text>
   </xsl:template>
   
   <xsl:template match="target|actual" mode="context">
@@ -134,10 +138,6 @@
     <xsl:text>For {name(.)} {@code} in vocabulary {@vocabulary}</xsl:text>
   </xsl:template>
   
-  <xsl:template match="location-class" mode="context">
-    <xsl:text>For {name(.)} {@code} in location {../@ref}</xsl:text>
-  </xsl:template>
-
   <xsl:template match="@*|node()" mode="context">
   </xsl:template>
     
