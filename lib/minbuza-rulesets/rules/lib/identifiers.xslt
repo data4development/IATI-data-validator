@@ -135,7 +135,7 @@
         <me:feedback class="{$class}" id="{$idclass}.12">
           <xsl:attribute name="type">
             <xsl:choose>
-              <xsl:when test="local-name($item)='iati-identifier' or local-name($item/..)='reporting-org'">danger</xsl:when>
+              <xsl:when test="local-name($item)='iati-identifier' or local-name($item/..)=('reporting-org','participating-org')">danger</xsl:when>
               <xsl:otherwise>info</xsl:otherwise>
             </xsl:choose>                      
           </xsl:attribute>

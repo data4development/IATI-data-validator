@@ -187,7 +187,7 @@
       <x:expect label="It should produce message 1.14.12 for reporting-org." test="boolean(//reporting-org/me:feedback[@id='1.14.12'])"/>
       <x:expect label="It should be severity 'error'." test="boolean(//reporting-org/me:feedback[@id='1.14.12']/@type='danger')"/>
       <x:expect label="It should produce message 1.8.12 for participating-org." test="boolean(//participating-org/me:feedback[@id='1.8.12'])"/>
-      <x:expect label="It should be severity 'info'." test="boolean(//participating-org/me:feedback[@id='1.8.12']/@type='info')"/>
+      <x:expect label="It should be severity 'error'." test="boolean(//participating-org/me:feedback[@id='1.8.12']/@type='danger')"/>
       <x:expect label="It should produce message 1.10.12 for provider-org." test="boolean(//provider-org/me:feedback[@id='1.10.12'])"/>
       <x:expect label="It should be severity 'info'." test="boolean(//provider-org/me:feedback[@id='1.10.12']/@type='info')"/>
       <x:expect label="It should produce message 1.15.12 for receiver-org." test="boolean(//receiver-org/me:feedback[@id='1.15.12'])"/>
