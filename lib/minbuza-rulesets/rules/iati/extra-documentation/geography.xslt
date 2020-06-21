@@ -163,7 +163,7 @@
       <xsl:non-matching-substring>
         <me:feedback type="danger" class="geo" id="3.3.1">
           <me:src ref="iati"/>
-          <me:message>The point position does not consist of two valid real numbers.</me:message>
+          <me:message>The latitude and longitude of the location position, are invalid. The latitude should be in the range -90 to 90, the longitude should be in the range -180 to 180.</me:message>
         </me:feedback>        
       </xsl:non-matching-substring>
     </xsl:analyze-string>
