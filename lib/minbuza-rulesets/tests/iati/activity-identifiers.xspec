@@ -164,6 +164,30 @@
       <x:expect label="It should be severity 'warning'." test="boolean(//related-activity/me:feedback[@id='1.7.10']/@type='warning')"/>
     </x:scenario>
 
+    <x:scenario label="If the activity identifier does start with a known prefix">
+      <x:context>
+        <iati-activity>
+          <iati-identifier>GB-GOV-1-123</iati-identifier>
+          <participating-org activity-id="GB-GOV-1-123"/>
+          <transaction>
+            <provider-org provider-activity-id="GB-GOV-1-123-ABC"/>
+            <receiver-org receiver-activity-id="GB-GOV-1-987-XYZ"/>
+          </transaction>
+          <other-identifier type="A3" ref="GB-GOV-1-XYZ-123"/>
+          <other-identifier type="B1" ref="GB-GOV-1-XYZ-123"/>
+          <related-activity ref="GB-GOV-1-45-678"/>
+        </iati-activity>
+      </x:context>
+      
+      <x:expect label="It should not produce message 1.3.8 for iati-identifier." test="not(//iati-identifier/me:feedback[@id='1.3.8'])"/>
+      <x:expect label="It should not produce message 1.9.8 for participating-org." test="not(//participating-org/me:feedback[@id='1.9.8'])"/>
+      <x:expect label="It should not produce message 1.4.8 for provider-org." test="not(//provider-org/me:feedback[@id='1.4.8'])"/>
+      <x:expect label="It should not produce message 1.5.8 for receiver-org." test="not(//receiver-org/me:feedback[@id='1.5.8'])"/>
+      <x:expect label="It should not produce message 1.6.8 for other-identifier type A3." test="not(//other-identifier[1]/me:feedback[@id='1.6.8'])"/>
+      <x:expect label="It should not produce message 1.16.8 for other-identifier type B1." test="not(//other-identifier[2]/me:feedback[@id='1.16.8'])"/>
+      <x:expect label="It should not produce message 1.7.8 for related-activity." test="not(//related-activity/me:feedback[@id='1.7.8'])"/>
+    </x:scenario>
+    
     <x:scenario label="If the activity identifier does not start with a known prefix">
       <x:context>
         <iati-activity>
