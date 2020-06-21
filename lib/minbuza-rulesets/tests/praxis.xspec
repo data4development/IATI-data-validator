@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:me="http://iati.me"
+  stylesheet="../rules/iati.xslt"
+  xslt-version="3.0">
+  
+  <x:scenario label="Additional rules based on practical situations">
+    
+    <x:scenario label="If the file only uses 1.0x formats (text without narrative element)">
+      <x:context>
+        <iati-activities>
+          <iati-activity>
+            <title>Version 1.0x title</title>
+          </iati-activity>
+          <iati-activity>
+            <title>
+              Version 2.0x title
+            </title>
+          </iati-activity>
+        </iati-activities>
+      </x:context>
+      
+      <x:expect label="It should not produce message 900.1.1." test="not(//me:feedback[@id='900.1.1'])"/>
+    </x:scenario>
+    
+    <x:scenario label="If the file only uses 2.0x formats (text with narrative element)">
+      <x:context>
+        <iati-activities>
+          <iati-activity>
+            <title>
+              <narrative>Version 1.0x title</narrative>
+            </title>
+          </iati-activity>
+          <iati-activity>
+            <title>
+              <narrative>Version 2.0x title</narrative>
+            </title>
+          </iati-activity>
+        </iati-activities>
+      </x:context>
+      
+      <x:expect label="It should not produce message 900.1.1." test="not(//me:feedback[@id='900.1.1'])"/>
+    </x:scenario>
+    
+    <x:scenario label="If the file seems to mix 1.0x and 2.0x formats (text with and without narrative element)">
+      <x:context>
+        <iati-activities>
+          <iati-activity>
+            <title>Version 1.0x title</title>
+          </iati-activity>
+          <iati-activity>
+            <title>
+              <narrative>Version 2.0x title</narrative>
+            </title>
+          </iati-activity>
+        </iati-activities>
+      </x:context>
+      
+      <x:expect label="It should produce message 900.1.1." test="boolean(//me:feedback[@id='900.1.1'])"/>
+    </x:scenario>
+  </x:scenario>
+  
+</x:description>

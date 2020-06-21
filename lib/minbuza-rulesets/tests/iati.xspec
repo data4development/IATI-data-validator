@@ -19,4 +19,6 @@
   <x:import href="iati/results.xspec"/>
   <x:import href="iati/text-1.0x.xspec"/>
   <x:import href="iati/text-2.0x.xspec"/>
+  
+  <x:import href="praxis.xspec"/>
 </x:description>
