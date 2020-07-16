@@ -24,16 +24,16 @@ echo "$PREFIX: retrieved $basename.xml with status $HTTP_STATUS"
 # If available:
 if [[ $HTTP_STATUS == 200 ]]; then 
   # Make sure we process the file again by removing the target for ant
-  rm -f /work/space/dest/$basename.feedback.xml
+  rm -f /work/space/dest/"$basename".feedback.xml
   # Run the XML check and the rules
-  ant -f build-engine.xml -Dfilemask=$basename feedback
+  ant -f build-engine.xml -Dfilemask="$basename" feedback
   
   # Store the result
   
   echo "$PREFIX: store feedback for $basename"
   curl -sS -F "file=@/work/space/dest/$basename.feedback.xml;type=application/xml" "$API/iati-files/$BUCKET_FB/upload"
   
-  FILEDATE=$(date -Iseconds -r /work/space/dest/$basename.feedback.xml)
+  FILEDATE=$(date -Iseconds -r "/work/space/dest/$basename.feedback.xml")
   
   APIDATA="{\"md5\": \"$basename\", \"feedback-updated\": \"$FILEDATE\", \"feedback-version\": \"$VERSION\"}"
   

@@ -17,7 +17,7 @@ processing.
   Targets can be simple steps, or complete workflows consisting of multiple
   *sub targets*.
 
-* Saxon HE provides *XSLT transformations* to process XML files, and produce XML, 
+* Saxon HE provides *XSLT transformations* to process XML files, and produce XML,
   HTML and JSON outputs.
 
 For more information see the [online documentation](https://data4development.github.io/IATI-data-validator/)
