@@ -1,6 +1,18 @@
 IATI Data Validator
 ===================
 
+This branch of the IATI Data Validator contains the feedback rules and messages as in use
+on the DataWorkbench:
+
+ - Version 1.0x feedback is still included
+ - Feedback for additional guidelines provided by The Netherlands and the UK is included.
+ - General practice feedback is included.
+ - Reconciliation with the IATI rules is work in progress: there are differences in
+   severities and wording, and there are different rules.
+   
+About (general)
+---------------   
+
 Create data quality feedback for activity files in the
 [data standard of the International Aid Transparency Initiative](http://iatistandard.org).
 
