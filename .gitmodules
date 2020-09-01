@@ -1,3 +1,6 @@
 [submodule "lib/xspec"]
 	path = lib/xspec
 	url = https://github.com/xspec/xspec.git
+[submodule "dataworkbench-rules"]
+	path = lib/dataworkbench-rules
+	url = https://github.com/data4development/IATI-Rulesets.git
