@@ -5,6 +5,7 @@
   </description>
 
   <property name="xspec.fail" value="false"/>
+  <property name="xspec.dir" value="/work/space/tmp"/>
   <include file="../lib/dataworkbench-rules/lib/xspec/build.xml"/>
   
   <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
