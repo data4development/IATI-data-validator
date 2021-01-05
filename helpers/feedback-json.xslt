@@ -46,7 +46,7 @@
       <xsl:if test="not(//me:feedback[@type=('danger', 'critical')])">
         <me:feedback type="success" class="iati" id="0.0.1">
           <me:src ref="iati" versions="any"/>
-          <me:message>Congratulations! This IATI file has successfully passed validation with no errors!</me:message>
+          <me:message>Congratulations! This IATI file has successfully passed IATI XML schema validation with no errors!</me:message>
         </me:feedback>
       </xsl:if>
     </xsl:variable>
@@ -83,8 +83,7 @@
         <xsl:when test="'0.4.1'=me:feedback/@id">iati-with-xml-and-schema-errors</xsl:when>
         <xsl:when test="'0.5.1'=me:feedback/@id">iati-with-xml-errors</xsl:when>
         <xsl:otherwise>ok</xsl:otherwise>
-      </xsl:choose>
-    
+      </xsl:choose>    
   </xsl:template>
 
   <xsl:template match="iati-activity">
