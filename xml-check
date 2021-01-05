@@ -9,6 +9,7 @@ FILEMASK=${3}*
 DATASETS=${4:-iati-datasets}
 PREFIX="XML check"
 API=${API:-none}
+RULESET=dataworkbench-rules
 
 VALLOGL=100
 VALLOGS=50
@@ -56,7 +57,7 @@ find . -name "${FILEMASK}*" -type f -print | while read FILE; do
       VERSION=2.03
     fi
     
-    if xmllint --noout --schema /home/lib/minbuza-rulesets/lib/schemata/$VERSION/$XMLROOT-schema.xsd "$NAME" 2> "$WORKSPACE/tmp/xmlschemalog/$NAME"; then
+    if xmllint --noout --schema /home/lib/$RULESET/lib/schemata/$VERSION/$XMLROOT-schema.xsd "$NAME" 2> "$WORKSPACE/tmp/xmlschemalog/$NAME"; then
       rm "$WORKSPACE/tmp/xmlschemalog/$NAME"
       if [ -s "$WORKSPACE/tmp/xmltestlog/$NAME" ]; then
         echo '<recovered-iati-file/>' > "$WORKSPACE/tmp/iatifeedback/$NAME"

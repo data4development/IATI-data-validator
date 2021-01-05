@@ -5,5 +5,5 @@
   xslt-version="3.0">
 
   <x:import href="non-iati-files.xspec"/>
-  <x:import href="../lib/minbuza-rulesets/tests/iati.xspec"/>
+  <x:import href="../lib/dataworkbench-rules/tests/iati.xspec"/>
 </x:description>

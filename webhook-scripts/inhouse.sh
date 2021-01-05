@@ -11,7 +11,7 @@ BUCKET_SRC=${BUCKET_SRC:-dataworkbench-iati}
 BUCKET_FB=${BUCKET_FB:-dataworkbench-iatifeedback}
 BUCKET_JSON=${BUCKET_JSON:-dataworkbench-json}
 BUCKET_SVRL=${BUCKET_SVRL:-dataworkbench-svrl}
-VERSION=`grep 'variable name="schemaVersion"' lib/minbuza-rulesets/rules/iati.xslt | cut -f 2 -d \> | cut -f 1 -d \<`
+VERSION=`grep 'variable name="schemaVersion"' lib/dataworkbench-rules/rules/iati.xslt | cut -f 2 -d \> | cut -f 1 -d \<`
 basename=$1
 
 # Try to get the file via our API
