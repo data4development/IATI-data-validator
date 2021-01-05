@@ -23,7 +23,8 @@
   </target>
 
   <target name="known-publishers">
-    <get src="http://www.dataworkbench.io/api/iati-publishers" dest="tmp/iati-publishers.json"/>
+    <get src="http://www.dataworkbench.io/api/v1/iati-publishers" dest="tmp/iati-publishers.json"/>
+    <delete file="lib/minbuza-rulesets/var/known-publishers.xml"/>
     <xslt out="lib/minbuza-rulesets/var/known-publishers.xml"
       in="helpers/update-known-iati-publishers.xslt"
       style="helpers/update-known-iati-publishers.xslt"/>    
