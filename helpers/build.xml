@@ -5,7 +5,7 @@
   </description>
 
   <property name="xspec.fail" value="false"/>
-  <include file="../lib/xspec/build.xml"/>
+  <include file="../lib/dataworkbench-rules/lib/xspec/build.xml"/>
   
   <!-- This extension point and linked targets could be moved to a separate engine and data volume -->
   <extension-point name="update-external-data"
