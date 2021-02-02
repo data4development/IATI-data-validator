@@ -2,6 +2,7 @@
 
 PREFIX="Loop unprocessed files"
 API=${API:-http://validator-api/api/v1}
+DWB_DATASET_MAXDAYSOBSOLETE=${DWB_DATASET_MAXDAYSOBSOLETE:-30}
 
 ./update-data.sh
 
@@ -11,11 +12,11 @@ do
 
   # request a file to be processed
 
-  # Refresh a report after 48 hours (JSON is the last bit updated in the processing
+  # Refresh a report after DWB_DATASET_MAXDAYSOBSOLETE days (JSON is the last bit updated in the processing
   # so we check for this to select incomplete or obsolete data)
-  TDone=`date -d "48 hours ago" -u --iso-8601=seconds`
-  # Restart processing if the last start was more than 1 hour ago
-  TProc=`date -d "1 hour ago" -u --iso-8601=seconds`
+  TDone=`date -d "$DWB_DATASET_MAXDAYSOBSOLETE days ago" -u --iso-8601=seconds`
+  # Restart processing if the last start was more than 2 hour ago
+  TProc=`date -d "2 hours ago" -u --iso-8601=seconds`
 
   QUERY=`cat <<EOT
 {
