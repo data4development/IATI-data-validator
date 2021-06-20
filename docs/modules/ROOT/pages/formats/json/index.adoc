@@ -1,21 +1,17 @@
----
-title: JSON format
-suborder: 2
----
+= JSON format
 
 This is a description of the JSON format of data quality feedback.
-
-{:.warning}
 
 Both the documentation and the data format are still under development.
 
 The JSON format of data quality feedback is used in the web front-end application, and its format is currently tailored to that purpose.
 
-## File-level feedback
+== File-level feedback
 
 For an IATI activities file, the feedback consists of several components:
 
-```json
+[source,json]
+----
 {
   "schemaVersion": "0.9.15",
   "filetype": "iati-activities",
@@ -32,31 +28,32 @@ For an IATI activities file, the feedback consists of several components:
     //... more activities ...
   ]
 }
-```
+----
 
 Common elements:
 
 * The `schemaversion` is the version of the validation rules used to create the feedback.
 * The `filetype` of the file: `iati-activities`, `iati-organisations`, ...
 * The file-level validation result:
-  * `not-an-xml-file`: the file does not contain (valid) XML and cannot be recognised as IATI
-  * `not-an-iati-file`: the file contains valid XML data but not IATI
-  * `iati-with-schema-errors`: the file contains IATI data with schema errors
-  * `iati-with-xml-errors`: the file has XML errors, and in a recovered version is valid IATI
-  * `iati-with-xml-and-schema-errors`: the file has XML errors, and in a recovered version also has IATI schema errors
+ ** `not-an-xml-file`: the file does not contain (valid) XML and cannot be recognised as IATI
+ ** `not-an-iati-file`: the file contains valid XML data but not IATI
+ ** `iati-with-schema-errors`: the file contains IATI data with schema errors
+ ** `iati-with-xml-errors`: the file has XML errors, and in a recovered version is valid IATI
+ ** `iati-with-xml-and-schema-errors`: the file has XML errors, and in a recovered version also has IATI schema errors
 * An array of file-level feedback messages (see format below).
 
 For an IATI activities file, this is completed with:
 
 * The `activities` is an array, with for each activity
-  * The `title`, activity `identifier`, and `publisher` identifier.
-  * An array of feedback messages (see format below).
+ ** The `title`, activity `identifier`, and `publisher` identifier.
+ ** An array of feedback messages (see format below).
 
-## Feedback messages
+== Feedback messages
 
 Feedback messages are given in an array, grouped by category and then message id.
 
-```json
+[source,json]
+----
       "feedback": [
         {
           "category": "identifiers",
@@ -83,25 +80,29 @@ Feedback messages are given in an array, grouped by category and then message id
           ]
         },
         //... more messages ...
-```
+----
 
 Elements:
 
 * `category` and `label`: machine and human readable label for the category.
 * An array of messages in that category:
-  * `id` and `text`: the identifier and text for the message.
-  * `rulesets`: an array with the rulesets in which the message occurs, with a `src` identifier for the ruleset and the `severity` according to that ruleset.
-  * An array of `context` message objects to provide additional information on where the feedback was generated. These currently only contain a `text` element.
+ ** `id` and `text`: the identifier and text for the message.
+ ** `rulesets`: an array with the rulesets in which the message occurs, with a `src` identifier for the ruleset and the `severity` according to that ruleset.
+ ** An array of `context` message objects to provide additional information on where the feedback was generated.
+These currently only contain a `text` element.
 
-## About the message and the context
+== About the message and the context
 
-The feedback is organised per file and then per activity (in an activities file) or organisation (in an organisation file, which typically only contains a single organisation). The same feedback message can occur at many places within a single activity, an also in many activities within a file. The category of the message will point to the general part of the IATI activity, and the context strings are intended to provide more detailed information (a sort of debug message) to find the source of the feedback.
+The feedback is organised per file and then per activity (in an activities file) or organisation (in an organisation file, which typically only contains a single organisation).
+The same feedback message can occur at many places within a single activity, an also in many activities within a file.
+The category of the message will point to the general part of the IATI activity, and the context strings are intended to provide more detailed information (a sort of debug message) to find the source of the feedback.
 
 The context can also be empty, if the feedback applies to the file, activity or organisation.
 
-## Full JSON sample
+== Full JSON sample
 
-```json
+[source,json]
+----
 {
   "schemaVersion": "0.9.15",
   "activities": [
@@ -205,5 +206,4 @@ The context can also be empty, if the feedback applies to the file, activity or 
     }
   ]
 }
-```
-
+----
