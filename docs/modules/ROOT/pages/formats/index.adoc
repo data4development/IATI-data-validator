@@ -1,0 +1,9 @@
+= Quality feedback
+
+Data quality feedback formats.
+
+TBC
+
+Feedback on files is available in different formats.
+
+xref:formats/json/index.adoc[] is used for the web front-end
